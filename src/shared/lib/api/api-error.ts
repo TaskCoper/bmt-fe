@@ -17,7 +17,8 @@ export function normalizeApiError(error: unknown): ApiError {
       return {
         status: error.response.status,
         code: data?.code,
-        message: data?.message ?? defaultMessageForStatus(error.response.status),
+        message:
+          data?.message ?? defaultMessageForStatus(error.response.status),
         errors: data?.errors,
       };
     }

@@ -77,7 +77,9 @@ export const mockAuthApi = {
   async getCurrentUser(): Promise<AuthUser> {
     await delay(150);
     const raw =
-      typeof window !== 'undefined' ? localStorage.getItem(MOCK_USER_KEY) : null;
+      typeof window !== 'undefined'
+        ? localStorage.getItem(MOCK_USER_KEY)
+        : null;
     if (!raw) {
       throw apiError('No active session (mock).', 401);
     }

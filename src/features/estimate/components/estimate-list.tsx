@@ -158,7 +158,10 @@ export function EstimateList() {
           onRetry={() => refetch()}
         />
       ) : !data || data.items.length === 0 ? (
-        <EmptyState title={t('empty.title')} description={t('empty.description')} />
+        <EmptyState
+          title={t('empty.title')}
+          description={t('empty.description')}
+        />
       ) : (
         <>
           <div className="rounded-lg border">

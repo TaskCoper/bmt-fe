@@ -22,7 +22,7 @@ export function LandingHero() {
       {/* Subtle background: soft grid + radial fade. */}
       <div
         aria-hidden
-        className="bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] [background-size:56px_56px] absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
+        className="absolute inset-0 bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)] [background-size:56px_56px] opacity-40"
       />
       <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-4 py-24 text-center lg:py-32">
         <Badge variant="secondary" className="mb-6">

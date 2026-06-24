@@ -108,7 +108,10 @@ export function LibraryTable() {
           onRetry={() => refetch()}
         />
       ) : !data || data.items.length === 0 ? (
-        <EmptyState title={t('empty.title')} description={t('empty.description')} />
+        <EmptyState
+          title={t('empty.title')}
+          description={t('empty.description')}
+        />
       ) : (
         <>
           <div className="rounded-lg border">
@@ -117,7 +120,9 @@ export function LibraryTable() {
                 <TableRow>
                   <TableHead className="w-28">{t('columns.code')}</TableHead>
                   <TableHead>{t('columns.name')}</TableHead>
-                  <TableHead className="w-28">{t('columns.category')}</TableHead>
+                  <TableHead className="w-28">
+                    {t('columns.category')}
+                  </TableHead>
                   <TableHead className="w-20">{t('columns.unit')}</TableHead>
                   <TableHead className="text-right">
                     {t('columns.unitPrice')}

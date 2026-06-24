@@ -148,7 +148,11 @@ function applyFilters(filters: ProjectFilters): Project[] {
 export const mockProjectApi = {
   async list(filters: ProjectFilters): Promise<PaginatedResponse<Project>> {
     await mockDelay();
-    return paginate(applyFilters(filters), filters.page, DEFAULT_PROJECT_PAGE_SIZE);
+    return paginate(
+      applyFilters(filters),
+      filters.page,
+      DEFAULT_PROJECT_PAGE_SIZE,
+    );
   },
 
   async getById(id: string): Promise<Project> {

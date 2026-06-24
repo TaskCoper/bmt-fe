@@ -174,8 +174,8 @@
 
   /* Typography — font families */
   --font-sans:
-    var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
-    'Segoe UI', sans-serif;
+    var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
   /* Typography — semantic scale (clamped for responsive display headings) */

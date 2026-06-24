@@ -31,7 +31,7 @@ export function CtaSection() {
               asChild
               size="lg"
               variant="outline"
-              className="border-primary-foreground/30 bg-transparent hover:bg-primary-foreground/10 text-primary-foreground"
+              className="border-primary-foreground/30 hover:bg-primary-foreground/10 text-primary-foreground bg-transparent"
             >
               <a href={`#${LANDING_SECTIONS.contact}`}>{t('secondary')}</a>
             </Button>

@@ -115,7 +115,11 @@ export function ChatPanel() {
           disabled={isReplying}
           autoComplete="off"
         />
-        <Button type="submit" size="icon" disabled={isReplying || !input.trim()}>
+        <Button
+          type="submit"
+          size="icon"
+          disabled={isReplying || !input.trim()}
+        >
           <SendHorizonal className="size-4" />
           <span className="sr-only">{t('send')}</span>
         </Button>

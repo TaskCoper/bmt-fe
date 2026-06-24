@@ -136,11 +136,7 @@ export function LoginForm() {
               )}
             />
 
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={login.isPending}
-            >
+            <Button type="submit" className="w-full" disabled={login.isPending}>
               {login.isPending ? (
                 <Loader2 className="size-4 animate-spin" />
               ) : null}

@@ -27,7 +27,10 @@ import {
 import { EmptyState, ErrorState } from '@/shared/components/common';
 import { useProjects } from '../hooks/use-projects';
 import { useProjectFiltersStore } from '../store/project-filters.store';
-import { PROJECT_STATUS, type ProjectStatus } from '../constants/project.constants';
+import {
+  PROJECT_STATUS,
+  type ProjectStatus,
+} from '../constants/project.constants';
 
 const STATUS_VARIANT: Record<
   ProjectStatus,
@@ -104,7 +107,10 @@ export function ProjectList() {
           onRetry={() => refetch()}
         />
       ) : !data || data.items.length === 0 ? (
-        <EmptyState title={t('empty.title')} description={t('empty.description')} />
+        <EmptyState
+          title={t('empty.title')}
+          description={t('empty.description')}
+        />
       ) : (
         <>
           <div

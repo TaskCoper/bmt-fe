@@ -5,12 +5,7 @@ export {
   AUTH_STORAGE_KEY,
   type Role,
 } from './auth.constants';
-export type {
-  AuthUser,
-  AuthState,
-  AuthActions,
-  AuthStore,
-} from './auth.types';
+export type { AuthUser, AuthState, AuthActions, AuthStore } from './auth.types';
 export { useAuthStore } from './auth.store';
 export { useAuth } from './hooks/use-auth';
 export { ProtectedRoute } from './guards/protected-route';

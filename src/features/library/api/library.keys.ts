@@ -5,6 +5,5 @@ import type { LibraryFilters } from '../types/library.types';
 export const libraryKeys = {
   all: [QUERY_KEY_ROOTS.library] as const,
   lists: () => [...libraryKeys.all, 'list'] as const,
-  list: (filters: LibraryFilters) =>
-    [...libraryKeys.lists(), filters] as const,
+  list: (filters: LibraryFilters) => [...libraryKeys.lists(), filters] as const,
 };

@@ -3,7 +3,11 @@ import type { ReactNode } from 'react';
 import { Link } from '@/i18n/navigation';
 import { ROUTES } from '@/shared/constants/routes';
 import { GuestRoute } from '@/shared/auth';
-import { Logo, ThemeToggle, LanguageSwitcher } from '@/shared/components/common';
+import {
+  Logo,
+  ThemeToggle,
+  LanguageSwitcher,
+} from '@/shared/components/common';
 
 /**
  * Centered auth layout. `GuestRoute` keeps authenticated users out of

@@ -4,7 +4,11 @@ import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
 import { ROUTES } from '@/shared/constants/routes';
-import { Logo, ThemeToggle, LanguageSwitcher } from '@/shared/components/common';
+import {
+  Logo,
+  ThemeToggle,
+  LanguageSwitcher,
+} from '@/shared/components/common';
 import { Button } from '@/shared/components/ui/button';
 
 /** Public marketing header used by the landing route group. */

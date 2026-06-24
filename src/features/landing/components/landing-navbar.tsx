@@ -5,7 +5,11 @@ import { Menu } from 'lucide-react';
 
 import { Link } from '@/i18n/navigation';
 import { ROUTES } from '@/shared/constants/routes';
-import { Logo, ThemeToggle, LanguageSwitcher } from '@/shared/components/common';
+import {
+  Logo,
+  ThemeToggle,
+  LanguageSwitcher,
+} from '@/shared/components/common';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,
@@ -59,7 +63,7 @@ export function LandingNavbar() {
                 <Menu className="size-5" />
               </Button>
             </DialogTrigger>
-            <DialogContent className="top-0 right-0 left-auto h-full max-w-xs translate-x-0 translate-y-0 rounded-none border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right">
+            <DialogContent className="data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right top-0 right-0 left-auto h-full max-w-xs translate-x-0 translate-y-0 rounded-none border-l">
               <DialogTitle className="sr-only">Menu</DialogTitle>
               <Logo className="mb-4" />
               <nav className="flex flex-col gap-1">

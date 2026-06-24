@@ -6,7 +6,11 @@ import { Menu } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { useAuth } from '@/shared/auth';
 import { cn } from '@/shared/lib/utils';
-import { Logo, ThemeToggle, LanguageSwitcher } from '@/shared/components/common';
+import {
+  Logo,
+  ThemeToggle,
+  LanguageSwitcher,
+} from '@/shared/components/common';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,
@@ -44,7 +48,7 @@ export function DashboardHeader({ onLogout }: DashboardHeaderProps) {
             <Menu className="size-5" />
           </Button>
         </DialogTrigger>
-        <DialogContent className="top-0 left-0 h-full max-w-72 translate-x-0 translate-y-0 rounded-none border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-72">
+        <DialogContent className="data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left top-0 left-0 h-full max-w-72 translate-x-0 translate-y-0 rounded-none border-r sm:max-w-72">
           <DialogTitle className="sr-only">{t('dashboard')}</DialogTitle>
           <Logo className="mb-4" />
           <nav className="space-y-1">

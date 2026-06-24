@@ -19,7 +19,11 @@ interface RoleGuardProps {
  * NOTE: This is a UX convenience only. Real authorization MUST be enforced
  * by the .NET backend on every request.
  */
-export function RoleGuard({ allow, children, fallback = null }: RoleGuardProps) {
+export function RoleGuard({
+  allow,
+  children,
+  fallback = null,
+}: RoleGuardProps) {
   const { hasAnyRole } = useAuth();
   return <>{hasAnyRole(allow) ? children : fallback}</>;
 }

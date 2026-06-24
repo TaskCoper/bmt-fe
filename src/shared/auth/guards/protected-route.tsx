@@ -24,7 +24,9 @@ export function ProtectedRoute({ children, fallback }: ProtectedRouteProps) {
 
   useEffect(() => {
     if (isInitialized && !isAuthenticated) {
-      router.replace(`${ROUTES.LOGIN}?redirect=${encodeURIComponent(pathname)}`);
+      router.replace(
+        `${ROUTES.LOGIN}?redirect=${encodeURIComponent(pathname)}`,
+      );
     }
   }, [isInitialized, isAuthenticated, router, pathname]);
 

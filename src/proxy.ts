@@ -27,13 +27,14 @@ function matchesPrefix(path: string, prefixes: readonly string[]): boolean {
 }
 
 /**
- * Composite middleware:
+ * Composite proxy (formerly `middleware` — renamed for the Next.js 16
+ * file convention):
  *  1. Resolve locale & rewrite via next-intl.
  *  2. Apply auth route guards based on the presence of the auth cookie set
  *     by the .NET backend. (Infrastructure only — no token verification here;
  *     authorization is enforced server-side by the API.)
  */
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const response = intlMiddleware(request);
 
   const { pathname } = request.nextUrl;

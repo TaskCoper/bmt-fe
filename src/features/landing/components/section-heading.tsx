@@ -7,7 +7,11 @@ interface SectionHeadingProps {
 }
 
 /** Centered section header shared across landing sections for consistency. */
-export function SectionHeading({ badge, title, subtitle }: SectionHeadingProps) {
+export function SectionHeading({
+  badge,
+  title,
+  subtitle,
+}: SectionHeadingProps) {
   return (
     <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
       {badge ? (

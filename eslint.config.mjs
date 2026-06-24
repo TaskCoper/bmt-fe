@@ -1,17 +1,8 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import next from 'eslint-config-next';
 
 const eslintConfig = [
-  ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript'],
+  ...next,
+  {
     rules: {
       // Enforce the "import only through barrels / no deep cross-feature imports" rule.
       'no-restricted-imports': [
@@ -26,6 +17,11 @@ const eslintConfig = [
           ],
         },
       ],
+    },
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: {
       '@typescript-eslint/no-unused-vars': [
         'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
@@ -35,7 +31,7 @@ const eslintConfig = [
         { prefer: 'type-imports', fixStyle: 'inline-type-imports' },
       ],
     },
-  }),
+  },
   {
     ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts'],
   },

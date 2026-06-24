@@ -82,7 +82,10 @@ export function UserTable() {
           onRetry={() => refetch()}
         />
       ) : !data || data.items.length === 0 ? (
-        <EmptyState title={t('empty.title')} description={t('empty.description')} />
+        <EmptyState
+          title={t('empty.title')}
+          description={t('empty.description')}
+        />
       ) : (
         <>
           <div className="rounded-lg border">
@@ -134,7 +137,9 @@ export function UserTable() {
                   variant="outline"
                   size="sm"
                   disabled={data.meta.page <= 1}
-                  onClick={() => setFilters((f) => ({ ...f, page: f.page - 1 }))}
+                  onClick={() =>
+                    setFilters((f) => ({ ...f, page: f.page - 1 }))
+                  }
                 >
                   {tc('previous')}
                 </Button>
@@ -148,7 +153,9 @@ export function UserTable() {
                   variant="outline"
                   size="sm"
                   disabled={data.meta.page >= data.meta.totalPages}
-                  onClick={() => setFilters((f) => ({ ...f, page: f.page + 1 }))}
+                  onClick={() =>
+                    setFilters((f) => ({ ...f, page: f.page + 1 }))
+                  }
                 >
                   {tc('next')}
                 </Button>

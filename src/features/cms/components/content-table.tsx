@@ -27,10 +27,7 @@ import {
 } from '@/shared/components/ui/select';
 import { EmptyState, ErrorState } from '@/shared/components/common';
 import { useContent } from '../hooks/use-content';
-import {
-  CONTENT_STATUS,
-  type ContentStatus,
-} from '../constants/cms.constants';
+import { CONTENT_STATUS, type ContentStatus } from '../constants/cms.constants';
 import type { ContentFilters } from '../types/cms.types';
 
 const STATUS_VARIANT: Record<
@@ -112,7 +109,10 @@ export function ContentTable() {
           onRetry={() => refetch()}
         />
       ) : !data || data.items.length === 0 ? (
-        <EmptyState title={t('empty.title')} description={t('empty.description')} />
+        <EmptyState
+          title={t('empty.title')}
+          description={t('empty.description')}
+        />
       ) : (
         <>
           <div className="rounded-lg border">
