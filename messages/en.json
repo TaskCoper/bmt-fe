@@ -1,0 +1,375 @@
+{
+  "common": {
+    "appName": "BMT AI Construction",
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "submit": "Submit",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "more": "More",
+    "actions": "Actions",
+    "pageOf": "Page {page} of {total}"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "estimates": "Estimates",
+    "library": "Library",
+    "chatbot": "Assistant",
+    "cms": "Content",
+    "users": "Users",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "toggle": "Toggle theme"
+  },
+  "language": {
+    "label": "Language",
+    "vi": "Tiếng Việt",
+    "en": "English"
+  },
+  "landing": {
+    "nav": {
+      "home": "Home",
+      "services": "Services",
+      "process": "Process",
+      "projects": "Projects",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "hero": {
+      "badge": "Enterprise construction intelligence",
+      "title": "Build smarter with AI-driven estimates",
+      "subtitle": "Plan, estimate and manage construction projects on one premium, modern platform — powered by AI.",
+      "primaryCta": "Create an estimate",
+      "secondaryCta": "Explore projects"
+    },
+    "services": {
+      "badge": "Services",
+      "title": "Everything you need to build with confidence",
+      "subtitle": "From first idea to handover, our tools cover the full construction lifecycle.",
+      "consult": {
+        "title": "Consultation",
+        "description": "Capture client requirements and turn them into a clear, structured brief."
+      },
+      "estimate": {
+        "title": "AI estimates",
+        "description": "Generate detailed renovation cost estimates in minutes with AI assistance."
+      },
+      "design": {
+        "title": "Design references",
+        "description": "Browse curated reference projects to align on style and budget."
+      },
+      "manage": {
+        "title": "Project management",
+        "description": "Track every project, cost and revision from a single dashboard."
+      },
+      "library": {
+        "title": "Material library",
+        "description": "Maintain up-to-date unit prices for materials and labour."
+      },
+      "support": {
+        "title": "AI assistant",
+        "description": "Get instant answers and guidance from the built-in chatbot."
+      }
+    },
+    "process": {
+      "badge": "How it works",
+      "title": "Create a reference estimate in 4 steps",
+      "subtitle": "A guided flow that takes you from requirements to a shareable cost estimate.",
+      "step1": {
+        "title": "Define the space",
+        "description": "Choose the room type, area and scope of the renovation."
+      },
+      "step2": {
+        "title": "Pick references",
+        "description": "Select design references that match your taste and budget."
+      },
+      "step3": {
+        "title": "Review the estimate",
+        "description": "AI breaks down materials and labour into a detailed cost estimate."
+      },
+      "step4": {
+        "title": "Save & share",
+        "description": "Export to PDF or save the project to revisit and refine later."
+      }
+    },
+    "projects": {
+      "badge": "Featured projects",
+      "title": "Reference projects to inspire your build",
+      "subtitle": "Explore real renovations with transparent scope and budgets.",
+      "viewAll": "View all projects",
+      "item1": { "name": "Modern apartment renovation", "category": "Residential" },
+      "item2": { "name": "Boutique café fit-out", "category": "Commercial" },
+      "item3": { "name": "Family townhouse remodel", "category": "Residential" }
+    },
+    "stats": {
+      "projects": { "value": "1,200+", "label": "Projects estimated" },
+      "clients": { "value": "350+", "label": "Happy clients" },
+      "materials": { "value": "8,000+", "label": "Materials priced" },
+      "accuracy": { "value": "98%", "label": "Estimate accuracy" }
+    },
+    "cta": {
+      "title": "Ready to estimate your next project?",
+      "subtitle": "Start free — create your first AI-powered cost estimate today.",
+      "primary": "Get started",
+      "secondary": "Talk to us"
+    },
+    "contact": {
+      "badge": "Contact",
+      "title": "Get in touch",
+      "subtitle": "Questions about a project or estimate? We're here to help.",
+      "addressLabel": "Address",
+      "address": "Buon Ma Thuot, Dak Lak, Vietnam",
+      "phoneLabel": "Phone",
+      "phone": "+84 000 000 000",
+      "emailLabel": "Email",
+      "email": "hello@bmt-ai.construction",
+      "hoursLabel": "Working hours",
+      "hours": "Mon–Sat, 8:00–18:00"
+    },
+    "footer": {
+      "tagline": "AI-powered estimates and project management for modern construction.",
+      "productTitle": "Product",
+      "companyTitle": "Company",
+      "legalTitle": "Legal",
+      "rights": "All rights reserved.",
+      "links": {
+        "services": "Services",
+        "process": "Process",
+        "projects": "Projects",
+        "about": "About",
+        "contact": "Contact",
+        "privacy": "Privacy",
+        "terms": "Terms"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account to continue",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up"
+    },
+    "forbidden": {
+      "title": "No access",
+      "description": "This area is restricted to administrators."
+    }
+  },
+  "pages": {
+    "comingSoon": {
+      "title": "Coming soon",
+      "description": "This feature is under development."
+    },
+    "estimates": {
+      "subtitle": "Create and manage construction cost estimates."
+    },
+    "library": {
+      "subtitle": "Unit prices for materials, labour and norms."
+    },
+    "chatbot": {
+      "subtitle": "AI assistant for estimating and lookups."
+    },
+    "cms": {
+      "subtitle": "Manage landing page content."
+    }
+  },
+  "users": {
+    "title": "Users",
+    "subtitle": "Manage accounts and permissions.",
+    "searchPlaceholder": "Search by name or email…",
+    "invite": "Invite user",
+    "count": "{count} users",
+    "columns": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "createdAt": "Created"
+    },
+    "roles": {
+      "admin": "Admin",
+      "user": "Staff",
+      "guest": "Guest"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "empty": {
+      "title": "No users",
+      "description": "No users match your search."
+    }
+  },
+  "project": {
+    "subtitle": "Manage and track construction projects.",
+    "searchPlaceholder": "Search projects…",
+    "count": "{count} projects",
+    "columns": {
+      "name": "Project",
+      "status": "Status",
+      "updated": "Updated"
+    },
+    "status": {
+      "all": "All statuses",
+      "draft": "Draft",
+      "active": "Active",
+      "on_hold": "On hold",
+      "completed": "Completed",
+      "archived": "Archived"
+    },
+    "empty": {
+      "title": "No projects",
+      "description": "No projects match your filters."
+    }
+  },
+  "estimate": {
+    "subtitle": "Create and manage construction cost estimates.",
+    "searchPlaceholder": "Search by code, name or project…",
+    "count": "{count} estimates",
+    "summary": {
+      "total": "Total estimates",
+      "approved": "Approved",
+      "pending": "Pending",
+      "totalValue": "Approved value"
+    },
+    "columns": {
+      "code": "Code",
+      "name": "Estimate",
+      "status": "Status",
+      "total": "Total"
+    },
+    "status": {
+      "all": "All statuses",
+      "draft": "Draft",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "empty": {
+      "title": "No estimates",
+      "description": "No estimates match your filters."
+    }
+  },
+  "library": {
+    "searchPlaceholder": "Search by code or name…",
+    "count": "{count} items",
+    "columns": {
+      "code": "Code",
+      "name": "Name",
+      "category": "Category",
+      "unit": "Unit",
+      "unitPrice": "Unit price"
+    },
+    "category": {
+      "all": "All categories",
+      "material": "Material",
+      "labor": "Labour",
+      "equipment": "Equipment"
+    },
+    "empty": {
+      "title": "No data",
+      "description": "No items match your filters."
+    }
+  },
+  "chatbot": {
+    "placeholder": "Type your question…",
+    "send": "Send"
+  },
+  "cms": {
+    "searchPlaceholder": "Search by title…",
+    "create": "New content",
+    "count": "{count} entries",
+    "columns": {
+      "title": "Title",
+      "type": "Type",
+      "status": "Status",
+      "author": "Author",
+      "updated": "Updated"
+    },
+    "status": {
+      "all": "All statuses",
+      "published": "Published",
+      "draft": "Draft",
+      "scheduled": "Scheduled"
+    },
+    "type": {
+      "page": "Page",
+      "post": "Post",
+      "banner": "Banner"
+    },
+    "empty": {
+      "title": "No content",
+      "description": "No content matches your filters."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "overview": "Overview",
+    "recentProjects": "Recent projects",
+    "activity": "Recent activity",
+    "stats": {
+      "activeHint": "{count} active",
+      "pendingHint": "{count} pending",
+      "libraryHint": "Materials & labour",
+      "revenue": "Revenue",
+      "revenueHint": "Approved estimates"
+    },
+    "empty": {
+      "title": "Nothing here yet",
+      "description": "Get started by creating your first item.",
+      "action": "Create new"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Check your connection and try again.",
+    "unauthorized": "Your session has expired. Please sign in again.",
+    "forbidden": "You don't have permission to perform this action.",
+    "notFound": "The page you're looking for doesn't exist.",
+    "validation": "Please review the highlighted fields.",
+    "tooManyRequests": "Too many requests. Please slow down.",
+    "server": "Our servers are having trouble. Please try again later.",
+    "pageNotFound": {
+      "title": "Page not found",
+      "description": "Sorry, we couldn't find that page.",
+      "action": "Back to home"
+    },
+    "boundary": {
+      "title": "Something went wrong",
+      "description": "An unexpected error occurred while rendering this page.",
+      "action": "Try again"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Enter a valid email address",
+    "minLength": "Must be at least {min} characters",
+    "maxLength": "Must be at most {max} characters",
+    "passwordMin": "Password must be at least {min} characters"
+  }
+}

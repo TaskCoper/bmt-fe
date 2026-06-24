@@ -1,0 +1,375 @@
+{
+  "common": {
+    "appName": "BMT AI Construction",
+    "loading": "Đang tải…",
+    "save": "Lưu",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "create": "Tạo mới",
+    "search": "Tìm kiếm",
+    "submit": "Gửi",
+    "close": "Đóng",
+    "confirm": "Xác nhận",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "previous": "Trước",
+    "more": "Thêm",
+    "actions": "Thao tác",
+    "pageOf": "Trang {page}/{total}"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "dashboard": "Bảng điều khiển",
+    "projects": "Dự án",
+    "estimates": "Dự toán",
+    "library": "Thư viện",
+    "chatbot": "Trợ lý",
+    "cms": "Nội dung",
+    "users": "Người dùng",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt",
+    "logout": "Đăng xuất"
+  },
+  "theme": {
+    "label": "Giao diện",
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Hệ thống",
+    "toggle": "Đổi giao diện"
+  },
+  "language": {
+    "label": "Ngôn ngữ",
+    "vi": "Tiếng Việt",
+    "en": "English"
+  },
+  "landing": {
+    "nav": {
+      "home": "Trang chủ",
+      "services": "Dịch vụ",
+      "process": "Quy trình",
+      "projects": "Dự án",
+      "about": "Giới thiệu",
+      "contact": "Liên hệ"
+    },
+    "hero": {
+      "badge": "Trí tuệ xây dựng cho doanh nghiệp",
+      "title": "Xây dựng thông minh hơn với dự toán bằng AI",
+      "subtitle": "Lập kế hoạch, dự toán và quản lý dự án xây dựng trên một nền tảng hiện đại, cao cấp — được hỗ trợ bởi AI.",
+      "primaryCta": "Tạo dự toán",
+      "secondaryCta": "Xem dự án"
+    },
+    "services": {
+      "badge": "Dịch vụ",
+      "title": "Mọi thứ bạn cần để xây dựng tự tin",
+      "subtitle": "Từ ý tưởng đầu tiên đến bàn giao, công cụ của chúng tôi bao trùm toàn bộ vòng đời dự án.",
+      "consult": {
+        "title": "Tư vấn",
+        "description": "Ghi nhận yêu cầu khách hàng và chuyển thành bản brief rõ ràng, mạch lạc."
+      },
+      "estimate": {
+        "title": "Dự toán bằng AI",
+        "description": "Tạo dự toán chi phí sửa chữa chi tiết trong vài phút với hỗ trợ của AI."
+      },
+      "design": {
+        "title": "Dự án tham khảo",
+        "description": "Duyệt các dự án mẫu được tuyển chọn để thống nhất phong cách và ngân sách."
+      },
+      "manage": {
+        "title": "Quản lý dự án",
+        "description": "Theo dõi mọi dự án, chi phí và phiên bản chỉnh sửa trên một bảng điều khiển."
+      },
+      "library": {
+        "title": "Thư viện vật tư",
+        "description": "Quản lý đơn giá vật tư và nhân công luôn được cập nhật."
+      },
+      "support": {
+        "title": "Trợ lý AI",
+        "description": "Nhận câu trả lời và hướng dẫn tức thì từ chatbot tích hợp."
+      }
+    },
+    "process": {
+      "badge": "Cách hoạt động",
+      "title": "Tạo dự toán tham khảo chỉ với 4 bước",
+      "subtitle": "Luồng hướng dẫn đưa bạn từ yêu cầu đến bản dự toán có thể chia sẻ.",
+      "step1": {
+        "title": "Xác định không gian",
+        "description": "Chọn loại phòng, diện tích và phạm vi sửa chữa."
+      },
+      "step2": {
+        "title": "Chọn mẫu tham khảo",
+        "description": "Chọn các thiết kế tham khảo phù hợp gu thẩm mỹ và ngân sách."
+      },
+      "step3": {
+        "title": "Xem dự toán",
+        "description": "AI bóc tách vật tư và nhân công thành bản dự toán chi tiết."
+      },
+      "step4": {
+        "title": "Lưu & chia sẻ",
+        "description": "Xuất PDF hoặc lưu dự án để xem lại và tinh chỉnh sau."
+      }
+    },
+    "projects": {
+      "badge": "Dự án tiêu biểu",
+      "title": "Dự án tham khảo truyền cảm hứng cho công trình của bạn",
+      "subtitle": "Khám phá các công trình thực tế với phạm vi và ngân sách minh bạch.",
+      "viewAll": "Xem tất cả dự án",
+      "item1": { "name": "Cải tạo căn hộ hiện đại", "category": "Nhà ở" },
+      "item2": { "name": "Thi công quán café boutique", "category": "Thương mại" },
+      "item3": { "name": "Cải tạo nhà phố gia đình", "category": "Nhà ở" }
+    },
+    "stats": {
+      "projects": { "value": "1.200+", "label": "Dự án đã dự toán" },
+      "clients": { "value": "350+", "label": "Khách hàng hài lòng" },
+      "materials": { "value": "8.000+", "label": "Vật tư được định giá" },
+      "accuracy": { "value": "98%", "label": "Độ chính xác dự toán" }
+    },
+    "cta": {
+      "title": "Sẵn sàng dự toán cho dự án tiếp theo?",
+      "subtitle": "Bắt đầu miễn phí — tạo bản dự toán chi phí bằng AI đầu tiên hôm nay.",
+      "primary": "Bắt đầu",
+      "secondary": "Liên hệ tư vấn"
+    },
+    "contact": {
+      "badge": "Liên hệ",
+      "title": "Kết nối với chúng tôi",
+      "subtitle": "Có câu hỏi về dự án hay dự toán? Chúng tôi luôn sẵn sàng hỗ trợ.",
+      "addressLabel": "Địa chỉ",
+      "address": "Buôn Ma Thuột, Đắk Lắk, Việt Nam",
+      "phoneLabel": "Điện thoại",
+      "phone": "+84 000 000 000",
+      "emailLabel": "Email",
+      "email": "hello@bmt-ai.construction",
+      "hoursLabel": "Giờ làm việc",
+      "hours": "Thứ 2–Thứ 7, 8:00–18:00"
+    },
+    "footer": {
+      "tagline": "Dự toán và quản lý dự án bằng AI cho ngành xây dựng hiện đại.",
+      "productTitle": "Sản phẩm",
+      "companyTitle": "Công ty",
+      "legalTitle": "Pháp lý",
+      "rights": "Bảo lưu mọi quyền.",
+      "links": {
+        "services": "Dịch vụ",
+        "process": "Quy trình",
+        "projects": "Dự án",
+        "about": "Giới thiệu",
+        "contact": "Liên hệ",
+        "privacy": "Bảo mật",
+        "terms": "Điều khoản"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Chào mừng trở lại",
+      "subtitle": "Đăng nhập vào tài khoản của bạn để tiếp tục",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ban@congty.com",
+      "passwordLabel": "Mật khẩu",
+      "passwordPlaceholder": "Nhập mật khẩu của bạn",
+      "rememberMe": "Ghi nhớ đăng nhập",
+      "forgotPassword": "Quên mật khẩu?",
+      "submit": "Đăng nhập",
+      "noAccount": "Chưa có tài khoản?",
+      "signUp": "Đăng ký"
+    },
+    "forbidden": {
+      "title": "Không có quyền truy cập",
+      "description": "Khu vực này chỉ dành cho quản trị viên."
+    }
+  },
+  "pages": {
+    "comingSoon": {
+      "title": "Đang phát triển",
+      "description": "Tính năng này sẽ sớm ra mắt."
+    },
+    "estimates": {
+      "subtitle": "Lập và quản lý dự toán chi phí công trình."
+    },
+    "library": {
+      "subtitle": "Đơn giá vật tư, nhân công và định mức."
+    },
+    "chatbot": {
+      "subtitle": "Trợ lý AI hỗ trợ dự toán và tra cứu."
+    },
+    "cms": {
+      "subtitle": "Quản lý nội dung trang giới thiệu."
+    }
+  },
+  "users": {
+    "title": "Người dùng",
+    "subtitle": "Quản lý tài khoản và phân quyền.",
+    "searchPlaceholder": "Tìm theo tên hoặc email…",
+    "invite": "Mời người dùng",
+    "count": "{count} người dùng",
+    "columns": {
+      "name": "Tên",
+      "email": "Email",
+      "role": "Vai trò",
+      "status": "Trạng thái",
+      "createdAt": "Ngày tạo"
+    },
+    "roles": {
+      "admin": "Quản trị",
+      "user": "Nhân viên",
+      "guest": "Khách"
+    },
+    "status": {
+      "active": "Hoạt động",
+      "inactive": "Ngừng"
+    },
+    "empty": {
+      "title": "Không có người dùng",
+      "description": "Không tìm thấy người dùng phù hợp."
+    }
+  },
+  "project": {
+    "subtitle": "Quản lý và theo dõi các dự án xây dựng.",
+    "searchPlaceholder": "Tìm dự án…",
+    "count": "{count} dự án",
+    "columns": {
+      "name": "Tên dự án",
+      "status": "Trạng thái",
+      "updated": "Cập nhật"
+    },
+    "status": {
+      "all": "Tất cả trạng thái",
+      "draft": "Nháp",
+      "active": "Đang chạy",
+      "on_hold": "Tạm dừng",
+      "completed": "Hoàn thành",
+      "archived": "Lưu trữ"
+    },
+    "empty": {
+      "title": "Chưa có dự án",
+      "description": "Không tìm thấy dự án phù hợp bộ lọc."
+    }
+  },
+  "estimate": {
+    "subtitle": "Lập và quản lý dự toán chi phí công trình.",
+    "searchPlaceholder": "Tìm theo mã, tên hoặc dự án…",
+    "count": "{count} dự toán",
+    "summary": {
+      "total": "Tổng dự toán",
+      "approved": "Đã duyệt",
+      "pending": "Chờ duyệt",
+      "totalValue": "Giá trị đã duyệt"
+    },
+    "columns": {
+      "code": "Mã",
+      "name": "Tên dự toán",
+      "status": "Trạng thái",
+      "total": "Tổng tiền"
+    },
+    "status": {
+      "all": "Tất cả trạng thái",
+      "draft": "Nháp",
+      "pending": "Chờ duyệt",
+      "approved": "Đã duyệt",
+      "rejected": "Từ chối"
+    },
+    "empty": {
+      "title": "Chưa có dự toán",
+      "description": "Không tìm thấy dự toán phù hợp bộ lọc."
+    }
+  },
+  "library": {
+    "searchPlaceholder": "Tìm theo mã hoặc tên…",
+    "count": "{count} mục",
+    "columns": {
+      "code": "Mã",
+      "name": "Tên",
+      "category": "Loại",
+      "unit": "ĐVT",
+      "unitPrice": "Đơn giá"
+    },
+    "category": {
+      "all": "Tất cả loại",
+      "material": "Vật tư",
+      "labor": "Nhân công",
+      "equipment": "Thiết bị"
+    },
+    "empty": {
+      "title": "Chưa có dữ liệu",
+      "description": "Không tìm thấy mục phù hợp bộ lọc."
+    }
+  },
+  "chatbot": {
+    "placeholder": "Nhập câu hỏi của bạn…",
+    "send": "Gửi"
+  },
+  "cms": {
+    "searchPlaceholder": "Tìm theo tiêu đề…",
+    "create": "Tạo nội dung",
+    "count": "{count} nội dung",
+    "columns": {
+      "title": "Tiêu đề",
+      "type": "Loại",
+      "status": "Trạng thái",
+      "author": "Tác giả",
+      "updated": "Cập nhật"
+    },
+    "status": {
+      "all": "Tất cả trạng thái",
+      "published": "Đã đăng",
+      "draft": "Nháp",
+      "scheduled": "Hẹn đăng"
+    },
+    "type": {
+      "page": "Trang",
+      "post": "Bài viết",
+      "banner": "Banner"
+    },
+    "empty": {
+      "title": "Chưa có nội dung",
+      "description": "Không tìm thấy nội dung phù hợp bộ lọc."
+    }
+  },
+  "dashboard": {
+    "title": "Bảng điều khiển",
+    "welcome": "Chào mừng trở lại",
+    "overview": "Tổng quan",
+    "recentProjects": "Dự án gần đây",
+    "activity": "Hoạt động gần đây",
+    "stats": {
+      "activeHint": "{count} đang chạy",
+      "pendingHint": "{count} chờ duyệt",
+      "libraryHint": "Vật tư & nhân công",
+      "revenue": "Doanh thu",
+      "revenueHint": "Dự toán đã duyệt"
+    },
+    "empty": {
+      "title": "Chưa có gì ở đây",
+      "description": "Bắt đầu bằng cách tạo mục đầu tiên của bạn.",
+      "action": "Tạo mới"
+    }
+  },
+  "errors": {
+    "generic": "Đã xảy ra lỗi. Vui lòng thử lại.",
+    "network": "Lỗi mạng. Kiểm tra kết nối và thử lại.",
+    "unauthorized": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
+    "forbidden": "Bạn không có quyền thực hiện thao tác này.",
+    "notFound": "Trang bạn tìm không tồn tại.",
+    "validation": "Vui lòng kiểm tra lại các trường được đánh dấu.",
+    "tooManyRequests": "Quá nhiều yêu cầu. Vui lòng chậm lại.",
+    "server": "Máy chủ đang gặp sự cố. Vui lòng thử lại sau.",
+    "pageNotFound": {
+      "title": "Không tìm thấy trang",
+      "description": "Xin lỗi, chúng tôi không tìm thấy trang đó.",
+      "action": "Về trang chủ"
+    },
+    "boundary": {
+      "title": "Đã xảy ra lỗi",
+      "description": "Một lỗi không mong muốn đã xảy ra khi hiển thị trang này.",
+      "action": "Thử lại"
+    }
+  },
+  "validation": {
+    "required": "Trường này là bắt buộc",
+    "email": "Nhập địa chỉ email hợp lệ",
+    "minLength": "Phải có ít nhất {min} ký tự",
+    "maxLength": "Tối đa {max} ký tự",
+    "passwordMin": "Mật khẩu phải có ít nhất {min} ký tự"
+  }
+}
