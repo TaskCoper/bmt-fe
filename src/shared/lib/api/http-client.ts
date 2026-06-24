@@ -49,27 +49,50 @@ interface RetryableConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
 }
 
+/**
+ * Endpoints that must NOT trigger the refresh-retry flow. A 401 from
+ * `/auth/login` means bad credentials (not an expired session), and the
+ * refresh/logout endpoints would otherwise fire a pointless refresh.
+ */
+const REFRESH_EXEMPT_PATHS = ['/auth/login', '/auth/refresh', '/auth/logout'];
+
+function isRefreshExempt(url: string | undefined): boolean {
+  return Boolean(url) && REFRESH_EXEMPT_PATHS.some((p) => url!.includes(p));
+}
+
 httpClient.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error) => {
     const originalRequest = error.config as RetryableConfig | undefined;
     const status = error?.response?.status;
 
-    // Attempt one transparent refresh + retry on expired session.
-    if (status === 401 && originalRequest && !originalRequest._retry) {
+    // Attempt one transparent refresh + retry on expired session. Auth
+    // endpoints are exempt so a login failure never masquerades as a session
+    // expiry.
+    if (
+      status === 401 &&
+      originalRequest &&
+      !originalRequest._retry &&
+      !isRefreshExempt(originalRequest.url)
+    ) {
       originalRequest._retry = true;
 
-      refreshPromise ??= refreshSession().finally(() => {
-        refreshPromise = null;
-      });
+      // Single-flight: concurrent 401s share one refresh call. `onUnauthorized`
+      // is invoked inside this chain so it fires exactly ONCE per refresh
+      // cycle, not once per waiting request.
+      refreshPromise ??= refreshSession()
+        .then((refreshed) => {
+          if (!refreshed) onUnauthorized();
+          return refreshed;
+        })
+        .finally(() => {
+          refreshPromise = null;
+        });
 
       const refreshed = await refreshPromise;
       if (refreshed) {
         return httpClient(originalRequest);
       }
-
-      // Refresh failed — clear client auth state and bubble up.
-      onUnauthorized();
     }
 
     return Promise.reject(normalizeApiError(error));
