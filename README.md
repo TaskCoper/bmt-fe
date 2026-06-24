@@ -12,7 +12,7 @@ Studio layouts drop in without refactoring.
 
 | Concern         | Choice                                                   |
 | --------------- | -------------------------------------------------------- |
-| Framework       | Next.js 15 (App Router) · React 19 · TypeScript (strict) |
+| Framework       | Next.js 16 (App Router) · React 19 · TypeScript (strict) |
 | Styling         | Tailwind CSS v4 · shadcn/ui · Radix UI · CVA · tw-animate-css |
 | Icons           | lucide-react                                             |
 | Server state    | TanStack Query                                           |
@@ -33,6 +33,19 @@ pnpm dev
 
 Scripts: `dev`, `build`, `start`, `lint`, `typecheck`, `format`.
 
+### Working without the backend
+
+Env vars are validated by Zod at startup (`src/shared/config/env.ts`), so the
+app fails fast on misconfiguration. While the .NET API is unavailable, two
+dev-only flags swap real requests for in-browser mocks:
+
+- `NEXT_PUBLIC_USE_MOCK_AUTH=true` — login & roles work with no API (an email
+  containing `admin` gets the admin role).
+- `NEXT_PUBLIC_USE_MOCK_API=true` — feature pages render sample data with no API.
+
+Each feature's API module picks the mock vs. real implementation at import time
+based on these flags.
+
 ## Project structure
 
 ```
@@ -46,13 +59,13 @@ src/
       error.tsx loading.tsx not-found.tsx
   features/                # feature-based architecture (see below)
     landing/ auth/ dashboard/ project/ estimate/ library/ chatbot/ cms/
-    profile/ settings/
+    users/ profile/ settings/
   shared/
     components/ui/         # shadcn/ui primitives (CLI target)
     components/common/     # composed app-level components
     hooks/ providers/ layouts/ config/ lib/ constants/ types/ utils/ auth/
   i18n/                    # next-intl routing, navigation, request config
-  middleware.ts            # locale routing + auth route guards
+  proxy.ts                 # locale routing + auth route guards (Next.js 16 proxy)
 messages/                  # vi.json, en.json (no hardcoded UI text)
 ```
 
