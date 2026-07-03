@@ -6,10 +6,10 @@ export const LANDING_SECTIONS = {
   projects: 'projects',
   about: 'about',
   contact: 'contact',
-} as const;
+} as const
 
 export type LandingSectionId =
-  (typeof LANDING_SECTIONS)[keyof typeof LANDING_SECTIONS];
+  (typeof LANDING_SECTIONS)[keyof typeof LANDING_SECTIONS]
 
 /** Translation keys under `landing.nav` for the navbar — type-safe for t(). */
 export type LandingNavKey =
@@ -18,12 +18,12 @@ export type LandingNavKey =
   | 'process'
   | 'projects'
   | 'about'
-  | 'contact';
+  | 'contact'
 
 export interface LandingNavItem {
-  labelKey: LandingNavKey;
+  labelKey: LandingNavKey
   /** In-page anchor target. */
-  sectionId: LandingSectionId;
+  sectionId: LandingSectionId
 }
 
 /** Primary in-page navigation for the landing header. */
@@ -33,4 +33,4 @@ export const LANDING_NAV: readonly LandingNavItem[] = [
   { labelKey: 'projects', sectionId: LANDING_SECTIONS.projects },
   { labelKey: 'about', sectionId: LANDING_SECTIONS.about },
   { labelKey: 'contact', sectionId: LANDING_SECTIONS.contact },
-];
+]

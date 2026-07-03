@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import { Monitor, Moon, Sun } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { useTheme } from 'next-themes';
+import { Monitor, Moon, Sun } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/shared/components/ui/dropdown-menu';
+} from '@/shared/components/ui/dropdown-menu'
 
 /** Light / Dark / System theme switcher. */
 export function ThemeToggle() {
-  const { setTheme } = useTheme();
-  const t = useTranslations('theme');
+  const { setTheme } = useTheme()
+  const t = useTranslations('theme')
 
   return (
     <DropdownMenu>
@@ -41,5 +41,5 @@ export function ThemeToggle() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import { Search } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { Search } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
+import { useState } from 'react'
 
-import type { Locale } from '@/i18n/routing';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
+import type { Locale } from '@/i18n/routing'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+} from '@/shared/components/ui/select'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -24,14 +24,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { formatCurrency } from '@/shared/utils';
+} from '@/shared/components/ui/table'
+import { formatCurrency } from '@/shared/utils'
 import {
   LIBRARY_CATEGORY,
   type LibraryCategory,
-} from '../constants/library.constants';
-import { useLibrary } from '../hooks/use-library';
-import type { LibraryFilters } from '../types/library.types';
+} from '../constants/library.constants'
+import { useLibrary } from '../hooks/use-library'
+import type { LibraryFilters } from '../types/library.types'
 
 const CATEGORY_VARIANT: Record<
   LibraryCategory,
@@ -40,20 +40,20 @@ const CATEGORY_VARIANT: Record<
   material: 'default',
   labor: 'secondary',
   equipment: 'outline',
-};
+}
 
-const CATEGORY_OPTIONS = ['all', ...Object.values(LIBRARY_CATEGORY)] as const;
+const CATEGORY_OPTIONS = ['all', ...Object.values(LIBRARY_CATEGORY)] as const
 
-const INITIAL: LibraryFilters = { search: '', category: 'all', page: 1 };
+const INITIAL: LibraryFilters = { search: '', category: 'all', page: 1 }
 
 export function LibraryTable() {
-  const t = useTranslations('library');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('library')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const locale = useLocale() as Locale
 
-  const [filters, setFilters] = useState<LibraryFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useLibrary(filters);
+  const [filters, setFilters] = useState<LibraryFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useLibrary(filters)
 
   return (
     <div className="space-y-4">
@@ -191,5 +191,5 @@ export function LibraryTable() {
         </>
       )}
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { env } from './env';
+import { env } from './env'
 
 /**
  * Central API configuration. Consumed by the Axios instance and the
@@ -13,4 +13,4 @@ export const API_CONFIG = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
   },
-} as const;
+} as const

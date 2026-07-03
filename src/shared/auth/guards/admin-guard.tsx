@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import { ShieldAlert } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import type { ReactNode } from 'react';
+import { ShieldAlert } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import type { ReactNode } from 'react'
 
-import { EmptyState } from '@/shared/components/common';
-import { ROLES } from '../auth.constants';
-import { RoleGuard } from './role-guard';
+import { EmptyState } from '@/shared/components/common'
+import { ROLES } from '../auth.constants'
+import { RoleGuard } from './role-guard'
 
 /**
  * In-page admin gate. Renders children only for `admin`, otherwise shows a
@@ -16,7 +16,7 @@ import { RoleGuard } from './role-guard';
  * UX only — the backend remains the source of truth for authorization.
  */
 export function AdminGuard({ children }: { children: ReactNode }) {
-  const t = useTranslations('auth.forbidden');
+  const t = useTranslations('auth.forbidden')
 
   return (
     <RoleGuard
@@ -31,5 +31,5 @@ export function AdminGuard({ children }: { children: ReactNode }) {
     >
       {children}
     </RoleGuard>
-  );
+  )
 }

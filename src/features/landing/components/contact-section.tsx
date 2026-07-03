@@ -1,22 +1,22 @@
-import { Clock, Mail, MapPin, Phone, type LucideIcon } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { Clock, Mail, MapPin, Phone, type LucideIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { Card, CardContent } from '@/shared/components/ui/card';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
-import { SectionHeading } from './section-heading';
+import { Card, CardContent } from '@/shared/components/ui/card'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
+import { SectionHeading } from './section-heading'
 
-type ContactKey = 'address' | 'phone' | 'email' | 'hours';
+type ContactKey = 'address' | 'phone' | 'email' | 'hours'
 
 const CONTACT: { key: ContactKey; icon: LucideIcon }[] = [
   { key: 'address', icon: MapPin },
   { key: 'phone', icon: Phone },
   { key: 'email', icon: Mail },
   { key: 'hours', icon: Clock },
-];
+]
 
 /** Contact details grid. */
 export function ContactSection() {
-  const t = useTranslations('landing.contact');
+  const t = useTranslations('landing.contact')
 
   return (
     <section
@@ -46,5 +46,5 @@ export function ContactSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

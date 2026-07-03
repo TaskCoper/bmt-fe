@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { Toaster } from '@/shared/components/ui/sonner';
-import { TooltipProvider } from '@/shared/components/ui/tooltip';
-import type { ReactNode } from 'react';
-import { QueryProvider } from './query-provider';
-import { ThemeProvider } from './theme-provider';
+import { Toaster } from '@/shared/components/ui/sonner'
+import { TooltipProvider } from '@/shared/components/ui/tooltip'
+import type { ReactNode } from 'react'
+import { QueryProvider } from './query-provider'
+import { ThemeProvider } from './theme-provider'
 
 /**
  * Single composition root for all client-side providers.
@@ -24,5 +24,5 @@ export function AppProviders({ children }: { children: ReactNode }) {
         </TooltipProvider>
       </QueryProvider>
     </ThemeProvider>
-  );
+  )
 }

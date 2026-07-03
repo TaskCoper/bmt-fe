@@ -5,4 +5,4 @@
  * `project` feature as the structural template: api / components / hooks /
  * schemas / services / store / types / constants, exposed ONLY through here.
  */
-export {};
+export {}

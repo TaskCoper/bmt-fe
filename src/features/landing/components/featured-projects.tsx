@@ -1,24 +1,24 @@
-import { ArrowUpRight, ImageIcon } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { ArrowUpRight, ImageIcon } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { Link } from '@/i18n/navigation';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Card } from '@/shared/components/ui/card';
-import { ROUTES } from '@/shared/constants/routes';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
-import { SectionHeading } from './section-heading';
+import { Link } from '@/i18n/navigation'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Card } from '@/shared/components/ui/card'
+import { ROUTES } from '@/shared/constants/routes'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
+import { SectionHeading } from './section-heading'
 
-type ProjectKey = 'item1' | 'item2' | 'item3';
+type ProjectKey = 'item1' | 'item2' | 'item3'
 
-const PROJECTS: ProjectKey[] = ['item1', 'item2', 'item3'];
+const PROJECTS: ProjectKey[] = ['item1', 'item2', 'item3']
 
 /**
  * Featured reference projects. Uses a neutral image placeholder so the layout
  * is correct before real assets exist (swap the placeholder for <Image/>).
  */
 export function FeaturedProjects() {
-  const t = useTranslations('landing.projects');
+  const t = useTranslations('landing.projects')
 
   return (
     <section id={LANDING_SECTIONS.projects} className="py-20 lg:py-28">
@@ -53,5 +53,5 @@ export function FeaturedProjects() {
         </div>
       </div>
     </section>
-  );
+  )
 }

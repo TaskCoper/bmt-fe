@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { getQueryClient } from '@/shared/lib/query-client';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useState, type ReactNode } from 'react';
+import { getQueryClient } from '@/shared/lib/query-client'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { useState, type ReactNode } from 'react'
 
 /**
  * Provides the TanStack Query client to the React tree.
@@ -11,7 +11,7 @@ import { useState, type ReactNode } from 'react';
  * being recreated; on the server `getQueryClient` returns a per-request client.
  */
 export function QueryProvider({ children }: { children: ReactNode }) {
-  const [queryClient] = useState(getQueryClient);
+  const [queryClient] = useState(getQueryClient)
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -23,5 +23,5 @@ export function QueryProvider({ children }: { children: ReactNode }) {
         />
       ) : null}
     </QueryClientProvider>
-  );
+  )
 }

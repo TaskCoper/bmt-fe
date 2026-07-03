@@ -1,8 +1,8 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { Logo } from '@/shared/components/common';
-import { siteConfig } from '@/shared/config/site';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
+import { Logo } from '@/shared/components/common'
+import { siteConfig } from '@/shared/config/site'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
 
 type LinkKey =
   | 'services'
@@ -11,34 +11,34 @@ type LinkKey =
   | 'about'
   | 'contact'
   | 'privacy'
-  | 'terms';
+  | 'terms'
 
 const PRODUCT_LINKS: { key: LinkKey; href: string }[] = [
   { key: 'services', href: `#${LANDING_SECTIONS.services}` },
   { key: 'process', href: `#${LANDING_SECTIONS.process}` },
   { key: 'projects', href: `#${LANDING_SECTIONS.projects}` },
-];
+]
 
 const COMPANY_LINKS: { key: LinkKey; href: string }[] = [
   { key: 'about', href: `#${LANDING_SECTIONS.about}` },
   { key: 'contact', href: `#${LANDING_SECTIONS.contact}` },
-];
+]
 
 const LEGAL_LINKS: { key: LinkKey; href: string }[] = [
   { key: 'privacy', href: '#' },
   { key: 'terms', href: '#' },
-];
+]
 
 export function LandingFooter() {
-  const t = useTranslations('landing.footer');
-  const year = new Date().getFullYear();
+  const t = useTranslations('landing.footer')
+  const year = new Date().getFullYear()
 
   const columns: { title: string; links: { key: LinkKey; href: string }[] }[] =
     [
       { title: t('productTitle'), links: PRODUCT_LINKS },
       { title: t('companyTitle'), links: COMPANY_LINKS },
       { title: t('legalTitle'), links: LEGAL_LINKS },
-    ];
+    ]
 
   return (
     <footer className="border-t">
@@ -73,5 +73,5 @@ export function LandingFooter() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

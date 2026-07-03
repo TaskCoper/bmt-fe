@@ -1,14 +1,14 @@
-import { mockDelay, paginate } from '@/shared/lib';
-import type { PaginatedResponse } from '@/shared/types';
+import { mockDelay, paginate } from '@/shared/lib'
+import type { PaginatedResponse } from '@/shared/types'
 import {
   DEFAULT_PROJECT_PAGE_SIZE,
   PROJECT_STATUS,
-} from '../constants/project.constants';
+} from '../constants/project.constants'
 import type {
   CreateProjectPayload,
   Project,
   ProjectFilters,
-} from '../types/project.types';
+} from '../types/project.types'
 
 /**
  * Sample projects for local development without a backend.
@@ -127,43 +127,43 @@ export const MOCK_PROJECTS: Project[] = [
     createdAt: '2026-06-15T03:00:00Z',
     updatedAt: '2026-06-23T08:50:00Z',
   },
-];
+]
 
 function applyFilters(filters: ProjectFilters): Project[] {
-  let items = [...MOCK_PROJECTS];
+  let items = [...MOCK_PROJECTS]
   if (filters.search) {
-    const q = filters.search.toLowerCase();
+    const q = filters.search.toLowerCase()
     items = items.filter(
       (p) =>
         p.name.toLowerCase().includes(q) ||
         p.description?.toLowerCase().includes(q),
-    );
+    )
   }
   if (filters.status !== 'all') {
-    items = items.filter((p) => p.status === filters.status);
+    items = items.filter((p) => p.status === filters.status)
   }
-  return items;
+  return items
 }
 
 export const mockProjectApi = {
   async list(filters: ProjectFilters): Promise<PaginatedResponse<Project>> {
-    await mockDelay();
+    await mockDelay()
     return paginate(
       applyFilters(filters),
       filters.page,
       DEFAULT_PROJECT_PAGE_SIZE,
-    );
+    )
   },
 
   async getById(id: string): Promise<Project> {
-    await mockDelay(200);
-    const found = MOCK_PROJECTS.find((p) => p.id === id);
-    if (!found) throw { status: 404, message: 'Project not found (mock).' };
-    return found;
+    await mockDelay(200)
+    const found = MOCK_PROJECTS.find((p) => p.id === id)
+    if (!found) throw { status: 404, message: 'Project not found (mock).' }
+    return found
   },
 
   async create(payload: CreateProjectPayload): Promise<Project> {
-    await mockDelay();
+    await mockDelay()
     return {
       id: `p-${MOCK_PROJECTS.length + 1}`,
       name: payload.name,
@@ -171,10 +171,10 @@ export const mockProjectApi = {
       status: PROJECT_STATUS.DRAFT,
       createdAt: '2026-06-24T00:00:00Z',
       updatedAt: '2026-06-24T00:00:00Z',
-    };
+    }
   },
 
   async remove(): Promise<void> {
-    await mockDelay(200);
+    await mockDelay(200)
   },
-};
+}

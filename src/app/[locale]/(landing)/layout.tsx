@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
-import { LandingFooter, LandingNavbar } from '@/features/landing';
+import { LandingFooter, LandingNavbar } from '@/features/landing'
 
 /** Public marketing layout: navbar + content + footer. */
 export default function LandingLayout({ children }: { children: ReactNode }) {
@@ -10,5 +10,5 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
       <LandingFooter />
     </div>
-  );
+  )
 }

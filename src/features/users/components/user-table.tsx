@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import { Search, UserPlus } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { Search, UserPlus } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
+import { useState } from 'react'
 
-import type { Locale } from '@/i18n/routing';
-import type { Role } from '@/shared/auth';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+import type { Locale } from '@/i18n/routing'
+import type { Role } from '@/shared/auth'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -18,33 +18,33 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { formatDate } from '@/shared/utils';
-import { useUsers } from '../hooks/use-users';
-import type { UserFilters, UserRecord } from '../types/user.types';
+} from '@/shared/components/ui/table'
+import { formatDate } from '@/shared/utils'
+import { useUsers } from '../hooks/use-users'
+import type { UserFilters, UserRecord } from '../types/user.types'
 
 const ROLE_VARIANT: Record<Role, 'default' | 'secondary' | 'outline'> = {
   admin: 'default',
   user: 'secondary',
   guest: 'outline',
-};
+}
 
 const STATUS_VARIANT: Record<UserRecord['status'], 'success' | 'secondary'> = {
   active: 'success',
   inactive: 'secondary',
-};
+}
 
-const INITIAL: UserFilters = { search: '', page: 1 };
+const INITIAL: UserFilters = { search: '', page: 1 }
 
 /** Admin-only users table: search + full UX state matrix + pagination. */
 export function UserTable() {
-  const t = useTranslations('users');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('users')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const locale = useLocale() as Locale
 
-  const [filters, setFilters] = useState<UserFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useUsers(filters);
+  const [filters, setFilters] = useState<UserFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useUsers(filters)
 
   return (
     <div className="space-y-4">
@@ -165,5 +165,5 @@ export function UserTable() {
         </>
       )}
     </div>
-  );
+  )
 }

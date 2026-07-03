@@ -1,30 +1,30 @@
-import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import {
   ActivityFeed,
   DashboardOverview,
   RecentProjects,
-} from '@/features/dashboard';
-import type { Locale } from '@/i18n/routing';
-import { PageHeader } from '@/shared/components/common';
+} from '@/features/dashboard'
+import type { Locale } from '@/i18n/routing'
+import { PageHeader } from '@/shared/components/common'
 
 interface PageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: Locale }>
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'dashboard' });
-  return { title: t('title') };
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'dashboard' })
+  return { title: t('title') }
 }
 
 export default async function DashboardPage({ params }: PageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'dashboard' });
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations({ locale, namespace: 'dashboard' })
 
   return (
     <div className="space-y-6">
@@ -35,5 +35,5 @@ export default async function DashboardPage({ params }: PageProps) {
         <ActivityFeed />
       </div>
     </div>
-  );
+  )
 }

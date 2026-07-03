@@ -1,23 +1,23 @@
-'use client';
+'use client'
 
-import { Calculator, FolderKanban, Library, Wallet } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { Calculator, FolderKanban, Library, Wallet } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 
-import type { Locale } from '@/i18n/routing';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { formatCurrency, formatNumber } from '@/shared/utils';
-import { useDashboard } from '../hooks/use-dashboard';
-import { StatCard } from './stat-card';
+import type { Locale } from '@/i18n/routing'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { formatCurrency, formatNumber } from '@/shared/utils'
+import { useDashboard } from '../hooks/use-dashboard'
+import { StatCard } from './stat-card'
 
 /**
  * KPI grid for the dashboard. Pulls live(-ish) metrics via {@link useDashboard}
  * and renders skeletons while loading.
  */
 export function DashboardOverview() {
-  const t = useTranslations('dashboard');
-  const tn = useTranslations('nav');
-  const locale = useLocale() as Locale;
-  const { data, isLoading } = useDashboard();
+  const t = useTranslations('dashboard')
+  const tn = useTranslations('nav')
+  const locale = useLocale() as Locale
+  const { data, isLoading } = useDashboard()
 
   if (isLoading || !data) {
     return (
@@ -26,10 +26,10 @@ export function DashboardOverview() {
           <Skeleton key={i} className="h-28 w-full" />
         ))}
       </div>
-    );
+    )
   }
 
-  const { stats } = data;
+  const { stats } = data
   const cards = [
     {
       label: tn('projects'),
@@ -55,7 +55,7 @@ export function DashboardOverview() {
       hint: t('stats.revenueHint'),
       icon: Wallet,
     },
-  ];
+  ]
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -69,5 +69,5 @@ export function DashboardOverview() {
         />
       ))}
     </div>
-  );
+  )
 }

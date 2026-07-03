@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import { useTheme } from 'next-themes';
-import { Toaster as Sonner, type ToasterProps } from 'sonner';
+import { useTheme } from 'next-themes'
+import { Toaster as Sonner, type ToasterProps } from 'sonner'
 
 /**
  * Theme-aware toast portal. Rendered once in {@link AppProviders}.
  * Trigger toasts anywhere via `import { toast } from 'sonner'`.
  */
 function Toaster({ ...props }: ToasterProps) {
-  const { theme = 'system' } = useTheme();
+  const { theme = 'system' } = useTheme()
 
   return (
     <Sonner
@@ -25,7 +25,7 @@ function Toaster({ ...props }: ToasterProps) {
       }
       {...props}
     />
-  );
+  )
 }
 
-export { Toaster };
+export { Toaster }

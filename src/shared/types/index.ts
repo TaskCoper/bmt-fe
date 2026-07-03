@@ -4,7 +4,7 @@ export type {
   PaginatedResponse,
   PaginationMeta,
   PaginationParams,
-} from './api';
+} from './api'
 export type {
   AsyncStatus,
   Awaitable,
@@ -13,4 +13,4 @@ export type {
   Nullable,
   PartialBy,
   RequiredBy,
-} from './common';
+} from './common'

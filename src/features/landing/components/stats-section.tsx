@@ -1,15 +1,15 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { Separator } from '@/shared/components/ui/separator';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
+import { Separator } from '@/shared/components/ui/separator'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
 
-type StatKey = 'projects' | 'clients' | 'materials' | 'accuracy';
+type StatKey = 'projects' | 'clients' | 'materials' | 'accuracy'
 
-const STATS: StatKey[] = ['projects', 'clients', 'materials', 'accuracy'];
+const STATS: StatKey[] = ['projects', 'clients', 'materials', 'accuracy']
 
 /** Trust/stats band — doubles as the "About" anchor. */
 export function StatsSection() {
-  const t = useTranslations('landing.stats');
+  const t = useTranslations('landing.stats')
 
   return (
     <section
@@ -37,5 +37,5 @@ export function StatsSection() {
         </dl>
       </div>
     </section>
-  );
+  )
 }

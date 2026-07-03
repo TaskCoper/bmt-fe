@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import { Search } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { Search } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 
-import type { Locale } from '@/i18n/routing';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
+import type { Locale } from '@/i18n/routing'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+} from '@/shared/components/ui/select'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -23,14 +23,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { formatDate } from '@/shared/utils';
+} from '@/shared/components/ui/table'
+import { formatDate } from '@/shared/utils'
 import {
   PROJECT_STATUS,
   type ProjectStatus,
-} from '../constants/project.constants';
-import { useProjects } from '../hooks/use-projects';
-import { useProjectFiltersStore } from '../store/project-filters.store';
+} from '../constants/project.constants'
+import { useProjects } from '../hooks/use-projects'
+import { useProjectFiltersStore } from '../store/project-filters.store'
 
 const STATUS_VARIANT: Record<
   ProjectStatus,
@@ -41,26 +41,26 @@ const STATUS_VARIANT: Record<
   on_hold: 'warning',
   completed: 'default',
   archived: 'outline',
-};
+}
 
-const STATUS_OPTIONS = ['all', ...Object.values(PROJECT_STATUS)] as const;
+const STATUS_OPTIONS = ['all', ...Object.values(PROJECT_STATUS)] as const
 
 /**
  * Project list: toolbar (search + status filter) → full UX state matrix
  * (loading skeletons / error / empty / data table) → pagination.
  */
 export function ProjectList() {
-  const t = useTranslations('project');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('project')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const locale = useLocale() as Locale
 
-  const filters = useProjectFiltersStore((s) => s.filters);
-  const setSearch = useProjectFiltersStore((s) => s.setSearch);
-  const setStatus = useProjectFiltersStore((s) => s.setStatus);
-  const setPage = useProjectFiltersStore((s) => s.setPage);
+  const filters = useProjectFiltersStore((s) => s.filters)
+  const setSearch = useProjectFiltersStore((s) => s.setSearch)
+  const setStatus = useProjectFiltersStore((s) => s.setStatus)
+  const setPage = useProjectFiltersStore((s) => s.setPage)
 
-  const { data, isLoading, isError, refetch, isFetching } = useProjects();
+  const { data, isLoading, isError, refetch, isFetching } = useProjects()
 
   return (
     <div className="space-y-4">
@@ -187,5 +187,5 @@ export function ProjectList() {
         </>
       )}
     </div>
-  );
+  )
 }

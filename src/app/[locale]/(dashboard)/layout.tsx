@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
-import { ProtectedRoute } from '@/shared/auth';
-import { DashboardChrome } from './dashboard-chrome';
+import { ProtectedRoute } from '@/shared/auth'
+import { DashboardChrome } from './dashboard-chrome'
 
 /**
  * Authenticated area shell. The session is bootstrapped globally in the locale
@@ -11,11 +11,11 @@ import { DashboardChrome } from './dashboard-chrome';
 export default function DashboardGroupLayout({
   children,
 }: {
-  children: ReactNode;
+  children: ReactNode
 }) {
   return (
     <ProtectedRoute>
       <DashboardChrome>{children}</DashboardChrome>
     </ProtectedRoute>
-  );
+  )
 }

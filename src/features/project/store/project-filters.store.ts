@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import { create } from 'zustand';
-import type { ProjectFilters } from '../types/project.types';
+import { create } from 'zustand'
+import type { ProjectFilters } from '../types/project.types'
 
 interface ProjectFiltersStore {
-  filters: ProjectFilters;
-  setSearch: (search: string) => void;
-  setStatus: (status: ProjectFilters['status']) => void;
-  setPage: (page: number) => void;
-  reset: () => void;
+  filters: ProjectFilters
+  setSearch: (search: string) => void
+  setStatus: (status: ProjectFilters['status']) => void
+  setPage: (page: number) => void
+  reset: () => void
 }
 
 const INITIAL_FILTERS: ProjectFilters = {
   search: '',
   status: 'all',
   page: 1,
-};
+}
 
 /**
  * Feature-scoped client state: project list filters.
@@ -30,4 +30,4 @@ export const useProjectFiltersStore = create<ProjectFiltersStore>((set) => ({
     set((s) => ({ filters: { ...s.filters, status, page: 1 } })),
   setPage: (page) => set((s) => ({ filters: { ...s.filters, page } })),
   reset: () => set({ filters: INITIAL_FILTERS }),
-}));
+}))

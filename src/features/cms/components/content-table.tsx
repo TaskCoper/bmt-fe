@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import { Plus, Search } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { Plus, Search } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
+import { useState } from 'react'
 
-import type { Locale } from '@/i18n/routing';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
+import type { Locale } from '@/i18n/routing'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+} from '@/shared/components/ui/select'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   Table,
   TableBody,
@@ -24,11 +24,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { formatDate } from '@/shared/utils';
-import { CONTENT_STATUS, type ContentStatus } from '../constants/cms.constants';
-import { useContent } from '../hooks/use-content';
-import type { ContentFilters } from '../types/cms.types';
+} from '@/shared/components/ui/table'
+import { formatDate } from '@/shared/utils'
+import { CONTENT_STATUS, type ContentStatus } from '../constants/cms.constants'
+import { useContent } from '../hooks/use-content'
+import type { ContentFilters } from '../types/cms.types'
 
 const STATUS_VARIANT: Record<
   ContentStatus,
@@ -37,20 +37,20 @@ const STATUS_VARIANT: Record<
   published: 'success',
   draft: 'secondary',
   scheduled: 'warning',
-};
+}
 
-const STATUS_OPTIONS = ['all', ...Object.values(CONTENT_STATUS)] as const;
+const STATUS_OPTIONS = ['all', ...Object.values(CONTENT_STATUS)] as const
 
-const INITIAL: ContentFilters = { search: '', status: 'all', page: 1 };
+const INITIAL: ContentFilters = { search: '', status: 'all', page: 1 }
 
 export function ContentTable() {
-  const t = useTranslations('cms');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('cms')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const locale = useLocale() as Locale
 
-  const [filters, setFilters] = useState<ContentFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useContent(filters);
+  const [filters, setFilters] = useState<ContentFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useContent(filters)
 
   return (
     <div className="space-y-4">
@@ -190,5 +190,5 @@ export function ContentTable() {
         </>
       )}
     </div>
-  );
+  )
 }

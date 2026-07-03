@@ -1,4 +1,4 @@
-import type { Locale } from '@/i18n/routing';
+import type { Locale } from '@/i18n/routing'
 
 /**
  * Locale-aware formatting helpers built on the native Intl API.
@@ -14,8 +14,8 @@ export function formatDate(
     day: 'numeric',
   },
 ): string {
-  const date = value instanceof Date ? value : new Date(value);
-  return new Intl.DateTimeFormat(locale, options).format(date);
+  const date = value instanceof Date ? value : new Date(value)
+  return new Intl.DateTimeFormat(locale, options).format(date)
 }
 
 export function formatNumber(
@@ -23,7 +23,7 @@ export function formatNumber(
   locale: Locale,
   options?: Intl.NumberFormatOptions,
 ): string {
-  return new Intl.NumberFormat(locale, options).format(value);
+  return new Intl.NumberFormat(locale, options).format(value)
 }
 
 export function formatCurrency(
@@ -35,5 +35,5 @@ export function formatCurrency(
     style: 'currency',
     currency,
     maximumFractionDigits: currency === 'VND' ? 0 : 2,
-  }).format(value);
+  }).format(value)
 }

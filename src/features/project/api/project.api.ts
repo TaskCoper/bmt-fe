@@ -1,13 +1,13 @@
-import { env } from '@/shared/config/env';
-import { http } from '@/shared/lib/api';
-import type { PaginatedResponse } from '@/shared/types';
-import { DEFAULT_PROJECT_PAGE_SIZE } from '../constants/project.constants';
+import { env } from '@/shared/config/env'
+import { http } from '@/shared/lib/api'
+import type { PaginatedResponse } from '@/shared/types'
+import { DEFAULT_PROJECT_PAGE_SIZE } from '../constants/project.constants'
 import type {
   CreateProjectPayload,
   Project,
   ProjectFilters,
-} from '../types/project.types';
-import { mockProjectApi } from './project.mock';
+} from '../types/project.types'
+import { mockProjectApi } from './project.mock'
 
 /** Project feature API surface over the shared HTTP client. */
 const realProjectApi = {
@@ -27,8 +27,8 @@ const realProjectApi = {
     http.post<Project>('/projects', payload),
 
   remove: (id: string) => http.delete<void>(`/projects/${id}`),
-};
+}
 
 export const projectApi = env.NEXT_PUBLIC_USE_MOCK_API
   ? mockProjectApi
-  : realProjectApi;
+  : realProjectApi

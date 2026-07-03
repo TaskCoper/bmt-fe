@@ -1,14 +1,14 @@
-import { FileQuestion } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { FileQuestion } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { Link } from '@/i18n/navigation';
-import { EmptyState } from '@/shared/components/common';
-import { Button } from '@/shared/components/ui/button';
-import { ROUTES } from '@/shared/constants/routes';
+import { Link } from '@/i18n/navigation'
+import { EmptyState } from '@/shared/components/common'
+import { Button } from '@/shared/components/ui/button'
+import { ROUTES } from '@/shared/constants/routes'
 
 /** Localized 404 page. */
 export default function NotFound() {
-  const t = useTranslations('errors.pageNotFound');
+  const t = useTranslations('errors.pageNotFound')
 
   return (
     <div className="flex min-h-svh items-center justify-center p-6">
@@ -24,5 +24,5 @@ export default function NotFound() {
         }
       />
     </div>
-  );
+  )
 }

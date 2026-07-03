@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 /**
  * Validated, typed access to public environment variables.
@@ -22,7 +22,7 @@ const publicEnvSchema = z.object({
     .enum(['true', 'false'])
     .default('false')
     .transform((v) => v === 'true'),
-});
+})
 
 const parsed = publicEnvSchema.safeParse({
   NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -31,17 +31,17 @@ const parsed = publicEnvSchema.safeParse({
   NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   NEXT_PUBLIC_USE_MOCK_AUTH: process.env.NEXT_PUBLIC_USE_MOCK_AUTH,
   NEXT_PUBLIC_USE_MOCK_API: process.env.NEXT_PUBLIC_USE_MOCK_API,
-});
+})
 
 if (!parsed.success) {
   // Surface a readable error during local dev / CI builds.
   console.error(
     '❌ Invalid environment variables:',
     parsed.error.flatten().fieldErrors,
-  );
-  throw new Error('Invalid environment variables. See .env.example.');
+  )
+  throw new Error('Invalid environment variables. See .env.example.')
 }
 
-export const env = parsed.data;
+export const env = parsed.data
 
-export type Env = typeof env;
+export type Env = typeof env

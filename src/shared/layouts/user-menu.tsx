@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import { LogOut, Settings, User } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { LogOut, Settings, User } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { Link, useRouter } from '@/i18n/navigation';
-import { useAuth, useAuthStore } from '@/shared/auth';
+import { Link, useRouter } from '@/i18n/navigation'
+import { useAuth, useAuthStore } from '@/shared/auth'
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from '@/shared/components/ui/avatar';
-import { Button } from '@/shared/components/ui/button';
+} from '@/shared/components/ui/avatar'
+import { Button } from '@/shared/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,9 +18,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/shared/components/ui/dropdown-menu';
-import { ROUTES } from '@/shared/constants/routes';
-import { getInitials } from '@/shared/utils';
+} from '@/shared/components/ui/dropdown-menu'
+import { ROUTES } from '@/shared/constants/routes'
+import { getInitials } from '@/shared/utils'
 
 interface UserMenuProps {
   /**
@@ -28,21 +28,21 @@ interface UserMenuProps {
    * login. The auth feature should pass a handler that also calls the backend
    * `/auth/logout` endpoint before clearing state.
    */
-  onLogout?: () => void;
+  onLogout?: () => void
 }
 
 export function UserMenu({ onLogout }: UserMenuProps) {
-  const t = useTranslations('nav');
-  const { user } = useAuth();
-  const router = useRouter();
+  const t = useTranslations('nav')
+  const { user } = useAuth()
+  const router = useRouter()
 
   function handleLogout() {
     if (onLogout) {
-      onLogout();
-      return;
+      onLogout()
+      return
     }
-    useAuthStore.getState().reset();
-    router.replace(ROUTES.LOGIN);
+    useAuthStore.getState().reset()
+    router.replace(ROUTES.LOGIN)
   }
 
   return (
@@ -88,5 +88,5 @@ export function UserMenu({ onLogout }: UserMenuProps) {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

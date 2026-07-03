@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl'
 
-import type { Locale } from '@/i18n/routing';
-import { Badge } from '@/shared/components/ui/badge';
+import type { Locale } from '@/i18n/routing'
+import { Badge } from '@/shared/components/ui/badge'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { formatDate } from '@/shared/utils';
-import { useDashboard } from '../hooks/use-dashboard';
-import type { RecentProjectStatus } from '../types/dashboard.types';
+} from '@/shared/components/ui/card'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { formatDate } from '@/shared/utils'
+import { useDashboard } from '../hooks/use-dashboard'
+import type { RecentProjectStatus } from '../types/dashboard.types'
 
 const STATUS_VARIANT: Record<
   RecentProjectStatus,
@@ -24,14 +24,14 @@ const STATUS_VARIANT: Record<
   on_hold: 'warning',
   completed: 'default',
   archived: 'outline',
-};
+}
 
 /** Compact "recently updated projects" card for the dashboard. */
 export function RecentProjects() {
-  const t = useTranslations('dashboard');
-  const tp = useTranslations('project');
-  const locale = useLocale() as Locale;
-  const { data, isLoading } = useDashboard();
+  const t = useTranslations('dashboard')
+  const tp = useTranslations('project')
+  const locale = useLocale() as Locale
+  const { data, isLoading } = useDashboard()
 
   return (
     <Card>
@@ -61,5 +61,5 @@ export function RecentProjects() {
             ))}
       </CardContent>
     </Card>
-  );
+  )
 }

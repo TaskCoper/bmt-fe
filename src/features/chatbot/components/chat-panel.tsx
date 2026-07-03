@@ -1,35 +1,35 @@
-'use client';
+'use client'
 
-import { Bot, SendHorizonal, User } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { useEffect, useRef, useState } from 'react';
+import { Bot, SendHorizonal, User } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useEffect, useRef, useState } from 'react'
 
-import { Button } from '@/shared/components/ui/button';
-import { Card } from '@/shared/components/ui/card';
-import { Input } from '@/shared/components/ui/input';
-import { cn } from '@/shared/lib/utils';
-import { SUGGESTIONS } from '../api/chatbot.mock';
-import { useChat } from '../hooks/use-chat';
+import { Button } from '@/shared/components/ui/button'
+import { Card } from '@/shared/components/ui/card'
+import { Input } from '@/shared/components/ui/input'
+import { cn } from '@/shared/lib/utils'
+import { SUGGESTIONS } from '../api/chatbot.mock'
+import { useChat } from '../hooks/use-chat'
 
 export function ChatPanel() {
-  const t = useTranslations('chatbot');
-  const { messages, send, isReplying } = useChat();
-  const [input, setInput] = useState('');
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const t = useTranslations('chatbot')
+  const { messages, send, isReplying } = useChat()
+  const [input, setInput] = useState('')
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
       top: scrollRef.current.scrollHeight,
       behavior: 'smooth',
-    });
-  }, [messages, isReplying]);
+    })
+  }, [messages, isReplying])
 
   function handleSend() {
-    send(input);
-    setInput('');
+    send(input)
+    setInput('')
   }
 
-  const showSuggestions = messages.length <= 1 && !isReplying;
+  const showSuggestions = messages.length <= 1 && !isReplying
 
   return (
     <Card className="flex h-[calc(100svh-13rem)] flex-col overflow-hidden p-0">
@@ -103,8 +103,8 @@ export function ChatPanel() {
       {/* Composer */}
       <form
         onSubmit={(e) => {
-          e.preventDefault();
-          handleSend();
+          e.preventDefault()
+          handleSend()
         }}
         className="flex items-center gap-2 border-t p-3"
       >
@@ -125,5 +125,5 @@ export function ChatPanel() {
         </Button>
       </form>
     </Card>
-  );
+  )
 }

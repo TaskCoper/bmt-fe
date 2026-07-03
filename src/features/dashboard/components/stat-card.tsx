@@ -1,17 +1,17 @@
-import type { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react'
 
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
+} from '@/shared/components/ui/card'
 
 interface StatCardProps {
-  label: string;
-  value: string;
-  hint?: string;
-  icon: LucideIcon;
+  label: string
+  value: string
+  hint?: string
+  icon: LucideIcon
 }
 
 /** Compact KPI card for dashboard overviews. */
@@ -31,5 +31,5 @@ export function StatCard({ label, value, hint, icon: Icon }: StatCardProps) {
         ) : null}
       </CardContent>
     </Card>
-  );
+  )
 }

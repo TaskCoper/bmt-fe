@@ -1,24 +1,24 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import { useEffect } from 'react';
+import { useTranslations } from 'next-intl'
+import { useEffect } from 'react'
 
-import { ErrorState } from '@/shared/components/common';
+import { ErrorState } from '@/shared/components/common'
 
 /** Localized route error boundary. */
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
-  const t = useTranslations('errors.boundary');
+  const t = useTranslations('errors.boundary')
 
   useEffect(() => {
     // TODO: forward to an error-reporting service (Sentry, etc.).
-    console.error(error);
-  }, [error]);
+    console.error(error)
+  }, [error])
 
   return (
     <div className="flex min-h-svh items-center justify-center p-6">
@@ -30,5 +30,5 @@ export default function Error({
         className="border-0"
       />
     </div>
-  );
+  )
 }

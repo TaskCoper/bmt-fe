@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2 } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
-import { useMemo } from 'react';
-import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
+import { useMemo } from 'react'
+import { useForm } from 'react-hook-form'
 
-import { Link } from '@/i18n/navigation';
-import { Button } from '@/shared/components/ui/button';
+import { Link } from '@/i18n/navigation'
+import { Button } from '@/shared/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
-import { Checkbox } from '@/shared/components/ui/checkbox';
+} from '@/shared/components/ui/card'
+import { Checkbox } from '@/shared/components/ui/checkbox'
 import {
   Form,
   FormControl,
@@ -24,24 +24,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/shared/components/ui/form';
-import { Input } from '@/shared/components/ui/input';
-import { ROUTES } from '@/shared/constants/routes';
-import { useLogin } from '../hooks/use-login';
+} from '@/shared/components/ui/form'
+import { Input } from '@/shared/components/ui/input'
+import { ROUTES } from '@/shared/constants/routes'
+import { useLogin } from '../hooks/use-login'
 import {
   createLoginSchema,
   type LoginFormValues,
-} from '../schemas/login.schema';
+} from '../schemas/login.schema'
 
 /**
  * Reference form: React Hook Form + Zod (localized) + shadcn Form primitives.
  * The exact pattern every feature form should follow.
  */
 export function LoginForm() {
-  const t = useTranslations('auth.login');
-  const tv = useTranslations('validation');
-  const searchParams = useSearchParams();
-  const redirectTo = searchParams.get('redirect') || ROUTES.DASHBOARD;
+  const t = useTranslations('auth.login')
+  const tv = useTranslations('validation')
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get('redirect') || ROUTES.DASHBOARD
 
   const schema = useMemo(
     () =>
@@ -51,16 +51,16 @@ export function LoginForm() {
         passwordMin: tv('passwordMin', { min: 8 }),
       }),
     [tv],
-  );
-  const login = useLogin(redirectTo);
+  )
+  const login = useLogin(redirectTo)
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(schema),
     defaultValues: { email: '', password: '', rememberMe: false },
-  });
+  })
 
   function onSubmit(values: LoginFormValues) {
-    login.mutate(values);
+    login.mutate(values)
   }
 
   return (
@@ -156,5 +156,5 @@ export function LoginForm() {
         </p>
       </CardContent>
     </Card>
-  );
+  )
 }

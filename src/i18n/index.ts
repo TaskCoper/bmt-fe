@@ -4,11 +4,11 @@ export {
   redirect,
   usePathname,
   useRouter,
-} from './navigation';
+} from './navigation'
 export {
   DEFAULT_LOCALE,
   FALLBACK_LOCALE,
   LOCALES,
   routing,
   type Locale,
-} from './routing';
+} from './routing'

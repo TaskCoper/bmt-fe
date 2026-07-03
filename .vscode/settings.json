@@ -13,5 +13,25 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "i18n-ally.localesPaths": ["messages", "src/i18n"]
+  "i18n-ally.localesPaths": ["messages", "src/i18n"],
+  "conventionalCommits.scopes": [
+    "app",
+    "auth",
+    "chatbot",
+    "ci",
+    "cms",
+    "config",
+    "dashboard",
+    "deps",
+    "estimate",
+    "i18n",
+    "landing",
+    "library",
+    "profile",
+    "project",
+    "settings",
+    "shared",
+    "ui",
+    "users"
+  ]
 }

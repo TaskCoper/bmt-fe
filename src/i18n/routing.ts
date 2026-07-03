@@ -1,11 +1,11 @@
-import { defineRouting } from 'next-intl/routing';
+import { defineRouting } from 'next-intl/routing'
 
 /** Supported locales. Vietnamese is the default; English is the fallback. */
-export const LOCALES = ['vi', 'en'] as const;
-export type Locale = (typeof LOCALES)[number];
+export const LOCALES = ['vi', 'en'] as const
+export type Locale = (typeof LOCALES)[number]
 
-export const DEFAULT_LOCALE: Locale = 'vi';
-export const FALLBACK_LOCALE: Locale = 'en';
+export const DEFAULT_LOCALE: Locale = 'vi'
+export const FALLBACK_LOCALE: Locale = 'en'
 
 /**
  * Shared routing definition consumed by the middleware, navigation helpers
@@ -15,4 +15,4 @@ export const routing = defineRouting({
   locales: LOCALES,
   defaultLocale: DEFAULT_LOCALE,
   localePrefix: 'always',
-});
+})

@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import type { ComponentProps } from 'react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import type { ComponentProps } from 'react'
 
 /**
  * Wraps next-themes. Defaults match the design system: class-based dark mode
@@ -21,5 +21,5 @@ export function ThemeProvider({
     >
       {children}
     </NextThemesProvider>
-  );
+  )
 }

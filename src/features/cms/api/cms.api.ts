@@ -1,9 +1,9 @@
-import { env } from '@/shared/config/env';
-import { http } from '@/shared/lib/api';
-import type { PaginatedResponse } from '@/shared/types';
-import { DEFAULT_CMS_PAGE_SIZE } from '../constants/cms.constants';
-import type { ContentEntry, ContentFilters } from '../types/cms.types';
-import { mockCmsApi } from './cms.mock';
+import { env } from '@/shared/config/env'
+import { http } from '@/shared/lib/api'
+import type { PaginatedResponse } from '@/shared/types'
+import { DEFAULT_CMS_PAGE_SIZE } from '../constants/cms.constants'
+import type { ContentEntry, ContentFilters } from '../types/cms.types'
+import { mockCmsApi } from './cms.mock'
 
 const realCmsApi = {
   list: (filters: ContentFilters) =>
@@ -15,6 +15,6 @@ const realCmsApi = {
         pageSize: DEFAULT_CMS_PAGE_SIZE,
       },
     }),
-};
+}
 
-export const cmsApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockCmsApi : realCmsApi;
+export const cmsApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockCmsApi : realCmsApi

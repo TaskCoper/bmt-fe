@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { Link, usePathname } from '@/i18n/navigation';
-import { useAuth } from '@/shared/auth';
-import { Logo } from '@/shared/components/common';
-import { cn } from '@/shared/lib/utils';
-import { DASHBOARD_NAV } from './nav-config';
+import { Link, usePathname } from '@/i18n/navigation'
+import { useAuth } from '@/shared/auth'
+import { Logo } from '@/shared/components/common'
+import { cn } from '@/shared/lib/utils'
+import { DASHBOARD_NAV } from './nav-config'
 
 /**
  * Persistent left navigation for the dashboard shell.
  * Hidden on small screens (the header exposes a mobile entry point).
  */
 export function DashboardSidebar() {
-  const t = useTranslations('nav');
-  const pathname = usePathname();
-  const { hasAnyRole } = useAuth();
+  const t = useTranslations('nav')
+  const pathname = usePathname()
+  const { hasAnyRole } = useAuth()
 
   return (
     <aside className="bg-sidebar text-sidebar-foreground border-sidebar-border hidden w-64 shrink-0 flex-col border-r lg:flex">
@@ -29,8 +29,8 @@ export function DashboardSidebar() {
           (item) => !item.roles || hasAnyRole(item.roles),
         ).map((item) => {
           const active =
-            pathname === item.href || pathname.startsWith(`${item.href}/`);
-          const Icon = item.icon;
+            pathname === item.href || pathname.startsWith(`${item.href}/`)
+          const Icon = item.icon
           return (
             <Link
               key={item.href}
@@ -46,9 +46,9 @@ export function DashboardSidebar() {
               <Icon className="size-4 shrink-0" />
               {t(item.labelKey)}
             </Link>
-          );
+          )
         })}
       </nav>
     </aside>
-  );
+  )
 }

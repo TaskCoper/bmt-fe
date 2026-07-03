@@ -7,10 +7,10 @@ import {
   Library,
   Users,
   type LucideIcon,
-} from 'lucide-react';
+} from 'lucide-react'
 
-import { ROLES, type Role } from '@/shared/auth';
-import { ROUTES } from '@/shared/constants/routes';
+import { ROLES, type Role } from '@/shared/auth'
+import { ROUTES } from '@/shared/constants/routes'
 
 /** Translation keys available under the `nav` namespace for sidebar items. */
 export type NavLabelKey =
@@ -20,16 +20,16 @@ export type NavLabelKey =
   | 'library'
   | 'chatbot'
   | 'cms'
-  | 'users';
+  | 'users'
 
 /** A single primary navigation entry for the dashboard sidebar. */
 export interface NavItem {
   /** Key under the `nav` translation namespace. */
-  labelKey: NavLabelKey;
-  href: string;
-  icon: LucideIcon;
+  labelKey: NavLabelKey
+  href: string
+  icon: LucideIcon
   /** Roles allowed to see this item. Empty = all authenticated users. */
-  roles?: readonly Role[];
+  roles?: readonly Role[]
 }
 
 /**
@@ -54,4 +54,4 @@ export const DASHBOARD_NAV: readonly NavItem[] = [
     icon: Users,
     roles: [ROLES.ADMIN],
   },
-];
+]

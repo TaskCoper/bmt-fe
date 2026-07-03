@@ -1,9 +1,9 @@
-import { env } from '@/shared/config/env';
-import { http } from '@/shared/lib/api';
-import type { PaginatedResponse } from '@/shared/types';
-import { DEFAULT_LIBRARY_PAGE_SIZE } from '../constants/library.constants';
-import type { LibraryFilters, LibraryItem } from '../types/library.types';
-import { mockLibraryApi } from './library.mock';
+import { env } from '@/shared/config/env'
+import { http } from '@/shared/lib/api'
+import type { PaginatedResponse } from '@/shared/types'
+import { DEFAULT_LIBRARY_PAGE_SIZE } from '../constants/library.constants'
+import type { LibraryFilters, LibraryItem } from '../types/library.types'
+import { mockLibraryApi } from './library.mock'
 
 const realLibraryApi = {
   list: (filters: LibraryFilters) =>
@@ -15,8 +15,8 @@ const realLibraryApi = {
         pageSize: DEFAULT_LIBRARY_PAGE_SIZE,
       },
     }),
-};
+}
 
 export const libraryApi = env.NEXT_PUBLIC_USE_MOCK_API
   ? mockLibraryApi
-  : realLibraryApi;
+  : realLibraryApi

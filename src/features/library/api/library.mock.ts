@@ -1,12 +1,12 @@
-import { mockDelay, paginate } from '@/shared/lib';
-import type { PaginatedResponse } from '@/shared/types';
+import { mockDelay, paginate } from '@/shared/lib'
+import type { PaginatedResponse } from '@/shared/types'
 import {
   DEFAULT_LIBRARY_PAGE_SIZE,
   LIBRARY_CATEGORY,
-} from '../constants/library.constants';
-import type { LibraryFilters, LibraryItem } from '../types/library.types';
+} from '../constants/library.constants'
+import type { LibraryFilters, LibraryItem } from '../types/library.types'
 
-const M = LIBRARY_CATEGORY;
+const M = LIBRARY_CATEGORY
 
 /** Sample unit-price catalogue for local development without a backend. */
 export const MOCK_LIBRARY: LibraryItem[] = [
@@ -145,30 +145,30 @@ export const MOCK_LIBRARY: LibraryItem[] = [
     unitPrice: 1_200_000,
     updatedAt: '2026-06-09T03:00:00Z',
   },
-];
+]
 
 function applyFilters(filters: LibraryFilters): LibraryItem[] {
-  let items = [...MOCK_LIBRARY];
+  let items = [...MOCK_LIBRARY]
   if (filters.search) {
-    const q = filters.search.toLowerCase();
+    const q = filters.search.toLowerCase()
     items = items.filter(
       (i) =>
         i.name.toLowerCase().includes(q) || i.code.toLowerCase().includes(q),
-    );
+    )
   }
   if (filters.category !== 'all') {
-    items = items.filter((i) => i.category === filters.category);
+    items = items.filter((i) => i.category === filters.category)
   }
-  return items;
+  return items
 }
 
 export const mockLibraryApi = {
   async list(filters: LibraryFilters): Promise<PaginatedResponse<LibraryItem>> {
-    await mockDelay();
+    await mockDelay()
     return paginate(
       applyFilters(filters),
       filters.page,
       DEFAULT_LIBRARY_PAGE_SIZE,
-    );
+    )
   },
-};
+}

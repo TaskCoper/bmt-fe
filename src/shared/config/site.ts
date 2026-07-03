@@ -1,4 +1,4 @@
-import { env } from './env';
+import { env } from './env'
 
 /**
  * Static, app-wide metadata. Keep marketing / SEO copy out of this file —
@@ -9,6 +9,6 @@ export const siteConfig = {
   url: env.NEXT_PUBLIC_APP_URL,
   // Default theme handed to next-themes.
   defaultTheme: 'system' as const,
-} as const;
+} as const
 
-export type SiteConfig = typeof siteConfig;
+export type SiteConfig = typeof siteConfig

@@ -1,12 +1,12 @@
-import { Building2 } from 'lucide-react';
+import { Building2 } from 'lucide-react'
 
-import { siteConfig } from '@/shared/config/site';
-import { cn } from '@/shared/lib/utils';
+import { siteConfig } from '@/shared/config/site'
+import { cn } from '@/shared/lib/utils'
 
 interface LogoProps {
-  className?: string;
+  className?: string
   /** Hide the wordmark, showing only the icon. */
-  iconOnly?: boolean;
+  iconOnly?: boolean
 }
 
 /** App wordmark + icon. Pair with a locale-aware <Link> at call sites. */
@@ -20,5 +20,5 @@ export function Logo({ className, iconOnly = false }: LogoProps) {
         <span className="text-sm tracking-tight">{siteConfig.name}</span>
       ) : null}
     </span>
-  );
+  )
 }

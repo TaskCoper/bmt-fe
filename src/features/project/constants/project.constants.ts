@@ -6,9 +6,8 @@ export const PROJECT_STATUS = {
   ON_HOLD: 'on_hold',
   COMPLETED: 'completed',
   ARCHIVED: 'archived',
-} as const;
+} as const
 
-export type ProjectStatus =
-  (typeof PROJECT_STATUS)[keyof typeof PROJECT_STATUS];
+export type ProjectStatus = (typeof PROJECT_STATUS)[keyof typeof PROJECT_STATUS]
 
-export const DEFAULT_PROJECT_PAGE_SIZE = 8;
+export const DEFAULT_PROJECT_PAGE_SIZE = 8

@@ -2,8 +2,8 @@ import {
   QueryClient,
   defaultShouldDehydrateQuery,
   isServer,
-} from '@tanstack/react-query';
-import { isApiError } from './api';
+} from '@tanstack/react-query'
+import { isApiError } from './api'
 
 /**
  * Create a configured QueryClient. Defaults tuned for a SaaS dashboard:
@@ -19,9 +19,9 @@ export function makeQueryClient(): QueryClient {
         refetchOnWindowFocus: false,
         retry: (failureCount, error) => {
           if (isApiError(error) && error.status >= 400 && error.status < 500) {
-            return false;
+            return false
           }
-          return failureCount < 2;
+          return failureCount < 2
         },
       },
       mutations: {
@@ -34,20 +34,20 @@ export function makeQueryClient(): QueryClient {
           query.state.status === 'pending',
       },
     },
-  });
+  })
 }
 
-let browserQueryClient: QueryClient | undefined;
+let browserQueryClient: QueryClient | undefined
 
 /**
  * Return a stable QueryClient. On the server a fresh client is created per
  * request; in the browser a singleton is reused across renders.
  */
 export function getQueryClient(): QueryClient {
-  if (isServer) return makeQueryClient();
-  browserQueryClient ??= makeQueryClient();
-  return browserQueryClient;
+  if (isServer) return makeQueryClient()
+  browserQueryClient ??= makeQueryClient()
+  return browserQueryClient
 }
 
 /** Browser singleton convenience export for imperative cache access. */
-export const queryClient = getQueryClient();
+export const queryClient = getQueryClient()

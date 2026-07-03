@@ -1,24 +1,24 @@
-import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
-import { LoginForm } from '@/features/auth';
-import type { Locale } from '@/i18n/routing';
+import { LoginForm } from '@/features/auth'
+import type { Locale } from '@/i18n/routing'
 
 interface PageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: Locale }>
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'auth.login' });
-  return { title: t('title') };
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'auth.login' })
+  return { title: t('title') }
 }
 
 export default async function LoginPage({ params }: PageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+  const { locale } = await params
+  setRequestLocale(locale)
 
-  return <LoginForm />;
+  return <LoginForm />
 }

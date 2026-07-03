@@ -1,27 +1,27 @@
-import type { Metadata } from 'next';
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
-import { Geist, Geist_Mono } from 'next/font/google';
-import { notFound } from 'next/navigation';
+import type { Metadata } from 'next'
+import { NextIntlClientProvider, hasLocale } from 'next-intl'
+import { setRequestLocale } from 'next-intl/server'
+import { Geist, Geist_Mono } from 'next/font/google'
+import { notFound } from 'next/navigation'
 
-import { AuthBootstrap } from '@/features/auth';
-import { routing } from '@/i18n/routing';
-import { siteConfig } from '@/shared/config/site';
-import { AppProviders } from '@/shared/providers';
-import '../globals.css';
+import { AuthBootstrap } from '@/features/auth'
+import { routing } from '@/i18n/routing'
+import { siteConfig } from '@/shared/config/site'
+import { AppProviders } from '@/shared/providers'
+import '../globals.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
   // 'latin-ext' covers Vietnamese diacritics; Geist has no 'vietnamese' subset.
   subsets: ['latin', 'latin-ext'],
   display: 'swap',
-});
+})
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
   display: 'swap',
-});
+})
 
 export const metadata: Metadata = {
   title: {
@@ -31,28 +31,28 @@ export const metadata: Metadata = {
   description:
     'Plan, estimate and manage construction projects on one premium platform.',
   metadataBase: new URL(siteConfig.url),
-};
+}
 
 /** Pre-render a static shell for every supported locale. */
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }))
 }
 
 export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
 }) {
-  const { locale } = await params;
+  const { locale } = await params
 
   if (!hasLocale(routing.locales, locale)) {
-    notFound();
+    notFound()
   }
 
   // Enable static rendering for this locale segment.
-  setRequestLocale(locale);
+  setRequestLocale(locale)
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -69,5 +69,5 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
       </body>
     </html>
-  );
+  )
 }
