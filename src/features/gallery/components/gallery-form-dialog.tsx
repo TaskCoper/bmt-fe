@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import { type ReactNode, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Upload } from 'lucide-react';
+import { type ReactNode, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Upload } from 'lucide-react'
 
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
-import { Checkbox } from '@/shared/components/ui/checkbox';
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
+import { Checkbox } from '@/shared/components/ui/checkbox'
 import {
   Dialog,
   DialogClose,
@@ -17,32 +17,32 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/shared/components/ui/dialog';
+} from '@/shared/components/ui/dialog'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
+} from '@/shared/components/ui/select'
 import {
   GALLERY_BUILDING,
   GALLERY_KIND,
   GALLERY_STYLE,
-} from '../constants/gallery.constants';
-import type { GalleryItem } from '../types/gallery.types';
+} from '../constants/gallery.constants'
+import type { GalleryItem } from '../types/gallery.types'
 
 /** Admin create/edit dialog for a design-library item (Q&A §6 / §7.2.2). */
 export function GalleryFormDialog({
   trigger,
   item,
 }: {
-  trigger: ReactNode;
-  item?: GalleryItem;
+  trigger: ReactNode
+  item?: GalleryItem
 }) {
-  const t = useTranslations('gallery.form');
-  const tGallery = useTranslations('gallery');
-  const [open, setOpen] = useState(false);
+  const t = useTranslations('gallery.form')
+  const tGallery = useTranslations('gallery')
+  const [open, setOpen] = useState(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -56,9 +56,9 @@ export function GalleryFormDialog({
         <form
           id="gallery-form"
           onSubmit={(e) => {
-            e.preventDefault();
-            setOpen(false);
-            toast.success(item ? t('updated') : t('created'));
+            e.preventDefault()
+            setOpen(false)
+            toast.success(item ? t('updated') : t('created'))
           }}
           className="space-y-4 py-2"
         >
@@ -150,5 +150,5 @@ export function GalleryFormDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

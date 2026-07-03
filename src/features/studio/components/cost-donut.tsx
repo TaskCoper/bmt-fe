@@ -1,33 +1,33 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { budgetShares } from '../services/studio.service';
-import type { BudgetBreakdown } from '../types/studio.types';
+import { budgetShares } from '../services/studio.service'
+import type { BudgetBreakdown } from '../types/studio.types'
 
 /** Color per cost portion (semantic chart tokens defined in globals.css). */
 const SEGMENTS = [
   { key: 'rough', color: 'var(--chart-1)' },
   { key: 'finishing', color: 'var(--chart-2)' },
   { key: 'interior', color: 'var(--chart-3)' },
-] as const;
+] as const
 
 /** Hand-rolled SVG donut showing the 3-portion cost structure (step 4E). */
 export function CostDonut({ budget }: { budget: BudgetBreakdown }) {
-  const t = useTranslations('studio.budget');
-  const shares = budgetShares(budget);
+  const t = useTranslations('studio.budget')
+  const shares = budgetShares(budget)
 
-  const radius = 60;
-  const circumference = 2 * Math.PI * radius;
+  const radius = 60
+  const circumference = 2 * Math.PI * radius
 
   // Precompute each segment's dash + cumulative offset (no mutation in render).
   const arcs = SEGMENTS.map((seg, i) => {
-    const dash = shares[seg.key] * circumference;
+    const dash = shares[seg.key] * circumference
     const offset =
       SEGMENTS.slice(0, i).reduce((sum, p) => sum + shares[p.key], 0) *
-      circumference;
-    return { ...seg, dash, offset };
-  });
+      circumference
+    return { ...seg, dash, offset }
+  })
 
   return (
     <div className="flex flex-col items-center gap-4 sm:flex-row">
@@ -67,5 +67,5 @@ export function CostDonut({ budget }: { budget: BudgetBreakdown }) {
         ))}
       </ul>
     </div>
-  );
+  )
 }

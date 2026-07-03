@@ -1,20 +1,20 @@
-'use client';
+'use client'
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl'
 
-import type { Locale } from '@/i18n/routing';
-import { formatNumber } from '@/shared/utils';
-import type { AreaSummary as AreaSummaryData } from '../types/studio.types';
+import type { Locale } from '@/i18n/routing'
+import { formatNumber } from '@/shared/utils'
+import type { AreaSummary as AreaSummaryData } from '../types/studio.types'
 
 /** Construction-area summary table (step 4D). */
 export function AreaSummary({ area }: { area: AreaSummaryData }) {
-  const t = useTranslations('studio.area');
-  const locale = useLocale() as Locale;
-  const n = (v: number) => formatNumber(v, locale);
+  const t = useTranslations('studio.area')
+  const locale = useLocale() as Locale
+  const n = (v: number) => formatNumber(v, locale)
 
   const rows: Array<{
-    key: 'land' | 'ground' | 'totalFloor' | 'usable' | 'floors' | 'height';
-    value: string;
+    key: 'land' | 'ground' | 'totalFloor' | 'usable' | 'floors' | 'height'
+    value: string
   }> = [
     { key: 'land', value: `${n(area.landArea)} m²` },
     { key: 'ground', value: `${n(area.groundFloorArea)} m²` },
@@ -22,7 +22,7 @@ export function AreaSummary({ area }: { area: AreaSummaryData }) {
     { key: 'usable', value: `${n(area.usableArea)} m²` },
     { key: 'floors', value: t('floorsValue', { count: area.floors }) },
     { key: 'height', value: `${n(area.estimatedHeight)} m` },
-  ];
+  ]
 
   return (
     <dl className="divide-y rounded-lg border text-sm">
@@ -36,5 +36,5 @@ export function AreaSummary({ area }: { area: AreaSummaryData }) {
         </div>
       ))}
     </dl>
-  );
+  )
 }

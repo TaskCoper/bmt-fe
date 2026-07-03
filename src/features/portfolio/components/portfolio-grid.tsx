@@ -1,29 +1,29 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { ArrowRight, MapPin } from 'lucide-react'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { cn } from '@/shared/lib/utils';
-import { Badge } from '@/shared/components/ui/badge';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { EmptyState } from '@/shared/components/common';
-import { usePortfolio } from '../hooks/use-portfolio';
-import { PORTFOLIO_CATEGORY } from '../constants/portfolio.constants';
-import type { PortfolioFilters } from '../types/portfolio.types';
+import { Link } from '@/i18n/navigation'
+import { ROUTES } from '@/shared/constants/routes'
+import { cn } from '@/shared/lib/utils'
+import { Badge } from '@/shared/components/ui/badge'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { EmptyState } from '@/shared/components/common'
+import { usePortfolio } from '../hooks/use-portfolio'
+import { PORTFOLIO_CATEGORY } from '../constants/portfolio.constants'
+import type { PortfolioFilters } from '../types/portfolio.types'
 
-const CATEGORY_OPTIONS = ['all', ...Object.values(PORTFOLIO_CATEGORY)] as const;
+const CATEGORY_OPTIONS = ['all', ...Object.values(PORTFOLIO_CATEGORY)] as const
 
 /** Public portfolio grid with a category filter (Q&A §3.1.2). */
 export function PortfolioGrid() {
-  const t = useTranslations('portfolio');
+  const t = useTranslations('portfolio')
   const [filters, setFilters] = useState<PortfolioFilters>({
     category: 'all',
     page: 1,
-  });
-  const { data, isLoading } = usePortfolio(filters);
+  })
+  const { data, isLoading } = usePortfolio(filters)
 
   return (
     <div className="space-y-6">
@@ -98,5 +98,5 @@ export function PortfolioGrid() {
         </div>
       )}
     </div>
-  );
+  )
 }

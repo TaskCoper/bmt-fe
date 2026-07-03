@@ -1,16 +1,16 @@
-import type { PaginatedResponse } from '@/shared/types';
-import { mockDelay, paginate } from '@/shared/lib';
+import type { PaginatedResponse } from '@/shared/types'
+import { mockDelay, paginate } from '@/shared/lib'
 import {
   LIBRARY_CATEGORY,
   PRICE_REGION,
   DEFAULT_LIBRARY_PAGE_SIZE,
-} from '../constants/library.constants';
-import type { LibraryItem, LibraryFilters } from '../types/library.types';
+} from '../constants/library.constants'
+import type { LibraryItem, LibraryFilters } from '../types/library.types'
 
-const M = LIBRARY_CATEGORY;
+const M = LIBRARY_CATEGORY
 
 /** Raw rows without the derived region / price-history fields. */
-type RawItem = Omit<LibraryItem, 'region' | 'priceHistory'>;
+type RawItem = Omit<LibraryItem, 'region' | 'priceHistory'>
 
 const RAW: RawItem[] = [
   {
@@ -148,13 +148,13 @@ const RAW: RawItem[] = [
     unitPrice: 1_200_000,
     updatedAt: '2026-06-09T03:00:00Z',
   },
-];
+]
 
 const REGION_CYCLE = [
   PRICE_REGION.NORTH,
   PRICE_REGION.CENTRAL,
   PRICE_REGION.SOUTH,
-] as const;
+] as const
 
 /**
  * Enrich raw rows with a region (cycled) and a 3-point price history so the
@@ -168,33 +168,33 @@ export const MOCK_LIBRARY: LibraryItem[] = RAW.map((item, i) => ({
     { date: '2026-05-01T00:00:00Z', price: Math.round(item.unitPrice * 0.97) },
     { date: item.updatedAt, price: item.unitPrice },
   ],
-}));
+}))
 
 function applyFilters(filters: LibraryFilters): LibraryItem[] {
-  let items = [...MOCK_LIBRARY];
+  let items = [...MOCK_LIBRARY]
   if (filters.search) {
-    const q = filters.search.toLowerCase();
+    const q = filters.search.toLowerCase()
     items = items.filter(
       (i) =>
         i.name.toLowerCase().includes(q) || i.code.toLowerCase().includes(q),
-    );
+    )
   }
   if (filters.category !== 'all') {
-    items = items.filter((i) => i.category === filters.category);
+    items = items.filter((i) => i.category === filters.category)
   }
   if (filters.region !== 'all') {
-    items = items.filter((i) => i.region === filters.region);
+    items = items.filter((i) => i.region === filters.region)
   }
-  return items;
+  return items
 }
 
 export const mockLibraryApi = {
   async list(filters: LibraryFilters): Promise<PaginatedResponse<LibraryItem>> {
-    await mockDelay();
+    await mockDelay()
     return paginate(
       applyFilters(filters),
       filters.page,
       DEFAULT_LIBRARY_PAGE_SIZE,
-    );
+    )
   },
-};
+}

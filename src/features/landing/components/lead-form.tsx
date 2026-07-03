@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Loader2, ShieldCheck } from 'lucide-react';
+import { useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Loader2, ShieldCheck } from 'lucide-react'
 
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Textarea } from '@/shared/components/ui/textarea';
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Textarea } from '@/shared/components/ui/textarea'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
+} from '@/shared/components/ui/select'
 import {
   Form,
   FormControl,
@@ -24,18 +24,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/shared/components/ui/form';
-import { LEAD_NEED_TYPES } from '../constants/landing.constants';
-import { createLeadSchema, type LeadFormValues } from '../schemas/lead.schema';
+} from '@/shared/components/ui/form'
+import { LEAD_NEED_TYPES } from '../constants/landing.constants'
+import { createLeadSchema, type LeadFormValues } from '../schemas/lead.schema'
 
 /**
  * Public contact / lead-capture form. UI-first: submission is mocked (no
  * backend) — it simulates saving the lead and shows a success toast.
  */
 export function LeadForm() {
-  const t = useTranslations('landing.lead');
-  const tv = useTranslations('validation');
-  const [pending, setPending] = useState(false);
+  const t = useTranslations('landing.lead')
+  const tv = useTranslations('validation')
+  const [pending, setPending] = useState(false)
 
   const schema = useMemo(
     () =>
@@ -45,7 +45,7 @@ export function LeadForm() {
         phone: tv('phone'),
       }),
     [tv],
-  );
+  )
 
   const form = useForm<LeadFormValues>({
     resolver: zodResolver(schema),
@@ -56,15 +56,15 @@ export function LeadForm() {
       needType: 'design',
       message: '',
     },
-  });
+  })
 
   function onSubmit() {
-    setPending(true);
+    setPending(true)
     setTimeout(() => {
-      setPending(false);
-      toast.success(t('success'));
-      form.reset();
-    }, 800);
+      setPending(false)
+      toast.success(t('success'))
+      form.reset()
+    }, 800)
   }
 
   return (
@@ -187,5 +187,5 @@ export function LeadForm() {
         </div>
       </form>
     </Form>
-  );
+  )
 }

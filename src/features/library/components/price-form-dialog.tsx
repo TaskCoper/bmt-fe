@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import { type ReactNode, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
+import { type ReactNode, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
 import {
   Dialog,
   DialogClose,
@@ -15,33 +15,33 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/shared/components/ui/dialog';
+} from '@/shared/components/ui/dialog'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
-import { LIBRARY_CATEGORY, PRICE_REGION } from '../constants/library.constants';
-import type { LibraryItem } from '../types/library.types';
+} from '@/shared/components/ui/select'
+import { LIBRARY_CATEGORY, PRICE_REGION } from '../constants/library.constants'
+import type { LibraryItem } from '../types/library.types'
 
 /** Create/edit a unit-price row (Q&A §5.2.2 — Admin manages prices in CMS). */
 export function PriceFormDialog({
   trigger,
   item,
 }: {
-  trigger: ReactNode;
-  item?: LibraryItem;
+  trigger: ReactNode
+  item?: LibraryItem
 }) {
-  const t = useTranslations('library.form');
-  const tCat = useTranslations('library.category');
-  const tRegion = useTranslations('library.region');
-  const [open, setOpen] = useState(false);
+  const t = useTranslations('library.form')
+  const tCat = useTranslations('library.category')
+  const tRegion = useTranslations('library.region')
+  const [open, setOpen] = useState(false)
 
   function onSave() {
-    setOpen(false);
-    toast.success(item ? t('updated') : t('created'));
+    setOpen(false)
+    toast.success(item ? t('updated') : t('created'))
   }
 
   return (
@@ -56,8 +56,8 @@ export function PriceFormDialog({
         <form
           id="price-form"
           onSubmit={(e) => {
-            e.preventDefault();
-            onSave();
+            e.preventDefault()
+            onSave()
           }}
           className="grid gap-4 py-2 sm:grid-cols-2"
         >
@@ -125,5 +125,5 @@ export function PriceFormDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

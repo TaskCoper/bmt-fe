@@ -1,31 +1,31 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Loader2, Send } from 'lucide-react';
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Loader2, Send } from 'lucide-react'
 
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
 
 /**
  * Newsletter signup (stakeholder Q&A §3.3.3). Double opt-in: submitting sends a
  * confirmation email. UI-first mock — no provider wired yet.
  */
 export function NewsletterForm() {
-  const t = useTranslations('landing.newsletter');
-  const [email, setEmail] = useState('');
-  const [pending, setPending] = useState(false);
+  const t = useTranslations('landing.newsletter')
+  const [email, setEmail] = useState('')
+  const [pending, setPending] = useState(false)
 
   function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setPending(true);
+    e.preventDefault()
+    if (!email.trim()) return
+    setPending(true)
     setTimeout(() => {
-      setPending(false);
-      toast.success(t('success'));
-      setEmail('');
-    }, 700);
+      setPending(false)
+      toast.success(t('success'))
+      setEmail('')
+    }, 700)
   }
 
   return (
@@ -56,5 +56,5 @@ export function NewsletterForm() {
       </form>
       <p className="text-muted-foreground mt-2 text-xs">{t('optInNote')}</p>
     </div>
-  );
+  )
 }

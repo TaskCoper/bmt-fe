@@ -1,8 +1,8 @@
-import { http } from '@/shared/lib/api';
-import { env } from '@/shared/config/env';
-import type { PaginatedResponse } from '@/shared/types';
-import type { GalleryFilters, GalleryItem } from '../types/gallery.types';
-import { mockGalleryApi } from './gallery.mock';
+import { http } from '@/shared/lib/api'
+import { env } from '@/shared/config/env'
+import type { PaginatedResponse } from '@/shared/types'
+import type { GalleryFilters, GalleryItem } from '../types/gallery.types'
+import { mockGalleryApi } from './gallery.mock'
 
 const params = (filters: GalleryFilters) => ({
   search: filters.search || undefined,
@@ -10,7 +10,7 @@ const params = (filters: GalleryFilters) => ({
   building: filters.building === 'all' ? undefined : filters.building,
   sort: filters.sort,
   page: filters.page,
-});
+})
 
 const realGalleryApi = {
   list: (filters: GalleryFilters) =>
@@ -21,8 +21,8 @@ const realGalleryApi = {
     http.get<PaginatedResponse<GalleryItem>>('/admin/gallery', {
       params: params(filters),
     }),
-};
+}
 
 export const galleryApi = env.NEXT_PUBLIC_USE_MOCK_API
   ? mockGalleryApi
-  : realGalleryApi;
+  : realGalleryApi

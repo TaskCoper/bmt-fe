@@ -1,12 +1,12 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 /** Resolved, localized validation messages for the register form. */
 export interface RegisterSchemaMessages {
-  required: string;
-  email: string;
-  passwordMin: string;
-  passwordMismatch: string;
-  agreeTerms: string;
+  required: string
+  email: string
+  passwordMin: string
+  passwordMismatch: string
+  agreeTerms: string
 }
 
 /** Builds the register schema with localized messages (see createLoginSchema). */
@@ -25,9 +25,9 @@ export function createRegisterSchema(m: RegisterSchemaMessages) {
     .refine((data) => data.password === data.confirmPassword, {
       message: m.passwordMismatch,
       path: ['confirmPassword'],
-    });
+    })
 }
 
 export type RegisterFormValues = z.infer<
   ReturnType<typeof createRegisterSchema>
->;
+>

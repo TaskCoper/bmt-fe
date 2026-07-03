@@ -1,29 +1,29 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { cn } from '@/shared/lib/utils';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
-import { Textarea } from '@/shared/components/ui/textarea';
-import { Badge } from '@/shared/components/ui/badge';
+import { cn } from '@/shared/lib/utils'
+import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
+import { Textarea } from '@/shared/components/ui/textarea'
+import { Badge } from '@/shared/components/ui/badge'
 import {
   CONSTRUCTION_TYPE_OPTIONS,
   type ConstructionType,
-} from '../../constants/studio.constants';
-import { useWizardStore } from '../../store/wizard.store';
-import { StepSection } from '../step-section';
+} from '../../constants/studio.constants'
+import { useWizardStore } from '../../store/wizard.store'
+import { StepSection } from '../step-section'
 
 /** Step 1 — create the project: name, construction type, optional note. */
 export function StepCreate() {
-  const t = useTranslations('studio.create');
-  const tType = useTranslations('studio.constructionType');
-  const tCommon = useTranslations('common');
+  const t = useTranslations('studio.create')
+  const tType = useTranslations('studio.constructionType')
+  const tCommon = useTranslations('common')
 
-  const name = useWizardStore((s) => s.data.name);
-  const note = useWizardStore((s) => s.data.note);
-  const constructionType = useWizardStore((s) => s.data.constructionType);
-  const patch = useWizardStore((s) => s.patch);
+  const name = useWizardStore((s) => s.data.name)
+  const note = useWizardStore((s) => s.data.note)
+  const constructionType = useWizardStore((s) => s.data.constructionType)
+  const patch = useWizardStore((s) => s.patch)
 
   return (
     <div className="space-y-8">
@@ -45,8 +45,8 @@ export function StepCreate() {
       <StepSection title={t('typeLabel')} description={t('typeHint')}>
         <div className="grid gap-3 sm:grid-cols-3">
           {CONSTRUCTION_TYPE_OPTIONS.map((opt) => {
-            const selected = constructionType === opt.value;
-            const disabled = !opt.mvp;
+            const selected = constructionType === opt.value
+            const disabled = !opt.mvp
             return (
               <button
                 key={opt.value}
@@ -75,7 +75,7 @@ export function StepCreate() {
                   </Badge>
                 ) : null}
               </button>
-            );
+            )
           })}
         </div>
       </StepSection>
@@ -92,5 +92,5 @@ export function StepCreate() {
         </div>
       </StepSection>
     </div>
-  );
+  )
 }

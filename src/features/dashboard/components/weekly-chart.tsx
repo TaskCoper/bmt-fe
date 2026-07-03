@@ -1,33 +1,33 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { useDashboard } from '../hooks/use-dashboard';
+} from '@/shared/components/ui/card'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { useDashboard } from '../hooks/use-dashboard'
 
 /**
  * Projects vs. estimates created per week (last 8 weeks). Hand-rolled CSS bar
  * chart — keeps the bundle dependency-free, matching the studio donut.
  */
 export function WeeklyChart() {
-  const t = useTranslations('dashboard.weekly');
-  const { data, isLoading } = useDashboard();
+  const t = useTranslations('dashboard.weekly')
+  const { data, isLoading } = useDashboard()
 
   if (isLoading || !data) {
-    return <Skeleton className="h-72 w-full" />;
+    return <Skeleton className="h-72 w-full" />
   }
 
-  const { weekly } = data;
+  const { weekly } = data
   const max = Math.max(
     1,
     ...weekly.map((w) => Math.max(w.projects, w.estimates)),
-  );
+  )
 
   return (
     <Card>
@@ -71,5 +71,5 @@ export function WeeklyChart() {
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }

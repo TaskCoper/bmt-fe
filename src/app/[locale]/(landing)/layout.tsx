@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
 import {
   LandingNavbar,
   LandingFooter,
   FloatingContact,
-} from '@/features/landing';
+} from '@/features/landing'
 
 /** Public marketing layout: navbar + content + footer + quick-contact buttons. */
 export default function LandingLayout({ children }: { children: ReactNode }) {
@@ -15,5 +15,5 @@ export default function LandingLayout({ children }: { children: ReactNode }) {
       <LandingFooter />
       <FloatingContact />
     </div>
-  );
+  )
 }

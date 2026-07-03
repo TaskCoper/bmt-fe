@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Plus, Pencil, Trash2, Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Plus, Pencil, Trash2, Eye, EyeOff } from 'lucide-react'
 
 import {
   Table,
@@ -12,32 +12,32 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { EmptyState } from '@/shared/components/common';
-import { usePortfolioAdmin } from '../hooks/use-portfolio';
-import type { PortfolioFilters, PortfolioItem } from '../types/portfolio.types';
-import { PortfolioFormDialog } from './portfolio-form-dialog';
+} from '@/shared/components/ui/table'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { EmptyState } from '@/shared/components/common'
+import { usePortfolioAdmin } from '../hooks/use-portfolio'
+import type { PortfolioFilters, PortfolioItem } from '../types/portfolio.types'
+import { PortfolioFormDialog } from './portfolio-form-dialog'
 
-const INITIAL: PortfolioFilters = { category: 'all', page: 1 };
+const INITIAL: PortfolioFilters = { category: 'all', page: 1 }
 
 /** Admin management table for portfolio projects (Q&A §3.1.2 / CMS). */
 export function PortfolioAdminTable() {
-  const t = useTranslations('portfolio');
-  const tForm = useTranslations('portfolio.form');
-  const tc = useTranslations('common');
+  const t = useTranslations('portfolio')
+  const tForm = useTranslations('portfolio.form')
+  const tc = useTranslations('common')
 
-  const [filters, setFilters] = useState<PortfolioFilters>(INITIAL);
-  const { data, isLoading } = usePortfolioAdmin(filters);
+  const [filters, setFilters] = useState<PortfolioFilters>(INITIAL)
+  const { data, isLoading } = usePortfolioAdmin(filters)
 
   const togglePublish = (item: PortfolioItem) =>
     toast.success(
       item.published
         ? tForm('hidden', { title: item.title })
         : tForm('publishedToast', { title: item.title }),
-    );
+    )
 
   return (
     <div className="space-y-4">
@@ -184,5 +184,5 @@ export function PortfolioAdminTable() {
         </>
       )}
     </div>
-  );
+  )
 }

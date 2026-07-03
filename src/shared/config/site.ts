@@ -1,4 +1,4 @@
-import { env } from './env';
+import { env } from './env'
 
 /**
  * Static, app-wide metadata. Keep marketing / SEO copy out of this file —
@@ -20,6 +20,6 @@ export const siteConfig = {
     messengerUrl: 'https://m.me/bmtdecor',
     facebookUrl: 'https://facebook.com/bmtdecor',
   },
-} as const;
+} as const
 
-export type SiteConfig = typeof siteConfig;
+export type SiteConfig = typeof siteConfig

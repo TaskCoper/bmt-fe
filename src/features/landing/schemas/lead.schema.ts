@@ -1,12 +1,12 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
-import { LEAD_NEED_TYPES } from '../constants/landing.constants';
+import { LEAD_NEED_TYPES } from '../constants/landing.constants'
 
 /** Resolved, localized validation messages for the contact/lead form. */
 export interface LeadSchemaMessages {
-  required: string;
-  email: string;
-  phone: string;
+  required: string
+  email: string
+  phone: string
 }
 
 /**
@@ -23,7 +23,7 @@ export function createLeadSchema(m: LeadSchemaMessages) {
     email: z.string().email({ message: m.email }).optional().or(z.literal('')),
     needType: z.enum(LEAD_NEED_TYPES),
     message: z.string().max(2000).optional().or(z.literal('')),
-  });
+  })
 }
 
-export type LeadFormValues = z.infer<ReturnType<typeof createLeadSchema>>;
+export type LeadFormValues = z.infer<ReturnType<typeof createLeadSchema>>

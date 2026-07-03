@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { toast } from 'sonner';
+import { useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
+import { toast } from 'sonner'
 import {
   Search,
   MoreHorizontal,
@@ -10,10 +10,10 @@ import {
   LockOpen,
   KeyRound,
   Eye,
-} from 'lucide-react';
+} from 'lucide-react'
 
-import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
+import type { Locale } from '@/i18n/routing'
+import { formatDate } from '@/shared/utils'
 import {
   Table,
   TableBody,
@@ -21,46 +21,46 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+} from '@/shared/components/ui/table'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/shared/components/ui/dropdown-menu';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import type { Role } from '@/shared/auth';
-import { useUsers } from '../hooks/use-users';
-import type { UserRecord, UserFilters } from '../types/user.types';
-import { AddAdminDialog } from './add-admin-dialog';
-import { UserDetailDialog } from './user-detail-dialog';
+} from '@/shared/components/ui/dropdown-menu'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import type { Role } from '@/shared/auth'
+import { useUsers } from '../hooks/use-users'
+import type { UserRecord, UserFilters } from '../types/user.types'
+import { AddAdminDialog } from './add-admin-dialog'
+import { UserDetailDialog } from './user-detail-dialog'
 
 const ROLE_VARIANT: Record<Role, 'default' | 'secondary' | 'outline'> = {
   admin: 'default',
   customer: 'secondary',
   guest: 'outline',
-};
+}
 
 const STATUS_VARIANT: Record<UserRecord['status'], 'success' | 'secondary'> = {
   active: 'success',
   inactive: 'secondary',
-};
+}
 
-const INITIAL: UserFilters = { search: '', page: 1 };
+const INITIAL: UserFilters = { search: '', page: 1 }
 
 /** Admin-only users table: search + full UX state matrix + pagination. */
 export function UserTable() {
-  const t = useTranslations('users');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('users')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const locale = useLocale() as Locale
 
-  const [filters, setFilters] = useState<UserFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useUsers(filters);
+  const [filters, setFilters] = useState<UserFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useUsers(filters)
 
   // UI-first mock actions — the real mutations live on the backend.
   const toggleLock = (user: UserRecord) =>
@@ -68,9 +68,9 @@ export function UserTable() {
       user.status === 'active'
         ? t('actions.lockedToast', { name: user.name })
         : t('actions.unlockedToast', { name: user.name }),
-    );
+    )
   const resetPassword = (user: UserRecord) =>
-    toast.success(t('actions.resetToast', { name: user.name }));
+    toast.success(t('actions.resetToast', { name: user.name }))
 
   return (
     <div className="space-y-4">
@@ -239,5 +239,5 @@ export function UserTable() {
         </>
       )}
     </div>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import { PORTFOLIO_CATEGORY } from './portfolio.constants';
-import type { PortfolioItem } from '../types/portfolio.types';
+import { PORTFOLIO_CATEGORY } from './portfolio.constants'
+import type { PortfolioItem } from '../types/portfolio.types'
 
 const gallery = (base: number) =>
   Array.from({ length: 4 }, (_, i) => ({
     hue: (base + i * 28) % 360,
     caption: '',
-  }));
+  }))
 
 /**
  * Sample showcase projects for local dev. Real portfolio content (text VI+EN,
@@ -103,10 +103,10 @@ const RAW: Omit<PortfolioItem, 'published'>[] = [
     coverHue: 190,
     gallery: gallery(190),
   },
-];
+]
 
 /** Last item left unpublished to exercise the admin view. */
 export const MOCK_PORTFOLIO: readonly PortfolioItem[] = RAW.map((p, i) => ({
   ...p,
   published: i !== RAW.length - 1,
-}));
+}))

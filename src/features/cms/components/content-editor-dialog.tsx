@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import { type ReactNode, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
+import { type ReactNode, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 import {
   Bold,
   Italic,
@@ -10,13 +10,13 @@ import {
   Link2,
   Image as ImageIcon,
   Upload,
-} from 'lucide-react';
+} from 'lucide-react'
 
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
-import { Textarea } from '@/shared/components/ui/textarea';
-import { Checkbox } from '@/shared/components/ui/checkbox';
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
+import { Textarea } from '@/shared/components/ui/textarea'
+import { Checkbox } from '@/shared/components/ui/checkbox'
 import {
   Dialog,
   DialogClose,
@@ -25,14 +25,14 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/shared/components/ui/dialog';
+} from '@/shared/components/ui/dialog'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@/shared/components/ui/tabs';
-import type { ContentEntry } from '../types/cms.types';
+} from '@/shared/components/ui/tabs'
+import type { ContentEntry } from '../types/cms.types'
 
 /** Page sections that can be toggled on/off per page (Q&A §7.1.1). */
 const SECTIONS = [
@@ -42,13 +42,13 @@ const SECTIONS = [
   'projects',
   'about',
   'contact',
-] as const;
+] as const
 
-const LOCALES = ['vi', 'en'] as const;
+const LOCALES = ['vi', 'en'] as const
 
 /** A minimal (mock) rich-text toolbar — conveys the RTE requirement. */
 function RichToolbar() {
-  const buttons = [Bold, Italic, List, Link2, ImageIcon];
+  const buttons = [Bold, Italic, List, Link2, ImageIcon]
   return (
     <div className="flex items-center gap-1 rounded-t-md border border-b-0 p-1">
       {buttons.map((Icon, i) => (
@@ -57,7 +57,7 @@ function RichToolbar() {
         </Button>
       ))}
     </div>
-  );
+  )
 }
 
 /**
@@ -68,18 +68,18 @@ export function ContentEditorDialog({
   trigger,
   entry,
 }: {
-  trigger: ReactNode;
-  entry?: ContentEntry;
+  trigger: ReactNode
+  entry?: ContentEntry
 }) {
-  const t = useTranslations('cms.editor');
-  const [open, setOpen] = useState(false);
+  const t = useTranslations('cms.editor')
+  const [open, setOpen] = useState(false)
   const [enabled, setEnabled] = useState<Record<string, boolean>>(
     Object.fromEntries(SECTIONS.map((s) => [s, true])),
-  );
+  )
 
   function onSave() {
-    setOpen(false);
-    toast.success(t('saved'));
+    setOpen(false)
+    toast.success(t('saved'))
   }
 
   return (
@@ -162,5 +162,5 @@ export function ContentEditorDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

@@ -1,28 +1,28 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import { Heart } from 'lucide-react';
+import { useTranslations } from 'next-intl'
+import { Heart } from 'lucide-react'
 
-import { cn } from '@/shared/lib/utils';
-import { Input } from '@/shared/components/ui/input';
-import { Badge } from '@/shared/components/ui/badge';
-import { EmptyState } from '@/shared/components/common';
-import { useWizardStore } from '../../store/wizard.store';
-import { StepSection } from '../step-section';
+import { cn } from '@/shared/lib/utils'
+import { Input } from '@/shared/components/ui/input'
+import { Badge } from '@/shared/components/ui/badge'
+import { EmptyState } from '@/shared/components/common'
+import { useWizardStore } from '../../store/wizard.store'
+import { StepSection } from '../step-section'
 
 /** Step 5 — 3D render gallery: favorite + caption each image. */
 export function StepRender() {
-  const t = useTranslations('studio.render');
+  const t = useTranslations('studio.render')
 
-  const result = useWizardStore((s) => s.result);
-  const toggleFavorite = useWizardStore((s) => s.toggleFavorite);
-  const setCaption = useWizardStore((s) => s.setCaption);
+  const result = useWizardStore((s) => s.result)
+  const toggleFavorite = useWizardStore((s) => s.toggleFavorite)
+  const setCaption = useWizardStore((s) => s.setCaption)
 
   if (!result) {
-    return <EmptyState title={t('emptyTitle')} description={t('emptyHint')} />;
+    return <EmptyState title={t('emptyTitle')} description={t('emptyHint')} />
   }
 
-  const favCount = result.renders.filter((r) => r.favorite).length;
+  const favCount = result.renders.filter((r) => r.favorite).length
 
   return (
     <StepSection title={t('title')} description={t('hint')}>
@@ -76,5 +76,5 @@ export function StepRender() {
         ))}
       </div>
     </StepSection>
-  );
+  )
 }

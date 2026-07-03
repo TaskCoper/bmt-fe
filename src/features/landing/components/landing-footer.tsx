@@ -1,11 +1,11 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { Logo } from '@/shared/components/common';
-import { siteConfig } from '@/shared/config/site';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
-import { NewsletterForm } from './newsletter-form';
+import { Link } from '@/i18n/navigation'
+import { ROUTES } from '@/shared/constants/routes'
+import { Logo } from '@/shared/components/common'
+import { siteConfig } from '@/shared/config/site'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
+import { NewsletterForm } from './newsletter-form'
 
 type LinkKey =
   | 'services'
@@ -14,40 +14,40 @@ type LinkKey =
   | 'about'
   | 'contact'
   | 'privacy'
-  | 'terms';
+  | 'terms'
 
 interface FooterLink {
-  key: LinkKey;
-  href: string;
+  key: LinkKey
+  href: string
   /** Anchor links stay on the page; route links navigate. */
-  external?: boolean;
+  external?: boolean
 }
 
 const PRODUCT_LINKS: FooterLink[] = [
   { key: 'services', href: `#${LANDING_SECTIONS.services}` },
   { key: 'process', href: `#${LANDING_SECTIONS.process}` },
   { key: 'projects', href: `#${LANDING_SECTIONS.projects}` },
-];
+]
 
 const COMPANY_LINKS: FooterLink[] = [
   { key: 'about', href: `#${LANDING_SECTIONS.about}` },
   { key: 'contact', href: `#${LANDING_SECTIONS.contact}` },
-];
+]
 
 const LEGAL_LINKS: FooterLink[] = [
   { key: 'privacy', href: ROUTES.PRIVACY, external: true },
   { key: 'terms', href: ROUTES.TERMS, external: true },
-];
+]
 
 export function LandingFooter() {
-  const t = useTranslations('landing.footer');
-  const year = new Date().getFullYear();
+  const t = useTranslations('landing.footer')
+  const year = new Date().getFullYear()
 
   const columns: { title: string; links: FooterLink[] }[] = [
     { title: t('productTitle'), links: PRODUCT_LINKS },
     { title: t('companyTitle'), links: COMPANY_LINKS },
     { title: t('legalTitle'), links: LEGAL_LINKS },
-  ];
+  ]
 
   return (
     <footer className="border-t">
@@ -94,5 +94,5 @@ export function LandingFooter() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Link2, Copy, Ban } from 'lucide-react';
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Link2, Copy, Ban } from 'lucide-react'
 
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
 import {
   Dialog,
   DialogContent,
@@ -14,21 +14,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/shared/components/ui/dialog';
+} from '@/shared/components/ui/dialog'
 
 /**
  * Share-link manager (Q&A §4.3.1): a public link valid for 90 days that the
  * owner can revoke at any time. UI-first mock.
  */
 export function ShareLinkDialog({ projectName }: { projectName: string }) {
-  const t = useTranslations('studio.share');
-  const [revoked, setRevoked] = useState(false);
+  const t = useTranslations('studio.share')
+  const [revoked, setRevoked] = useState(false)
 
   const slug = (projectName || 'project')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-  const link = `https://bmt-ai.construction/s/${slug || 'project'}-demo`;
+    .replace(/(^-|-$)/g, '')
+  const link = `https://bmt-ai.construction/s/${slug || 'project'}-demo`
 
   return (
     <Dialog>
@@ -65,8 +65,8 @@ export function ShareLinkDialog({ projectName }: { projectName: string }) {
             <Button
               variant="destructive"
               onClick={() => {
-                setRevoked(true);
-                toast.success(t('revoked'));
+                setRevoked(true)
+                toast.success(t('revoked'))
               }}
             >
               <Ban className="size-4" />
@@ -76,5 +76,5 @@ export function ShareLinkDialog({ projectName }: { projectName: string }) {
         )}
       </DialogContent>
     </Dialog>
-  );
+  )
 }

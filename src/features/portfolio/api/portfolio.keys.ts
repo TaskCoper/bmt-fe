@@ -1,5 +1,5 @@
-import { QUERY_KEY_ROOTS } from '@/shared/constants/query-keys';
-import type { PortfolioFilters } from '../types/portfolio.types';
+import { QUERY_KEY_ROOTS } from '@/shared/constants/query-keys'
+import type { PortfolioFilters } from '../types/portfolio.types'
 
 /** Hierarchical query-key factory for the portfolio feature. */
 export const portfolioKeys = {
@@ -9,4 +9,4 @@ export const portfolioKeys = {
     [...portfolioKeys.lists(), filters] as const,
   details: () => [...portfolioKeys.all, 'detail'] as const,
   detail: (slug: string) => [...portfolioKeys.details(), slug] as const,
-};
+}

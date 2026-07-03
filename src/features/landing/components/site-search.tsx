@@ -1,25 +1,25 @@
-'use client';
+'use client'
 
-import { useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Search } from 'lucide-react';
+import { useMemo, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { Search } from 'lucide-react'
 
-import { cn } from '@/shared/lib/utils';
-import { Input } from '@/shared/components/ui/input';
+import { cn } from '@/shared/lib/utils'
+import { Input } from '@/shared/components/ui/input'
 import {
   Popover,
   PopoverAnchor,
   PopoverContent,
-} from '@/shared/components/ui/popover';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
+} from '@/shared/components/ui/popover'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
 
 interface SearchEntry {
   /** `t()` path resolving the display label. */
-  labelKey: string;
+  labelKey: string
   /** In-page anchor target. */
-  href: string;
+  href: string
   /** Short scope label key (e.g. service / project / page). */
-  scopeKey: string;
+  scopeKey: string
 }
 
 /**
@@ -97,28 +97,28 @@ const ENTRIES: readonly SearchEntry[] = [
     href: `#${LANDING_SECTIONS.projects}`,
     scopeKey: 'project',
   },
-];
+]
 
-const MAX_RESULTS = 5;
+const MAX_RESULTS = 5
 
 /** Public site search with top-5 autocomplete suggestions (Q&A §3.3.2). */
 export function SiteSearch() {
-  const t = useTranslations('landing');
-  const tSearch = useTranslations('landing.search');
-  const [query, setQuery] = useState('');
+  const t = useTranslations('landing')
+  const tSearch = useTranslations('landing.search')
+  const [query, setQuery] = useState('')
 
   const results = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
+    const q = query.trim().toLowerCase()
+    if (!q) return []
     return ENTRIES.map((e) => ({
       ...e,
       label: t(e.labelKey as Parameters<typeof t>[0]),
     }))
       .filter((e) => e.label.toLowerCase().includes(q))
-      .slice(0, MAX_RESULTS);
-  }, [query, t]);
+      .slice(0, MAX_RESULTS)
+  }, [query, t])
 
-  const open = query.trim().length > 0;
+  const open = query.trim().length > 0
 
   return (
     <Popover open={open}>
@@ -167,5 +167,5 @@ export function SiteSearch() {
         )}
       </PopoverContent>
     </Popover>
-  );
+  )
 }

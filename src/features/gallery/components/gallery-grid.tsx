@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 import {
   Search,
   Download,
@@ -10,43 +10,43 @@ import {
   FileText,
   Image,
   PencilRuler,
-} from 'lucide-react';
+} from 'lucide-react'
 
-import { useAuth } from '@/shared/auth';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+import { useAuth } from '@/shared/auth'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
+} from '@/shared/components/ui/select'
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@/shared/components/ui/tooltip';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { useGallery } from '../hooks/use-gallery';
+} from '@/shared/components/ui/tooltip'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { useGallery } from '../hooks/use-gallery'
 import {
   GALLERY_BUILDING,
   GALLERY_KIND,
   GALLERY_SORT,
   GALLERY_STYLE,
-} from '../constants/gallery.constants';
-import type { GalleryFilters, GalleryItem } from '../types/gallery.types';
+} from '../constants/gallery.constants'
+import type { GalleryFilters, GalleryItem } from '../types/gallery.types'
 
-const STYLE_OPTIONS = ['all', ...Object.values(GALLERY_STYLE)] as const;
-const BUILDING_OPTIONS = ['all', ...Object.values(GALLERY_BUILDING)] as const;
+const STYLE_OPTIONS = ['all', ...Object.values(GALLERY_STYLE)] as const
+const BUILDING_OPTIONS = ['all', ...Object.values(GALLERY_BUILDING)] as const
 
 const KIND_ICON = {
   [GALLERY_KIND.IMAGE]: Image,
   [GALLERY_KIND.DRAWING]: PencilRuler,
   [GALLERY_KIND.PDF]: FileText,
-} as const;
+} as const
 
 const INITIAL: GalleryFilters = {
   search: '',
@@ -54,25 +54,25 @@ const INITIAL: GalleryFilters = {
   building: 'all',
   sort: 'newest',
   page: 1,
-};
+}
 
 /** Public design-reference library grid (Q&A §6). */
 export function GalleryGrid() {
-  const t = useTranslations('gallery');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const { isAuthenticated } = useAuth();
+  const t = useTranslations('gallery')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const { isAuthenticated } = useAuth()
 
-  const [filters, setFilters] = useState<GalleryFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useGallery(filters);
+  const [filters, setFilters] = useState<GalleryFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useGallery(filters)
 
   const download = (item: GalleryItem) => {
     if (!isAuthenticated) {
-      toast.info(t('loginToDownload'));
-      return;
+      toast.info(t('loginToDownload'))
+      return
     }
-    toast.success(t('downloadStarted', { title: item.title }));
-  };
+    toast.success(t('downloadStarted', { title: item.title }))
+  }
 
   return (
     <div className="space-y-6">
@@ -177,7 +177,7 @@ export function GalleryGrid() {
         <>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {data.items.map((item) => {
-              const KindIcon = KIND_ICON[item.kind];
+              const KindIcon = KIND_ICON[item.kind]
               return (
                 <div
                   key={item.id}
@@ -250,7 +250,7 @@ export function GalleryGrid() {
                     )}
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
 
@@ -292,5 +292,5 @@ export function GalleryGrid() {
         </>
       )}
     </div>
-  );
+  )
 }

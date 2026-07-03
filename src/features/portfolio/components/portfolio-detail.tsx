@@ -1,20 +1,20 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import { ArrowLeft, MapPin, Ruler, Calendar, Palette } from 'lucide-react';
+import { useTranslations } from 'next-intl'
+import { ArrowLeft, MapPin, Ruler, Calendar, Palette } from 'lucide-react'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { EmptyState } from '@/shared/components/common';
-import { usePortfolioItem } from '../hooks/use-portfolio';
+import { Link } from '@/i18n/navigation'
+import { ROUTES } from '@/shared/constants/routes'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { EmptyState } from '@/shared/components/common'
+import { usePortfolioItem } from '../hooks/use-portfolio'
 
 /** Public portfolio detail page for a single showcased project. */
 export function PortfolioDetail({ slug }: { slug: string }) {
-  const t = useTranslations('portfolio');
-  const { data, isLoading } = usePortfolioItem(slug);
+  const t = useTranslations('portfolio')
+  const { data, isLoading } = usePortfolioItem(slug)
 
   if (isLoading) {
     return (
@@ -23,7 +23,7 @@ export function PortfolioDetail({ slug }: { slug: string }) {
         <Skeleton className="aspect-[16/7] w-full" />
         <Skeleton className="h-24 w-full" />
       </div>
-    );
+    )
   }
 
   if (!data) {
@@ -32,7 +32,7 @@ export function PortfolioDetail({ slug }: { slug: string }) {
         title={t('notFound.title')}
         description={t('notFound.description')}
       />
-    );
+    )
   }
 
   const facts = [
@@ -40,7 +40,7 @@ export function PortfolioDetail({ slug }: { slug: string }) {
     { icon: MapPin, label: t('facts.location'), value: data.location },
     { icon: Ruler, label: t('facts.area'), value: `${data.area} m²` },
     { icon: Palette, label: t('facts.style'), value: data.style },
-  ];
+  ]
 
   return (
     <article className="space-y-8">
@@ -114,5 +114,5 @@ export function PortfolioDetail({ slug }: { slug: string }) {
         </Button>
       </div>
     </article>
-  );
+  )
 }

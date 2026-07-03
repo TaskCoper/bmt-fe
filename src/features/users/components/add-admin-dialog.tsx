@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Loader2, UserPlus } from 'lucide-react';
+import { useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Loader2, UserPlus } from 'lucide-react'
 
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
 import {
   Dialog,
   DialogClose,
@@ -18,7 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/shared/components/ui/dialog';
+} from '@/shared/components/ui/dialog'
 import {
   Form,
   FormControl,
@@ -26,40 +26,40 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/shared/components/ui/form';
+} from '@/shared/components/ui/form'
 import {
   createAdminSchema,
   type AdminFormValues,
-} from '../schemas/admin.schema';
+} from '../schemas/admin.schema'
 
 /**
  * Create-admin dialog. Admins can only create other admins (customers
  * self-register) — stakeholder Q&A §7.2.1. UI-first: submission is mocked.
  */
 export function AddAdminDialog() {
-  const t = useTranslations('users.addAdmin');
-  const tv = useTranslations('validation');
-  const [open, setOpen] = useState(false);
-  const [pending, setPending] = useState(false);
+  const t = useTranslations('users.addAdmin')
+  const tv = useTranslations('validation')
+  const [open, setOpen] = useState(false)
+  const [pending, setPending] = useState(false)
 
   const schema = useMemo(
     () => createAdminSchema({ required: tv('required'), email: tv('email') }),
     [tv],
-  );
+  )
 
   const form = useForm<AdminFormValues>({
     resolver: zodResolver(schema),
     defaultValues: { name: '', email: '' },
-  });
+  })
 
   function onSubmit() {
-    setPending(true);
+    setPending(true)
     setTimeout(() => {
-      setPending(false);
-      setOpen(false);
-      form.reset();
-      toast.success(t('success'));
-    }, 800);
+      setPending(false)
+      setOpen(false)
+      form.reset()
+      toast.success(t('success'))
+    }, 800)
   }
 
   return (
@@ -126,5 +126,5 @@ export function AddAdminDialog() {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

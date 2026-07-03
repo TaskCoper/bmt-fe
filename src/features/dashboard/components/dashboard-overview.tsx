@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl'
 import {
   Users,
   FolderKanban,
@@ -8,23 +8,23 @@ import {
   Inbox,
   Mail,
   Sparkles,
-} from 'lucide-react';
+} from 'lucide-react'
 
-import type { Locale } from '@/i18n/routing';
-import { formatNumber } from '@/shared/utils';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { useDashboard } from '../hooks/use-dashboard';
-import { StatCard } from './stat-card';
+import type { Locale } from '@/i18n/routing'
+import { formatNumber } from '@/shared/utils'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { useDashboard } from '../hooks/use-dashboard'
+import { StatCard } from './stat-card'
 
 /**
  * KPI grid for the dashboard. Pulls live(-ish) metrics via {@link useDashboard}
  * and renders skeletons while loading.
  */
 export function DashboardOverview() {
-  const t = useTranslations('dashboard');
-  const tn = useTranslations('nav');
-  const locale = useLocale() as Locale;
-  const { data, isLoading } = useDashboard();
+  const t = useTranslations('dashboard')
+  const tn = useTranslations('nav')
+  const locale = useLocale() as Locale
+  const { data, isLoading } = useDashboard()
 
   if (isLoading || !data) {
     return (
@@ -33,10 +33,10 @@ export function DashboardOverview() {
           <Skeleton key={i} className="h-28 w-full" />
         ))}
       </div>
-    );
+    )
   }
 
-  const { stats } = data;
+  const { stats } = data
   const cards = [
     {
       label: t('stats.customers'),
@@ -75,7 +75,7 @@ export function DashboardOverview() {
       hint: t('stats.aiUsageHint'),
       icon: Sparkles,
     },
-  ];
+  ]
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -90,5 +90,5 @@ export function DashboardOverview() {
         />
       ))}
     </div>
-  );
+  )
 }

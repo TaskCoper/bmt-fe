@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl'
 
-import type { Locale } from '@/i18n/routing';
-import { formatCurrency, formatNumber } from '@/shared/utils';
+import type { Locale } from '@/i18n/routing'
+import { formatCurrency, formatNumber } from '@/shared/utils'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@/shared/components/ui/tabs';
+} from '@/shared/components/ui/tabs'
 import {
   Table,
   TableBody,
@@ -17,25 +17,25 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { Progress } from '@/shared/components/ui/progress';
+} from '@/shared/components/ui/table'
+import { Progress } from '@/shared/components/ui/progress'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/shared/components/ui/tooltip';
-import type { BudgetBreakdown, EstimateCategory } from '../types/studio.types';
-import type { EstimateCategoryId } from '../constants/studio.constants';
+} from '@/shared/components/ui/tooltip'
+import type { BudgetBreakdown, EstimateCategory } from '../types/studio.types'
+import type { EstimateCategoryId } from '../constants/studio.constants'
 
 function ItemTooltip({
   children,
   detail,
 }: {
-  children: React.ReactNode;
-  detail: { material: string; method: string; note: string };
+  children: React.ReactNode
+  detail: { material: string; method: string; note: string }
 }) {
-  const t = useTranslations('studio.estimate');
+  const t = useTranslations('studio.estimate')
   return (
     <Tooltip>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
@@ -56,7 +56,7 @@ function ItemTooltip({
         </dl>
       </TooltipContent>
     </Tooltip>
-  );
+  )
 }
 
 /** 3-tab detailed estimate (rough / finishing / interior) with row tooltips. */
@@ -64,26 +64,26 @@ export function EstimateTabs({
   categories,
   budget,
 }: {
-  categories: EstimateCategory[];
-  budget: BudgetBreakdown;
+  categories: EstimateCategory[]
+  budget: BudgetBreakdown
 }) {
-  const t = useTranslations('studio.estimate');
+  const t = useTranslations('studio.estimate')
   // Estimate item + unit keys are built dynamically by the service, so resolve
   // them through an untyped translator (next-intl's keys are otherwise static).
   const tItems = useTranslations('studio.items') as unknown as (
     key: string,
-  ) => string;
+  ) => string
   const tUnit = useTranslations('studio.unit') as unknown as (
     key: string,
-  ) => string;
-  const tb = useTranslations('studio.budget');
-  const locale = useLocale() as Locale;
+  ) => string
+  const tb = useTranslations('studio.budget')
+  const locale = useLocale() as Locale
 
   const budgetByCat: Record<EstimateCategoryId, number> = {
     rough: budget.rough,
     finishing: budget.finishing,
     interior: budget.interior,
-  };
+  }
 
   return (
     <Tabs defaultValue={categories[0]?.id ?? 'rough'}>
@@ -97,8 +97,8 @@ export function EstimateTabs({
 
       <TooltipProvider delayDuration={100}>
         {categories.map((cat) => {
-          const target = budgetByCat[cat.id] || 1;
-          const pct = Math.min(100, Math.round((cat.total / target) * 100));
+          const target = budgetByCat[cat.id] || 1
+          const pct = Math.min(100, Math.round((cat.total / target) * 100))
           return (
             <TabsContent key={cat.id} value={cat.id} className="space-y-4">
               <div className="overflow-x-auto rounded-lg border">
@@ -161,9 +161,9 @@ export function EstimateTabs({
                 </p>
               </div>
             </TabsContent>
-          );
+          )
         })}
       </TooltipProvider>
     </Tabs>
-  );
+  )
 }

@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import { useTranslations, useLocale } from 'next-intl';
-import { Check, Upload } from 'lucide-react';
+import { useTranslations, useLocale } from 'next-intl'
+import { Check, Upload } from 'lucide-react'
 
-import type { Locale } from '@/i18n/routing';
-import { cn } from '@/shared/lib/utils';
-import { formatCurrency } from '@/shared/utils';
-import { Label } from '@/shared/components/ui/label';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
+import type { Locale } from '@/i18n/routing'
+import { cn } from '@/shared/lib/utils'
+import { formatCurrency } from '@/shared/utils'
+import { Label } from '@/shared/components/ui/label'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
 import {
   BUDGET_PACKAGE_LIST,
   DESIGN_STYLE_LIST,
@@ -16,11 +16,11 @@ import {
   LAYOUT_OPTIONS,
   LIGHTING_OPTIONS,
   type BudgetPackageId,
-} from '../../constants/studio.constants';
-import { calcBudget } from '../../services/studio.service';
-import { useWizardStore } from '../../store/wizard.store';
-import { StepSection } from '../step-section';
-import { BudgetSummary } from '../budget-summary';
+} from '../../constants/studio.constants'
+import { calcBudget } from '../../services/studio.service'
+import { useWizardStore } from '../../store/wizard.store'
+import { StepSection } from '../step-section'
+import { BudgetSummary } from '../budget-summary'
 
 /** A compact segmented choice control built from buttons (CVA-styled). */
 function Segmented<T extends string>({
@@ -29,10 +29,10 @@ function Segmented<T extends string>({
   onChange,
   render,
 }: {
-  value: T;
-  options: readonly T[];
-  onChange: (v: T) => void;
-  render: (v: T) => string;
+  value: T
+  options: readonly T[]
+  onChange: (v: T) => void
+  render: (v: T) => string
 }) {
   return (
     <div className="bg-muted inline-flex flex-wrap gap-1 rounded-lg p-1">
@@ -52,22 +52,22 @@ function Segmented<T extends string>({
         </button>
       ))}
     </div>
-  );
+  )
 }
 
 /** Step 3 — design direction & budget. The total recomputes live. */
 export function StepDesign() {
-  const t = useTranslations('studio.design');
-  const tb = useTranslations('studio.budget');
-  const tPkg = useTranslations('studio.package');
-  const tStyle = useTranslations('studio.style');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('studio.design')
+  const tb = useTranslations('studio.budget')
+  const tPkg = useTranslations('studio.package')
+  const tStyle = useTranslations('studio.style')
+  const locale = useLocale() as Locale
 
-  const data = useWizardStore((s) => s.data);
-  const patch = useWizardStore((s) => s.patch);
-  const toggleStyle = useWizardStore((s) => s.toggleStyle);
+  const data = useWizardStore((s) => s.data)
+  const patch = useWizardStore((s) => s.patch)
+  const toggleStyle = useWizardStore((s) => s.toggleStyle)
 
-  const budget = calcBudget(data.packageId, data.area);
+  const budget = calcBudget(data.packageId, data.area)
 
   return (
     <div className="space-y-8">
@@ -75,8 +75,8 @@ export function StepDesign() {
       <StepSection title={tb('title')} description={tb('hint')}>
         <div className="grid gap-3 md:grid-cols-3">
           {BUDGET_PACKAGE_LIST.map((pkg) => {
-            const selected = data.packageId === pkg.id;
-            const perSqm = pkg.finishingPerSqm + pkg.interiorPerSqm;
+            const selected = data.packageId === pkg.id
+            const perSqm = pkg.finishingPerSqm + pkg.interiorPerSqm
             return (
               <button
                 key={pkg.id}
@@ -105,7 +105,7 @@ export function StepDesign() {
                   {tb('perSqm')}
                 </div>
               </button>
-            );
+            )
           })}
         </div>
 
@@ -117,7 +117,7 @@ export function StepDesign() {
       <StepSection title={t('styleTitle')} description={t('styleHint')}>
         <div className="flex flex-wrap gap-2">
           {DESIGN_STYLE_LIST.map((style) => {
-            const active = data.styles.includes(style);
+            const active = data.styles.includes(style)
             return (
               <button
                 key={style}
@@ -133,7 +133,7 @@ export function StepDesign() {
                 {active ? <Check className="size-3.5" /> : null}
                 {tStyle(style)}
               </button>
-            );
+            )
           })}
         </div>
         <div>
@@ -202,5 +202,5 @@ export function StepDesign() {
         </div>
       </StepSection>
     </div>
-  );
+  )
 }

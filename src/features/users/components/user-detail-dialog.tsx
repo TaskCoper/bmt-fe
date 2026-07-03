@@ -1,31 +1,31 @@
-'use client';
+'use client'
 
-import { type ReactNode, useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { type ReactNode, useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
 
-import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
-import { Badge } from '@/shared/components/ui/badge';
+import type { Locale } from '@/i18n/routing'
+import { formatDate } from '@/shared/utils'
+import { Badge } from '@/shared/components/ui/badge'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from '@/shared/components/ui/dialog';
-import type { UserRecord } from '../types/user.types';
+} from '@/shared/components/ui/dialog'
+import type { UserRecord } from '../types/user.types'
 
 /** Read-only user detail dialog (Q&A §7.2.1 — "xem chi tiết"). */
 export function UserDetailDialog({
   trigger,
   user,
 }: {
-  trigger: ReactNode;
-  user: UserRecord;
+  trigger: ReactNode
+  user: UserRecord
 }) {
-  const t = useTranslations('users');
-  const [open, setOpen] = useState(false);
-  const locale = useLocale() as Locale;
+  const t = useTranslations('users')
+  const [open, setOpen] = useState(false)
+  const locale = useLocale() as Locale
 
   const rows: { label: string; value: ReactNode }[] = [
     { label: t('columns.email'), value: user.email },
@@ -42,7 +42,7 @@ export function UserDetailDialog({
       label: t('columns.createdAt'),
       value: formatDate(user.createdAt, locale),
     },
-  ];
+  ]
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -65,5 +65,5 @@ export function UserDetailDialog({
         </dl>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

@@ -1,24 +1,24 @@
-'use client';
+'use client'
 
-import { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Loader2 } from 'lucide-react';
+import { useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Loader2 } from 'lucide-react'
 
-import { Link, useRouter } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Checkbox } from '@/shared/components/ui/checkbox';
+import { Link, useRouter } from '@/i18n/navigation'
+import { ROUTES } from '@/shared/constants/routes'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Checkbox } from '@/shared/components/ui/checkbox'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
+} from '@/shared/components/ui/card'
 import {
   Form,
   FormControl,
@@ -26,23 +26,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/shared/components/ui/form';
+} from '@/shared/components/ui/form'
 import {
   createRegisterSchema,
   type RegisterFormValues,
-} from '../schemas/register.schema';
-import { GoogleButton } from './google-button';
+} from '../schemas/register.schema'
+import { GoogleButton } from './google-button'
 
 /**
  * Account creation form. UI-first: submission is mocked (no backend) — it
  * simulates a request then routes the new user to the login screen.
  */
 export function RegisterForm() {
-  const t = useTranslations('auth.register');
-  const tSocial = useTranslations('auth.social');
-  const tv = useTranslations('validation');
-  const router = useRouter();
-  const [pending, setPending] = useState(false);
+  const t = useTranslations('auth.register')
+  const tSocial = useTranslations('auth.social')
+  const tv = useTranslations('validation')
+  const router = useRouter()
+  const [pending, setPending] = useState(false)
 
   const schema = useMemo(
     () =>
@@ -54,7 +54,7 @@ export function RegisterForm() {
         agreeTerms: tv('agreeTerms'),
       }),
     [tv],
-  );
+  )
 
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(schema),
@@ -65,16 +65,16 @@ export function RegisterForm() {
       confirmPassword: '',
       agreeTerms: false,
     },
-  });
+  })
 
   function onSubmit() {
-    setPending(true);
+    setPending(true)
     // Mock registration latency.
     setTimeout(() => {
-      setPending(false);
-      toast.success(t('success'));
-      router.push(ROUTES.LOGIN);
-    }, 900);
+      setPending(false)
+      toast.success(t('success'))
+      router.push(ROUTES.LOGIN)
+    }, 900)
   }
 
   return (
@@ -227,5 +227,5 @@ export function RegisterForm() {
         </p>
       </CardContent>
     </Card>
-  );
+  )
 }

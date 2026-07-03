@@ -1,9 +1,9 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
 /** A section of a legal document. */
 interface LegalSection {
-  title: string;
-  body: string;
+  title: string
+  body: string
 }
 
 /**
@@ -12,8 +12,8 @@ interface LegalSection {
  * Final copy is provided by BMT Decor before go-live (stakeholder Q&A §8.2).
  */
 export function LegalPage({ namespace }: { namespace: 'terms' | 'privacy' }) {
-  const t = useTranslations(`legal.${namespace}`);
-  const sections = t.raw('sections') as LegalSection[];
+  const t = useTranslations(`legal.${namespace}`)
+  const sections = t.raw('sections') as LegalSection[]
 
   return (
     <article className="mx-auto w-full max-w-3xl px-4 py-16 lg:px-8 lg:py-24">
@@ -32,5 +32,5 @@ export function LegalPage({ namespace }: { namespace: 'terms' | 'privacy' }) {
         ))}
       </div>
     </article>
-  );
+  )
 }

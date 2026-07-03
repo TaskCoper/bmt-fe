@@ -1,28 +1,28 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import { Check } from 'lucide-react';
+import { useTranslations } from 'next-intl'
+import { Check } from 'lucide-react'
 
-import { cn } from '@/shared/lib/utils';
-import { WIZARD_STEPS } from '../constants/studio.constants';
-import { useWizardStore } from '../store/wizard.store';
+import { cn } from '@/shared/lib/utils'
+import { WIZARD_STEPS } from '../constants/studio.constants'
+import { useWizardStore } from '../store/wizard.store'
 
 /**
  * Vertical progress stepper shown in the left column of the design flow.
  * Completed steps are revisitable; future steps stay locked until reached.
  */
 export function WizardStepper() {
-  const t = useTranslations('studio.steps');
-  const stepIndex = useWizardStore((s) => s.stepIndex);
-  const furthestStep = useWizardStore((s) => s.furthestStep);
-  const requestGoTo = useWizardStore((s) => s.requestGoTo);
+  const t = useTranslations('studio.steps')
+  const stepIndex = useWizardStore((s) => s.stepIndex)
+  const furthestStep = useWizardStore((s) => s.furthestStep)
+  const requestGoTo = useWizardStore((s) => s.requestGoTo)
 
   return (
     <ol className="space-y-1">
       {WIZARD_STEPS.map((step, index) => {
-        const isActive = index === stepIndex;
-        const isDone = index < furthestStep;
-        const reachable = index <= furthestStep;
+        const isActive = index === stepIndex
+        const isDone = index < furthestStep
+        const reachable = index <= furthestStep
 
         return (
           <li key={step}>
@@ -62,8 +62,8 @@ export function WizardStepper() {
               </span>
             </button>
           </li>
-        );
+        )
       })}
     </ol>
-  );
+  )
 }

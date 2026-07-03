@@ -1,47 +1,47 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 
-import { ThemeToggle, LanguageSwitcher } from '@/shared/components/common';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
-import { Checkbox } from '@/shared/components/ui/checkbox';
-import { Separator } from '@/shared/components/ui/separator';
+import { ThemeToggle, LanguageSwitcher } from '@/shared/components/common'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
+import { Checkbox } from '@/shared/components/ui/checkbox'
+import { Separator } from '@/shared/components/ui/separator'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
+} from '@/shared/components/ui/card'
 
-const NOTIFICATION_KEYS = ['product', 'project', 'marketing'] as const;
+const NOTIFICATION_KEYS = ['product', 'project', 'marketing'] as const
 
 /** Account settings: appearance, notifications, security, danger zone. */
 export function SettingsPanel() {
-  const t = useTranslations('settings');
+  const t = useTranslations('settings')
 
   const [notifications, setNotifications] = useState<Record<string, boolean>>({
     product: true,
     project: true,
     marketing: false,
-  });
-  const [pwd, setPwd] = useState({ current: '', next: '', confirm: '' });
+  })
+  const [pwd, setPwd] = useState({ current: '', next: '', confirm: '' })
 
   function changePassword() {
     if (pwd.next.length < 8) {
-      toast.error(t('security.tooShort'));
-      return;
+      toast.error(t('security.tooShort'))
+      return
     }
     if (pwd.next !== pwd.confirm) {
-      toast.error(t('security.mismatch'));
-      return;
+      toast.error(t('security.mismatch'))
+      return
     }
-    setPwd({ current: '', next: '', confirm: '' });
-    toast.success(t('security.changed'));
+    setPwd({ current: '', next: '', confirm: '' })
+    toast.success(t('security.changed'))
   }
 
   return (
@@ -187,5 +187,5 @@ export function SettingsPanel() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

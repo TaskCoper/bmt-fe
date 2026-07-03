@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils'
 
 /** Titled section block used to group fields within a wizard step. */
 export function StepSection({
@@ -9,10 +9,10 @@ export function StepSection({
   className,
   children,
 }: {
-  title: string;
-  description?: string;
-  className?: string;
-  children: ReactNode;
+  title: string
+  description?: string
+  className?: string
+  children: ReactNode
 }) {
   return (
     <section className={cn('space-y-4', className)}>
@@ -24,5 +24,5 @@ export function StepSection({
       </div>
       {children}
     </section>
-  );
+  )
 }

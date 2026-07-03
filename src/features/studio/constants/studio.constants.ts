@@ -13,9 +13,9 @@ export const WIZARD_STEPS = [
   'result',
   'render',
   'export',
-] as const;
+] as const
 
-export type WizardStepId = (typeof WIZARD_STEPS)[number];
+export type WizardStepId = (typeof WIZARD_STEPS)[number]
 
 /** Construction categories. Commercial types are post-MVP (disabled in UI). */
 export const CONSTRUCTION_TYPES = {
@@ -25,16 +25,16 @@ export const CONSTRUCTION_TYPES = {
   OFFICE: 'office',
   COMMERCIAL: 'commercial',
   HOTEL: 'hotel',
-} as const;
+} as const
 
 export type ConstructionType =
-  (typeof CONSTRUCTION_TYPES)[keyof typeof CONSTRUCTION_TYPES];
+  (typeof CONSTRUCTION_TYPES)[keyof typeof CONSTRUCTION_TYPES]
 
 /** Construction-type options with their MVP availability. */
 export const CONSTRUCTION_TYPE_OPTIONS: ReadonlyArray<{
-  value: ConstructionType;
-  group: 'residential' | 'commercial';
-  mvp: boolean;
+  value: ConstructionType
+  group: 'residential' | 'commercial'
+  mvp: boolean
 }> = [
   { value: CONSTRUCTION_TYPES.APARTMENT, group: 'residential', mvp: true },
   { value: CONSTRUCTION_TYPES.TOWNHOUSE, group: 'residential', mvp: true },
@@ -42,47 +42,47 @@ export const CONSTRUCTION_TYPE_OPTIONS: ReadonlyArray<{
   { value: CONSTRUCTION_TYPES.OFFICE, group: 'commercial', mvp: false },
   { value: CONSTRUCTION_TYPES.COMMERCIAL, group: 'commercial', mvp: false },
   { value: CONSTRUCTION_TYPES.HOTEL, group: 'commercial', mvp: false },
-];
+]
 
 /**
  * Floor-plan image upload limits (MVP, confirmed by stakeholder):
  * JPG/PNG/HEIC · max 10MB per image · max 5 images per floor · max 3 floors.
  */
-export const MAX_IMAGE_SIZE_MB = 10;
-export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024;
-export const MAX_IMAGES_PER_FLOOR = 5;
-export const MAX_FLOORS = 3;
+export const MAX_IMAGE_SIZE_MB = 10
+export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024
+export const MAX_IMAGES_PER_FLOOR = 5
+export const MAX_FLOORS = 3
 /** Accepted image MIME types + extensions for the file input / validation. */
 export const ACCEPTED_IMAGE_MIME = [
   'image/jpeg',
   'image/png',
   'image/heic',
   'image/heif',
-] as const;
-export const IMAGE_ACCEPT_ATTR = '.jpg,.jpeg,.png,.heic,.heif,image/*';
+] as const
+export const IMAGE_ACCEPT_ATTR = '.jpg,.jpeg,.png,.heic,.heif,image/*'
 
 /** Max AI re-generations allowed per project (the first run is automatic). */
-export const MAX_REGENERATIONS = 2;
+export const MAX_REGENERATIONS = 2
 
 /** Fixed rough-construction cost (phần thô) — display only, not editable. */
-export const ROUGH_COST_PER_SQM = 3_500_000;
+export const ROUGH_COST_PER_SQM = 3_500_000
 
 /** Interior budget packages (VNĐ/m²) for finishing + interior portions. */
 export const BUDGET_PACKAGES = {
   BASIC: 'basic',
   STANDARD: 'standard',
   PREMIUM: 'premium',
-} as const;
+} as const
 
 export type BudgetPackageId =
-  (typeof BUDGET_PACKAGES)[keyof typeof BUDGET_PACKAGES];
+  (typeof BUDGET_PACKAGES)[keyof typeof BUDGET_PACKAGES]
 
 export interface BudgetPackage {
-  id: BudgetPackageId;
+  id: BudgetPackageId
   /** Finishing (phần hoàn thiện) cost per m². */
-  finishingPerSqm: number;
+  finishingPerSqm: number
   /** Interior (phần nội thất) cost per m². */
-  interiorPerSqm: number;
+  interiorPerSqm: number
 }
 
 export const BUDGET_PACKAGE_LIST: readonly BudgetPackage[] = [
@@ -101,7 +101,7 @@ export const BUDGET_PACKAGE_LIST: readonly BudgetPackage[] = [
     finishingPerSqm: 4_500_000,
     interiorPerSqm: 6_000_000,
   },
-];
+]
 
 /** Design styles (multi-select). */
 export const DESIGN_STYLES = {
@@ -109,30 +109,30 @@ export const DESIGN_STYLES = {
   MINIMALIST: 'minimalist',
   INDOCHINE: 'indochine',
   TRADITIONAL: 'traditional',
-} as const;
+} as const
 
-export type DesignStyleId = (typeof DESIGN_STYLES)[keyof typeof DESIGN_STYLES];
+export type DesignStyleId = (typeof DESIGN_STYLES)[keyof typeof DESIGN_STYLES]
 
-export const DESIGN_STYLE_LIST = Object.values(DESIGN_STYLES);
+export const DESIGN_STYLE_LIST = Object.values(DESIGN_STYLES)
 
 /** Spatial layout preference. */
-export const LAYOUT_OPTIONS = ['open', 'separated'] as const;
-export type LayoutOption = (typeof LAYOUT_OPTIONS)[number];
+export const LAYOUT_OPTIONS = ['open', 'separated'] as const
+export type LayoutOption = (typeof LAYOUT_OPTIONS)[number]
 
 /** Lighting preference. */
-export const LIGHTING_OPTIONS = ['natural', 'artificial'] as const;
-export type LightingOption = (typeof LIGHTING_OPTIONS)[number];
+export const LIGHTING_OPTIONS = ['natural', 'artificial'] as const
+export type LightingOption = (typeof LIGHTING_OPTIONS)[number]
 
 /** Preferred house orientation. */
-export const HOUSE_DIRECTIONS = ['east', 'west', 'south', 'north'] as const;
-export type HouseDirection = (typeof HOUSE_DIRECTIONS)[number];
+export const HOUSE_DIRECTIONS = ['east', 'west', 'south', 'north'] as const
+export type HouseDirection = (typeof HOUSE_DIRECTIONS)[number]
 
 /** Estimate categories shown as the 3 tabs in step 4. */
-export const ESTIMATE_CATEGORIES = ['rough', 'finishing', 'interior'] as const;
-export type EstimateCategoryId = (typeof ESTIMATE_CATEGORIES)[number];
+export const ESTIMATE_CATEGORIES = ['rough', 'finishing', 'interior'] as const
+export type EstimateCategoryId = (typeof ESTIMATE_CATEGORIES)[number]
 
 /** Default primary color for the interactive color picker. */
-export const DEFAULT_PRIMARY_COLOR = '#0f766e';
+export const DEFAULT_PRIMARY_COLOR = '#0f766e'
 
 /** Export language options for step 6. Pricing is VND-only (USD dropped per spec). */
-export const EXPORT_LANGUAGES = ['vi', 'en'] as const;
+export const EXPORT_LANGUAGES = ['vi', 'en'] as const

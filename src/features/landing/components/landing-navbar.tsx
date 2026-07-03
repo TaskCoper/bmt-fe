@@ -1,31 +1,27 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import { Menu } from 'lucide-react';
+import { useTranslations } from 'next-intl'
+import { Menu } from 'lucide-react'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import {
-  Logo,
-  ThemeToggle,
-  LanguageSwitcher,
-} from '@/shared/components/common';
-import { Button } from '@/shared/components/ui/button';
+import { Link } from '@/i18n/navigation'
+import { ROUTES } from '@/shared/constants/routes'
+import { Logo, ThemeToggle, LanguageSwitcher } from '@/shared/components/common'
+import { Button } from '@/shared/components/ui/button'
 import {
   Dialog,
   DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from '@/shared/components/ui/dialog';
-import { LANDING_NAV } from '../constants/landing.constants';
-import { SiteSearch } from './site-search';
+} from '@/shared/components/ui/dialog'
+import { LANDING_NAV } from '../constants/landing.constants'
+import { SiteSearch } from './site-search'
 
 /** Public landing header: in-page anchor nav, locale/theme switchers, CTA. */
 export function LandingNavbar() {
-  const t = useTranslations('landing.nav');
-  const tGallery = useTranslations('gallery');
-  const tAuth = useTranslations('auth.login');
+  const t = useTranslations('landing.nav')
+  const tGallery = useTranslations('gallery')
+  const tAuth = useTranslations('auth.login')
 
   return (
     <header className="bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 border-b backdrop-blur">
@@ -106,5 +102,5 @@ export function LandingNavbar() {
         </div>
       </div>
     </header>
-  );
+  )
 }

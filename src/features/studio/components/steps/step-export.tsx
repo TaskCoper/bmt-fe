@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { FileDown, Mail, QrCode } from 'lucide-react';
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { FileDown, Mail, QrCode } from 'lucide-react'
 
-import { cn } from '@/shared/lib/utils';
-import { Label } from '@/shared/components/ui/label';
-import { Checkbox } from '@/shared/components/ui/checkbox';
-import { Button } from '@/shared/components/ui/button';
-import { EXPORT_LANGUAGES } from '../../constants/studio.constants';
-import { useWizardStore } from '../../store/wizard.store';
-import type { ExportOptions } from '../../types/studio.types';
-import { StepSection } from '../step-section';
-import { ShareLinkDialog } from '../share-link-dialog';
+import { cn } from '@/shared/lib/utils'
+import { Label } from '@/shared/components/ui/label'
+import { Checkbox } from '@/shared/components/ui/checkbox'
+import { Button } from '@/shared/components/ui/button'
+import { EXPORT_LANGUAGES } from '../../constants/studio.constants'
+import { useWizardStore } from '../../store/wizard.store'
+import type { ExportOptions } from '../../types/studio.types'
+import { StepSection } from '../step-section'
+import { ShareLinkDialog } from '../share-link-dialog'
 
 const SECTION_KEYS = [
   'coverPage',
@@ -21,14 +21,14 @@ const SECTION_KEYS = [
   'estimate',
   'summary',
   'renders',
-] as const satisfies ReadonlyArray<keyof ExportOptions>;
+] as const satisfies ReadonlyArray<keyof ExportOptions>
 
 export function StepExport() {
-  const t = useTranslations('studio.export');
+  const t = useTranslations('studio.export')
 
-  const options = useWizardStore((s) => s.exportOptions);
-  const setExportOption = useWizardStore((s) => s.setExportOption);
-  const projectName = useWizardStore((s) => s.data.name);
+  const options = useWizardStore((s) => s.exportOptions)
+  const setExportOption = useWizardStore((s) => s.setExportOption)
+  const projectName = useWizardStore((s) => s.data.name)
 
   return (
     <div className="space-y-8">
@@ -100,5 +100,5 @@ export function StepExport() {
         </div>
       </StepSection>
     </div>
-  );
+  )
 }

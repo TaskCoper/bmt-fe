@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import { create } from 'zustand';
+import { create } from 'zustand'
 
 import {
   BUDGET_PACKAGES,
@@ -9,14 +9,14 @@ import {
   MAX_REGENERATIONS,
   WIZARD_STEPS,
   type DesignStyleId,
-} from '../constants/studio.constants';
-import { generateResult } from '../services/studio.service';
+} from '../constants/studio.constants'
+import { generateResult } from '../services/studio.service'
 import type {
   ExportOptions,
   GenerateResult,
   UploadedImage,
   WizardData,
-} from '../types/studio.types';
+} from '../types/studio.types'
 
 const INITIAL_DATA: WizardData = {
   name: '',
@@ -32,7 +32,7 @@ const INITIAL_DATA: WizardData = {
   lighting: 'natural',
   direction: 'south',
   primaryColor: DEFAULT_PRIMARY_COLOR,
-};
+}
 
 const INITIAL_EXPORT: ExportOptions = {
   coverPage: true,
@@ -42,57 +42,57 @@ const INITIAL_EXPORT: ExportOptions = {
   summary: true,
   renders: true,
   language: 'vi',
-};
+}
 
-let imageSeq = 0;
+let imageSeq = 0
 
 /** Index of the first AI-result step — editing earlier steps invalidates it. */
-const RESULT_STEP = WIZARD_STEPS.indexOf('result');
+const RESULT_STEP = WIZARD_STEPS.indexOf('result')
 
 interface WizardState {
-  stepIndex: number;
+  stepIndex: number
   /** Highest step index the user has reached (for stepper completion marks). */
-  furthestStep: number;
-  data: WizardData;
-  result: GenerateResult | null;
-  isGenerating: boolean;
+  furthestStep: number
+  data: WizardData
+  result: GenerateResult | null
+  isGenerating: boolean
   /** How many times the user has re-run the AI (capped at MAX_REGENERATIONS). */
-  regenCount: number;
-  exportOptions: ExportOptions;
+  regenCount: number
+  exportOptions: ExportOptions
   /** Pending backward navigation awaiting confirmation (edit-after-result). */
-  pendingNav: number | null;
+  pendingNav: number | null
 
   // navigation
-  goTo: (index: number) => void;
-  next: () => void;
-  back: () => void;
+  goTo: (index: number) => void
+  next: () => void
+  back: () => void
   /** Guarded navigation: warns before editing once an AI result exists. */
-  requestGoTo: (index: number) => void;
-  confirmNav: () => void;
-  cancelNav: () => void;
+  requestGoTo: (index: number) => void
+  confirmNav: () => void
+  cancelNav: () => void
 
   // data mutation
-  patch: (partial: Partial<WizardData>) => void;
-  toggleStyle: (style: DesignStyleId) => void;
-  addImages: (floor: number, names: string[]) => void;
-  removeImage: (id: string) => void;
+  patch: (partial: Partial<WizardData>) => void
+  toggleStyle: (style: DesignStyleId) => void
+  addImages: (floor: number, names: string[]) => void
+  removeImage: (id: string) => void
 
   // generation (mock async)
-  generate: () => Promise<void>;
+  generate: () => Promise<void>
   /** Re-run the AI; no-ops once MAX_REGENERATIONS is reached. */
-  regenerate: () => Promise<void>;
+  regenerate: () => Promise<void>
 
   // step 5 — render gallery
-  toggleFavorite: (id: string) => void;
-  setCaption: (id: string, caption: string) => void;
+  toggleFavorite: (id: string) => void
+  setCaption: (id: string, caption: string) => void
 
   // step 6 — export
   setExportOption: <K extends keyof ExportOptions>(
     key: K,
     value: ExportOptions[K],
-  ) => void;
+  ) => void
 
-  reset: () => void;
+  reset: () => void
 }
 
 export const useWizardStore = create<WizardState>((set, get) => ({
@@ -107,36 +107,36 @@ export const useWizardStore = create<WizardState>((set, get) => ({
 
   goTo: (index) =>
     set((s) => {
-      const clamped = Math.max(0, Math.min(index, WIZARD_STEPS.length - 1));
+      const clamped = Math.max(0, Math.min(index, WIZARD_STEPS.length - 1))
       return {
         stepIndex: clamped,
         furthestStep: Math.max(s.furthestStep, clamped),
-      };
+      }
     }),
 
   next: () => get().goTo(get().stepIndex + 1),
   back: () => get().requestGoTo(get().stepIndex - 1),
 
   requestGoTo: (index) => {
-    const { result } = get();
+    const { result } = get()
     // Editing an input step (before the result) after AI has produced a result
     // requires confirmation — it will discard the result and re-run.
     if (result && index < RESULT_STEP) {
-      set({ pendingNav: index });
-      return;
+      set({ pendingNav: index })
+      return
     }
-    get().goTo(index);
+    get().goTo(index)
   },
 
   confirmNav: () =>
     set((s) => {
-      const target = s.pendingNav ?? s.stepIndex;
+      const target = s.pendingNav ?? s.stepIndex
       return {
         pendingNav: null,
         result: null,
         regenCount: 0,
         stepIndex: Math.max(0, Math.min(target, WIZARD_STEPS.length - 1)),
-      };
+      }
     }),
 
   cancelNav: () => set({ pendingNav: null }),
@@ -145,11 +145,11 @@ export const useWizardStore = create<WizardState>((set, get) => ({
 
   toggleStyle: (style) =>
     set((s) => {
-      const has = s.data.styles.includes(style);
+      const has = s.data.styles.includes(style)
       const styles = has
         ? s.data.styles.filter((x) => x !== style)
-        : [...s.data.styles, style];
-      return { data: { ...s.data, styles } };
+        : [...s.data.styles, style]
+      return { data: { ...s.data, styles } }
     }),
 
   addImages: (floor, names) =>
@@ -158,8 +158,8 @@ export const useWizardStore = create<WizardState>((set, get) => ({
         id: `img-${++imageSeq}`,
         name,
         floor,
-      }));
-      return { data: { ...s.data, images: [...s.data.images, ...added] } };
+      }))
+      return { data: { ...s.data, images: [...s.data.images, ...added] } }
     }),
 
   removeImage: (id) =>
@@ -168,18 +168,18 @@ export const useWizardStore = create<WizardState>((set, get) => ({
     })),
 
   generate: async () => {
-    set({ isGenerating: true });
+    set({ isGenerating: true })
     // Simulate AI processing latency (UI-only mock).
-    await new Promise((r) => setTimeout(r, 1400));
-    const result = generateResult(get().data, new Date().toISOString());
-    set({ isGenerating: false, result });
+    await new Promise((r) => setTimeout(r, 1400))
+    const result = generateResult(get().data, new Date().toISOString())
+    set({ isGenerating: false, result })
   },
 
   regenerate: async () => {
-    const { regenCount, isGenerating } = get();
-    if (isGenerating || regenCount >= MAX_REGENERATIONS) return;
-    set({ regenCount: regenCount + 1 });
-    await get().generate();
+    const { regenCount, isGenerating } = get()
+    if (isGenerating || regenCount >= MAX_REGENERATIONS) return
+    set({ regenCount: regenCount + 1 })
+    await get().generate()
   },
 
   toggleFavorite: (id) =>
@@ -224,4 +224,4 @@ export const useWizardStore = create<WizardState>((set, get) => ({
       exportOptions: INITIAL_EXPORT,
       pendingNav: null,
     }),
-}));
+}))

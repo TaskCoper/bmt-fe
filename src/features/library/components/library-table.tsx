@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { toast } from 'sonner';
-import { Search, Info, History, Plus, Pencil, Trash2 } from 'lucide-react';
+import { useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
+import { toast } from 'sonner'
+import { Search, Info, History, Plus, Pencil, Trash2 } from 'lucide-react'
 
-import type { Locale } from '@/i18n/routing';
-import { formatCurrency, formatDate } from '@/shared/utils';
+import type { Locale } from '@/i18n/routing'
+import { formatCurrency, formatDate } from '@/shared/utils'
 import {
   Table,
   TableBody,
@@ -14,37 +14,37 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+} from '@/shared/components/ui/table'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
+} from '@/shared/components/ui/select'
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@/shared/components/ui/tooltip';
+} from '@/shared/components/ui/tooltip'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/shared/components/ui/popover';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { PriceFormDialog } from './price-form-dialog';
-import { useLibrary } from '../hooks/use-library';
+} from '@/shared/components/ui/popover'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { PriceFormDialog } from './price-form-dialog'
+import { useLibrary } from '../hooks/use-library'
 import {
   LIBRARY_CATEGORY,
   PRICE_REGION,
   type LibraryCategory,
-} from '../constants/library.constants';
-import type { LibraryFilters, LibraryItem } from '../types/library.types';
+} from '../constants/library.constants'
+import type { LibraryFilters, LibraryItem } from '../types/library.types'
 
 const CATEGORY_VARIANT: Record<
   LibraryCategory,
@@ -53,27 +53,27 @@ const CATEGORY_VARIANT: Record<
   material: 'default',
   labor: 'secondary',
   equipment: 'outline',
-};
+}
 
-const CATEGORY_OPTIONS = ['all', ...Object.values(LIBRARY_CATEGORY)] as const;
-const REGION_OPTIONS = ['all', ...Object.values(PRICE_REGION)] as const;
-const PACKAGES = ['basic', 'standard', 'premium'] as const;
+const CATEGORY_OPTIONS = ['all', ...Object.values(LIBRARY_CATEGORY)] as const
+const REGION_OPTIONS = ['all', ...Object.values(PRICE_REGION)] as const
+const PACKAGES = ['basic', 'standard', 'premium'] as const
 
 const INITIAL: LibraryFilters = {
   search: '',
   category: 'all',
   region: 'all',
   page: 1,
-};
+}
 
 export function LibraryTable() {
-  const t = useTranslations('library');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('library')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const locale = useLocale() as Locale
 
-  const [filters, setFilters] = useState<LibraryFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useLibrary(filters);
+  const [filters, setFilters] = useState<LibraryFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useLibrary(filters)
 
   return (
     <div className="space-y-4">
@@ -279,12 +279,12 @@ export function LibraryTable() {
         </>
       )}
     </div>
-  );
+  )
 }
 
 /** Bilingual material-by-package + method + note tooltip (Q&A §5.2.3). */
 function DetailTooltip({ category }: { category: LibraryCategory }) {
-  const t = useTranslations('library');
+  const t = useTranslations('library')
 
   return (
     <Tooltip>
@@ -313,7 +313,7 @@ function DetailTooltip({ category }: { category: LibraryCategory }) {
         </p>
       </TooltipContent>
     </Tooltip>
-  );
+  )
 }
 
 /** Price-change history popover (Q&A §5.2.2 — old projects keep their price). */
@@ -321,10 +321,10 @@ function HistoryPopover({
   item,
   locale,
 }: {
-  item: LibraryItem;
-  locale: Locale;
+  item: LibraryItem
+  locale: Locale
 }) {
-  const t = useTranslations('library');
+  const t = useTranslations('library')
 
   return (
     <Popover>
@@ -353,5 +353,5 @@ function HistoryPopover({
         </ul>
       </PopoverContent>
     </Popover>
-  );
+  )
 }

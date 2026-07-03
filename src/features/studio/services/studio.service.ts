@@ -10,7 +10,7 @@ import {
   ROUGH_COST_PER_SQM,
   type BudgetPackageId,
   type EstimateCategoryId,
-} from '../constants/studio.constants';
+} from '../constants/studio.constants'
 import type {
   AreaSummary,
   BudgetBreakdown,
@@ -19,12 +19,10 @@ import type {
   GenerateResult,
   RenderImage,
   WizardData,
-} from '../types/studio.types';
+} from '../types/studio.types'
 
 function packageOf(id: BudgetPackageId) {
-  return (
-    BUDGET_PACKAGE_LIST.find((p) => p.id === id) ?? BUDGET_PACKAGE_LIST[0]!
-  );
+  return BUDGET_PACKAGE_LIST.find((p) => p.id === id) ?? BUDGET_PACKAGE_LIST[0]!
 }
 
 /** Compute the budget breakdown for a package + floor area. */
@@ -32,24 +30,24 @@ export function calcBudget(
   packageId: BudgetPackageId,
   area: number,
 ): BudgetBreakdown {
-  const pkg = packageOf(packageId);
-  const safeArea = Number.isFinite(area) && area > 0 ? area : 0;
-  const rough = ROUGH_COST_PER_SQM * safeArea;
-  const finishing = pkg.finishingPerSqm * safeArea;
-  const interior = pkg.interiorPerSqm * safeArea;
-  return { rough, finishing, interior, total: rough + finishing + interior };
+  const pkg = packageOf(packageId)
+  const safeArea = Number.isFinite(area) && area > 0 ? area : 0
+  const rough = ROUGH_COST_PER_SQM * safeArea
+  const finishing = pkg.finishingPerSqm * safeArea
+  const interior = pkg.interiorPerSqm * safeArea
+  return { rough, finishing, interior, total: rough + finishing + interior }
 }
 
 /** Cost-structure shares (for the donut chart), normalised to 0–1. */
 export function budgetShares(
   b: BudgetBreakdown,
 ): Record<EstimateCategoryId, number> {
-  const total = b.total || 1;
+  const total = b.total || 1
   return {
     rough: b.rough / total,
     finishing: b.finishing / total,
     interior: b.interior / total,
-  };
+  }
 }
 
 /**
@@ -78,21 +76,21 @@ const ITEM_TEMPLATES: Record<
     { key: 'bedroom', unit: 'set', share: 0.25 },
     { key: 'lighting', unit: 'set', share: 0.15 },
   ],
-};
+}
 
 function buildCategory(
   id: EstimateCategoryId,
   categoryTotal: number,
   area: number,
 ): EstimateCategory {
-  const templates = ITEM_TEMPLATES[id];
+  const templates = ITEM_TEMPLATES[id]
   const items: EstimateItem[] = templates.map((tpl) => {
-    const amount = Math.round(categoryTotal * tpl.share);
+    const amount = Math.round(categoryTotal * tpl.share)
     const quantity =
       tpl.unit === 'set'
         ? Math.max(1, Math.round(area / 40))
-        : Math.max(1, Math.round(area * tpl.share));
-    const unitPrice = quantity > 0 ? Math.round(amount / quantity) : amount;
+        : Math.max(1, Math.round(area * tpl.share))
+    const unitPrice = quantity > 0 ? Math.round(amount / quantity) : amount
     return {
       name: `${id}.${tpl.key}.name`,
       material: `${id}.${tpl.key}.material`,
@@ -102,17 +100,17 @@ function buildCategory(
       unitPrice,
       amount,
       note: `${id}.${tpl.key}.note`,
-    };
-  });
-  const total = items.reduce((sum, it) => sum + it.amount, 0);
-  return { id, items, total };
+    }
+  })
+  const total = items.reduce((sum, it) => sum + it.amount, 0)
+  return { id, items, total }
 }
 
 /** Derive the construction-area summary from the declared floor area. */
 export function deriveArea(area: number): AreaSummary {
-  const safeArea = Number.isFinite(area) && area > 0 ? area : 0;
-  const floors = safeArea > 200 ? 3 : safeArea > 100 ? 2 : 1;
-  const groundFloorArea = Math.round(safeArea / floors);
+  const safeArea = Number.isFinite(area) && area > 0 ? area : 0
+  const floors = safeArea > 200 ? 3 : safeArea > 100 ? 2 : 1
+  const groundFloorArea = Math.round(safeArea / floors)
   return {
     landArea: Math.round(groundFloorArea * 1.25),
     groundFloorArea,
@@ -120,10 +118,10 @@ export function deriveArea(area: number): AreaSummary {
     usableArea: Math.round(safeArea * 0.85),
     floors,
     estimatedHeight: floors * 3.4 + 1.5,
-  };
+  }
 }
 
-let renderSeed = 0;
+let renderSeed = 0
 
 /** Build the full mock AI result from the collected wizard data. */
 export function generateResult(
@@ -131,23 +129,23 @@ export function generateResult(
   /** Monotonic timestamp injected by the caller (scripts have no Date.now). */
   now: string,
 ): GenerateResult {
-  const budget = calcBudget(data.packageId, data.area);
+  const budget = calcBudget(data.packageId, data.area)
   const categoryTotals: Record<EstimateCategoryId, number> = {
     rough: budget.rough,
     finishing: budget.finishing,
     interior: budget.interior,
-  };
+  }
   const categories = ESTIMATE_CATEGORIES.map((id) =>
     buildCategory(id, categoryTotals[id], data.area),
-  );
+  )
 
   // AI returns 2 exterior + 2 interior renders per floor.
-  const area = deriveArea(data.area);
-  const renders: RenderImage[] = [];
+  const area = deriveArea(data.area)
+  const renders: RenderImage[] = []
   for (let floor = 1; floor <= area.floors; floor++) {
     for (const kind of ['exterior', 'interior'] as const) {
       for (let n = 0; n < 2; n++) {
-        renderSeed = (renderSeed + 47) % 360;
+        renderSeed = (renderSeed + 47) % 360
         renders.push({
           id: `r-${floor}-${kind}-${n + 1}`,
           hue: renderSeed,
@@ -155,7 +153,7 @@ export function generateResult(
           floor,
           caption: '',
           favorite: false,
-        });
+        })
       }
     }
   }
@@ -166,7 +164,7 @@ export function generateResult(
     area,
     renders,
     generatedAt: now,
-  };
+  }
 }
 
 export const studioService = {
@@ -174,4 +172,4 @@ export const studioService = {
   budgetShares,
   deriveArea,
   generateResult,
-};
+}

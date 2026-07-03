@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { ZoomIn, ZoomOut, Maximize } from 'lucide-react';
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { ZoomIn, ZoomOut, Maximize } from 'lucide-react'
 
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/components/ui/button'
 
 /** Schematic 2D floor-plan placeholder with zoom controls (step 4A). */
 export function FloorPlan() {
-  const t = useTranslations('studio.result');
-  const [scale, setScale] = useState(1);
+  const t = useTranslations('studio.result')
+  const [scale, setScale] = useState(1)
 
   const rooms = [
     { x: 10, y: 10, w: 110, h: 80, label: t('room.living') },
@@ -17,7 +17,7 @@ export function FloorPlan() {
     { x: 10, y: 100, w: 90, h: 70, label: t('room.bedroom') },
     { x: 110, y: 100, w: 60, h: 70, label: t('room.bath') },
     { x: 180, y: 100, w: 30, h: 70, label: t('room.hall') },
-  ];
+  ]
 
   return (
     <div className="space-y-2">
@@ -95,5 +95,5 @@ export function FloorPlan() {
       </div>
       <p className="text-muted-foreground text-xs">{t('drawingHint')}</p>
     </div>
-  );
+  )
 }

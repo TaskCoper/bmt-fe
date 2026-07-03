@@ -1,29 +1,29 @@
-'use client';
+'use client'
 
-import { useMemo, useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { toast } from 'sonner';
-import { FileDown, Link2, Save } from 'lucide-react';
+import { useMemo, useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
+import { toast } from 'sonner'
+import { FileDown, Link2, Save } from 'lucide-react'
 
-import type { Locale } from '@/i18n/routing';
-import { formatCurrency } from '@/shared/utils';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
+import type { Locale } from '@/i18n/routing'
+import { formatCurrency } from '@/shared/utils'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
+} from '@/shared/components/ui/card'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
+} from '@/shared/components/ui/select'
+import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group'
 import {
   Table,
   TableBody,
@@ -31,13 +31,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
+} from '@/shared/components/ui/table'
 import {
   ESTIMATE_BUILDINGS,
   ESTIMATE_PACKAGES,
-} from '../constants/estimate.constants';
-import { calcEstimate } from '../services/estimate.service';
-import type { EstimateInput } from '../types/estimate.types';
+} from '../constants/estimate.constants'
+import { calcEstimate } from '../services/estimate.service'
+import type { EstimateInput } from '../types/estimate.types'
 
 const INITIAL: EstimateInput = {
   area: 100,
@@ -45,16 +45,16 @@ const INITIAL: EstimateInput = {
   rooms: 2,
   building: 'apartment',
   packageId: 'standard',
-};
+}
 
 /** Standalone cost estimator (Q&A §5.1): inputs → live breakdown. */
 export function EstimateCreator() {
-  const t = useTranslations('estimate.creator');
-  const locale = useLocale() as Locale;
-  const [input, setInput] = useState<EstimateInput>(INITIAL);
+  const t = useTranslations('estimate.creator')
+  const locale = useLocale() as Locale
+  const [input, setInput] = useState<EstimateInput>(INITIAL)
 
-  const result = useMemo(() => calcEstimate(input), [input]);
-  const money = (v: number) => formatCurrency(v, locale);
+  const result = useMemo(() => calcEstimate(input), [input])
+  const money = (v: number) => formatCurrency(v, locale)
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
@@ -236,5 +236,5 @@ export function EstimateCreator() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

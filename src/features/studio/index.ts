@@ -5,9 +5,9 @@
  * UI-first: wizard state is held in a feature-scoped Zustand store and the
  * "AI generation" is a deterministic mock in `services/`.
  */
-export { ProjectWizard } from './components/project-wizard';
-export { useWizardStore } from './store/wizard.store';
-export { studioService } from './services/studio.service';
+export { ProjectWizard } from './components/project-wizard'
+export { useWizardStore } from './store/wizard.store'
+export { studioService } from './services/studio.service'
 export {
   WIZARD_STEPS,
   BUDGET_PACKAGE_LIST,
@@ -17,11 +17,11 @@ export {
   type BudgetPackageId,
   type ConstructionType,
   type DesignStyleId,
-} from './constants/studio.constants';
+} from './constants/studio.constants'
 export type {
   WizardData,
   BudgetBreakdown,
   GenerateResult,
   EstimateCategory,
   EstimateItem,
-} from './types/studio.types';
+} from './types/studio.types'

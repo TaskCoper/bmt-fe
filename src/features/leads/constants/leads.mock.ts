@@ -1,5 +1,5 @@
-import { LEAD_STATUS } from './leads.constants';
-import type { LeadRecord } from '../types/lead.types';
+import { LEAD_STATUS } from './leads.constants'
+import type { LeadRecord } from '../types/lead.types'
 
 /** Sample leads for local development without a backend. */
 export const MOCK_LEADS: readonly LeadRecord[] = [
@@ -63,4 +63,4 @@ export const MOCK_LEADS: readonly LeadRecord[] = [
     status: LEAD_STATUS.NEW,
     createdAt: '2026-06-21T03:05:00Z',
   },
-];
+]

@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
-import { Textarea } from '@/shared/components/ui/textarea';
-import { useWizardStore } from '../../store/wizard.store';
-import { StepSection } from '../step-section';
-import { ImageUploader } from '../image-uploader';
+import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
+import { Textarea } from '@/shared/components/ui/textarea'
+import { useWizardStore } from '../../store/wizard.store'
+import { StepSection } from '../step-section'
+import { ImageUploader } from '../image-uploader'
 
 /**
  * Floors rendered as ordered uploaders (ground → 1 → 2). MVP supports up to 3
@@ -17,15 +17,15 @@ const FLOORS = [
   { floor: 0, key: 'ground' },
   { floor: 1, key: 'first' },
   { floor: 2, key: 'second' },
-] as const;
+] as const
 
 /** Step 2 — upload space images per floor + optional space description. */
 export function StepSpace() {
-  const t = useTranslations('studio.space');
+  const t = useTranslations('studio.space')
 
-  const area = useWizardStore((s) => s.data.area);
-  const rooms = useWizardStore((s) => s.data.rooms);
-  const patch = useWizardStore((s) => s.patch);
+  const area = useWizardStore((s) => s.data.area)
+  const rooms = useWizardStore((s) => s.data.rooms)
+  const patch = useWizardStore((s) => s.patch)
 
   return (
     <div className="space-y-8">
@@ -74,5 +74,5 @@ export function StepSpace() {
         </div>
       </StepSection>
     </div>
-  );
+  )
 }

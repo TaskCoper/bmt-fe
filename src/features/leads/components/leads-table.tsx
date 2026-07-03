@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { toast } from 'sonner';
-import { Search, Check, Phone, Mail } from 'lucide-react';
+import { useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
+import { toast } from 'sonner'
+import { Search, Check, Phone, Mail } from 'lucide-react'
 
-import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
+import type { Locale } from '@/i18n/routing'
+import { formatDate } from '@/shared/utils'
 import {
   Table,
   TableBody,
@@ -14,47 +14,47 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+} from '@/shared/components/ui/table'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { useLeads, useMarkLeadHandled } from '../hooks/use-leads';
-import { LEAD_STATUS } from '../constants/leads.constants';
-import type { LeadFilters, LeadRecord } from '../types/lead.types';
+} from '@/shared/components/ui/select'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { useLeads, useMarkLeadHandled } from '../hooks/use-leads'
+import { LEAD_STATUS } from '../constants/leads.constants'
+import type { LeadFilters, LeadRecord } from '../types/lead.types'
 
 const STATUS_VARIANT: Record<LeadRecord['status'], 'default' | 'success'> = {
   new: 'default',
   handled: 'success',
-};
+}
 
-const STATUS_OPTIONS = ['all', ...Object.values(LEAD_STATUS)] as const;
+const STATUS_OPTIONS = ['all', ...Object.values(LEAD_STATUS)] as const
 
-const INITIAL: LeadFilters = { search: '', status: 'all', page: 1 };
+const INITIAL: LeadFilters = { search: '', status: 'all', page: 1 }
 
 /** Admin leads table: search + status filter + mark-as-handled action. */
 export function LeadsTable() {
-  const t = useTranslations('leads');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('leads')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const locale = useLocale() as Locale
 
-  const [filters, setFilters] = useState<LeadFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useLeads(filters);
-  const markHandled = useMarkLeadHandled();
+  const [filters, setFilters] = useState<LeadFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useLeads(filters)
+  const markHandled = useMarkLeadHandled()
 
   const handle = (lead: LeadRecord) =>
     markHandled.mutate(lead.id, {
       onSuccess: () => toast.success(t('handledToast', { name: lead.name })),
-    });
+    })
 
   return (
     <div className="space-y-4">
@@ -223,5 +223,5 @@ export function LeadsTable() {
         </>
       )}
     </div>
-  );
+  )
 }

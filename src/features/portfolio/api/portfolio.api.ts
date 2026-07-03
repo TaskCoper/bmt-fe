@@ -1,8 +1,8 @@
-import { http } from '@/shared/lib/api';
-import { env } from '@/shared/config/env';
-import type { PaginatedResponse } from '@/shared/types';
-import type { PortfolioFilters, PortfolioItem } from '../types/portfolio.types';
-import { mockPortfolioApi } from './portfolio.mock';
+import { http } from '@/shared/lib/api'
+import { env } from '@/shared/config/env'
+import type { PaginatedResponse } from '@/shared/types'
+import type { PortfolioFilters, PortfolioItem } from '../types/portfolio.types'
+import { mockPortfolioApi } from './portfolio.mock'
 
 const realPortfolioApi = {
   list: (filters: PortfolioFilters) =>
@@ -21,8 +21,8 @@ const realPortfolioApi = {
     }),
   getBySlug: (slug: string) =>
     http.get<PortfolioItem | null>(`/portfolio/${slug}`),
-};
+}
 
 export const portfolioApi = env.NEXT_PUBLIC_USE_MOCK_API
   ? mockPortfolioApi
-  : realPortfolioApi;
+  : realPortfolioApi

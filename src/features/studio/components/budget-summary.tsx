@@ -1,33 +1,33 @@
-'use client';
+'use client'
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl'
 
-import type { Locale } from '@/i18n/routing';
-import { cn } from '@/shared/lib/utils';
-import { formatCurrency } from '@/shared/utils';
-import type { BudgetBreakdown } from '../types/studio.types';
+import type { Locale } from '@/i18n/routing'
+import { cn } from '@/shared/lib/utils'
+import { formatCurrency } from '@/shared/utils'
+import type { BudgetBreakdown } from '../types/studio.types'
 
 /** Reusable "estimated budget" summary table (steps 3 & 4). */
 export function BudgetSummary({
   budget,
   className,
 }: {
-  budget: BudgetBreakdown;
-  className?: string;
+  budget: BudgetBreakdown
+  className?: string
 }) {
-  const t = useTranslations('studio.budget');
-  const locale = useLocale() as Locale;
-  const money = (v: number) => formatCurrency(v, locale);
+  const t = useTranslations('studio.budget')
+  const locale = useLocale() as Locale
+  const money = (v: number) => formatCurrency(v, locale)
 
   const rows: Array<{
-    key: 'rough' | 'finishing' | 'interior';
-    value: number;
-    note: string;
+    key: 'rough' | 'finishing' | 'interior'
+    value: number
+    note: string
   }> = [
     { key: 'rough', value: budget.rough, note: t('roughNote') },
     { key: 'finishing', value: budget.finishing, note: t('finishingNote') },
     { key: 'interior', value: budget.interior, note: t('interiorNote') },
-  ];
+  ]
 
   return (
     <div className={cn('rounded-lg border', className)}>
@@ -53,5 +53,5 @@ export function BudgetSummary({
         </tbody>
       </table>
     </div>
-  );
+  )
 }

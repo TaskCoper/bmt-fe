@@ -1,20 +1,20 @@
-import type { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react'
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
+} from '@/shared/components/ui/card'
 
 interface StatCardProps {
-  label: string;
-  value: string;
-  hint?: string;
-  icon: LucideIcon;
+  label: string
+  value: string
+  hint?: string
+  icon: LucideIcon
   /** Highlight the value (e.g. unhandled leads shown in red). */
-  accent?: 'destructive';
+  accent?: 'destructive'
 }
 
 /** Compact KPI card for dashboard overviews. */
@@ -54,5 +54,5 @@ export function StatCard({
         ) : null}
       </CardContent>
     </Card>
-  );
+  )
 }

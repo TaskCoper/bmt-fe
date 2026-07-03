@@ -5,7 +5,7 @@
 export const CHAT_DAILY_LIMIT = {
   customer: 30,
   guest: 10,
-} as const;
+} as const
 
 /** localStorage key holding `{ date, count }` for the per-day quota. */
-export const CHAT_USAGE_STORAGE_KEY = 'bmt.chat-usage';
+export const CHAT_USAGE_STORAGE_KEY = 'bmt.chat-usage'

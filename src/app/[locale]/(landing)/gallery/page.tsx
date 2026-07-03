@@ -1,25 +1,25 @@
-import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
-import type { Locale } from '@/i18n/routing';
-import { GalleryGrid } from '@/features/gallery';
+import type { Locale } from '@/i18n/routing'
+import { GalleryGrid } from '@/features/gallery'
 
 interface PageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: Locale }>
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'gallery' });
-  return { title: t('title') };
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'gallery' })
+  return { title: t('title') }
 }
 
 export default async function GalleryPage({ params }: PageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'gallery' });
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations({ locale, namespace: 'gallery' })
 
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-12 lg:px-8 lg:py-16">
@@ -29,5 +29,5 @@ export default async function GalleryPage({ params }: PageProps) {
       </div>
       <GalleryGrid />
     </div>
-  );
+  )
 }

@@ -1,43 +1,43 @@
-'use client';
+'use client'
 
-import { useEffect } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
-import { Loader2, RefreshCw, Sparkles } from 'lucide-react';
+import { useEffect } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
+import { Loader2, RefreshCw, Sparkles } from 'lucide-react'
 
-import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
-import { MAX_REGENERATIONS } from '../../constants/studio.constants';
+import type { Locale } from '@/i18n/routing'
+import { formatDate } from '@/shared/utils'
+import { MAX_REGENERATIONS } from '../../constants/studio.constants'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
-import { Button } from '@/shared/components/ui/button';
-import { useWizardStore } from '../../store/wizard.store';
-import { StepSection } from '../step-section';
-import { FloorPlan } from '../floor-plan';
-import { EstimateTabs } from '../estimate-tabs';
-import { AreaSummary } from '../area-summary';
-import { BudgetSummary } from '../budget-summary';
-import { CostDonut } from '../cost-donut';
+} from '@/shared/components/ui/card'
+import { Button } from '@/shared/components/ui/button'
+import { useWizardStore } from '../../store/wizard.store'
+import { StepSection } from '../step-section'
+import { FloorPlan } from '../floor-plan'
+import { EstimateTabs } from '../estimate-tabs'
+import { AreaSummary } from '../area-summary'
+import { BudgetSummary } from '../budget-summary'
+import { CostDonut } from '../cost-donut'
 
 /** Step 4 — AI-generated result: drawing, estimate tabs, area, summary, donut. */
 export function StepResult() {
-  const t = useTranslations('studio.result');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('studio.result')
+  const locale = useLocale() as Locale
 
-  const result = useWizardStore((s) => s.result);
-  const isGenerating = useWizardStore((s) => s.isGenerating);
-  const generate = useWizardStore((s) => s.generate);
-  const regenerate = useWizardStore((s) => s.regenerate);
-  const regenCount = useWizardStore((s) => s.regenCount);
-  const regenLeft = MAX_REGENERATIONS - regenCount;
+  const result = useWizardStore((s) => s.result)
+  const isGenerating = useWizardStore((s) => s.isGenerating)
+  const generate = useWizardStore((s) => s.generate)
+  const regenerate = useWizardStore((s) => s.regenerate)
+  const regenCount = useWizardStore((s) => s.regenCount)
+  const regenLeft = MAX_REGENERATIONS - regenCount
 
   // Auto-run the mock generation the first time the user reaches this step.
   useEffect(() => {
-    if (!result && !isGenerating) void generate();
-  }, [result, isGenerating, generate]);
+    if (!result && !isGenerating) void generate()
+  }, [result, isGenerating, generate])
 
   if (isGenerating || !result) {
     return (
@@ -60,7 +60,7 @@ export function StepResult() {
           </Button>
         ) : null}
       </div>
-    );
+    )
   }
 
   return (
@@ -123,5 +123,5 @@ export function StepResult() {
         </p>
       </StepSection>
     </div>
-  );
+  )
 }

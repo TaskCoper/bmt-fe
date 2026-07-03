@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
 import {
   Search,
   FileCheck2,
@@ -9,12 +9,12 @@ import {
   FileStack,
   Wallet,
   Plus,
-} from 'lucide-react';
+} from 'lucide-react'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import type { Locale } from '@/i18n/routing';
-import { formatCurrency, formatNumber } from '@/shared/utils';
+import { Link } from '@/i18n/navigation'
+import { ROUTES } from '@/shared/constants/routes'
+import type { Locale } from '@/i18n/routing'
+import { formatCurrency, formatNumber } from '@/shared/utils'
 import {
   Table,
   TableBody,
@@ -22,31 +22,31 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
+} from '@/shared/components/ui/table'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Skeleton } from '@/shared/components/ui/skeleton'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
+} from '@/shared/components/ui/card'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { useEstimates, useEstimateSummary } from '../hooks/use-estimates';
+} from '@/shared/components/ui/select'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { useEstimates, useEstimateSummary } from '../hooks/use-estimates'
 import {
   ESTIMATE_STATUS,
   type EstimateStatus,
-} from '../constants/estimate.constants';
-import type { EstimateFilters } from '../types/estimate.types';
+} from '../constants/estimate.constants'
+import type { EstimateFilters } from '../types/estimate.types'
 
 const STATUS_VARIANT: Record<
   EstimateStatus,
@@ -56,21 +56,21 @@ const STATUS_VARIANT: Record<
   pending: 'warning',
   approved: 'success',
   rejected: 'outline',
-};
+}
 
-const STATUS_OPTIONS = ['all', ...Object.values(ESTIMATE_STATUS)] as const;
+const STATUS_OPTIONS = ['all', ...Object.values(ESTIMATE_STATUS)] as const
 
-const INITIAL: EstimateFilters = { search: '', status: 'all', page: 1 };
+const INITIAL: EstimateFilters = { search: '', status: 'all', page: 1 }
 
 export function EstimateList() {
-  const t = useTranslations('estimate');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
-  const locale = useLocale() as Locale;
+  const t = useTranslations('estimate')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
+  const locale = useLocale() as Locale
 
-  const [filters, setFilters] = useState<EstimateFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useEstimates(filters);
-  const { data: summary } = useEstimateSummary();
+  const [filters, setFilters] = useState<EstimateFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useEstimates(filters)
+  const { data: summary } = useEstimateSummary()
 
   const summaryCards = [
     {
@@ -93,7 +93,7 @@ export function EstimateList() {
       value: summary ? formatCurrency(summary.totalValue, locale) : '—',
       icon: Wallet,
     },
-  ];
+  ]
 
   return (
     <div className="space-y-6">
@@ -255,5 +255,5 @@ export function EstimateList() {
         </>
       )}
     </div>
-  );
+  )
 }

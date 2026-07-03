@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Search, Plus, Pencil, Trash2, Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Search, Plus, Pencil, Trash2, Eye, EyeOff } from 'lucide-react'
 
 import {
   Table,
@@ -12,15 +12,15 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { useGalleryAdmin } from '../hooks/use-gallery';
-import type { GalleryFilters, GalleryItem } from '../types/gallery.types';
-import { GalleryFormDialog } from './gallery-form-dialog';
+} from '@/shared/components/ui/table'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { EmptyState, ErrorState } from '@/shared/components/common'
+import { useGalleryAdmin } from '../hooks/use-gallery'
+import type { GalleryFilters, GalleryItem } from '../types/gallery.types'
+import { GalleryFormDialog } from './gallery-form-dialog'
 
 const INITIAL: GalleryFilters = {
   search: '',
@@ -28,24 +28,24 @@ const INITIAL: GalleryFilters = {
   building: 'all',
   sort: 'newest',
   page: 1,
-};
+}
 
 /** Admin management table for the design library (Q&A §7.2.2). */
 export function GalleryAdminTable() {
-  const t = useTranslations('gallery');
-  const tForm = useTranslations('gallery.form');
-  const tc = useTranslations('common');
-  const te = useTranslations('errors');
+  const t = useTranslations('gallery')
+  const tForm = useTranslations('gallery.form')
+  const tc = useTranslations('common')
+  const te = useTranslations('errors')
 
-  const [filters, setFilters] = useState<GalleryFilters>(INITIAL);
-  const { data, isLoading, isError, refetch } = useGalleryAdmin(filters);
+  const [filters, setFilters] = useState<GalleryFilters>(INITIAL)
+  const { data, isLoading, isError, refetch } = useGalleryAdmin(filters)
 
   const togglePublish = (item: GalleryItem) =>
     toast.success(
       item.published
         ? tForm('hidden', { title: item.title })
         : tForm('publishedToast', { title: item.title }),
-    );
+    )
 
   return (
     <div className="space-y-4">
@@ -212,5 +212,5 @@ export function GalleryAdminTable() {
         </>
       )}
     </div>
-  );
+  )
 }

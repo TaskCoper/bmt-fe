@@ -1,30 +1,30 @@
-'use client';
+'use client'
 
-import { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
-import { Camera, Loader2 } from 'lucide-react';
+import { useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Camera, Loader2 } from 'lucide-react'
 
-import { getInitials } from '@/shared/utils';
-import { useAuth, useAuthStore } from '@/shared/auth';
+import { getInitials } from '@/shared/utils'
+import { useAuth, useAuthStore } from '@/shared/auth'
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from '@/shared/components/ui/avatar';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Textarea } from '@/shared/components/ui/textarea';
+} from '@/shared/components/ui/avatar'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Textarea } from '@/shared/components/ui/textarea'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
+} from '@/shared/components/ui/card'
 import {
   Form,
   FormControl,
@@ -32,18 +32,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/shared/components/ui/form';
+} from '@/shared/components/ui/form'
 import {
   createProfileSchema,
   type ProfileFormValues,
-} from '../schemas/profile.schema';
+} from '../schemas/profile.schema'
 
 /** Profile page: identity summary card + editable details form (mock save). */
 export function ProfilePanel() {
-  const t = useTranslations('profile');
-  const tv = useTranslations('validation');
-  const { user } = useAuth();
-  const [pending, setPending] = useState(false);
+  const t = useTranslations('profile')
+  const tv = useTranslations('validation')
+  const { user } = useAuth()
+  const [pending, setPending] = useState(false)
 
   const schema = useMemo(
     () =>
@@ -52,7 +52,7 @@ export function ProfilePanel() {
         maxBio: tv('maxLength', { max: 500 }),
       }),
     [tv],
-  );
+  )
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(schema),
@@ -62,16 +62,16 @@ export function ProfilePanel() {
       company: '',
       bio: '',
     },
-  });
+  })
 
   function onSubmit(values: ProfileFormValues) {
-    setPending(true);
+    setPending(true)
     setTimeout(() => {
-      setPending(false);
+      setPending(false)
       // Persist the editable name back into the shared auth store (mock).
-      if (user) useAuthStore.getState().setUser({ ...user, name: values.name });
-      toast.success(t('saved'));
-    }, 700);
+      if (user) useAuthStore.getState().setUser({ ...user, name: values.name })
+      toast.success(t('saved'))
+    }, 700)
   }
 
   return (
@@ -198,5 +198,5 @@ export function ProfilePanel() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

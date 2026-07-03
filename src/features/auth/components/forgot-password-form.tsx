@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import { useMemo, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
-import { ArrowLeft, Loader2, MailCheck } from 'lucide-react';
+import { useMemo, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslations } from 'next-intl'
+import { ArrowLeft, Loader2, MailCheck } from 'lucide-react'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
+import { Link } from '@/i18n/navigation'
+import { ROUTES } from '@/shared/constants/routes'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
+} from '@/shared/components/ui/card'
 import {
   Form,
   FormControl,
@@ -24,18 +24,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/shared/components/ui/form';
+} from '@/shared/components/ui/form'
 import {
   createForgotPasswordSchema,
   type ForgotPasswordFormValues,
-} from '../schemas/forgot-password.schema';
+} from '../schemas/forgot-password.schema'
 
 /** Password-reset request form. UI-first: sending the email is mocked. */
 export function ForgotPasswordForm() {
-  const t = useTranslations('auth.forgot');
-  const tv = useTranslations('validation');
-  const [pending, setPending] = useState(false);
-  const [sentTo, setSentTo] = useState<string | null>(null);
+  const t = useTranslations('auth.forgot')
+  const tv = useTranslations('validation')
+  const [pending, setPending] = useState(false)
+  const [sentTo, setSentTo] = useState<string | null>(null)
 
   const schema = useMemo(
     () =>
@@ -44,19 +44,19 @@ export function ForgotPasswordForm() {
         email: tv('email'),
       }),
     [tv],
-  );
+  )
 
   const form = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(schema),
     defaultValues: { email: '' },
-  });
+  })
 
   function onSubmit(values: ForgotPasswordFormValues) {
-    setPending(true);
+    setPending(true)
     setTimeout(() => {
-      setPending(false);
-      setSentTo(values.email);
-    }, 900);
+      setPending(false)
+      setSentTo(values.email)
+    }, 900)
   }
 
   if (sentTo) {
@@ -80,7 +80,7 @@ export function ForgotPasswordForm() {
           </Button>
         </CardContent>
       </Card>
-    );
+    )
   }
 
   return (
@@ -126,5 +126,5 @@ export function ForgotPasswordForm() {
         </Button>
       </CardContent>
     </Card>
-  );
+  )
 }

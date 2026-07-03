@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/components/ui/button'
 
 /** Google's brand "G" mark (inline so we don't add an icon dependency). */
 function GoogleIcon() {
@@ -26,7 +26,7 @@ function GoogleIcon() {
         d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"
       />
     </svg>
-  );
+  )
 }
 
 /**
@@ -34,7 +34,7 @@ function GoogleIcon() {
  * the backend exposes the Google sign-in endpoint.
  */
 export function GoogleButton() {
-  const t = useTranslations('auth.social');
+  const t = useTranslations('auth.social')
 
   return (
     <Button
@@ -46,5 +46,5 @@ export function GoogleButton() {
       <GoogleIcon />
       {t('continueGoogle')}
     </Button>
-  );
+  )
 }

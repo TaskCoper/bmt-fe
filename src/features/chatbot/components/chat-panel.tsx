@@ -1,36 +1,36 @@
-'use client';
+'use client'
 
-import { useEffect, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Bot, SendHorizonal, User } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { Bot, SendHorizonal, User } from 'lucide-react'
 
-import { cn } from '@/shared/lib/utils';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Card } from '@/shared/components/ui/card';
-import { useChat } from '../hooks/use-chat';
-import { SUGGESTIONS } from '../api/chatbot.mock';
+import { cn } from '@/shared/lib/utils'
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Card } from '@/shared/components/ui/card'
+import { useChat } from '../hooks/use-chat'
+import { SUGGESTIONS } from '../api/chatbot.mock'
 
 export function ChatPanel() {
-  const t = useTranslations('chatbot');
+  const t = useTranslations('chatbot')
   const { messages, send, isReplying, remaining, dailyLimit, limitReached } =
-    useChat();
-  const [input, setInput] = useState('');
-  const scrollRef = useRef<HTMLDivElement>(null);
+    useChat()
+  const [input, setInput] = useState('')
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
       top: scrollRef.current.scrollHeight,
       behavior: 'smooth',
-    });
-  }, [messages, isReplying]);
+    })
+  }, [messages, isReplying])
 
   function handleSend() {
-    send(input);
-    setInput('');
+    send(input)
+    setInput('')
   }
 
-  const showSuggestions = messages.length <= 1 && !isReplying && !limitReached;
+  const showSuggestions = messages.length <= 1 && !isReplying && !limitReached
 
   return (
     <Card className="flex h-[calc(100svh-13rem)] flex-col overflow-hidden p-0">
@@ -113,8 +113,8 @@ export function ChatPanel() {
       {/* Composer */}
       <form
         onSubmit={(e) => {
-          e.preventDefault();
-          handleSend();
+          e.preventDefault()
+          handleSend()
         }}
         className="border-t p-3"
       >
@@ -140,5 +140,5 @@ export function ChatPanel() {
         </p>
       </form>
     </Card>
-  );
+  )
 }

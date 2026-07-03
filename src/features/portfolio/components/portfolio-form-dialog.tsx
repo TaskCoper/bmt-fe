@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import { type ReactNode, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { toast } from 'sonner';
+import { type ReactNode, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
-import { Textarea } from '@/shared/components/ui/textarea';
-import { Checkbox } from '@/shared/components/ui/checkbox';
+import { Button } from '@/shared/components/ui/button'
+import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
+import { Textarea } from '@/shared/components/ui/textarea'
+import { Checkbox } from '@/shared/components/ui/checkbox'
 import {
   Dialog,
   DialogClose,
@@ -17,28 +17,28 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/shared/components/ui/dialog';
+} from '@/shared/components/ui/dialog'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/components/ui/select';
-import { PORTFOLIO_CATEGORY } from '../constants/portfolio.constants';
-import type { PortfolioItem } from '../types/portfolio.types';
+} from '@/shared/components/ui/select'
+import { PORTFOLIO_CATEGORY } from '../constants/portfolio.constants'
+import type { PortfolioItem } from '../types/portfolio.types'
 
 /** Admin create/edit dialog for a portfolio project (Q&A §3.1.2 / CMS). */
 export function PortfolioFormDialog({
   trigger,
   item,
 }: {
-  trigger: ReactNode;
-  item?: PortfolioItem;
+  trigger: ReactNode
+  item?: PortfolioItem
 }) {
-  const t = useTranslations('portfolio.form');
-  const tCat = useTranslations('portfolio.category');
-  const [open, setOpen] = useState(false);
+  const t = useTranslations('portfolio.form')
+  const tCat = useTranslations('portfolio.category')
+  const [open, setOpen] = useState(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -52,9 +52,9 @@ export function PortfolioFormDialog({
         <form
           id="portfolio-form"
           onSubmit={(e) => {
-            e.preventDefault();
-            setOpen(false);
-            toast.success(item ? t('updated') : t('created'));
+            e.preventDefault()
+            setOpen(false)
+            toast.success(item ? t('updated') : t('created'))
           }}
           className="space-y-4 py-2"
         >
@@ -120,5 +120,5 @@ export function PortfolioFormDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
