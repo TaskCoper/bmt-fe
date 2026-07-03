@@ -38,8 +38,16 @@ export default function proxy(request: NextRequest) {
   const response = intlMiddleware(request)
 
   const { pathname } = request.nextUrl
+  const segments = pathname.split('/')
+  const hasLocalePrefix = routing.locales.includes(segments[1] as never)
+
+  // Missing locale — defer to next-intl's redirect. Auth guards will run on the
+  // follow-up request once the URL is locale-prefixed. Skipping this caused
+  // ERR_TOO_MANY_REDIRECTS on unprefixed protected paths like `/dashboard`.
+  if (!hasLocalePrefix) return response
+
+  const locale = segments[1]!
   const path = stripLocale(pathname)
-  const locale = pathname.split('/')[1] || routing.defaultLocale
   const isAuthenticated = request.cookies.has(AUTH_COOKIE_NAME)
 
   // Block protected routes for unauthenticated users.
