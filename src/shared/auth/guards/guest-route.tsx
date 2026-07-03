@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, type ReactNode } from 'react';
 import { useRouter } from '@/i18n/navigation';
 import { ROUTES } from '@/shared/constants/routes';
+import { useEffect, type ReactNode } from 'react';
 import { useAuth } from '../hooks/use-auth';
 import { AuthGuardFallback } from './auth-guard-fallback';
 

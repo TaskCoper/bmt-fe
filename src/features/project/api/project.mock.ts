@@ -1,13 +1,13 @@
-import type { PaginatedResponse } from '@/shared/types';
 import { mockDelay, paginate } from '@/shared/lib';
+import type { PaginatedResponse } from '@/shared/types';
 import {
-  PROJECT_STATUS,
   DEFAULT_PROJECT_PAGE_SIZE,
+  PROJECT_STATUS,
 } from '../constants/project.constants';
 import type {
+  CreateProjectPayload,
   Project,
   ProjectFilters,
-  CreateProjectPayload,
 } from '../types/project.types';
 
 /**

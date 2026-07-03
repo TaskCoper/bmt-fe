@@ -1,8 +1,8 @@
-import { http } from '@/shared/lib/api';
 import { env } from '@/shared/config/env';
+import { http } from '@/shared/lib/api';
 import type { PaginatedResponse } from '@/shared/types';
-import type { ContentEntry, ContentFilters } from '../types/cms.types';
 import { DEFAULT_CMS_PAGE_SIZE } from '../constants/cms.constants';
+import type { ContentEntry, ContentFilters } from '../types/cms.types';
 import { mockCmsApi } from './cms.mock';
 
 const realCmsApi = {

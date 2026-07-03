@@ -1,12 +1,12 @@
-import { http } from '@/shared/lib/api';
 import { env } from '@/shared/config/env';
+import { http } from '@/shared/lib/api';
 import type { PaginatedResponse } from '@/shared/types';
+import { DEFAULT_PROJECT_PAGE_SIZE } from '../constants/project.constants';
 import type {
-  Project,
   CreateProjectPayload,
+  Project,
   ProjectFilters,
 } from '../types/project.types';
-import { DEFAULT_PROJECT_PAGE_SIZE } from '../constants/project.constants';
 import { mockProjectApi } from './project.mock';
 
 /** Project feature API surface over the shared HTTP client. */

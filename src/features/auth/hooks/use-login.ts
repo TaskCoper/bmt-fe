@@ -4,8 +4,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { useRouter } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
 import { useAuthStore } from '@/shared/auth';
+import { ROUTES } from '@/shared/constants/routes';
 import { isApiError } from '@/shared/lib/api';
 import { authApi } from '../api/auth.api';
 import { authKeys } from '../api/auth.keys';

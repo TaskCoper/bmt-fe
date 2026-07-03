@@ -1,5 +1,5 @@
+import { Clock, Mail, MapPin, Phone, type LucideIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { MapPin, Phone, Mail, Clock, type LucideIcon } from 'lucide-react';
 
 import { Card, CardContent } from '@/shared/components/ui/card';
 import { LANDING_SECTIONS } from '../constants/landing.constants';

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 import { useAuthStore } from '@/shared/auth';
 import { authApi } from '../api/auth.api';

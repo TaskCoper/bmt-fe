@@ -1,13 +1,13 @@
-import { useTranslations } from 'next-intl';
 import {
-  MessagesSquare,
-  Calculator,
-  LayoutTemplate,
-  FolderKanban,
-  Library,
   Bot,
+  Calculator,
+  FolderKanban,
+  LayoutTemplate,
+  Library,
+  MessagesSquare,
   type LucideIcon,
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import {
   Card,

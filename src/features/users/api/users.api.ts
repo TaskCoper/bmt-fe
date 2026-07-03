@@ -1,7 +1,7 @@
-import { http } from '@/shared/lib/api';
 import { env } from '@/shared/config/env';
+import { http } from '@/shared/lib/api';
 import type { PaginatedResponse } from '@/shared/types';
-import type { UserRecord, UserFilters } from '../types/user.types';
+import type { UserFilters, UserRecord } from '../types/user.types';
 import { mockUsersApi } from './users.mock';
 
 const realUsersApi = {

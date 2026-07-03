@@ -1,15 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useTranslations } from 'next-intl';
 import { Bot, SendHorizonal, User } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useRef, useState } from 'react';
 
-import { cn } from '@/shared/lib/utils';
 import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
 import { Card } from '@/shared/components/ui/card';
-import { useChat } from '../hooks/use-chat';
+import { Input } from '@/shared/components/ui/input';
+import { cn } from '@/shared/lib/utils';
 import { SUGGESTIONS } from '../api/chatbot.mock';
+import { useChat } from '../hooks/use-chat';
 
 export function ChatPanel() {
   const t = useTranslations('chatbot');

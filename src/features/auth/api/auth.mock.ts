@@ -1,5 +1,5 @@
-import { ROLES } from '@/shared/auth';
 import type { AuthUser } from '@/shared/auth';
+import { ROLES } from '@/shared/auth';
 import { AUTH_COOKIE_NAME } from '@/shared/auth/auth.constants';
 import type { ApiError } from '@/shared/types';
 import type { LoginPayload, LoginResponse } from '../types/auth.types';

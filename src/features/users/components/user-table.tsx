@@ -1,11 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
 import { Search, UserPlus } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
+import type { Role } from '@/shared/auth';
+import { EmptyState, ErrorState } from '@/shared/components/common';
+import { Badge } from '@/shared/components/ui/badge';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import { Skeleton } from '@/shared/components/ui/skeleton';
 import {
   Table,
   TableBody,
@@ -14,14 +19,9 @@ import {
   TableHeader,
   TableRow,
 } from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import type { Role } from '@/shared/auth';
+import { formatDate } from '@/shared/utils';
 import { useUsers } from '../hooks/use-users';
-import type { UserRecord, UserFilters } from '../types/user.types';
+import type { UserFilters, UserRecord } from '../types/user.types';
 
 const ROLE_VARIANT: Record<Role, 'default' | 'secondary' | 'outline'> = {
   admin: 'default',

@@ -3,8 +3,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useRouter } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
 import { useAuthStore } from '@/shared/auth';
+import { ROUTES } from '@/shared/constants/routes';
 import { authApi } from '../api/auth.api';
 
 /**

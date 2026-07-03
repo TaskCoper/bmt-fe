@@ -3,13 +3,13 @@
 import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
 import {
+  LanguageSwitcher,
   Logo,
   ThemeToggle,
-  LanguageSwitcher,
 } from '@/shared/components/common';
 import { Button } from '@/shared/components/ui/button';
+import { ROUTES } from '@/shared/constants/routes';
 
 /** Public marketing header used by the landing route group. */
 export function SiteHeader() {

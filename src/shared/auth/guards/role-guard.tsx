@@ -1,8 +1,8 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { useAuth } from '../hooks/use-auth';
 import type { Role } from '../auth.constants';
+import { useAuth } from '../hooks/use-auth';
 
 interface RoleGuardProps {
   /** Roles permitted to view the children. */

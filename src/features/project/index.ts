@@ -12,24 +12,24 @@
  *   constants/  — feature constants
  *   index.ts    — the ONLY allowed import surface (this file)
  */
-export { ProjectList } from './components/project-list';
-export { useProjects } from './hooks/use-projects';
-export { useProjectFiltersStore } from './store/project-filters.store';
 export { projectApi } from './api/project.api';
 export { projectKeys } from './api/project.keys';
-export { projectService } from './services/project.service';
+export { ProjectList } from './components/project-list';
+export {
+  DEFAULT_PROJECT_PAGE_SIZE,
+  PROJECT_STATUS,
+  type ProjectStatus,
+} from './constants/project.constants';
+export { useProjects } from './hooks/use-projects';
 export {
   createProjectSchema,
   type ProjectFormValues,
   type ProjectSchemaMessages,
 } from './schemas/project.schema';
-export {
-  PROJECT_STATUS,
-  DEFAULT_PROJECT_PAGE_SIZE,
-  type ProjectStatus,
-} from './constants/project.constants';
+export { projectService } from './services/project.service';
+export { useProjectFiltersStore } from './store/project-filters.store';
 export type {
-  Project,
   CreateProjectPayload,
+  Project,
   ProjectFilters,
 } from './types/project.types';

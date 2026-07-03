@@ -1,11 +1,11 @@
-import createMiddleware from 'next-intl/middleware';
-import { type NextRequest, NextResponse } from 'next/server';
 import { routing } from '@/i18n/routing';
+import { AUTH_COOKIE_NAME } from '@/shared/auth/auth.constants';
 import {
   GUEST_ONLY_ROUTES,
   PROTECTED_ROUTE_PREFIXES,
 } from '@/shared/constants/routes';
-import { AUTH_COOKIE_NAME } from '@/shared/auth/auth.constants';
+import createMiddleware from 'next-intl/middleware';
+import { type NextRequest, NextResponse } from 'next/server';
 
 const intlMiddleware = createMiddleware(routing);
 

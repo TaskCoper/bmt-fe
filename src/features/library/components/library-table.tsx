@@ -1,11 +1,22 @@
 'use client';
 
-import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
 import { Search } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 import type { Locale } from '@/i18n/routing';
-import { formatCurrency } from '@/shared/utils';
+import { EmptyState, ErrorState } from '@/shared/components/common';
+import { Badge } from '@/shared/components/ui/badge';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/shared/components/ui/select';
+import { Skeleton } from '@/shared/components/ui/skeleton';
 import {
   Table,
   TableBody,
@@ -14,23 +25,12 @@ import {
   TableHeader,
   TableRow,
 } from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/components/ui/select';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { useLibrary } from '../hooks/use-library';
+import { formatCurrency } from '@/shared/utils';
 import {
   LIBRARY_CATEGORY,
   type LibraryCategory,
 } from '../constants/library.constants';
+import { useLibrary } from '../hooks/use-library';
 import type { LibraryFilters } from '../types/library.types';
 
 const CATEGORY_VARIANT: Record<

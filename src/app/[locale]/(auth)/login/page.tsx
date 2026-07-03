@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
-import type { Locale } from '@/i18n/routing';
 import { LoginForm } from '@/features/auth';
+import type { Locale } from '@/i18n/routing';
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;

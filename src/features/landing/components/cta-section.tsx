@@ -1,9 +1,9 @@
-import { useTranslations } from 'next-intl';
 import { ArrowRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
 import { Button } from '@/shared/components/ui/button';
+import { ROUTES } from '@/shared/constants/routes';
 import { LANDING_SECTIONS } from '../constants/landing.constants';
 
 /** Conversion band with a high-contrast surface. */

@@ -1,7 +1,7 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { useCallback, useRef, useState } from 'react';
 
 import { chatbotApi } from '../api/chatbot.api';
 import { INITIAL_MESSAGES } from '../api/chatbot.mock';

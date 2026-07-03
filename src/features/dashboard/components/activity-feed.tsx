@@ -1,16 +1,15 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
 import {
-  FolderKanban,
   Calculator,
+  FolderKanban,
   Library,
   UserPlus,
   type LucideIcon,
 } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 
 import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
 import {
   Card,
   CardContent,
@@ -18,6 +17,7 @@ import {
   CardTitle,
 } from '@/shared/components/ui/card';
 import { Skeleton } from '@/shared/components/ui/skeleton';
+import { formatDate } from '@/shared/utils';
 import { useDashboard } from '../hooks/use-dashboard';
 import type { ActivityItem } from '../types/dashboard.types';
 

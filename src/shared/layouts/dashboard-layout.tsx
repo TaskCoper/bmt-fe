@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import { DashboardSidebar } from './dashboard-sidebar';
 import { DashboardHeader } from './dashboard-header';
+import { DashboardSidebar } from './dashboard-sidebar';
 
 interface DashboardLayoutProps {
   children: ReactNode;

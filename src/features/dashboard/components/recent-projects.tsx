@@ -1,17 +1,17 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
+import { Badge } from '@/shared/components/ui/badge';
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
-import { Badge } from '@/shared/components/ui/badge';
 import { Skeleton } from '@/shared/components/ui/skeleton';
+import { formatDate } from '@/shared/utils';
 import { useDashboard } from '../hooks/use-dashboard';
 import type { RecentProjectStatus } from '../types/dashboard.types';
 

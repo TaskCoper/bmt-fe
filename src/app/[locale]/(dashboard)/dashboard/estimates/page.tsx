@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
+import { EstimateList } from '@/features/estimate';
 import type { Locale } from '@/i18n/routing';
 import { PageHeader } from '@/shared/components/common';
-import { EstimateList } from '@/features/estimate';
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;

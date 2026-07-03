@@ -1,15 +1,14 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { Menu } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
 import { useAuth } from '@/shared/auth';
-import { cn } from '@/shared/lib/utils';
 import {
+  LanguageSwitcher,
   Logo,
   ThemeToggle,
-  LanguageSwitcher,
 } from '@/shared/components/common';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -18,6 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
+import { cn } from '@/shared/lib/utils';
 import { DASHBOARD_NAV } from './nav-config';
 import { UserMenu } from './user-menu';
 

@@ -1,10 +1,10 @@
-import type { PaginatedResponse } from '@/shared/types';
 import { mockDelay, paginate } from '@/shared/lib';
+import type { PaginatedResponse } from '@/shared/types';
 import {
-  LIBRARY_CATEGORY,
   DEFAULT_LIBRARY_PAGE_SIZE,
+  LIBRARY_CATEGORY,
 } from '../constants/library.constants';
-import type { LibraryItem, LibraryFilters } from '../types/library.types';
+import type { LibraryFilters, LibraryItem } from '../types/library.types';
 
 const M = LIBRARY_CATEGORY;
 

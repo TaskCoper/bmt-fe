@@ -1,7 +1,7 @@
-import type { PaginatedResponse } from '@/shared/types';
 import { mockDelay, paginate } from '@/shared/lib';
+import type { PaginatedResponse } from '@/shared/types';
 import { MOCK_USERS } from '../constants/users.mock';
-import type { UserRecord, UserFilters } from '../types/user.types';
+import type { UserFilters, UserRecord } from '../types/user.types';
 
 const PAGE_SIZE = 8;
 

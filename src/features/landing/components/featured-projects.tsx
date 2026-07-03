@@ -1,11 +1,11 @@
-import { useTranslations } from 'next-intl';
 import { ArrowUpRight, ImageIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import { Card } from '@/shared/components/ui/card';
+import { ROUTES } from '@/shared/constants/routes';
 import { LANDING_SECTIONS } from '../constants/landing.constants';
 import { SectionHeading } from './section-heading';
 

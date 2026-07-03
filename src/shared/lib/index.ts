@@ -1,4 +1,4 @@
-export { cn } from './utils';
-export { httpClient, http, normalizeApiError, isApiError } from './api';
-export { queryClient, makeQueryClient } from './query-client';
+export { http, httpClient, isApiError, normalizeApiError } from './api';
 export { mockDelay, paginate } from './mock';
+export { makeQueryClient, queryClient } from './query-client';
+export { cn } from './utils';

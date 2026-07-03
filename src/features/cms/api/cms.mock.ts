@@ -1,5 +1,5 @@
-import type { PaginatedResponse } from '@/shared/types';
 import { mockDelay, paginate } from '@/shared/lib';
+import type { PaginatedResponse } from '@/shared/types';
 import {
   CONTENT_STATUS,
   CONTENT_TYPE,

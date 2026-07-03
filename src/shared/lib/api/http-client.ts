@@ -1,11 +1,11 @@
+import { API_CONFIG } from '@/shared/config/api.config';
 import axios, {
   type AxiosInstance,
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from 'axios';
-import { API_CONFIG } from '@/shared/config/api.config';
 import { normalizeApiError } from './api-error';
-import { refreshSession, onUnauthorized } from './auth-bridge';
+import { onUnauthorized, refreshSession } from './auth-bridge';
 
 /**
  * The single Axios instance used by every feature's API layer.

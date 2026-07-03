@@ -1,17 +1,14 @@
 'use client';
 
-import { useMemo } from 'react';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { Loader2 } from 'lucide-react';
+import { useMemo } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
 import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Checkbox } from '@/shared/components/ui/checkbox';
 import {
   Card,
   CardContent,
@@ -19,6 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
+import { Checkbox } from '@/shared/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -27,6 +25,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/shared/components/ui/form';
+import { Input } from '@/shared/components/ui/input';
+import { ROUTES } from '@/shared/constants/routes';
 import { useLogin } from '../hooks/use-login';
 import {
   createLoginSchema,

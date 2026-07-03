@@ -1,6 +1,6 @@
-import { getRequestConfig } from 'next-intl/server';
 import { hasLocale } from 'next-intl';
-import { routing, FALLBACK_LOCALE, type Locale } from './routing';
+import { getRequestConfig } from 'next-intl/server';
+import { FALLBACK_LOCALE, routing, type Locale } from './routing';
 
 /**
  * Per-request i18n configuration for Server Components.

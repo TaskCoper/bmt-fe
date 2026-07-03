@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react';
 
-import { DashboardLayout } from '@/shared/layouts';
 import { useLogout } from '@/features/auth';
+import { DashboardLayout } from '@/shared/layouts';
 
 /**
  * App-layer glue: wires the auth feature's logout flow into the shared

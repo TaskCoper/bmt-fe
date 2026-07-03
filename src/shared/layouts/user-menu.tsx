@@ -1,11 +1,9 @@
 'use client';
 
+import { LogOut, Settings, User } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { LogOut, User, Settings } from 'lucide-react';
 
 import { Link, useRouter } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { getInitials } from '@/shared/utils';
 import { useAuth, useAuthStore } from '@/shared/auth';
 import {
   Avatar,
@@ -21,6 +19,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/shared/components/ui/dropdown-menu';
+import { ROUTES } from '@/shared/constants/routes';
+import { getInitials } from '@/shared/utils';
 
 interface UserMenuProps {
   /**

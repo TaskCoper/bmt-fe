@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
-import type { Locale } from '@/i18n/routing';
-import { PageHeader } from '@/shared/components/common';
 import {
+  ActivityFeed,
   DashboardOverview,
   RecentProjects,
-  ActivityFeed,
 } from '@/features/dashboard';
+import type { Locale } from '@/i18n/routing';
+import { PageHeader } from '@/shared/components/common';
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;

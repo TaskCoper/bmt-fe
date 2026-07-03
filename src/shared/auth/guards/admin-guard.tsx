@@ -1,8 +1,8 @@
 'use client';
 
-import type { ReactNode } from 'react';
-import { useTranslations } from 'next-intl';
 import { ShieldAlert } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import type { ReactNode } from 'react';
 
 import { EmptyState } from '@/shared/components/common';
 import { ROLES } from '../auth.constants';

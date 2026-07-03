@@ -1,8 +1,8 @@
 'use client';
 
 import { useMemo } from 'react';
-import { useAuthStore } from '../auth.store';
 import type { Role } from '../auth.constants';
+import { useAuthStore } from '../auth.store';
 
 /**
  * Ergonomic read-only view over the auth store plus role helpers.

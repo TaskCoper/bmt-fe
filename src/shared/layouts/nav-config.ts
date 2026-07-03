@@ -1,16 +1,16 @@
 import {
-  LayoutDashboard,
-  FolderKanban,
-  Calculator,
-  Library,
   Bot,
+  Calculator,
   FileText,
+  FolderKanban,
+  LayoutDashboard,
+  Library,
   Users,
   type LucideIcon,
 } from 'lucide-react';
 
-import { ROUTES } from '@/shared/constants/routes';
 import { ROLES, type Role } from '@/shared/auth';
+import { ROUTES } from '@/shared/constants/routes';
 
 /** Translation keys available under the `nav` namespace for sidebar items. */
 export type NavLabelKey =

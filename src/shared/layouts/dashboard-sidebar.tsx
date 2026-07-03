@@ -3,9 +3,9 @@
 import { useTranslations } from 'next-intl';
 
 import { Link, usePathname } from '@/i18n/navigation';
-import { cn } from '@/shared/lib/utils';
-import { Logo } from '@/shared/components/common';
 import { useAuth } from '@/shared/auth';
+import { Logo } from '@/shared/components/common';
+import { cn } from '@/shared/lib/utils';
 import { DASHBOARD_NAV } from './nav-config';
 
 /**

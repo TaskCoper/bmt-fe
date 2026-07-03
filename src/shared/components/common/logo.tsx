@@ -1,7 +1,7 @@
 import { Building2 } from 'lucide-react';
 
-import { cn } from '@/shared/lib/utils';
 import { siteConfig } from '@/shared/config/site';
+import { cn } from '@/shared/lib/utils';
 
 interface LogoProps {
   className?: string;

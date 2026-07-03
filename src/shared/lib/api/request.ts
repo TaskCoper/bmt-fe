@@ -1,6 +1,6 @@
+import type { ApiResponse } from '@/shared/types';
 import type { AxiosRequestConfig } from 'axios';
 import { httpClient } from './http-client';
-import type { ApiResponse } from '@/shared/types';
 
 /**
  * Thin typed helpers over {@link httpClient} that unwrap the backend's

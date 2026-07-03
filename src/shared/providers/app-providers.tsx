@@ -1,10 +1,10 @@
 'use client';
 
-import type { ReactNode } from 'react';
-import { TooltipProvider } from '@/shared/components/ui/tooltip';
 import { Toaster } from '@/shared/components/ui/sonner';
-import { ThemeProvider } from './theme-provider';
+import { TooltipProvider } from '@/shared/components/ui/tooltip';
+import type { ReactNode } from 'react';
 import { QueryProvider } from './query-provider';
+import { ThemeProvider } from './theme-provider';
 
 /**
  * Single composition root for all client-side providers.

@@ -1,11 +1,11 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
-import { FolderKanban, Calculator, Library, Wallet } from 'lucide-react';
+import { Calculator, FolderKanban, Library, Wallet } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 
 import type { Locale } from '@/i18n/routing';
-import { formatNumber, formatCurrency } from '@/shared/utils';
 import { Skeleton } from '@/shared/components/ui/skeleton';
+import { formatCurrency, formatNumber } from '@/shared/utils';
 import { useDashboard } from '../hooks/use-dashboard';
 import { StatCard } from './stat-card';
 

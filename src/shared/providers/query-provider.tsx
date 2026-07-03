@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { getQueryClient } from '@/shared/lib/query-client';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { getQueryClient } from '@/shared/lib/query-client';
+import { useState, type ReactNode } from 'react';
 
 /**
  * Provides the TanStack Query client to the React tree.

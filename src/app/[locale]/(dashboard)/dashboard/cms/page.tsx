@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 
-import type { Locale } from '@/i18n/routing';
-import { PageHeader } from '@/shared/components/common';
-import { AdminGuard } from '@/shared/auth';
 import { ContentTable } from '@/features/cms';
+import type { Locale } from '@/i18n/routing';
+import { AdminGuard } from '@/shared/auth';
+import { PageHeader } from '@/shared/components/common';
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { LandingNavbar, LandingFooter } from '@/features/landing';
+import { LandingFooter, LandingNavbar } from '@/features/landing';
 
 /** Public marketing layout: navbar + content + footer. */
 export default function LandingLayout({ children }: { children: ReactNode }) {

@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { API_CONFIG } from '@/shared/config/api.config';
 import { useAuthStore } from '@/shared/auth/auth.store';
+import { API_CONFIG } from '@/shared/config/api.config';
+import axios from 'axios';
 
 /**
  * Thin bridge between the HTTP client and the auth layer.

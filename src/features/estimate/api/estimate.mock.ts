@@ -1,8 +1,8 @@
-import type { PaginatedResponse } from '@/shared/types';
 import { mockDelay, paginate } from '@/shared/lib';
+import type { PaginatedResponse } from '@/shared/types';
 import {
-  ESTIMATE_STATUS,
   DEFAULT_ESTIMATE_PAGE_SIZE,
+  ESTIMATE_STATUS,
 } from '../constants/estimate.constants';
 import type {
   Estimate,

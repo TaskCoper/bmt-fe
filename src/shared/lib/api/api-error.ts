@@ -1,5 +1,5 @@
-import { AxiosError } from 'axios';
 import type { ApiError } from '@/shared/types';
+import { AxiosError } from 'axios';
 
 /**
  * Normalize any thrown value (Axios error, network failure, unknown) into our

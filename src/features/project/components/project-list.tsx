@@ -1,10 +1,21 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
 import { Search } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 
 import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
+import { EmptyState, ErrorState } from '@/shared/components/common';
+import { Badge } from '@/shared/components/ui/badge';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/shared/components/ui/select';
+import { Skeleton } from '@/shared/components/ui/skeleton';
 import {
   Table,
   TableBody,
@@ -13,24 +24,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/shared/components/ui/table';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/components/ui/select';
-import { EmptyState, ErrorState } from '@/shared/components/common';
-import { useProjects } from '../hooks/use-projects';
-import { useProjectFiltersStore } from '../store/project-filters.store';
+import { formatDate } from '@/shared/utils';
 import {
   PROJECT_STATUS,
   type ProjectStatus,
 } from '../constants/project.constants';
+import { useProjects } from '../hooks/use-projects';
+import { useProjectFiltersStore } from '../store/project-filters.store';
 
 const STATUS_VARIANT: Record<
   ProjectStatus,

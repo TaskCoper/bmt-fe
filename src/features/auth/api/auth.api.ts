@@ -1,8 +1,8 @@
-import { http } from '@/shared/lib/api';
 import type { AuthUser } from '@/shared/auth';
 import { env } from '@/shared/config/env';
-import { mockAuthApi } from './auth.mock';
+import { http } from '@/shared/lib/api';
 import type { LoginPayload, LoginResponse } from '../types/auth.types';
+import { mockAuthApi } from './auth.mock';
 
 /**
  * Auth feature API surface. Thin functions over the shared HTTP client — no

@@ -1,5 +1,5 @@
-import { http } from '@/shared/lib/api';
 import { env } from '@/shared/config/env';
+import { http } from '@/shared/lib/api';
 import { mockChatbotApi } from './chatbot.mock';
 
 const realChatbotApi = {

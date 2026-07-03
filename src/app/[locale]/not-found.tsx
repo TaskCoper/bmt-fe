@@ -1,10 +1,10 @@
-import { useTranslations } from 'next-intl';
 import { FileQuestion } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
 import { EmptyState } from '@/shared/components/common';
 import { Button } from '@/shared/components/ui/button';
+import { ROUTES } from '@/shared/constants/routes';
 
 /** Localized 404 page. */
 export default function NotFound() {

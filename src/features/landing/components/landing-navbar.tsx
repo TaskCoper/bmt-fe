@@ -1,14 +1,13 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { Menu } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
 import {
+  LanguageSwitcher,
   Logo,
   ThemeToggle,
-  LanguageSwitcher,
 } from '@/shared/components/common';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -18,6 +17,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
+import { ROUTES } from '@/shared/constants/routes';
 import { LANDING_NAV } from '../constants/landing.constants';
 
 /** Public landing header: in-page anchor nav, locale/theme switchers, CTA. */

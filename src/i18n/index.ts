@@ -1,14 +1,14 @@
 export {
-  routing,
-  LOCALES,
-  DEFAULT_LOCALE,
-  FALLBACK_LOCALE,
-  type Locale,
-} from './routing';
-export {
+  getPathname,
   Link,
   redirect,
   usePathname,
   useRouter,
-  getPathname,
 } from './navigation';
+export {
+  DEFAULT_LOCALE,
+  FALLBACK_LOCALE,
+  LOCALES,
+  routing,
+  type Locale,
+} from './routing';
