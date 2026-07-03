@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Search, Plus } from 'lucide-react';
+import { Search, Plus, Pencil } from 'lucide-react';
 
 import type { Locale } from '@/i18n/routing';
 import { formatDate } from '@/shared/utils';
@@ -29,6 +29,7 @@ import { EmptyState, ErrorState } from '@/shared/components/common';
 import { useContent } from '../hooks/use-content';
 import { CONTENT_STATUS, type ContentStatus } from '../constants/cms.constants';
 import type { ContentFilters } from '../types/cms.types';
+import { ContentEditorDialog } from './content-editor-dialog';
 
 const STATUS_VARIANT: Record<
   ContentStatus,
@@ -88,10 +89,14 @@ export function ContentTable() {
             ))}
           </SelectContent>
         </Select>
-        <Button>
-          <Plus className="size-4" />
-          {t('create')}
-        </Button>
+        <ContentEditorDialog
+          trigger={
+            <Button>
+              <Plus className="size-4" />
+              {t('create')}
+            </Button>
+          }
+        />
       </div>
 
       {/* States */}
@@ -126,6 +131,9 @@ export function ContentTable() {
                   <TableHead className="w-32 text-right">
                     {t('columns.updated')}
                   </TableHead>
+                  <TableHead className="w-12 text-right">
+                    <span className="sr-only">{tc('actions')}</span>
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -145,6 +153,20 @@ export function ContentTable() {
                     </TableCell>
                     <TableCell className="text-muted-foreground text-right text-sm">
                       {formatDate(c.updatedAt, locale)}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <ContentEditorDialog
+                        entry={c}
+                        trigger={
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            aria-label={tc('edit')}
+                          >
+                            <Pencil className="size-4" />
+                          </Button>
+                        }
+                      />
                     </TableCell>
                   </TableRow>
                 ))}

@@ -19,10 +19,12 @@ import {
   DialogTrigger,
 } from '@/shared/components/ui/dialog';
 import { LANDING_NAV } from '../constants/landing.constants';
+import { SiteSearch } from './site-search';
 
 /** Public landing header: in-page anchor nav, locale/theme switchers, CTA. */
 export function LandingNavbar() {
   const t = useTranslations('landing.nav');
+  const tGallery = useTranslations('gallery');
   const tAuth = useTranslations('auth.login');
 
   return (
@@ -42,9 +44,19 @@ export function LandingNavbar() {
               {t(item.labelKey)}
             </a>
           ))}
+          <Link
+            href={ROUTES.GALLERY}
+            className="text-muted-foreground hover:text-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors"
+          >
+            {tGallery('navLabel')}
+          </Link>
         </nav>
 
-        <div className="ml-auto flex items-center gap-1">
+        <div className="ml-auto hidden lg:block">
+          <SiteSearch />
+        </div>
+
+        <div className="ml-auto flex items-center gap-1 lg:ml-4">
           <LanguageSwitcher />
           <ThemeToggle />
           <Button asChild size="sm" className="hidden sm:inline-flex">
@@ -77,6 +89,14 @@ export function LandingNavbar() {
                     </a>
                   </DialogClose>
                 ))}
+                <DialogClose asChild>
+                  <Link
+                    href={ROUTES.GALLERY}
+                    className="hover:bg-accent rounded-md px-3 py-2 text-sm font-medium"
+                  >
+                    {tGallery('navLabel')}
+                  </Link>
+                </DialogClose>
               </nav>
               <Button asChild className="mt-4">
                 <Link href={ROUTES.LOGIN}>{tAuth('submit')}</Link>

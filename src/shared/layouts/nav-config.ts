@@ -6,6 +6,9 @@ import {
   Bot,
   FileText,
   Users,
+  Inbox,
+  Images,
+  Building2,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -20,7 +23,10 @@ export type NavLabelKey =
   | 'library'
   | 'chatbot'
   | 'cms'
-  | 'users';
+  | 'users'
+  | 'leads'
+  | 'adminGallery'
+  | 'adminPortfolio';
 
 /** A single primary navigation entry for the dashboard sidebar. */
 export interface NavItem {
@@ -46,6 +52,24 @@ export const DASHBOARD_NAV: readonly NavItem[] = [
     labelKey: 'cms',
     href: ROUTES.CMS,
     icon: FileText,
+    roles: [ROLES.ADMIN],
+  },
+  {
+    labelKey: 'adminGallery',
+    href: ROUTES.ADMIN_GALLERY,
+    icon: Images,
+    roles: [ROLES.ADMIN],
+  },
+  {
+    labelKey: 'adminPortfolio',
+    href: ROUTES.ADMIN_PORTFOLIO,
+    icon: Building2,
+    roles: [ROLES.ADMIN],
+  },
+  {
+    labelKey: 'leads',
+    href: ROUTES.LEADS,
+    icon: Inbox,
     roles: [ROLES.ADMIN],
   },
   {

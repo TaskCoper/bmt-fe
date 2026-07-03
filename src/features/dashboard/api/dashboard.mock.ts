@@ -4,13 +4,25 @@ import type { DashboardData } from '../types/dashboard.types';
 /** Sample dashboard payload for local development without a backend. */
 const MOCK_DASHBOARD: DashboardData = {
   stats: {
+    totalCustomers: 186,
     totalProjects: 14,
     activeProjects: 5,
     totalEstimates: 28,
     pendingEstimates: 4,
-    libraryItems: 320,
-    revenue: 4_850_000_000,
+    unhandledLeads: 7,
+    newsletterSignups: 42,
+    aiUsage: 312,
   },
+  weekly: [
+    { label: 'W19', projects: 3, estimates: 5 },
+    { label: 'W20', projects: 5, estimates: 6 },
+    { label: 'W21', projects: 2, estimates: 4 },
+    { label: 'W22', projects: 6, estimates: 8 },
+    { label: 'W23', projects: 4, estimates: 7 },
+    { label: 'W24', projects: 7, estimates: 9 },
+    { label: 'W25', projects: 5, estimates: 6 },
+    { label: 'W26', projects: 8, estimates: 11 },
+  ],
   recentProjects: [
     {
       id: 'p-09',

@@ -1,5 +1,7 @@
 /** Public API of the `estimate` feature. */
 export { EstimateList } from './components/estimate-list';
+export { EstimateCreator } from './components/estimate-creator';
+export { calcEstimate, estimateService } from './services/estimate.service';
 export { useEstimates, useEstimateSummary } from './hooks/use-estimates';
 export { estimateApi } from './api/estimate.api';
 export { estimateKeys } from './api/estimate.keys';

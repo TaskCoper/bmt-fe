@@ -20,15 +20,17 @@ const MOCK_USER: AuthUser = {
   id: 'mock-user-1',
   email: 'dev@bmt.local',
   name: 'Dev User',
-  roles: [ROLES.USER],
+  roles: [ROLES.CUSTOMER],
 };
 
 /**
  * Pick a role from the email so role-based layouts are testable without a
- * backend: an email containing "admin" → admin, otherwise → user.
+ * backend: an email containing "admin" → admin, otherwise → customer.
  */
 function rolesForEmail(email: string): AuthUser['roles'] {
-  return email.toLowerCase().includes('admin') ? [ROLES.ADMIN] : [ROLES.USER];
+  return email.toLowerCase().includes('admin')
+    ? [ROLES.ADMIN]
+    : [ROLES.CUSTOMER];
 }
 
 /** Simulate network latency so loading states are exercised. */
@@ -48,6 +50,16 @@ function setSessionCookie(): void {
 
 function clearSessionCookie(): void {
   document.cookie = `${AUTH_COOKIE_NAME}=; path=/; max-age=0; SameSite=Lax`;
+}
+
+/** Whether the (mock) session cookie is still present. */
+function hasSessionCookie(): boolean {
+  return (
+    typeof document !== 'undefined' &&
+    document.cookie
+      .split(';')
+      .some((c) => c.trim().startsWith(`${AUTH_COOKIE_NAME}=`))
+  );
 }
 
 export const mockAuthApi = {
@@ -80,7 +92,11 @@ export const mockAuthApi = {
       typeof window !== 'undefined'
         ? localStorage.getItem(MOCK_USER_KEY)
         : null;
-    if (!raw) {
+    // The session is only valid if BOTH the profile and the cookie exist.
+    // Once the cookie expires, drop the stale profile so the client store
+    // agrees with the middleware (otherwise login ↔ dashboard redirect loop).
+    if (!raw || !hasSessionCookie()) {
+      localStorage.removeItem(MOCK_USER_KEY);
       throw apiError('No active session (mock).', 401);
     }
     return JSON.parse(raw) as AuthUser;

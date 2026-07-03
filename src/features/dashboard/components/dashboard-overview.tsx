@@ -1,10 +1,17 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { FolderKanban, Calculator, Library, Wallet } from 'lucide-react';
+import {
+  Users,
+  FolderKanban,
+  Calculator,
+  Inbox,
+  Mail,
+  Sparkles,
+} from 'lucide-react';
 
 import type { Locale } from '@/i18n/routing';
-import { formatNumber, formatCurrency } from '@/shared/utils';
+import { formatNumber } from '@/shared/utils';
 import { Skeleton } from '@/shared/components/ui/skeleton';
 import { useDashboard } from '../hooks/use-dashboard';
 import { StatCard } from './stat-card';
@@ -21,8 +28,8 @@ export function DashboardOverview() {
 
   if (isLoading || !data) {
     return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {Array.from({ length: 4 }).map((_, i) => (
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {Array.from({ length: 6 }).map((_, i) => (
           <Skeleton key={i} className="h-28 w-full" />
         ))}
       </div>
@@ -31,6 +38,12 @@ export function DashboardOverview() {
 
   const { stats } = data;
   const cards = [
+    {
+      label: t('stats.customers'),
+      value: formatNumber(stats.totalCustomers, locale),
+      hint: t('stats.customersHint'),
+      icon: Users,
+    },
     {
       label: tn('projects'),
       value: formatNumber(stats.totalProjects, locale),
@@ -44,21 +57,28 @@ export function DashboardOverview() {
       icon: Calculator,
     },
     {
-      label: tn('library'),
-      value: formatNumber(stats.libraryItems, locale),
-      hint: t('stats.libraryHint'),
-      icon: Library,
+      label: t('stats.leads'),
+      value: formatNumber(stats.unhandledLeads, locale),
+      hint: t('stats.leadsHint'),
+      icon: Inbox,
+      accent: 'destructive' as const,
     },
     {
-      label: t('stats.revenue'),
-      value: formatCurrency(stats.revenue, locale),
-      hint: t('stats.revenueHint'),
-      icon: Wallet,
+      label: t('stats.newsletter'),
+      value: formatNumber(stats.newsletterSignups, locale),
+      hint: t('stats.newsletterHint'),
+      icon: Mail,
+    },
+    {
+      label: t('stats.aiUsage'),
+      value: formatNumber(stats.aiUsage, locale),
+      hint: t('stats.aiUsageHint'),
+      icon: Sparkles,
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
       {cards.map((c) => (
         <StatCard
           key={c.label}
@@ -66,6 +86,7 @@ export function DashboardOverview() {
           value={c.value}
           hint={c.hint}
           icon={c.icon}
+          accent={c.accent}
         />
       ))}
     </div>

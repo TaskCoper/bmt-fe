@@ -16,7 +16,8 @@
     "previous": "Trước",
     "more": "Thêm",
     "actions": "Thao tác",
-    "pageOf": "Trang {page}/{total}"
+    "pageOf": "Trang {page}/{total}",
+    "comingSoon": "Sắp ra mắt"
   },
   "nav": {
     "home": "Trang chủ",
@@ -29,7 +30,10 @@
     "users": "Người dùng",
     "profile": "Hồ sơ",
     "settings": "Cài đặt",
-    "logout": "Đăng xuất"
+    "logout": "Đăng xuất",
+    "leads": "Khách hàng tiềm năng",
+    "adminGallery": "Thư viện (admin)",
+    "adminPortfolio": "Dự án (admin)"
   },
   "theme": {
     "label": "Giao diện",
@@ -114,15 +118,36 @@
       "title": "Dự án tham khảo truyền cảm hứng cho công trình của bạn",
       "subtitle": "Khám phá các công trình thực tế với phạm vi và ngân sách minh bạch.",
       "viewAll": "Xem tất cả dự án",
-      "item1": { "name": "Cải tạo căn hộ hiện đại", "category": "Nhà ở" },
-      "item2": { "name": "Thi công quán café boutique", "category": "Thương mại" },
-      "item3": { "name": "Cải tạo nhà phố gia đình", "category": "Nhà ở" }
+      "item1": {
+        "name": "Cải tạo căn hộ hiện đại",
+        "category": "Nhà ở"
+      },
+      "item2": {
+        "name": "Thi công quán café boutique",
+        "category": "Thương mại"
+      },
+      "item3": {
+        "name": "Cải tạo nhà phố gia đình",
+        "category": "Nhà ở"
+      }
     },
     "stats": {
-      "projects": { "value": "1.200+", "label": "Dự án đã dự toán" },
-      "clients": { "value": "350+", "label": "Khách hàng hài lòng" },
-      "materials": { "value": "8.000+", "label": "Vật tư được định giá" },
-      "accuracy": { "value": "98%", "label": "Độ chính xác dự toán" }
+      "projects": {
+        "value": "1.200+",
+        "label": "Dự án đã dự toán"
+      },
+      "clients": {
+        "value": "350+",
+        "label": "Khách hàng hài lòng"
+      },
+      "materials": {
+        "value": "8.000+",
+        "label": "Vật tư được định giá"
+      },
+      "accuracy": {
+        "value": "98%",
+        "label": "Độ chính xác dự toán"
+      }
     },
     "cta": {
       "title": "Sẵn sàng dự toán cho dự án tiếp theo?",
@@ -141,7 +166,9 @@
       "emailLabel": "Email",
       "email": "hello@bmt-ai.construction",
       "hoursLabel": "Giờ làm việc",
-      "hours": "Thứ 2–Thứ 7, 8:00–18:00"
+      "hours": "Thứ 2–Thứ 7, 8:00–18:00",
+      "formTitle": "Gửi yêu cầu cho chúng tôi",
+      "formSubtitle": "Để lại thông tin, đội ngũ BMT Decor sẽ liên hệ với bạn trong thời gian sớm nhất."
     },
     "footer": {
       "tagline": "Dự toán và quản lý dự án bằng AI cho ngành xây dựng hiện đại.",
@@ -157,6 +184,49 @@
         "contact": "Liên hệ",
         "privacy": "Bảo mật",
         "terms": "Điều khoản"
+      }
+    },
+    "lead": {
+      "nameLabel": "Họ và tên",
+      "namePlaceholder": "VD: Nguyễn Văn A",
+      "phoneLabel": "Số điện thoại",
+      "phonePlaceholder": "VD: 0901 234 567",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ban@email.com",
+      "needTypeLabel": "Loại nhu cầu",
+      "needType": {
+        "design": "Thiết kế nội thất",
+        "estimate": "Dự toán chi phí",
+        "consult": "Tư vấn",
+        "construction": "Thi công",
+        "other": "Khác"
+      },
+      "messageLabel": "Nội dung yêu cầu",
+      "messagePlaceholder": "Mô tả về dự án của bạn…",
+      "spamNote": "Đã được bảo vệ chống spam.",
+      "submit": "Gửi yêu cầu",
+      "success": "Cảm ơn bạn! Chúng tôi đã nhận yêu cầu và sẽ liên hệ sớm."
+    },
+    "newsletter": {
+      "title": "Đăng ký nhận bản tin",
+      "subtitle": "Nhận mẹo thiết kế và cập nhật từ BMT Decor qua email.",
+      "placeholder": "Email của bạn",
+      "cta": "Đăng ký",
+      "optInNote": "Chúng tôi sẽ gửi email xác nhận. Bạn có thể hủy đăng ký bất cứ lúc nào.",
+      "success": "Gần xong rồi — vui lòng kiểm tra hộp thư để xác nhận đăng ký."
+    },
+    "floating": {
+      "messenger": "Chat qua Messenger",
+      "zalo": "Chat qua Zalo",
+      "call": "Gọi hotline"
+    },
+    "search": {
+      "placeholder": "Tìm kiếm trên website…",
+      "empty": "Không tìm thấy kết quả.",
+      "scope": {
+        "page": "Trang",
+        "service": "Dịch vụ",
+        "project": "Dự án"
       }
     }
   },
@@ -174,9 +244,41 @@
       "noAccount": "Chưa có tài khoản?",
       "signUp": "Đăng ký"
     },
+    "social": {
+      "or": "hoặc",
+      "continueGoogle": "Tiếp tục với Google",
+      "soon": "Đăng nhập bằng Google sẽ sớm khả dụng."
+    },
     "forbidden": {
       "title": "Không có quyền truy cập",
       "description": "Khu vực này chỉ dành cho quản trị viên."
+    },
+    "register": {
+      "title": "Tạo tài khoản",
+      "subtitle": "Đăng ký để bắt đầu thiết kế cùng BMT Decor AI",
+      "nameLabel": "Họ và tên",
+      "namePlaceholder": "Nguyễn Văn A",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ban@congty.com",
+      "passwordLabel": "Mật khẩu",
+      "passwordPlaceholder": "Tối thiểu 8 ký tự",
+      "confirmPasswordLabel": "Xác nhận mật khẩu",
+      "confirmPasswordPlaceholder": "Nhập lại mật khẩu",
+      "agree": "Tôi đồng ý với <terms>Điều khoản sử dụng</terms> và <privacy>Chính sách bảo mật</privacy>",
+      "submit": "Đăng ký",
+      "success": "Tạo tài khoản thành công. Vui lòng đăng nhập.",
+      "haveAccount": "Đã có tài khoản?",
+      "signIn": "Đăng nhập"
+    },
+    "forgot": {
+      "title": "Quên mật khẩu",
+      "subtitle": "Nhập email để nhận liên kết đặt lại mật khẩu",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ban@congty.com",
+      "submit": "Gửi liên kết đặt lại",
+      "backToLogin": "Quay lại đăng nhập",
+      "sentTitle": "Đã gửi email",
+      "sentSubtitle": "Chúng tôi đã gửi liên kết đặt lại tới {email}. Vui lòng kiểm tra hộp thư."
     }
   },
   "pages": {
@@ -212,7 +314,7 @@
     },
     "roles": {
       "admin": "Quản trị",
-      "user": "Nhân viên",
+      "customer": "Khách hàng",
       "guest": "Khách"
     },
     "status": {
@@ -222,6 +324,30 @@
     "empty": {
       "title": "Không có người dùng",
       "description": "Không tìm thấy người dùng phù hợp."
+    },
+    "addAdmin": {
+      "trigger": "Thêm quản trị",
+      "title": "Thêm tài khoản quản trị",
+      "description": "Quản trị viên chỉ có thể tạo tài khoản quản trị khác. Khách hàng tự đăng ký.",
+      "nameLabel": "Họ và tên",
+      "namePlaceholder": "VD: Nguyễn Thị B",
+      "emailLabel": "Email",
+      "emailPlaceholder": "ten@congty.com",
+      "cancel": "Hủy",
+      "submit": "Tạo quản trị",
+      "success": "Đã tạo tài khoản quản trị (demo)."
+    },
+    "actions": {
+      "lock": "Khóa tài khoản",
+      "unlock": "Mở khóa tài khoản",
+      "reset": "Đặt lại mật khẩu",
+      "lockedToast": "Đã khóa tài khoản của {name} (demo).",
+      "unlockedToast": "Đã mở khóa tài khoản của {name} (demo).",
+      "resetToast": "Đã gửi email đặt lại mật khẩu cho {name} (demo)."
+    },
+    "detail": {
+      "view": "Xem chi tiết",
+      "subtitle": "Thông tin tài khoản"
     }
   },
   "project": {
@@ -244,7 +370,8 @@
     "empty": {
       "title": "Chưa có dự án",
       "description": "Không tìm thấy dự án phù hợp bộ lọc."
-    }
+    },
+    "createNew": "Tạo dự án mới"
   },
   "estimate": {
     "subtitle": "Lập và quản lý dự toán chi phí công trình.",
@@ -272,6 +399,47 @@
     "empty": {
       "title": "Chưa có dự toán",
       "description": "Không tìm thấy dự toán phù hợp bộ lọc."
+    },
+    "createNew": "Tạo dự toán",
+    "creator": {
+      "title": "Tạo dự toán",
+      "subtitle": "Tạo dự toán chi phí độc lập, không cần qua luồng thiết kế AI.",
+      "inputsTitle": "Thông số",
+      "resultTitle": "Dự toán",
+      "areaLabel": "Diện tích sàn (m²)",
+      "floorsLabel": "Số tầng",
+      "roomsLabel": "Số phòng",
+      "buildingLabel": "Loại công trình",
+      "building": {
+        "apartment": "Căn hộ",
+        "townhouse": "Nhà phố",
+        "villa": "Biệt thự"
+      },
+      "packageLabel": "Gói vật tư",
+      "package": {
+        "basic": "Cơ bản",
+        "standard": "Tiêu chuẩn",
+        "premium": "Cao cấp"
+      },
+      "columns": {
+        "portion": "Hạng mục",
+        "quantity": "K.lượng",
+        "unitPrice": "Đơn giá",
+        "amount": "Thành tiền"
+      },
+      "portion": {
+        "rough": "Phần thô",
+        "finishing": "Hoàn thiện",
+        "interior": "Nội thất"
+      },
+      "total": "Tổng cộng",
+      "disclaimer": "Đây là mức dự toán tham khảo; chi phí thực tế có thể thay đổi.",
+      "save": "Lưu",
+      "exportPdf": "Xuất PDF",
+      "share": "Chia sẻ link",
+      "saved": "Đã lưu dự toán (demo).",
+      "exported": "Đã xuất PDF (demo).",
+      "shared": "Đã sao chép link chia sẻ (demo)."
     }
   },
   "library": {
@@ -282,7 +450,8 @@
       "name": "Tên",
       "category": "Loại",
       "unit": "ĐVT",
-      "unitPrice": "Đơn giá"
+      "unitPrice": "Đơn giá",
+      "region": "Khu vực"
     },
     "category": {
       "all": "Tất cả loại",
@@ -293,11 +462,77 @@
     "empty": {
       "title": "Chưa có dữ liệu",
       "description": "Không tìm thấy mục phù hợp bộ lọc."
+    },
+    "region": {
+      "all": "Tất cả khu vực",
+      "north": "Miền Bắc",
+      "central": "Miền Trung",
+      "south": "Miền Nam"
+    },
+    "detail": {
+      "title": "Vật liệu theo gói",
+      "methodLabel": "Biện pháp thi công",
+      "noteLabel": "Ghi chú",
+      "package": {
+        "basic": "Cơ bản",
+        "standard": "Tiêu chuẩn",
+        "premium": "Cao cấp"
+      },
+      "material": {
+        "materials": {
+          "basic": "Thương hiệu nội địa",
+          "standard": "Thương hiệu tầm trung",
+          "premium": "Nhập khẩu cao cấp"
+        },
+        "method": "Lắp đặt tiêu chuẩn theo quy cách",
+        "note": "Đơn giá chưa gồm VAT"
+      },
+      "labor": {
+        "materials": {
+          "basic": "Thợ phổ thông",
+          "standard": "Thợ lành nghề",
+          "premium": "Thợ chuyên gia"
+        },
+        "method": "Nhân công theo ngày công",
+        "note": "Thay đổi theo điều kiện công trình"
+      },
+      "equipment": {
+        "materials": {
+          "basic": "Thuê cơ bản",
+          "standard": "Thuê tiêu chuẩn",
+          "premium": "Thuê hạng nặng"
+        },
+        "method": "Theo ca / theo tháng",
+        "note": "Chưa bao gồm người vận hành"
+      }
+    },
+    "history": {
+      "title": "Lịch sử đơn giá",
+      "current": "hiện tại"
+    },
+    "form": {
+      "add": "Thêm đơn giá",
+      "createTitle": "Thêm đơn giá",
+      "editTitle": "Sửa đơn giá",
+      "description": "Quản lý bảng đơn giá dùng chung cho cả hai luồng dự toán.",
+      "codeLabel": "Mã",
+      "nameLabel": "Tên",
+      "unitLabel": "Đơn vị",
+      "categoryLabel": "Nhóm",
+      "regionLabel": "Khu vực",
+      "unitPriceLabel": "Đơn giá (VNĐ)",
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "created": "Đã thêm đơn giá (demo).",
+      "updated": "Đã cập nhật đơn giá (demo).",
+      "deleted": "Đã xóa \"{name}\" (demo)."
     }
   },
   "chatbot": {
     "placeholder": "Nhập câu hỏi của bạn…",
-    "send": "Gửi"
+    "send": "Gửi",
+    "remaining": "Còn {remaining}/{limit} tin nhắn hôm nay",
+    "limitReached": "Bạn đã đạt giới hạn {limit} tin nhắn hôm nay. Vui lòng quay lại vào ngày mai."
   },
   "cms": {
     "searchPlaceholder": "Tìm theo tiêu đề…",
@@ -324,6 +559,33 @@
     "empty": {
       "title": "Chưa có nội dung",
       "description": "Không tìm thấy nội dung phù hợp bộ lọc."
+    },
+    "editor": {
+      "createTitle": "Tạo nội dung",
+      "editTitle": "Sửa nội dung",
+      "description": "Quản lý nội dung marketing với tab song ngữ VI/EN và bật/tắt từng section.",
+      "locale": {
+        "vi": "Tiếng Việt",
+        "en": "English"
+      },
+      "titleLabel": "Tiêu đề",
+      "titlePlaceholder": "Nhập tiêu đề…",
+      "bodyLabel": "Nội dung",
+      "bodyPlaceholder": "Soạn nội dung…",
+      "mediaLabel": "Hình ảnh",
+      "mediaHint": "Kéo ảnh vào đây hoặc bấm để tải lên",
+      "sectionsLabel": "Các section của trang",
+      "section": {
+        "hero": "Hero",
+        "services": "Dịch vụ",
+        "process": "Quy trình",
+        "projects": "Dự án",
+        "about": "Giới thiệu",
+        "contact": "Liên hệ"
+      },
+      "cancel": "Hủy",
+      "save": "Lưu thay đổi",
+      "saved": "Đã lưu nội dung (demo)."
     }
   },
   "dashboard": {
@@ -337,12 +599,25 @@
       "pendingHint": "{count} chờ duyệt",
       "libraryHint": "Vật tư & nhân công",
       "revenue": "Doanh thu",
-      "revenueHint": "Dự toán đã duyệt"
+      "revenueHint": "Dự toán đã duyệt",
+      "customers": "Khách hàng",
+      "customersHint": "Tài khoản đã đăng ký",
+      "leads": "Lead chưa xử lý",
+      "leadsHint": "Chờ liên hệ",
+      "newsletter": "Bản tin",
+      "newsletterHint": "Người đăng ký mới",
+      "aiUsage": "Lượt dùng AI",
+      "aiUsageHint": "Tổng số lần tạo"
     },
     "empty": {
       "title": "Chưa có gì ở đây",
       "description": "Bắt đầu bằng cách tạo mục đầu tiên của bạn.",
       "action": "Tạo mới"
+    },
+    "weekly": {
+      "title": "Tạo mới trong 8 tuần gần nhất",
+      "projects": "Dự án",
+      "estimates": "Dự toán"
     }
   },
   "errors": {
@@ -370,6 +645,663 @@
     "email": "Nhập địa chỉ email hợp lệ",
     "minLength": "Phải có ít nhất {min} ký tự",
     "maxLength": "Tối đa {max} ký tự",
-    "passwordMin": "Mật khẩu phải có ít nhất {min} ký tự"
+    "passwordMin": "Mật khẩu phải có ít nhất {min} ký tự",
+    "passwordMismatch": "Mật khẩu xác nhận không khớp",
+    "agreeTerms": "Bạn cần đồng ý với điều khoản",
+    "phone": "Số điện thoại không hợp lệ"
+  },
+  "studio": {
+    "title": "Tạo dự án mới",
+    "subtitle": "Quy trình thiết kế BMT Decor AI gồm 6 bước, từ khởi tạo đến xuất file PDF.",
+    "progressLabel": "Bước {current}/{total}",
+    "nav": {
+      "back": "Quay lại",
+      "next": "Tiếp tục",
+      "finish": "Hoàn tất"
+    },
+    "steps": {
+      "create": {
+        "title": "Tạo dự án",
+        "subtitle": "Khởi tạo workspace",
+        "description": "Đặt tên dự án và chọn loại công trình để khởi tạo workspace riêng."
+      },
+      "space": {
+        "title": "Nhập thông tin",
+        "subtitle": "Hình ảnh & không gian",
+        "description": "Tải lên hình ảnh từng tầng và mô tả không gian thực tế."
+      },
+      "design": {
+        "title": "Yêu cầu & ngân sách",
+        "subtitle": "Phong cách & chi phí",
+        "description": "Chọn gói ngân sách, phong cách và định hướng thiết kế."
+      },
+      "result": {
+        "title": "Kết quả AI",
+        "subtitle": "Bản vẽ & dự toán",
+        "description": "AI sinh bản vẽ 2D và bảng dự toán chi tiết theo lựa chọn của bạn."
+      },
+      "render": {
+        "title": "Render 3D",
+        "subtitle": "Thư viện hình ảnh",
+        "description": "Xem, chú thích và đánh dấu yêu thích các ảnh render 3D."
+      },
+      "export": {
+        "title": "Xuất PDF",
+        "subtitle": "Tài liệu & chia sẻ",
+        "description": "Tùy chỉnh nội dung, ngôn ngữ và xuất file PDF để chia sẻ."
+      }
+    },
+    "create": {
+      "basics": "Thông tin cơ bản",
+      "nameLabel": "Tên dự án",
+      "namePlaceholder": "VD: Cải tạo căn hộ Vinhomes",
+      "typeLabel": "Loại công trình",
+      "typeHint": "Hiện hỗ trợ nhà ở dân dụng. Loại thương mại sẽ ra mắt sau.",
+      "noteLabel": "Ghi chú sơ bộ",
+      "notePlaceholder": "Mô tả ngắn gọn mong muốn, bối cảnh dự án…",
+      "noteHint": "Tùy chọn — giúp AI hiểu rõ hơn nhu cầu của bạn."
+    },
+    "constructionType": {
+      "apartment": {
+        "label": "Căn hộ",
+        "desc": "Chung cư, studio"
+      },
+      "townhouse": {
+        "label": "Nhà phố",
+        "desc": "Nhà liền kề, nhà ống"
+      },
+      "villa": {
+        "label": "Biệt thự",
+        "desc": "Đơn lập, song lập"
+      },
+      "office": {
+        "label": "Văn phòng",
+        "desc": "Không gian làm việc"
+      },
+      "commercial": {
+        "label": "Thương mại",
+        "desc": "Cửa hàng, showroom"
+      },
+      "hotel": {
+        "label": "Khách sạn",
+        "desc": "Lưu trú, nghỉ dưỡng"
+      }
+    },
+    "space": {
+      "uploadTitle": "Tải lên hình ảnh",
+      "uploadHint": "Tải ảnh theo thứ tự từng tầng. Kéo-thả hoặc bấm để chọn.",
+      "floor": {
+        "ground": "Tầng trệt",
+        "first": "Tầng 1",
+        "second": "Tầng 2"
+      },
+      "infoTitle": "Thông tin mô tả",
+      "infoHint": "Tùy chọn — cung cấp thêm để dự toán chính xác hơn.",
+      "areaLabel": "Diện tích",
+      "roomsLabel": "Danh sách phòng",
+      "roomsPlaceholder": "VD: 2 phòng ngủ, 1 phòng khách, 1 bếp…",
+      "dropTitle": "Kéo-thả ảnh vào đây",
+      "dropHint": "JPG, PNG hoặc HEIC — tối đa 10MB mỗi ảnh, tối đa 5 ảnh/tầng",
+      "remove": "Xóa ảnh",
+      "errorType": "\"{name}\" không phải định dạng ảnh hợp lệ (dùng JPG, PNG hoặc HEIC).",
+      "errorSize": "\"{name}\" vượt quá giới hạn {max}MB.",
+      "errorMax": "Tối đa {max} ảnh mỗi tầng."
+    },
+    "budget": {
+      "title": "Ngân sách",
+      "hint": "Phần thô cố định tối thiểu. Chọn gói cho phần hoàn thiện và nội thất.",
+      "perSqm": "VNĐ/m²",
+      "autoUpdate": "Tổng dự kiến tự động cập nhật theo gói và diện tích.",
+      "total": "TỔNG DỰ KIẾN",
+      "portion": {
+        "rough": "Phần thô",
+        "finishing": "Phần hoàn thiện",
+        "interior": "Phần nội thất"
+      },
+      "roughNote": "Cố định tối thiểu",
+      "finishingNote": "Tính từ gói đã chọn",
+      "interiorNote": "Tính từ gói đã chọn",
+      "donutLabel": "Cơ cấu chi phí theo hạng mục"
+    },
+    "package": {
+      "basic": {
+        "name": "Gói 1 — BASIC",
+        "desc": "Vật liệu tiêu chuẩn, tối ưu chi phí"
+      },
+      "standard": {
+        "name": "Gói 2 — TIÊU CHUẨN",
+        "desc": "Cân bằng chất lượng và chi phí"
+      },
+      "premium": {
+        "name": "Gói 3 — PREMIUM",
+        "desc": "Vật liệu cao cấp, hoàn thiện tinh tế"
+      }
+    },
+    "design": {
+      "styleTitle": "Phong cách thiết kế",
+      "styleHint": "Chọn một hoặc nhiều phong cách (có thể kết hợp).",
+      "moodboardUpload": "Tải ảnh mood board",
+      "moodboardCount": "{count} ảnh mood board",
+      "prefTitle": "Yêu cầu thiết kế",
+      "prefHint": "Tinh chỉnh định hướng không gian cho bản vẽ.",
+      "layoutLabel": "Bố cục không gian",
+      "layout": {
+        "open": "Không gian mở",
+        "separated": "Phòng riêng biệt"
+      },
+      "lightingLabel": "Ưu tiên ánh sáng",
+      "lighting": {
+        "natural": "Tự nhiên",
+        "artificial": "Nhân tạo"
+      },
+      "directionLabel": "Hướng nhà",
+      "direction": {
+        "east": "Đông",
+        "west": "Tây",
+        "south": "Nam",
+        "north": "Bắc"
+      },
+      "colorLabel": "Tông màu chủ đạo"
+    },
+    "style": {
+      "modern": "Hiện đại",
+      "minimalist": "Tối giản",
+      "indochine": "Đông Dương",
+      "traditional": "Truyền thống Việt"
+    },
+    "result": {
+      "generating": "AI đang xử lý thiết kế…",
+      "generatingHint": "Đang sinh bản vẽ và bảng dự toán dựa trên thông tin của bạn.",
+      "regenerate": "Tạo lại kết quả",
+      "regenLeft": "Còn {count} lần tạo lại",
+      "regenExhausted": "Đã hết lượt tạo lại — vui lòng liên hệ hỗ trợ.",
+      "drawingTitle": "Bản vẽ bố trí (2D)",
+      "areaTitle": "Diện tích xây dựng",
+      "estimateTitle": "Bảng dự toán chi tiết",
+      "estimateHint": "Di chuột vào từng hạng mục để xem vật liệu và biện pháp thi công.",
+      "summaryTitle": "Tổng hợp dự toán",
+      "structureTitle": "Cơ cấu chi phí",
+      "disclaimer": "Đây là mức dự toán tham khảo, chi phí thực tế có thể thay đổi theo thị trường vật liệu và đơn vị thi công.",
+      "estimatedOn": "Ngày lập: {date}",
+      "room": {
+        "living": "Phòng khách",
+        "kitchen": "Bếp",
+        "bedroom": "Phòng ngủ",
+        "bath": "WC",
+        "hall": "Hành lang"
+      },
+      "zoomIn": "Phóng to",
+      "zoomOut": "Thu nhỏ",
+      "zoomReset": "Đặt lại",
+      "drawingHint": "Dùng các nút để phóng to/thu nhỏ bản vẽ."
+    },
+    "area": {
+      "land": "Diện tích đất / khuôn viên",
+      "ground": "Diện tích xây dựng tầng trệt",
+      "totalFloor": "Tổng diện tích sàn xây dựng",
+      "usable": "Diện tích sử dụng thực tế",
+      "floors": "Số tầng",
+      "height": "Chiều cao công trình ước tính",
+      "floorsValue": "{count} tầng"
+    },
+    "estimate": {
+      "tip": {
+        "material": "Vật liệu đề xuất",
+        "method": "Biện pháp thi công",
+        "note": "Ghi chú"
+      },
+      "col": {
+        "item": "Hạng mục",
+        "quantity": "Khối lượng",
+        "unitPrice": "Đơn giá",
+        "amount": "Thành tiền"
+      },
+      "vsBudget": "Tổng hạng mục",
+      "budgetUsage": "{pct}% so với ngân sách gói đã chọn"
+    },
+    "unit": {
+      "m2": "m²",
+      "m3": "m³",
+      "kg": "kg",
+      "set": "bộ"
+    },
+    "items": {
+      "rough": {
+        "foundation": {
+          "name": "Móng & nền",
+          "material": "Bê tông cốt thép mác 250",
+          "method": "Đào móng, đổ bê tông cốt thép",
+          "note": "Phụ thuộc địa chất thực tế"
+        },
+        "frame": {
+          "name": "Khung kết cấu",
+          "material": "Thép & bê tông mác 300",
+          "method": "Đổ cột, dầm, sàn",
+          "note": "Theo tiêu chuẩn kết cấu"
+        },
+        "masonry": {
+          "name": "Xây tô",
+          "material": "Gạch ống, vữa xi măng",
+          "method": "Xây tường, tô trát hoàn thiện thô",
+          "note": "Bao gồm tường bao và ngăn"
+        }
+      },
+      "finishing": {
+        "flooring": {
+          "name": "Lát sàn",
+          "material": "Gạch granite / sàn gỗ",
+          "method": "Cán nền, lát hoàn thiện",
+          "note": "Chọn theo gói ngân sách"
+        },
+        "painting": {
+          "name": "Sơn nước",
+          "material": "Sơn nội & ngoại thất",
+          "method": "Bả matit, sơn lót và phủ",
+          "note": "2 lớp phủ tiêu chuẩn"
+        },
+        "ceiling": {
+          "name": "Trần thạch cao",
+          "material": "Tấm thạch cao khung xương",
+          "method": "Đóng trần, xử lý mối nối",
+          "note": "Bao gồm đèn âm trần"
+        },
+        "doors": {
+          "name": "Cửa & phụ kiện",
+          "material": "Cửa gỗ công nghiệp / nhôm kính",
+          "method": "Lắp đặt cửa và khóa",
+          "note": "Theo số lượng phòng"
+        }
+      },
+      "interior": {
+        "living": {
+          "name": "Nội thất phòng khách",
+          "material": "Sofa, kệ TV, bàn trà",
+          "method": "Gia công và lắp đặt",
+          "note": "Trọn bộ phòng khách"
+        },
+        "kitchen": {
+          "name": "Tủ bếp",
+          "material": "Tủ bếp gỗ + đá bàn bếp",
+          "method": "Đo đạc, thi công tại chỗ",
+          "note": "Bao gồm bồn rửa"
+        },
+        "bedroom": {
+          "name": "Nội thất phòng ngủ",
+          "material": "Giường, tủ áo, bàn trang điểm",
+          "method": "Gia công và lắp đặt",
+          "note": "Trọn bộ mỗi phòng ngủ"
+        },
+        "lighting": {
+          "name": "Chiếu sáng & trang trí",
+          "material": "Đèn trang trí, rèm cửa",
+          "method": "Lắp đặt thiết bị chiếu sáng",
+          "note": "Theo concept thiết kế"
+        }
+      }
+    },
+    "render": {
+      "emptyTitle": "Chưa có ảnh render",
+      "emptyHint": "Hoàn tất bước tạo kết quả AI để xem ảnh render 3D.",
+      "title": "Thư viện ảnh render 3D",
+      "hint": "Tất cả ảnh được lưu vào dự án. Thêm chú thích và đánh dấu yêu thích.",
+      "count": "{count} ảnh",
+      "favCount": "{count} yêu thích",
+      "kind": {
+        "exterior": "Ngoại thất",
+        "interior": "Nội thất"
+      },
+      "floorLabel": "Tầng {floor}",
+      "favorite": "Yêu thích",
+      "captionPlaceholder": "Thêm chú thích…"
+    },
+    "export": {
+      "contentTitle": "Nội dung đưa vào PDF",
+      "contentHint": "Chọn các phần muốn xuất ra file.",
+      "section": {
+        "coverPage": "Trang bìa",
+        "projectInfo": "Thông tin dự án",
+        "drawings": "Bản vẽ bố trí",
+        "estimate": "Bảng dự toán chi tiết",
+        "summary": "Tổng hợp dự toán",
+        "renders": "Hình ảnh render 3D"
+      },
+      "languageTitle": "Ngôn ngữ",
+      "language": {
+        "vi": "Tiếng Việt",
+        "en": "English"
+      },
+      "exportTitle": "Xuất file",
+      "untitled": "Dự án chưa đặt tên",
+      "readyHint": "Tài liệu sẵn sàng để xuất PDF.",
+      "exportButton": "Xuất PDF",
+      "exportSuccess": "Đã xuất file PDF (demo).",
+      "shareTitle": "Chia sẻ",
+      "shareHint": "Chia sẻ kết quả dự án với khách hàng hoặc nhà thầu. Liên kết có hiệu lực 90 ngày và có thể thu hồi bất cứ lúc nào.",
+      "shareLink": "Tạo link xem online",
+      "shareEmail": "Gửi qua email",
+      "shareQr": "Mã QR",
+      "linkCopied": "Đã sao chép link chia sẻ.",
+      "emailSent": "Đã gửi email (demo).",
+      "qrShown": "Đã tạo mã QR (demo)."
+    },
+    "editWarning": {
+      "title": "Chỉnh sửa và chạy lại?",
+      "description": "Chỉnh sửa thông tin sẽ xóa kết quả AI hiện tại và chạy lại từ đầu. Bạn có chắc không?",
+      "cancel": "Hủy",
+      "confirm": "Xóa & chỉnh sửa"
+    },
+    "share": {
+      "manageLink": "Link chia sẻ",
+      "linkTitle": "Link chia sẻ công khai",
+      "linkExpiry": "Có hiệu lực 90 ngày. Bạn có thể thu hồi bất cứ lúc nào.",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép link.",
+      "revoke": "Thu hồi link",
+      "revoked": "Đã thu hồi link chia sẻ.",
+      "revokedNote": "Link này đã bị thu hồi và không còn hoạt động.",
+      "recreate": "Tạo link mới"
+    }
+  },
+  "profile": {
+    "title": "Hồ sơ",
+    "subtitle": "Quản lý thông tin cá nhân của bạn.",
+    "detailsTitle": "Thông tin chi tiết",
+    "detailsHint": "Cập nhật thông tin liên hệ và giới thiệu của bạn.",
+    "nameLabel": "Họ và tên",
+    "emailLabel": "Email",
+    "phoneLabel": "Số điện thoại",
+    "phonePlaceholder": "VD: 0901 234 567",
+    "companyLabel": "Công ty",
+    "companyPlaceholder": "Tên công ty (nếu có)",
+    "bioLabel": "Giới thiệu",
+    "bioPlaceholder": "Đôi nét về bạn…",
+    "save": "Lưu thay đổi",
+    "saved": "Đã lưu hồ sơ.",
+    "changeAvatar": "Đổi ảnh đại diện",
+    "avatarSoon": "Tính năng đổi ảnh đại diện sắp ra mắt.",
+    "role": {
+      "guest": "Khách",
+      "customer": "Khách hàng",
+      "admin": "Quản trị viên"
+    }
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "subtitle": "Quản lý tùy chọn tài khoản và ứng dụng.",
+    "appearance": {
+      "title": "Giao diện",
+      "hint": "Tùy chỉnh giao diện hiển thị.",
+      "theme": "Chủ đề",
+      "themeHint": "Sáng, tối hoặc theo hệ thống.",
+      "language": "Ngôn ngữ",
+      "languageHint": "Ngôn ngữ hiển thị của ứng dụng."
+    },
+    "notifications": {
+      "title": "Thông báo",
+      "hint": "Chọn loại thông báo bạn muốn nhận.",
+      "product": {
+        "label": "Cập nhật sản phẩm",
+        "desc": "Tính năng mới và thông báo quan trọng."
+      },
+      "project": {
+        "label": "Hoạt động dự án",
+        "desc": "Cập nhật về dự án và dự toán của bạn."
+      },
+      "marketing": {
+        "label": "Email tiếp thị",
+        "desc": "Khuyến mãi và bản tin định kỳ."
+      },
+      "save": "Lưu",
+      "saved": "Đã lưu tùy chọn thông báo."
+    },
+    "security": {
+      "title": "Bảo mật",
+      "hint": "Đổi mật khẩu đăng nhập của bạn.",
+      "current": "Mật khẩu hiện tại",
+      "new": "Mật khẩu mới",
+      "confirm": "Xác nhận mật khẩu mới",
+      "submit": "Đổi mật khẩu",
+      "changed": "Đã đổi mật khẩu.",
+      "tooShort": "Mật khẩu mới phải có ít nhất 8 ký tự.",
+      "mismatch": "Mật khẩu xác nhận không khớp."
+    },
+    "danger": {
+      "title": "Vùng nguy hiểm",
+      "hint": "Các thao tác không thể hoàn tác.",
+      "desc": "Xóa vĩnh viễn tài khoản và toàn bộ dữ liệu của bạn.",
+      "delete": "Xóa tài khoản",
+      "confirm": "Đây là bản demo — tài khoản không bị xóa."
+    }
+  },
+  "legal": {
+    "terms": {
+      "title": "Điều khoản sử dụng",
+      "updated": "Cập nhật lần cuối: nội dung mẫu — BMT Decor cung cấp nội dung chính thức trước khi go-live.",
+      "intro": "Các điều khoản này điều chỉnh việc bạn sử dụng nền tảng BMT Decor AI. Khi tạo tài khoản hoặc sử dụng dịch vụ, bạn đồng ý với các điều khoản dưới đây.",
+      "sections": [
+        {
+          "title": "1. Chấp nhận điều khoản",
+          "body": "Khi truy cập hoặc sử dụng nền tảng, bạn đồng ý tuân thủ Điều khoản sử dụng và Chính sách bảo mật của chúng tôi."
+        },
+        {
+          "title": "2. Sử dụng dịch vụ",
+          "body": "Bản vẽ và dự toán do AI tạo ra chỉ mang tính tham khảo; kết quả và chi phí thực tế có thể thay đổi. Bạn chịu trách nhiệm về tính chính xác của thông tin cung cấp."
+        },
+        {
+          "title": "3. Tài khoản",
+          "body": "Bạn cần cung cấp thông tin đăng ký chính xác và bảo mật thông tin đăng nhập. Bạn chịu trách nhiệm cho các hoạt động trong tài khoản của mình."
+        },
+        {
+          "title": "4. Sở hữu trí tuệ",
+          "body": "Nội dung, thương hiệu và tài liệu trên nền tảng thuộc về BMT Decor trừ khi có ghi chú khác."
+        },
+        {
+          "title": "5. Giới hạn trách nhiệm",
+          "body": "Dự toán chỉ mang tính tham khảo. BMT Decor không chịu trách nhiệm cho các quyết định chỉ dựa trên kết quả do AI tạo ra."
+        },
+        {
+          "title": "6. Liên hệ",
+          "body": "Mọi thắc mắc về điều khoản, vui lòng liên hệ qua các kênh ở mục liên hệ."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Chính sách bảo mật",
+      "updated": "Cập nhật lần cuối: nội dung mẫu — BMT Decor cung cấp nội dung chính thức trước khi go-live.",
+      "intro": "Chính sách này giải thích cách chúng tôi thu thập, sử dụng và bảo vệ dữ liệu cá nhân của bạn theo Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân.",
+      "sections": [
+        {
+          "title": "1. Dữ liệu thu thập",
+          "body": "Thông tin tài khoản (họ tên, email, SĐT), ảnh mặt bằng bạn tải lên để xử lý AI, và thông tin từ form liên hệ. Chúng tôi không thu thập ảnh sổ đỏ."
+        },
+        {
+          "title": "2. Mục đích sử dụng",
+          "body": "Để cung cấp dịch vụ thiết kế và dự toán, phản hồi yêu cầu của bạn và cải thiện nền tảng."
+        },
+        {
+          "title": "3. Dữ liệu hình ảnh",
+          "body": "Ảnh mặt bằng tải lên chỉ dùng để tạo bản vẽ và phối cảnh. Dữ liệu được lưu trữ an toàn và có thể xóa theo yêu cầu."
+        },
+        {
+          "title": "4. Chia sẻ dữ liệu",
+          "body": "Chúng tôi không bán dữ liệu cá nhân của bạn. Việc xử lý AI có thể liên quan đến các đối tác đáng tin cậy theo cam kết bảo mật."
+        },
+        {
+          "title": "5. Quyền của bạn",
+          "body": "Bạn có thể yêu cầu truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân bất cứ lúc nào."
+        },
+        {
+          "title": "6. Liên hệ",
+          "body": "Mọi yêu cầu về bảo mật, vui lòng liên hệ qua các kênh ở mục liên hệ."
+        }
+      ]
+    }
+  },
+  "leads": {
+    "title": "Khách hàng tiềm năng",
+    "subtitle": "Yêu cầu gửi từ form liên hệ trên website.",
+    "searchPlaceholder": "Tìm theo tên, SĐT hoặc email…",
+    "count": "{count} lead",
+    "markHandled": "Đánh dấu đã xử lý",
+    "handledToast": "Đã đánh dấu xử lý lead của {name}.",
+    "columns": {
+      "name": "Họ tên",
+      "contact": "Liên hệ",
+      "needType": "Nhu cầu",
+      "message": "Nội dung",
+      "status": "Trạng thái",
+      "createdAt": "Tiếp nhận"
+    },
+    "status": {
+      "new": "Mới",
+      "handled": "Đã xử lý"
+    },
+    "statusFilter": {
+      "all": "Tất cả trạng thái",
+      "new": "Mới",
+      "handled": "Đã xử lý"
+    },
+    "needType": {
+      "design": "Thiết kế nội thất",
+      "estimate": "Dự toán chi phí",
+      "consult": "Tư vấn",
+      "construction": "Thi công",
+      "other": "Khác"
+    },
+    "empty": {
+      "title": "Chưa có lead",
+      "description": "Không có lead nào khớp bộ lọc."
+    }
+  },
+  "gallery": {
+    "navLabel": "Thư viện",
+    "title": "Thư viện tham khảo",
+    "subtitle": "Mẫu thiết kế, bản vẽ và catalog vật liệu được BMT Decor tuyển chọn.",
+    "searchPlaceholder": "Tìm mẫu tham khảo…",
+    "count": "{count} mục",
+    "download": "Tải về",
+    "loginToDownload": "Đăng nhập để tải file gốc.",
+    "downloadStarted": "Đang tải \"{title}\" (demo).",
+    "style": {
+      "all": "Tất cả phong cách",
+      "modern": "Hiện đại",
+      "neoclassical": "Tân cổ điển",
+      "scandinavian": "Scandinavian",
+      "japandi": "Japandi",
+      "indochine": "Đông Dương",
+      "minimalist": "Tối giản"
+    },
+    "building": {
+      "all": "Tất cả loại",
+      "apartment": "Căn hộ",
+      "townhouse": "Nhà phố",
+      "villa": "Biệt thự"
+    },
+    "kind": {
+      "image": "Ảnh",
+      "drawing": "Bản vẽ",
+      "pdf": "PDF"
+    },
+    "sort": {
+      "newest": "Mới nhất",
+      "popular": "Phổ biến nhất"
+    },
+    "empty": {
+      "title": "Chưa có mẫu",
+      "description": "Không có mục nào khớp bộ lọc."
+    },
+    "admin": {
+      "title": "Thư viện tham khảo",
+      "subtitle": "Tải lên và quản lý mẫu thiết kế hiển thị trên website."
+    },
+    "form": {
+      "add": "Thêm mục",
+      "createTitle": "Thêm mẫu",
+      "editTitle": "Sửa mẫu",
+      "description": "Quản lý mục thư viện với nội dung song ngữ.",
+      "titleLabel": "Tiêu đề",
+      "styleLabel": "Phong cách",
+      "buildingLabel": "Loại",
+      "kindLabel": "Định dạng",
+      "tagsLabel": "Thẻ",
+      "tagsPlaceholder": "thẻ, cách, nhau",
+      "fileLabel": "Tệp",
+      "fileHint": "Kéo tệp vào đây hoặc bấm để tải lên",
+      "publishLabel": "Xuất bản (hiển thị công khai)",
+      "statusLabel": "Trạng thái",
+      "published": "Đã xuất bản",
+      "draft": "Đang ẩn",
+      "togglePublish": "Bật/tắt xuất bản",
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "created": "Đã thêm mẫu (demo).",
+      "updated": "Đã cập nhật mẫu (demo).",
+      "deleted": "Đã xóa \"{title}\" (demo).",
+      "publishedToast": "Đã xuất bản \"{title}\" (demo).",
+      "hidden": "Đã ẩn \"{title}\" (demo)."
+    }
+  },
+  "portfolio": {
+    "title": "Dự án tiêu biểu",
+    "subtitle": "Các dự án tham khảo được thiết kế cùng BMT Decor AI.",
+    "category": {
+      "all": "Tất cả",
+      "apartment": "Căn hộ",
+      "townhouse": "Nhà phố",
+      "villa": "Biệt thự"
+    },
+    "viewDetail": "Xem chi tiết",
+    "backToList": "Về danh sách dự án",
+    "about": "Giới thiệu dự án",
+    "gallery": "Thư viện ảnh",
+    "facts": {
+      "year": "Năm",
+      "location": "Vị trí",
+      "area": "Diện tích",
+      "style": "Phong cách"
+    },
+    "empty": {
+      "title": "Chưa có dự án",
+      "description": "Chưa có dự án nào trong danh mục này."
+    },
+    "notFound": {
+      "title": "Không tìm thấy dự án",
+      "description": "Dự án này có thể đã bị gỡ."
+    },
+    "cta": {
+      "title": "Muốn một thiết kế như thế này?",
+      "subtitle": "Bắt đầu thiết kế bằng AI chỉ trong vài phút.",
+      "button": "Bắt đầu thiết kế"
+    },
+    "count": "{count} dự án",
+    "admin": {
+      "title": "Dự án tiêu biểu",
+      "subtitle": "Quản lý các dự án showcase hiển thị trên website."
+    },
+    "form": {
+      "add": "Thêm dự án",
+      "createTitle": "Thêm dự án",
+      "editTitle": "Sửa dự án",
+      "description": "Quản lý dự án showcase với nội dung song ngữ.",
+      "titleLabel": "Tiêu đề",
+      "categoryLabel": "Loại",
+      "styleLabel": "Phong cách",
+      "yearLabel": "Năm",
+      "areaLabel": "Diện tích (m²)",
+      "locationLabel": "Vị trí",
+      "summaryLabel": "Tóm tắt",
+      "publishLabel": "Xuất bản (hiển thị công khai)",
+      "statusLabel": "Trạng thái",
+      "published": "Đã xuất bản",
+      "draft": "Đang ẩn",
+      "togglePublish": "Bật/tắt xuất bản",
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "created": "Đã thêm dự án (demo).",
+      "updated": "Đã cập nhật dự án (demo).",
+      "deleted": "Đã xóa \"{title}\" (demo).",
+      "publishedToast": "Đã xuất bản \"{title}\" (demo).",
+      "hidden": "Đã ẩn \"{title}\" (demo)."
+    }
   }
 }

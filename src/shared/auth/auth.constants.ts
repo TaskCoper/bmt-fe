@@ -1,7 +1,7 @@
 /** Auth roles understood by the frontend. Mirror the backend's role names. */
 export const ROLES = {
   GUEST: 'guest',
-  USER: 'user',
+  CUSTOMER: 'customer',
   ADMIN: 'admin',
 } as const;
 

@@ -34,3 +34,17 @@ export const LANDING_NAV: readonly LandingNavItem[] = [
   { labelKey: 'about', sectionId: LANDING_SECTIONS.about },
   { labelKey: 'contact', sectionId: LANDING_SECTIONS.contact },
 ];
+
+/**
+ * Lead "need type" options for the contact form (stakeholder Q&A §3.2.1).
+ * Labels resolve under `landing.lead.needType.*`.
+ */
+export const LEAD_NEED_TYPES = [
+  'design',
+  'estimate',
+  'consult',
+  'construction',
+  'other',
+] as const;
+
+export type LeadNeedType = (typeof LEAD_NEED_TYPES)[number];

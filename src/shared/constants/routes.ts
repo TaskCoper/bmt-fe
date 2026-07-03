@@ -7,6 +7,10 @@
 export const ROUTES = {
   // Landing
   HOME: '/',
+  GALLERY: '/gallery',
+  PORTFOLIO: '/projects',
+  TERMS: '/terms',
+  PRIVACY: '/privacy',
 
   // Auth
   LOGIN: '/login',
@@ -16,11 +20,16 @@ export const ROUTES = {
   // Dashboard (protected)
   DASHBOARD: '/dashboard',
   PROJECTS: '/dashboard/projects',
+  PROJECT_NEW: '/dashboard/projects/new',
   ESTIMATES: '/dashboard/estimates',
+  ESTIMATE_NEW: '/dashboard/estimates/new',
   LIBRARY: '/dashboard/library',
   CHATBOT: '/dashboard/chatbot',
   CMS: '/dashboard/cms',
   USERS: '/dashboard/users',
+  LEADS: '/dashboard/leads',
+  ADMIN_GALLERY: '/dashboard/gallery',
+  ADMIN_PORTFOLIO: '/dashboard/portfolio',
 
   // Account
   PROFILE: '/profile',

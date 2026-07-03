@@ -16,7 +16,8 @@
     "previous": "Previous",
     "more": "More",
     "actions": "Actions",
-    "pageOf": "Page {page} of {total}"
+    "pageOf": "Page {page} of {total}",
+    "comingSoon": "Coming soon"
   },
   "nav": {
     "home": "Home",
@@ -29,7 +30,10 @@
     "users": "Users",
     "profile": "Profile",
     "settings": "Settings",
-    "logout": "Log out"
+    "logout": "Log out",
+    "leads": "Leads",
+    "adminGallery": "Library (admin)",
+    "adminPortfolio": "Portfolio (admin)"
   },
   "theme": {
     "label": "Theme",
@@ -114,15 +118,36 @@
       "title": "Reference projects to inspire your build",
       "subtitle": "Explore real renovations with transparent scope and budgets.",
       "viewAll": "View all projects",
-      "item1": { "name": "Modern apartment renovation", "category": "Residential" },
-      "item2": { "name": "Boutique café fit-out", "category": "Commercial" },
-      "item3": { "name": "Family townhouse remodel", "category": "Residential" }
+      "item1": {
+        "name": "Modern apartment renovation",
+        "category": "Residential"
+      },
+      "item2": {
+        "name": "Boutique café fit-out",
+        "category": "Commercial"
+      },
+      "item3": {
+        "name": "Family townhouse remodel",
+        "category": "Residential"
+      }
     },
     "stats": {
-      "projects": { "value": "1,200+", "label": "Projects estimated" },
-      "clients": { "value": "350+", "label": "Happy clients" },
-      "materials": { "value": "8,000+", "label": "Materials priced" },
-      "accuracy": { "value": "98%", "label": "Estimate accuracy" }
+      "projects": {
+        "value": "1,200+",
+        "label": "Projects estimated"
+      },
+      "clients": {
+        "value": "350+",
+        "label": "Happy clients"
+      },
+      "materials": {
+        "value": "8,000+",
+        "label": "Materials priced"
+      },
+      "accuracy": {
+        "value": "98%",
+        "label": "Estimate accuracy"
+      }
     },
     "cta": {
       "title": "Ready to estimate your next project?",
@@ -141,7 +166,9 @@
       "emailLabel": "Email",
       "email": "hello@bmt-ai.construction",
       "hoursLabel": "Working hours",
-      "hours": "Mon–Sat, 8:00–18:00"
+      "hours": "Mon–Sat, 8:00–18:00",
+      "formTitle": "Send us a request",
+      "formSubtitle": "Leave your details and our team will get back to you shortly."
     },
     "footer": {
       "tagline": "AI-powered estimates and project management for modern construction.",
@@ -157,6 +184,49 @@
         "contact": "Contact",
         "privacy": "Privacy",
         "terms": "Terms"
+      }
+    },
+    "lead": {
+      "nameLabel": "Full name",
+      "namePlaceholder": "e.g. Nguyen Van A",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "e.g. 0901 234 567",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@email.com",
+      "needTypeLabel": "Type of need",
+      "needType": {
+        "design": "Interior design",
+        "estimate": "Cost estimate",
+        "consult": "Consultation",
+        "construction": "Construction",
+        "other": "Other"
+      },
+      "messageLabel": "Your request",
+      "messagePlaceholder": "Tell us about your project…",
+      "spamNote": "Protected against spam.",
+      "submit": "Send request",
+      "success": "Thank you! We've received your request and will be in touch soon."
+    },
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "subtitle": "Get design tips and BMT Decor updates in your inbox.",
+      "placeholder": "Your email",
+      "cta": "Subscribe",
+      "optInNote": "We'll send a confirmation email. You can unsubscribe anytime.",
+      "success": "Almost there — check your inbox to confirm your subscription."
+    },
+    "floating": {
+      "messenger": "Chat on Messenger",
+      "zalo": "Chat on Zalo",
+      "call": "Call hotline"
+    },
+    "search": {
+      "placeholder": "Search the site…",
+      "empty": "No results found.",
+      "scope": {
+        "page": "Page",
+        "service": "Service",
+        "project": "Project"
       }
     }
   },
@@ -174,9 +244,41 @@
       "noAccount": "Don't have an account?",
       "signUp": "Sign up"
     },
+    "social": {
+      "or": "or",
+      "continueGoogle": "Continue with Google",
+      "soon": "Google sign-in will be available soon."
+    },
     "forbidden": {
       "title": "No access",
       "description": "This area is restricted to administrators."
+    },
+    "register": {
+      "title": "Create account",
+      "subtitle": "Sign up to start designing with BMT Decor AI",
+      "nameLabel": "Full name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "At least 8 characters",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "agree": "I agree to the <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>",
+      "submit": "Sign up",
+      "success": "Account created. Please sign in.",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "forgot": {
+      "title": "Forgot password",
+      "subtitle": "Enter your email to receive a reset link",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "submit": "Send reset link",
+      "backToLogin": "Back to sign in",
+      "sentTitle": "Email sent",
+      "sentSubtitle": "We sent a reset link to {email}. Please check your inbox."
     }
   },
   "pages": {
@@ -212,7 +314,7 @@
     },
     "roles": {
       "admin": "Admin",
-      "user": "Staff",
+      "customer": "Customer",
       "guest": "Guest"
     },
     "status": {
@@ -222,6 +324,30 @@
     "empty": {
       "title": "No users",
       "description": "No users match your search."
+    },
+    "addAdmin": {
+      "trigger": "Add admin",
+      "title": "Add a new admin",
+      "description": "Admins can only create other admin accounts. Customers register themselves.",
+      "nameLabel": "Full name",
+      "namePlaceholder": "e.g. Jane Doe",
+      "emailLabel": "Email",
+      "emailPlaceholder": "name@company.com",
+      "cancel": "Cancel",
+      "submit": "Create admin",
+      "success": "Admin account created (demo)."
+    },
+    "actions": {
+      "lock": "Lock account",
+      "unlock": "Unlock account",
+      "reset": "Reset password",
+      "lockedToast": "{name}'s account was locked (demo).",
+      "unlockedToast": "{name}'s account was unlocked (demo).",
+      "resetToast": "A password-reset email was sent to {name} (demo)."
+    },
+    "detail": {
+      "view": "View detail",
+      "subtitle": "Account details"
     }
   },
   "project": {
@@ -244,7 +370,8 @@
     "empty": {
       "title": "No projects",
       "description": "No projects match your filters."
-    }
+    },
+    "createNew": "New project"
   },
   "estimate": {
     "subtitle": "Create and manage construction cost estimates.",
@@ -272,6 +399,47 @@
     "empty": {
       "title": "No estimates",
       "description": "No estimates match your filters."
+    },
+    "createNew": "New estimate",
+    "creator": {
+      "title": "New estimate",
+      "subtitle": "Create a standalone cost estimate without the AI design flow.",
+      "inputsTitle": "Inputs",
+      "resultTitle": "Estimate",
+      "areaLabel": "Floor area (m²)",
+      "floorsLabel": "Floors",
+      "roomsLabel": "Rooms",
+      "buildingLabel": "Building type",
+      "building": {
+        "apartment": "Apartment",
+        "townhouse": "Townhouse",
+        "villa": "Villa"
+      },
+      "packageLabel": "Material package",
+      "package": {
+        "basic": "Basic",
+        "standard": "Standard",
+        "premium": "Premium"
+      },
+      "columns": {
+        "portion": "Portion",
+        "quantity": "Qty",
+        "unitPrice": "Unit price",
+        "amount": "Amount"
+      },
+      "portion": {
+        "rough": "Rough construction",
+        "finishing": "Finishing",
+        "interior": "Interior"
+      },
+      "total": "Total",
+      "disclaimer": "This is a reference estimate; actual costs may vary.",
+      "save": "Save",
+      "exportPdf": "Export PDF",
+      "share": "Share link",
+      "saved": "Estimate saved (demo).",
+      "exported": "PDF exported (demo).",
+      "shared": "Share link copied (demo)."
     }
   },
   "library": {
@@ -282,7 +450,8 @@
       "name": "Name",
       "category": "Category",
       "unit": "Unit",
-      "unitPrice": "Unit price"
+      "unitPrice": "Unit price",
+      "region": "Region"
     },
     "category": {
       "all": "All categories",
@@ -293,11 +462,77 @@
     "empty": {
       "title": "No data",
       "description": "No items match your filters."
+    },
+    "region": {
+      "all": "All regions",
+      "north": "North",
+      "central": "Central",
+      "south": "South"
+    },
+    "detail": {
+      "title": "Materials by package",
+      "methodLabel": "Method",
+      "noteLabel": "Note",
+      "package": {
+        "basic": "Basic",
+        "standard": "Standard",
+        "premium": "Premium"
+      },
+      "material": {
+        "materials": {
+          "basic": "Domestic brand",
+          "standard": "Mid-range brand",
+          "premium": "Premium imported"
+        },
+        "method": "Standard installation per spec",
+        "note": "Price excludes VAT"
+      },
+      "labor": {
+        "materials": {
+          "basic": "General crew",
+          "standard": "Skilled crew",
+          "premium": "Expert crew"
+        },
+        "method": "Daily-rate labour",
+        "note": "Varies by site conditions"
+      },
+      "equipment": {
+        "materials": {
+          "basic": "Basic rental",
+          "standard": "Standard rental",
+          "premium": "Heavy-duty rental"
+        },
+        "method": "Per shift / per month",
+        "note": "Operator not included"
+      }
+    },
+    "history": {
+      "title": "Price history",
+      "current": "current"
+    },
+    "form": {
+      "add": "Add price",
+      "createTitle": "Add unit price",
+      "editTitle": "Edit unit price",
+      "description": "Manage the shared unit-price table used by both estimate flows.",
+      "codeLabel": "Code",
+      "nameLabel": "Name",
+      "unitLabel": "Unit",
+      "categoryLabel": "Category",
+      "regionLabel": "Region",
+      "unitPriceLabel": "Unit price (VND)",
+      "cancel": "Cancel",
+      "save": "Save",
+      "created": "Unit price added (demo).",
+      "updated": "Unit price updated (demo).",
+      "deleted": "Deleted \"{name}\" (demo)."
     }
   },
   "chatbot": {
     "placeholder": "Type your question…",
-    "send": "Send"
+    "send": "Send",
+    "remaining": "{remaining}/{limit} messages left today",
+    "limitReached": "You've reached today's limit of {limit} messages. Please come back tomorrow."
   },
   "cms": {
     "searchPlaceholder": "Search by title…",
@@ -324,6 +559,33 @@
     "empty": {
       "title": "No content",
       "description": "No content matches your filters."
+    },
+    "editor": {
+      "createTitle": "Create content",
+      "editTitle": "Edit content",
+      "description": "Manage marketing content with bilingual VI/EN tabs and section toggles.",
+      "locale": {
+        "vi": "Tiếng Việt",
+        "en": "English"
+      },
+      "titleLabel": "Title",
+      "titlePlaceholder": "Enter a title…",
+      "bodyLabel": "Content",
+      "bodyPlaceholder": "Write the content…",
+      "mediaLabel": "Media",
+      "mediaHint": "Drag images here or click to upload",
+      "sectionsLabel": "Page sections",
+      "section": {
+        "hero": "Hero",
+        "services": "Services",
+        "process": "Process",
+        "projects": "Projects",
+        "about": "About",
+        "contact": "Contact"
+      },
+      "cancel": "Cancel",
+      "save": "Save changes",
+      "saved": "Content saved (demo)."
     }
   },
   "dashboard": {
@@ -337,12 +599,25 @@
       "pendingHint": "{count} pending",
       "libraryHint": "Materials & labour",
       "revenue": "Revenue",
-      "revenueHint": "Approved estimates"
+      "revenueHint": "Approved estimates",
+      "customers": "Customers",
+      "customersHint": "Registered accounts",
+      "leads": "Unhandled leads",
+      "leadsHint": "Awaiting follow-up",
+      "newsletter": "Newsletter",
+      "newsletterHint": "New subscribers",
+      "aiUsage": "AI usage",
+      "aiUsageHint": "Total generations"
     },
     "empty": {
       "title": "Nothing here yet",
       "description": "Get started by creating your first item.",
       "action": "Create new"
+    },
+    "weekly": {
+      "title": "Created in the last 8 weeks",
+      "projects": "Projects",
+      "estimates": "Estimates"
     }
   },
   "errors": {
@@ -370,6 +645,663 @@
     "email": "Enter a valid email address",
     "minLength": "Must be at least {min} characters",
     "maxLength": "Must be at most {max} characters",
-    "passwordMin": "Password must be at least {min} characters"
+    "passwordMin": "Password must be at least {min} characters",
+    "passwordMismatch": "Passwords do not match",
+    "agreeTerms": "You must agree to the terms",
+    "phone": "Enter a valid phone number"
+  },
+  "studio": {
+    "title": "New project",
+    "subtitle": "The BMT Decor AI design flow in 6 steps, from setup to PDF export.",
+    "progressLabel": "Step {current}/{total}",
+    "nav": {
+      "back": "Back",
+      "next": "Continue",
+      "finish": "Finish"
+    },
+    "steps": {
+      "create": {
+        "title": "Create project",
+        "subtitle": "Initialize workspace",
+        "description": "Name your project and choose a construction type to spin up a workspace."
+      },
+      "space": {
+        "title": "Add information",
+        "subtitle": "Images & space",
+        "description": "Upload images per floor and describe the actual space."
+      },
+      "design": {
+        "title": "Brief & budget",
+        "subtitle": "Style & cost",
+        "description": "Pick a budget package, styles and design direction."
+      },
+      "result": {
+        "title": "AI result",
+        "subtitle": "Drawing & estimate",
+        "description": "AI generates a 2D drawing and a detailed cost estimate from your inputs."
+      },
+      "render": {
+        "title": "3D render",
+        "subtitle": "Image gallery",
+        "description": "View, caption and favorite the 3D render images."
+      },
+      "export": {
+        "title": "Export PDF",
+        "subtitle": "Document & share",
+        "description": "Customize content and language, then export a shareable PDF."
+      }
+    },
+    "create": {
+      "basics": "Basics",
+      "nameLabel": "Project name",
+      "namePlaceholder": "e.g. Vinhomes apartment renovation",
+      "typeLabel": "Construction type",
+      "typeHint": "Residential is supported now. Commercial types are coming soon.",
+      "noteLabel": "Preliminary note",
+      "notePlaceholder": "Briefly describe your goals, project context…",
+      "noteHint": "Optional — helps the AI understand your needs better."
+    },
+    "constructionType": {
+      "apartment": {
+        "label": "Apartment",
+        "desc": "Condo, studio"
+      },
+      "townhouse": {
+        "label": "Townhouse",
+        "desc": "Row house, tube house"
+      },
+      "villa": {
+        "label": "Villa",
+        "desc": "Detached, semi-detached"
+      },
+      "office": {
+        "label": "Office",
+        "desc": "Workspace"
+      },
+      "commercial": {
+        "label": "Commercial",
+        "desc": "Shop, showroom"
+      },
+      "hotel": {
+        "label": "Hotel",
+        "desc": "Hospitality, resort"
+      }
+    },
+    "space": {
+      "uploadTitle": "Upload images",
+      "uploadHint": "Upload images in floor order. Drag-and-drop or click to select.",
+      "floor": {
+        "ground": "Ground floor",
+        "first": "Floor 1",
+        "second": "Floor 2"
+      },
+      "infoTitle": "Description",
+      "infoHint": "Optional — add more for a more accurate estimate.",
+      "areaLabel": "Floor area",
+      "roomsLabel": "Room list",
+      "roomsPlaceholder": "e.g. 2 bedrooms, 1 living room, 1 kitchen…",
+      "dropTitle": "Drag-and-drop images here",
+      "dropHint": "JPG, PNG or HEIC — up to 10MB each, max 5 per floor",
+      "remove": "Remove image",
+      "errorType": "\"{name}\" is not a supported image (use JPG, PNG or HEIC).",
+      "errorSize": "\"{name}\" exceeds the {max}MB limit.",
+      "errorMax": "Up to {max} images per floor."
+    },
+    "budget": {
+      "title": "Budget",
+      "hint": "Rough construction is a fixed minimum. Pick a package for finishing and interior.",
+      "perSqm": "VND/m²",
+      "autoUpdate": "The estimated total updates automatically with package and area.",
+      "total": "ESTIMATED TOTAL",
+      "portion": {
+        "rough": "Rough",
+        "finishing": "Finishing",
+        "interior": "Interior"
+      },
+      "roughNote": "Fixed minimum",
+      "finishingNote": "From selected package",
+      "interiorNote": "From selected package",
+      "donutLabel": "Cost structure by category"
+    },
+    "package": {
+      "basic": {
+        "name": "Package 1 — BASIC",
+        "desc": "Standard materials, cost-optimized"
+      },
+      "standard": {
+        "name": "Package 2 — STANDARD",
+        "desc": "Balanced quality and cost"
+      },
+      "premium": {
+        "name": "Package 3 — PREMIUM",
+        "desc": "Premium materials, refined finishing"
+      }
+    },
+    "design": {
+      "styleTitle": "Design style",
+      "styleHint": "Pick one or more styles (they can be combined).",
+      "moodboardUpload": "Upload mood board",
+      "moodboardCount": "{count} mood board images",
+      "prefTitle": "Design preferences",
+      "prefHint": "Fine-tune the spatial direction for the drawing.",
+      "layoutLabel": "Spatial layout",
+      "layout": {
+        "open": "Open plan",
+        "separated": "Separate rooms"
+      },
+      "lightingLabel": "Lighting preference",
+      "lighting": {
+        "natural": "Natural",
+        "artificial": "Artificial"
+      },
+      "directionLabel": "House orientation",
+      "direction": {
+        "east": "East",
+        "west": "West",
+        "south": "South",
+        "north": "North"
+      },
+      "colorLabel": "Primary color"
+    },
+    "style": {
+      "modern": "Modern",
+      "minimalist": "Minimalist",
+      "indochine": "Indochine",
+      "traditional": "Vietnamese traditional"
+    },
+    "result": {
+      "generating": "AI is processing the design…",
+      "generatingHint": "Generating the drawing and estimate based on your inputs.",
+      "regenerate": "Regenerate result",
+      "regenLeft": "{count} regenerations left",
+      "regenExhausted": "Regeneration limit reached — please contact support.",
+      "drawingTitle": "Layout drawing (2D)",
+      "areaTitle": "Construction area",
+      "estimateTitle": "Detailed cost estimate",
+      "estimateHint": "Hover each item to see materials and construction method.",
+      "summaryTitle": "Estimate summary",
+      "structureTitle": "Cost structure",
+      "disclaimer": "This is a reference estimate; actual costs may vary with material market and contractor.",
+      "estimatedOn": "Issued: {date}",
+      "room": {
+        "living": "Living",
+        "kitchen": "Kitchen",
+        "bedroom": "Bedroom",
+        "bath": "Bath",
+        "hall": "Hall"
+      },
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "zoomReset": "Reset",
+      "drawingHint": "Use the buttons to zoom the drawing in/out."
+    },
+    "area": {
+      "land": "Land / lot area",
+      "ground": "Ground floor built area",
+      "totalFloor": "Total built floor area",
+      "usable": "Actual usable area",
+      "floors": "Floors",
+      "height": "Estimated building height",
+      "floorsValue": "{count} floors"
+    },
+    "estimate": {
+      "tip": {
+        "material": "Suggested material",
+        "method": "Construction method",
+        "note": "Note"
+      },
+      "col": {
+        "item": "Item",
+        "quantity": "Quantity",
+        "unitPrice": "Unit price",
+        "amount": "Amount"
+      },
+      "vsBudget": "Category total",
+      "budgetUsage": "{pct}% of the selected package budget"
+    },
+    "unit": {
+      "m2": "m²",
+      "m3": "m³",
+      "kg": "kg",
+      "set": "set"
+    },
+    "items": {
+      "rough": {
+        "foundation": {
+          "name": "Foundation & base",
+          "material": "Reinforced concrete grade 250",
+          "method": "Excavate and pour reinforced concrete",
+          "note": "Depends on actual geology"
+        },
+        "frame": {
+          "name": "Structural frame",
+          "material": "Steel & concrete grade 300",
+          "method": "Cast columns, beams, slabs",
+          "note": "Per structural standards"
+        },
+        "masonry": {
+          "name": "Masonry",
+          "material": "Hollow brick, cement mortar",
+          "method": "Build and plaster walls",
+          "note": "Includes exterior and partition walls"
+        }
+      },
+      "finishing": {
+        "flooring": {
+          "name": "Flooring",
+          "material": "Granite tile / wood floor",
+          "method": "Screed base, lay finish",
+          "note": "Per budget package"
+        },
+        "painting": {
+          "name": "Painting",
+          "material": "Interior & exterior paint",
+          "method": "Putty, primer and topcoat",
+          "note": "2 standard topcoats"
+        },
+        "ceiling": {
+          "name": "Gypsum ceiling",
+          "material": "Gypsum board on frame",
+          "method": "Install ceiling, treat joints",
+          "note": "Includes recessed lights"
+        },
+        "doors": {
+          "name": "Doors & hardware",
+          "material": "Engineered wood / aluminum-glass",
+          "method": "Install doors and locks",
+          "note": "By room count"
+        }
+      },
+      "interior": {
+        "living": {
+          "name": "Living room furniture",
+          "material": "Sofa, TV cabinet, coffee table",
+          "method": "Fabricate and install",
+          "note": "Full living room set"
+        },
+        "kitchen": {
+          "name": "Kitchen cabinets",
+          "material": "Wood cabinets + stone countertop",
+          "method": "Measure, build on site",
+          "note": "Includes sink"
+        },
+        "bedroom": {
+          "name": "Bedroom furniture",
+          "material": "Bed, wardrobe, dresser",
+          "method": "Fabricate and install",
+          "note": "Full set per bedroom"
+        },
+        "lighting": {
+          "name": "Lighting & decor",
+          "material": "Decorative lights, curtains",
+          "method": "Install lighting fixtures",
+          "note": "Per design concept"
+        }
+      }
+    },
+    "render": {
+      "emptyTitle": "No render images yet",
+      "emptyHint": "Complete the AI result step to view 3D renders.",
+      "title": "3D render gallery",
+      "hint": "All images are saved to the project. Add captions and favorite them.",
+      "count": "{count} images",
+      "favCount": "{count} favorites",
+      "kind": {
+        "exterior": "Exterior",
+        "interior": "Interior"
+      },
+      "floorLabel": "Floor {floor}",
+      "favorite": "Favorite",
+      "captionPlaceholder": "Add a caption…"
+    },
+    "export": {
+      "contentTitle": "PDF content",
+      "contentHint": "Choose the sections to export.",
+      "section": {
+        "coverPage": "Cover page",
+        "projectInfo": "Project info",
+        "drawings": "Layout drawings",
+        "estimate": "Detailed estimate",
+        "summary": "Estimate summary",
+        "renders": "3D render images"
+      },
+      "languageTitle": "Language",
+      "language": {
+        "vi": "Tiếng Việt",
+        "en": "English"
+      },
+      "exportTitle": "Export file",
+      "untitled": "Untitled project",
+      "readyHint": "Your document is ready to export as PDF.",
+      "exportButton": "Export PDF",
+      "exportSuccess": "PDF exported (demo).",
+      "shareTitle": "Share",
+      "shareHint": "Share the project result with clients or contractors. The link is valid for 90 days and can be revoked anytime.",
+      "shareLink": "Create online link",
+      "shareEmail": "Send via email",
+      "shareQr": "QR code",
+      "linkCopied": "Share link copied.",
+      "emailSent": "Email sent (demo).",
+      "qrShown": "QR code generated (demo)."
+    },
+    "editWarning": {
+      "title": "Edit and re-run?",
+      "description": "Editing this information will discard the current AI result and run it again. Are you sure?",
+      "cancel": "Cancel",
+      "confirm": "Discard & edit"
+    },
+    "share": {
+      "manageLink": "Share link",
+      "linkTitle": "Public share link",
+      "linkExpiry": "Valid for 90 days. You can revoke it anytime.",
+      "copy": "Copy",
+      "copied": "Link copied.",
+      "revoke": "Revoke link",
+      "revoked": "Share link revoked.",
+      "revokedNote": "This link has been revoked and no longer works.",
+      "recreate": "Create a new link"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Manage your personal information.",
+    "detailsTitle": "Details",
+    "detailsHint": "Update your contact information and bio.",
+    "nameLabel": "Full name",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "e.g. +84 901 234 567",
+    "companyLabel": "Company",
+    "companyPlaceholder": "Company name (optional)",
+    "bioLabel": "Bio",
+    "bioPlaceholder": "A few words about you…",
+    "save": "Save changes",
+    "saved": "Profile saved.",
+    "changeAvatar": "Change avatar",
+    "avatarSoon": "Avatar upload is coming soon.",
+    "role": {
+      "guest": "Guest",
+      "customer": "Customer",
+      "admin": "Administrator"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account and app preferences.",
+    "appearance": {
+      "title": "Appearance",
+      "hint": "Customize how the app looks.",
+      "theme": "Theme",
+      "themeHint": "Light, dark or system.",
+      "language": "Language",
+      "languageHint": "The display language of the app."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "hint": "Choose which notifications you receive.",
+      "product": {
+        "label": "Product updates",
+        "desc": "New features and important announcements."
+      },
+      "project": {
+        "label": "Project activity",
+        "desc": "Updates about your projects and estimates."
+      },
+      "marketing": {
+        "label": "Marketing emails",
+        "desc": "Promotions and periodic newsletters."
+      },
+      "save": "Save",
+      "saved": "Notification preferences saved."
+    },
+    "security": {
+      "title": "Security",
+      "hint": "Change your sign-in password.",
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "submit": "Change password",
+      "changed": "Password changed.",
+      "tooShort": "New password must be at least 8 characters.",
+      "mismatch": "Confirmation password does not match."
+    },
+    "danger": {
+      "title": "Danger zone",
+      "hint": "These actions cannot be undone.",
+      "desc": "Permanently delete your account and all your data.",
+      "delete": "Delete account",
+      "confirm": "This is a demo — your account was not deleted."
+    }
+  },
+  "legal": {
+    "terms": {
+      "title": "Terms of Service",
+      "updated": "Last updated: placeholder — final copy provided by BMT Decor before go-live.",
+      "intro": "These terms govern your use of the BMT Decor AI platform. By creating an account or using the service, you agree to the terms below.",
+      "sections": [
+        {
+          "title": "1. Acceptance of terms",
+          "body": "By accessing or using the platform you agree to be bound by these Terms of Service and our Privacy Policy."
+        },
+        {
+          "title": "2. Use of the service",
+          "body": "The AI-generated drawings and cost estimates are for reference only; actual results and costs may vary. You are responsible for the accuracy of the information you provide."
+        },
+        {
+          "title": "3. Accounts",
+          "body": "You must provide accurate registration details and keep your credentials secure. You are responsible for activity under your account."
+        },
+        {
+          "title": "4. Intellectual property",
+          "body": "Content, branding and materials on the platform belong to BMT Decor unless stated otherwise."
+        },
+        {
+          "title": "5. Limitation of liability",
+          "body": "Estimates are indicative. BMT Decor is not liable for decisions made solely based on AI-generated outputs."
+        },
+        {
+          "title": "6. Contact",
+          "body": "For questions about these terms, please contact us via the channels listed on the contact section."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "updated": "Last updated: placeholder — final copy provided by BMT Decor before go-live.",
+      "intro": "This policy explains how we collect, use and protect your personal data in accordance with Vietnam's Decree 13/2023/ND-CP on personal data protection.",
+      "sections": [
+        {
+          "title": "1. Data we collect",
+          "body": "Account details (name, email, phone), floor-plan images you upload for AI processing, and contact/lead form submissions. We do not collect land-title (deed) documents."
+        },
+        {
+          "title": "2. How we use data",
+          "body": "To provide the design and estimate services, respond to your requests, and improve the platform."
+        },
+        {
+          "title": "3. Image data",
+          "body": "Uploaded floor-plan images are used only to generate drawings and renders. They are stored securely and can be deleted on request."
+        },
+        {
+          "title": "4. Data sharing",
+          "body": "We do not sell your personal data. AI processing may involve trusted providers under confidentiality obligations."
+        },
+        {
+          "title": "5. Your rights",
+          "body": "You may request access to, correction of, or deletion of your personal data at any time."
+        },
+        {
+          "title": "6. Contact",
+          "body": "For privacy requests, please contact us via the channels listed on the contact section."
+        }
+      ]
+    }
+  },
+  "leads": {
+    "title": "Leads",
+    "subtitle": "Contact-form submissions from the website.",
+    "searchPlaceholder": "Search by name, phone or email…",
+    "count": "{count} leads",
+    "markHandled": "Mark handled",
+    "handledToast": "Marked {name}'s lead as handled.",
+    "columns": {
+      "name": "Name",
+      "contact": "Contact",
+      "needType": "Need",
+      "message": "Message",
+      "status": "Status",
+      "createdAt": "Received"
+    },
+    "status": {
+      "new": "New",
+      "handled": "Handled"
+    },
+    "statusFilter": {
+      "all": "All statuses",
+      "new": "New",
+      "handled": "Handled"
+    },
+    "needType": {
+      "design": "Interior design",
+      "estimate": "Cost estimate",
+      "consult": "Consultation",
+      "construction": "Construction",
+      "other": "Other"
+    },
+    "empty": {
+      "title": "No leads",
+      "description": "No leads match your filters."
+    }
+  },
+  "gallery": {
+    "navLabel": "Library",
+    "title": "Reference library",
+    "subtitle": "Curated design references, drawings and material catalogs by BMT Decor.",
+    "searchPlaceholder": "Search references…",
+    "count": "{count} items",
+    "download": "Download",
+    "loginToDownload": "Sign in to download the original file.",
+    "downloadStarted": "Downloading \"{title}\" (demo).",
+    "style": {
+      "all": "All styles",
+      "modern": "Modern",
+      "neoclassical": "Neoclassical",
+      "scandinavian": "Scandinavian",
+      "japandi": "Japandi",
+      "indochine": "Indochine",
+      "minimalist": "Minimalist"
+    },
+    "building": {
+      "all": "All types",
+      "apartment": "Apartment",
+      "townhouse": "Townhouse",
+      "villa": "Villa"
+    },
+    "kind": {
+      "image": "Photo",
+      "drawing": "Drawing",
+      "pdf": "PDF"
+    },
+    "sort": {
+      "newest": "Newest",
+      "popular": "Most popular"
+    },
+    "empty": {
+      "title": "No references",
+      "description": "No items match your filters."
+    },
+    "admin": {
+      "title": "Reference library",
+      "subtitle": "Upload and manage design references shown on the public site."
+    },
+    "form": {
+      "add": "Add item",
+      "createTitle": "Add reference",
+      "editTitle": "Edit reference",
+      "description": "Manage a design-library item with bilingual content.",
+      "titleLabel": "Title",
+      "styleLabel": "Style",
+      "buildingLabel": "Type",
+      "kindLabel": "Kind",
+      "tagsLabel": "Tags",
+      "tagsPlaceholder": "comma, separated, tags",
+      "fileLabel": "File",
+      "fileHint": "Drag a file here or click to upload",
+      "publishLabel": "Publish (visible to public)",
+      "statusLabel": "Status",
+      "published": "Published",
+      "draft": "Hidden",
+      "togglePublish": "Toggle publish",
+      "cancel": "Cancel",
+      "save": "Save",
+      "created": "Reference added (demo).",
+      "updated": "Reference updated (demo).",
+      "deleted": "Deleted \"{title}\" (demo).",
+      "publishedToast": "Published \"{title}\" (demo).",
+      "hidden": "Hid \"{title}\" (demo)."
+    }
+  },
+  "portfolio": {
+    "title": "Featured projects",
+    "subtitle": "Reference projects designed with BMT Decor AI.",
+    "category": {
+      "all": "All",
+      "apartment": "Apartment",
+      "townhouse": "Townhouse",
+      "villa": "Villa"
+    },
+    "viewDetail": "View detail",
+    "backToList": "Back to projects",
+    "about": "About this project",
+    "gallery": "Gallery",
+    "facts": {
+      "year": "Year",
+      "location": "Location",
+      "area": "Area",
+      "style": "Style"
+    },
+    "empty": {
+      "title": "No projects",
+      "description": "No projects in this category yet."
+    },
+    "notFound": {
+      "title": "Project not found",
+      "description": "This project may have been removed."
+    },
+    "cta": {
+      "title": "Want a design like this?",
+      "subtitle": "Start your own AI-powered design in minutes.",
+      "button": "Start designing"
+    },
+    "count": "{count} projects",
+    "admin": {
+      "title": "Portfolio",
+      "subtitle": "Manage the showcase projects displayed on the public site."
+    },
+    "form": {
+      "add": "Add project",
+      "createTitle": "Add project",
+      "editTitle": "Edit project",
+      "description": "Manage a showcase project with bilingual content.",
+      "titleLabel": "Title",
+      "categoryLabel": "Type",
+      "styleLabel": "Style",
+      "yearLabel": "Year",
+      "areaLabel": "Area (m²)",
+      "locationLabel": "Location",
+      "summaryLabel": "Summary",
+      "publishLabel": "Publish (visible to public)",
+      "statusLabel": "Status",
+      "published": "Published",
+      "draft": "Hidden",
+      "togglePublish": "Toggle publish",
+      "cancel": "Cancel",
+      "save": "Save",
+      "created": "Project added (demo).",
+      "updated": "Project updated (demo).",
+      "deleted": "Deleted \"{title}\" (demo).",
+      "publishedToast": "Published \"{title}\" (demo).",
+      "hidden": "Hid \"{title}\" (demo)."
+    }
   }
 }

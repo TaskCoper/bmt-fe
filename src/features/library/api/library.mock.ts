@@ -2,14 +2,17 @@ import type { PaginatedResponse } from '@/shared/types';
 import { mockDelay, paginate } from '@/shared/lib';
 import {
   LIBRARY_CATEGORY,
+  PRICE_REGION,
   DEFAULT_LIBRARY_PAGE_SIZE,
 } from '../constants/library.constants';
 import type { LibraryItem, LibraryFilters } from '../types/library.types';
 
 const M = LIBRARY_CATEGORY;
 
-/** Sample unit-price catalogue for local development without a backend. */
-export const MOCK_LIBRARY: LibraryItem[] = [
+/** Raw rows without the derived region / price-history fields. */
+type RawItem = Omit<LibraryItem, 'region' | 'priceHistory'>;
+
+const RAW: RawItem[] = [
   {
     id: 'l-01',
     code: 'VT-001',
@@ -147,6 +150,26 @@ export const MOCK_LIBRARY: LibraryItem[] = [
   },
 ];
 
+const REGION_CYCLE = [
+  PRICE_REGION.NORTH,
+  PRICE_REGION.CENTRAL,
+  PRICE_REGION.SOUTH,
+] as const;
+
+/**
+ * Enrich raw rows with a region (cycled) and a 3-point price history so the
+ * UI can show change history (old projects pin their price at creation time).
+ */
+export const MOCK_LIBRARY: LibraryItem[] = RAW.map((item, i) => ({
+  ...item,
+  region: REGION_CYCLE[i % REGION_CYCLE.length]!,
+  priceHistory: [
+    { date: '2026-03-01T00:00:00Z', price: Math.round(item.unitPrice * 0.92) },
+    { date: '2026-05-01T00:00:00Z', price: Math.round(item.unitPrice * 0.97) },
+    { date: item.updatedAt, price: item.unitPrice },
+  ],
+}));
+
 function applyFilters(filters: LibraryFilters): LibraryItem[] {
   let items = [...MOCK_LIBRARY];
   if (filters.search) {
@@ -158,6 +181,9 @@ function applyFilters(filters: LibraryFilters): LibraryItem[] {
   }
   if (filters.category !== 'all') {
     items = items.filter((i) => i.category === filters.category);
+  }
+  if (filters.region !== 'all') {
+    items = items.filter((i) => i.region === filters.region);
   }
   return items;
 }

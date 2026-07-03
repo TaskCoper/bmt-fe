@@ -48,7 +48,7 @@ export function FeaturedProjects() {
         </div>
         <div className="mt-10 flex justify-center">
           <Button asChild variant="outline">
-            <Link href={ROUTES.PROJECTS}>{t('viewAll')}</Link>
+            <Link href={ROUTES.PORTFOLIO}>{t('viewAll')}</Link>
           </Button>
         </div>
       </div>

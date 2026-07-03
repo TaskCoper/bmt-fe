@@ -2,8 +2,17 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Search, FileCheck2, Clock, FileStack, Wallet } from 'lucide-react';
+import {
+  Search,
+  FileCheck2,
+  Clock,
+  FileStack,
+  Wallet,
+  Plus,
+} from 'lucide-react';
 
+import { Link } from '@/i18n/navigation';
+import { ROUTES } from '@/shared/constants/routes';
 import type { Locale } from '@/i18n/routing';
 import { formatCurrency, formatNumber } from '@/shared/utils';
 import {
@@ -141,6 +150,12 @@ export function EstimateList() {
             ))}
           </SelectContent>
         </Select>
+        <Button asChild>
+          <Link href={ROUTES.ESTIMATE_NEW}>
+            <Plus className="size-4" />
+            {t('createNew')}
+          </Link>
+        </Button>
       </div>
 
       {/* States */}

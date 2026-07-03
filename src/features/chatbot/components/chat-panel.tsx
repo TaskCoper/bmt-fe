@@ -13,7 +13,8 @@ import { SUGGESTIONS } from '../api/chatbot.mock';
 
 export function ChatPanel() {
   const t = useTranslations('chatbot');
-  const { messages, send, isReplying } = useChat();
+  const { messages, send, isReplying, remaining, dailyLimit, limitReached } =
+    useChat();
   const [input, setInput] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -29,7 +30,7 @@ export function ChatPanel() {
     setInput('');
   }
 
-  const showSuggestions = messages.length <= 1 && !isReplying;
+  const showSuggestions = messages.length <= 1 && !isReplying && !limitReached;
 
   return (
     <Card className="flex h-[calc(100svh-13rem)] flex-col overflow-hidden p-0">
@@ -100,29 +101,43 @@ export function ChatPanel() {
         </div>
       ) : null}
 
+      {/* Limit-reached notice */}
+      {limitReached ? (
+        <div className="border-t px-4 py-3">
+          <p className="text-destructive text-sm font-medium">
+            {t('limitReached', { limit: dailyLimit })}
+          </p>
+        </div>
+      ) : null}
+
       {/* Composer */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
           handleSend();
         }}
-        className="flex items-center gap-2 border-t p-3"
+        className="border-t p-3"
       >
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder={t('placeholder')}
-          disabled={isReplying}
-          autoComplete="off"
-        />
-        <Button
-          type="submit"
-          size="icon"
-          disabled={isReplying || !input.trim()}
-        >
-          <SendHorizonal className="size-4" />
-          <span className="sr-only">{t('send')}</span>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={t('placeholder')}
+            disabled={isReplying || limitReached}
+            autoComplete="off"
+          />
+          <Button
+            type="submit"
+            size="icon"
+            disabled={isReplying || limitReached || !input.trim()}
+          >
+            <SendHorizonal className="size-4" />
+            <span className="sr-only">{t('send')}</span>
+          </Button>
+        </div>
+        <p className="text-muted-foreground mt-2 text-right text-xs">
+          {t('remaining', { remaining, limit: dailyLimit })}
+        </p>
       </form>
     </Card>
   );

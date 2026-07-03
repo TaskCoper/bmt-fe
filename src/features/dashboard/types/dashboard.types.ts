@@ -6,14 +6,26 @@ export type RecentProjectStatus =
   | 'completed'
   | 'archived';
 
-/** Headline KPIs for the dashboard overview. */
+/** Headline KPIs for the dashboard overview (stakeholder Q&A §7.2.3). */
 export interface DashboardStats {
+  totalCustomers: number;
   totalProjects: number;
   activeProjects: number;
   totalEstimates: number;
   pendingEstimates: number;
-  libraryItems: number;
-  revenue: number;
+  /** Leads not yet marked as handled — surfaced with a red accent. */
+  unhandledLeads: number;
+  newsletterSignups: number;
+  /** Total number of AI generations consumed. */
+  aiUsage: number;
+}
+
+/** One bucket in the "created per week" bar chart (last 8 weeks). */
+export interface WeeklyPoint {
+  /** Short week label, e.g. "W23" or an ISO week start. */
+  label: string;
+  projects: number;
+  estimates: number;
 }
 
 export interface RecentProject {
@@ -33,6 +45,7 @@ export interface ActivityItem {
 /** Everything the overview screen needs in one payload. */
 export interface DashboardData {
   stats: DashboardStats;
+  weekly: WeeklyPoint[];
   recentProjects: RecentProject[];
   activity: ActivityItem[];
 }

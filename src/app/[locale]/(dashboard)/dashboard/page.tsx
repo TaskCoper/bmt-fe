@@ -5,6 +5,7 @@ import type { Locale } from '@/i18n/routing';
 import { PageHeader } from '@/shared/components/common';
 import {
   DashboardOverview,
+  WeeklyChart,
   RecentProjects,
   ActivityFeed,
 } from '@/features/dashboard';
@@ -30,6 +31,7 @@ export default async function DashboardPage({ params }: PageProps) {
     <div className="space-y-6">
       <PageHeader title={t('title')} description={t('overview')} />
       <DashboardOverview />
+      <WeeklyChart />
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <RecentProjects />
         <ActivityFeed />

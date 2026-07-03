@@ -1,5 +1,6 @@
 /** Public API of the `cms` feature. */
 export { ContentTable } from './components/content-table';
+export { ContentEditorDialog } from './components/content-editor-dialog';
 export { useContent } from './hooks/use-content';
 export { cmsApi } from './api/cms.api';
 export { cmsKeys } from './api/cms.keys';

@@ -10,9 +10,13 @@ export const QUERY_KEY_ROOTS = {
   projects: 'projects',
   estimates: 'estimates',
   library: 'library',
+  gallery: 'gallery',
+  portfolio: 'portfolio',
   chatbot: 'chatbot',
   cms: 'cms',
   users: 'users',
+  leads: 'leads',
+  dashboard: 'dashboard',
   profile: 'profile',
   settings: 'settings',
 } as const;

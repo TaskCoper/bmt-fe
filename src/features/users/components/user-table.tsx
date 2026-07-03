@@ -2,7 +2,15 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { Search, UserPlus } from 'lucide-react';
+import { toast } from 'sonner';
+import {
+  Search,
+  MoreHorizontal,
+  Lock,
+  LockOpen,
+  KeyRound,
+  Eye,
+} from 'lucide-react';
 
 import type { Locale } from '@/i18n/routing';
 import { formatDate } from '@/shared/utils';
@@ -18,14 +26,22 @@ import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Skeleton } from '@/shared/components/ui/skeleton';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/shared/components/ui/dropdown-menu';
 import { EmptyState, ErrorState } from '@/shared/components/common';
 import type { Role } from '@/shared/auth';
 import { useUsers } from '../hooks/use-users';
 import type { UserRecord, UserFilters } from '../types/user.types';
+import { AddAdminDialog } from './add-admin-dialog';
+import { UserDetailDialog } from './user-detail-dialog';
 
 const ROLE_VARIANT: Record<Role, 'default' | 'secondary' | 'outline'> = {
   admin: 'default',
-  user: 'secondary',
+  customer: 'secondary',
   guest: 'outline',
 };
 
@@ -46,6 +62,16 @@ export function UserTable() {
   const [filters, setFilters] = useState<UserFilters>(INITIAL);
   const { data, isLoading, isError, refetch } = useUsers(filters);
 
+  // UI-first mock actions — the real mutations live on the backend.
+  const toggleLock = (user: UserRecord) =>
+    toast.success(
+      user.status === 'active'
+        ? t('actions.lockedToast', { name: user.name })
+        : t('actions.unlockedToast', { name: user.name }),
+    );
+  const resetPassword = (user: UserRecord) =>
+    toast.success(t('actions.resetToast', { name: user.name }));
+
   return (
     <div className="space-y-4">
       {/* Toolbar */}
@@ -61,10 +87,7 @@ export function UserTable() {
             className="pl-9"
           />
         </div>
-        <Button>
-          <UserPlus className="size-4" />
-          {t('invite')}
-        </Button>
+        <AddAdminDialog />
       </div>
 
       {/* States */}
@@ -99,6 +122,9 @@ export function UserTable() {
                   <TableHead className="w-32 text-right">
                     {t('columns.createdAt')}
                   </TableHead>
+                  <TableHead className="w-12 text-right">
+                    <span className="sr-only">{tc('actions')}</span>
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -120,6 +146,54 @@ export function UserTable() {
                     </TableCell>
                     <TableCell className="text-muted-foreground text-right text-sm">
                       {formatDate(user.createdAt, locale)}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex justify-end gap-1">
+                        <UserDetailDialog
+                          user={user}
+                          trigger={
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              aria-label={t('detail.view')}
+                            >
+                              <Eye className="size-4" />
+                            </Button>
+                          }
+                        />
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              aria-label={tc('actions')}
+                            >
+                              <MoreHorizontal className="size-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={() => toggleLock(user)}>
+                              {user.status === 'active' ? (
+                                <>
+                                  <Lock className="size-4" />
+                                  {t('actions.lock')}
+                                </>
+                              ) : (
+                                <>
+                                  <LockOpen className="size-4" />
+                                  {t('actions.unlock')}
+                                </>
+                              )}
+                            </DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={() => resetPassword(user)}
+                            >
+                              <KeyRound className="size-4" />
+                              {t('actions.reset')}
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}

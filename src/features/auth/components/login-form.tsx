@@ -32,6 +32,7 @@ import {
   createLoginSchema,
   type LoginFormValues,
 } from '../schemas/login.schema';
+import { GoogleButton } from './google-button';
 
 /**
  * Reference form: React Hook Form + Zod (localized) + shadcn Form primitives.
@@ -39,6 +40,7 @@ import {
  */
 export function LoginForm() {
   const t = useTranslations('auth.login');
+  const tSocial = useTranslations('auth.social');
   const tv = useTranslations('validation');
   const searchParams = useSearchParams();
   const redirectTo = searchParams.get('redirect') || ROUTES.DASHBOARD;
@@ -144,6 +146,14 @@ export function LoginForm() {
             </Button>
           </form>
         </Form>
+
+        <div className="my-6 flex items-center gap-3">
+          <span className="bg-border h-px flex-1" />
+          <span className="text-muted-foreground text-xs">{tSocial('or')}</span>
+          <span className="bg-border h-px flex-1" />
+        </div>
+
+        <GoogleButton />
 
         <p className="text-muted-foreground mt-6 text-center text-sm">
           {t('noAccount')}{' '}

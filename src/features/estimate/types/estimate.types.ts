@@ -1,4 +1,9 @@
-import type { EstimateStatus } from '../constants/estimate.constants';
+import type {
+  EstimateBuilding,
+  EstimatePackageId,
+  EstimatePortion,
+  EstimateStatus,
+} from '../constants/estimate.constants';
 
 /** A cost estimate as returned by the backend. */
 export interface Estimate {
@@ -25,4 +30,28 @@ export interface EstimateFilters {
   search: string;
   status: EstimateStatus | 'all';
   page: number;
+}
+
+/** Inputs for the standalone estimate creator. */
+export interface EstimateInput {
+  area: number;
+  floors: number;
+  rooms: number;
+  building: EstimateBuilding;
+  packageId: EstimatePackageId;
+}
+
+/** A single breakdown row of a computed estimate. */
+export interface EstimateLine {
+  portion: EstimatePortion;
+  quantity: number;
+  unit: string;
+  unitPrice: number;
+  amount: number;
+}
+
+/** Result of the standalone estimate computation. */
+export interface EstimateResult {
+  lines: EstimateLine[];
+  total: number;
 }

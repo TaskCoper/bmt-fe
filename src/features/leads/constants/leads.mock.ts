@@ -1,0 +1,66 @@
+import { LEAD_STATUS } from './leads.constants';
+import type { LeadRecord } from '../types/lead.types';
+
+/** Sample leads for local development without a backend. */
+export const MOCK_LEADS: readonly LeadRecord[] = [
+  {
+    id: 'ld-01',
+    name: 'Nguyễn Thị Hồng',
+    phone: '0901 234 567',
+    email: 'hong.nguyen@gmail.com',
+    needType: 'design',
+    message: 'Cần tư vấn thiết kế nội thất căn hộ 2 phòng ngủ.',
+    status: LEAD_STATUS.NEW,
+    createdAt: '2026-06-28T02:10:00Z',
+  },
+  {
+    id: 'ld-02',
+    name: 'Trần Văn Khoa',
+    phone: '0912 888 222',
+    email: 'khoa.tran@gmail.com',
+    needType: 'estimate',
+    message: 'Xin báo giá dự toán nhà phố 3 tầng.',
+    status: LEAD_STATUS.NEW,
+    createdAt: '2026-06-27T08:45:00Z',
+  },
+  {
+    id: 'ld-03',
+    name: 'Lê Minh Tâm',
+    phone: '0987 111 333',
+    email: '',
+    needType: 'construction',
+    message: 'Muốn thi công trọn gói biệt thự.',
+    status: LEAD_STATUS.HANDLED,
+    createdAt: '2026-06-25T10:00:00Z',
+  },
+  {
+    id: 'ld-04',
+    name: 'Phạm Thu Hà',
+    phone: '0933 444 555',
+    email: 'ha.pham@gmail.com',
+    needType: 'consult',
+    message: 'Tư vấn phong cách Japandi cho căn hộ studio.',
+    status: LEAD_STATUS.NEW,
+    createdAt: '2026-06-24T14:30:00Z',
+  },
+  {
+    id: 'ld-05',
+    name: 'Vũ Đức Anh',
+    phone: '0978 222 111',
+    email: 'ducanh.vu@gmail.com',
+    needType: 'other',
+    message: 'Hỏi về dịch vụ bảo trì sau thi công.',
+    status: LEAD_STATUS.HANDLED,
+    createdAt: '2026-06-22T09:15:00Z',
+  },
+  {
+    id: 'ld-06',
+    name: 'Đỗ Quốc Bảo',
+    phone: '0966 777 888',
+    email: 'bao.do@gmail.com',
+    needType: 'estimate',
+    message: 'Cần dự toán cải tạo căn hộ chung cư 70m².',
+    status: LEAD_STATUS.NEW,
+    createdAt: '2026-06-21T03:05:00Z',
+  },
+];

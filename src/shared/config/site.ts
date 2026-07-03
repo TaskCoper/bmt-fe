@@ -9,6 +9,17 @@ export const siteConfig = {
   url: env.NEXT_PUBLIC_APP_URL,
   // Default theme handed to next-themes.
   defaultTheme: 'system' as const,
+  /**
+   * Contact & social channels. Placeholders until BMT Decor provides the real
+   * Fanpage / Zalo OA links and hotline (see stakeholder Q&A §3.3.1).
+   */
+  contact: {
+    hotline: '1900 0000',
+    email: 'hello@bmt-ai.construction',
+    zaloUrl: 'https://zalo.me/0000000000',
+    messengerUrl: 'https://m.me/bmtdecor',
+    facebookUrl: 'https://facebook.com/bmtdecor',
+  },
 } as const;
 
 export type SiteConfig = typeof siteConfig;
