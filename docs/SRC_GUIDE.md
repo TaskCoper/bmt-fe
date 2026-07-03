@@ -20,6 +20,7 @@ app/        →   features/      →   shared/
 - **`shared/`** — thứ dùng chung mọi nơi: nút bấm, HTTP client, config, types…
 
 **Quy tắc vàng:**
+
 - `app` được import `features` và `shared`.
 - `features` chỉ được import `shared` — **KHÔNG** import feature khác. Cần dùng chung thì đẩy lên `shared/`.
 - `shared` không import ngược lên.
@@ -80,16 +81,18 @@ app/[locale]/(dashboard)/dashboard/projects/page.tsx
 
 ➡️ **Mọi trang sau đăng nhập PHẢI nằm trong `(dashboard)/dashboard/<tên>/page.tsx`**, KHÔNG đặt thẳng trong `(dashboard)/<tên>/`.
 
-| Đặt file ở… | URL ra | Đúng? |
-| --- | --- | --- |
-| `(dashboard)/dashboard/projects/page.tsx` | `/dashboard/projects` | ✅ |
-| `(dashboard)/projects/page.tsx` | `/projects` (thiếu `/dashboard`) | ❌ menu trỏ `/dashboard/projects` → **404** |
+| Đặt file ở…                               | URL ra                           | Đúng?                                       |
+| ----------------------------------------- | -------------------------------- | ------------------------------------------- |
+| `(dashboard)/dashboard/projects/page.tsx` | `/dashboard/projects`            | ✅                                          |
+| `(dashboard)/projects/page.tsx`           | `/projects` (thiếu `/dashboard`) | ❌ menu trỏ `/dashboard/projects` → **404** |
 
 **Vì sao bắt buộc `/dashboard/...`:**
+
 1. Đường dẫn trong `shared/constants/routes.ts` đều dạng `/dashboard/...` — menu (`nav-config.ts`) trỏ theo đó.
 2. Middleware (`src/middleware.ts`) chỉ bảo vệ các route bắt đầu bằng `/dashboard` (xem `PROTECTED_ROUTE_PREFIXES`). Đặt sai chỗ vừa bị 404, vừa **mất luôn lớp bảo vệ**.
 
 **Checklist khi thêm trang mới sau đăng nhập:**
+
 1. Tạo `(dashboard)/dashboard/<tên>/page.tsx`.
 2. Thêm đường dẫn `/dashboard/<tên>` vào `routes.ts`.
 3. Thêm mục menu vào `nav-config.ts` (kèm `roles` nếu chỉ một số vai trò được xem).
@@ -151,16 +154,16 @@ Trang projects/page.tsx
 
 ## 6. Muốn làm X thì sửa ở đâu?
 
-| Muốn… | Vào… |
-| --- | --- |
-| Thêm trang sau đăng nhập | `src/app/[locale]/(dashboard)/dashboard/<ten>/page.tsx` ([xem mục 2b](#2b-quy-ước-route--️-dễ-vấp)) |
-| Thêm đường dẫn | `src/shared/constants/routes.ts` |
-| Thêm mục vào menu trái | `src/shared/layouts/nav-config.ts` |
-| Sửa/thêm chữ hiển thị | `messages/vi.json` **và** `messages/en.json` |
-| Thêm nút/ô input dùng chung | `src/shared/components/ui/` |
-| Thêm một tính năng nghiệp vụ mới | copy `src/features/project/` rồi đổi tên |
-| Đổi địa chỉ API / biến môi trường | `.env.local` (+ khai báo ở `shared/config/env.ts`) |
-| Sửa cách gọi API / xử lý lỗi chung | `src/shared/lib/api/` |
+| Muốn…                              | Vào…                                                                                               |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Thêm trang sau đăng nhập           | `src/app/[locale]/(dashboard)/dashboard/<ten>/page.tsx` ([xem mục 2b](#2b-quy-ước-route--️-dễ-vấp)) |
+| Thêm đường dẫn                     | `src/shared/constants/routes.ts`                                                                   |
+| Thêm mục vào menu trái             | `src/shared/layouts/nav-config.ts`                                                                 |
+| Sửa/thêm chữ hiển thị              | `messages/vi.json` **và** `messages/en.json`                                                       |
+| Thêm nút/ô input dùng chung        | `src/shared/components/ui/`                                                                        |
+| Thêm một tính năng nghiệp vụ mới   | copy `src/features/project/` rồi đổi tên                                                           |
+| Đổi địa chỉ API / biến môi trường  | `.env.local` (+ khai báo ở `shared/config/env.ts`)                                                 |
+| Sửa cách gọi API / xử lý lỗi chung | `src/shared/lib/api/`                                                                              |
 
 ---
 

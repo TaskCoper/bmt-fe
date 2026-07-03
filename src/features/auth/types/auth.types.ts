@@ -1,10 +1,10 @@
-import type { AuthUser } from '@/shared/auth';
+import type { AuthUser } from '@/shared/auth'
 
 /** Payload sent to the backend login endpoint. */
 export interface LoginPayload {
-  email: string;
-  password: string;
-  rememberMe?: boolean;
+  email: string
+  password: string
+  rememberMe?: boolean
 }
 
 /**
@@ -12,5 +12,5 @@ export interface LoginPayload {
  * backend, so the body only carries the user profile.
  */
 export interface LoginResponse {
-  user: AuthUser;
+  user: AuthUser
 }

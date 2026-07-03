@@ -1,29 +1,25 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
-import { Menu } from 'lucide-react';
+import { Menu } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { Link } from '@/i18n/navigation';
-import { useAuth } from '@/shared/auth';
-import { cn } from '@/shared/lib/utils';
-import {
-  Logo,
-  ThemeToggle,
-  LanguageSwitcher,
-} from '@/shared/components/common';
-import { Button } from '@/shared/components/ui/button';
+import { Link } from '@/i18n/navigation'
+import { useAuth } from '@/shared/auth'
+import { LanguageSwitcher, Logo, ThemeToggle } from '@/shared/components/common'
+import { Button } from '@/shared/components/ui/button'
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from '@/shared/components/ui/dialog';
-import { DASHBOARD_NAV } from './nav-config';
-import { UserMenu } from './user-menu';
+} from '@/shared/components/ui/dialog'
+import { cn } from '@/shared/lib/utils'
+import { DASHBOARD_NAV } from './nav-config'
+import { UserMenu } from './user-menu'
 
 interface DashboardHeaderProps {
   /** Logout handler forwarded to the user menu (wired by the app layer). */
-  onLogout?: () => void;
+  onLogout?: () => void
 }
 
 /**
@@ -31,8 +27,8 @@ interface DashboardHeaderProps {
  * switchers, and the user menu.
  */
 export function DashboardHeader({ onLogout }: DashboardHeaderProps) {
-  const t = useTranslations('nav');
-  const { hasAnyRole } = useAuth();
+  const t = useTranslations('nav')
+  const { hasAnyRole } = useAuth()
 
   return (
     <header className="bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-30 flex h-16 items-center gap-2 border-b px-4 backdrop-blur lg:px-6">
@@ -55,7 +51,7 @@ export function DashboardHeader({ onLogout }: DashboardHeaderProps) {
             {DASHBOARD_NAV.filter(
               (item) => !item.roles || hasAnyRole(item.roles),
             ).map((item) => {
-              const Icon = item.icon;
+              const Icon = item.icon
               return (
                 <Link
                   key={item.href}
@@ -67,7 +63,7 @@ export function DashboardHeader({ onLogout }: DashboardHeaderProps) {
                   <Icon className="size-4" />
                   {t(item.labelKey)}
                 </Link>
-              );
+              )
             })}
           </nav>
         </DialogContent>
@@ -79,5 +75,5 @@ export function DashboardHeader({ onLogout }: DashboardHeaderProps) {
         <UserMenu onLogout={onLogout} />
       </div>
     </header>
-  );
+  )
 }

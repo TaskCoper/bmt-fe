@@ -1,19 +1,15 @@
-'use client';
+'use client'
 
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import {
-  Logo,
-  ThemeToggle,
-  LanguageSwitcher,
-} from '@/shared/components/common';
-import { Button } from '@/shared/components/ui/button';
+import { Link } from '@/i18n/navigation'
+import { LanguageSwitcher, Logo, ThemeToggle } from '@/shared/components/common'
+import { Button } from '@/shared/components/ui/button'
+import { ROUTES } from '@/shared/constants/routes'
 
 /** Public marketing header used by the landing route group. */
 export function SiteHeader() {
-  const t = useTranslations('auth.login');
+  const t = useTranslations('auth.login')
 
   return (
     <header className="bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-30 border-b backdrop-blur">
@@ -30,5 +26,5 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
-  );
+  )
 }

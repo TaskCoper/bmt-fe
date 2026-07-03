@@ -1,15 +1,15 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
-import { DashboardSidebar } from './dashboard-sidebar';
-import { DashboardHeader } from './dashboard-header';
+import { DashboardHeader } from './dashboard-header'
+import { DashboardSidebar } from './dashboard-sidebar'
 
 interface DashboardLayoutProps {
-  children: ReactNode;
+  children: ReactNode
   /**
    * Logout handler wired by the app layer (the auth feature owns the flow).
    * Passed through to the header's user menu.
    */
-  onLogout?: () => void;
+  onLogout?: () => void
 }
 
 /**
@@ -27,5 +27,5 @@ export function DashboardLayout({ children, onLogout }: DashboardLayoutProps) {
         </main>
       </div>
     </div>
-  );
+  )
 }

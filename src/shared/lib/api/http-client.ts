@@ -1,11 +1,11 @@
+import { API_CONFIG } from '@/shared/config/api.config'
 import axios, {
   type AxiosInstance,
   type AxiosResponse,
   type InternalAxiosRequestConfig,
-} from 'axios';
-import { API_CONFIG } from '@/shared/config/api.config';
-import { normalizeApiError } from './api-error';
-import { refreshSession, onUnauthorized } from './auth-bridge';
+} from 'axios'
+import { normalizeApiError } from './api-error'
+import { onUnauthorized, refreshSession } from './auth-bridge'
 
 /**
  * The single Axios instance used by every feature's API layer.
@@ -16,7 +16,7 @@ export const httpClient: AxiosInstance = axios.create({
   timeout: API_CONFIG.timeout,
   withCredentials: API_CONFIG.withCredentials,
   headers: { ...API_CONFIG.headers },
-});
+})
 
 /* ---------------------------------------------------------------------------
  * REQUEST INTERCEPTOR
@@ -28,13 +28,13 @@ httpClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     if (typeof document !== 'undefined') {
       // Forward the active UI locale so the backend can localize responses.
-      const locale = document.documentElement.lang;
-      if (locale) config.headers.set('Accept-Language', locale);
+      const locale = document.documentElement.lang
+      if (locale) config.headers.set('Accept-Language', locale)
     }
-    return config;
+    return config
   },
   (error) => Promise.reject(error),
-);
+)
 
 /* ---------------------------------------------------------------------------
  * RESPONSE INTERCEPTOR
@@ -43,10 +43,10 @@ httpClient.interceptors.request.use(
  * ------------------------------------------------------------------------ */
 
 // Tracks the in-flight refresh so concurrent 401s wait for one refresh call.
-let refreshPromise: Promise<boolean> | null = null;
+let refreshPromise: Promise<boolean> | null = null
 
 interface RetryableConfig extends InternalAxiosRequestConfig {
-  _retry?: boolean;
+  _retry?: boolean
 }
 
 /**
@@ -54,17 +54,17 @@ interface RetryableConfig extends InternalAxiosRequestConfig {
  * `/auth/login` means bad credentials (not an expired session), and the
  * refresh/logout endpoints would otherwise fire a pointless refresh.
  */
-const REFRESH_EXEMPT_PATHS = ['/auth/login', '/auth/refresh', '/auth/logout'];
+const REFRESH_EXEMPT_PATHS = ['/auth/login', '/auth/refresh', '/auth/logout']
 
 function isRefreshExempt(url: string | undefined): boolean {
-  return Boolean(url) && REFRESH_EXEMPT_PATHS.some((p) => url!.includes(p));
+  return Boolean(url) && REFRESH_EXEMPT_PATHS.some((p) => url!.includes(p))
 }
 
 httpClient.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (error) => {
-    const originalRequest = error.config as RetryableConfig | undefined;
-    const status = error?.response?.status;
+    const originalRequest = error.config as RetryableConfig | undefined
+    const status = error?.response?.status
 
     // Attempt one transparent refresh + retry on expired session. Auth
     // endpoints are exempt so a login failure never masquerades as a session
@@ -75,26 +75,26 @@ httpClient.interceptors.response.use(
       !originalRequest._retry &&
       !isRefreshExempt(originalRequest.url)
     ) {
-      originalRequest._retry = true;
+      originalRequest._retry = true
 
       // Single-flight: concurrent 401s share one refresh call. `onUnauthorized`
       // is invoked inside this chain so it fires exactly ONCE per refresh
       // cycle, not once per waiting request.
       refreshPromise ??= refreshSession()
         .then((refreshed) => {
-          if (!refreshed) onUnauthorized();
-          return refreshed;
+          if (!refreshed) onUnauthorized()
+          return refreshed
         })
         .finally(() => {
-          refreshPromise = null;
-        });
+          refreshPromise = null
+        })
 
-      const refreshed = await refreshPromise;
+      const refreshed = await refreshPromise
       if (refreshed) {
-        return httpClient(originalRequest);
+        return httpClient(originalRequest)
       }
     }
 
-    return Promise.reject(normalizeApiError(error));
+    return Promise.reject(normalizeApiError(error))
   },
-);
+)

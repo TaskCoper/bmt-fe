@@ -1,13 +1,9 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { GuestRoute } from '@/shared/auth';
-import {
-  Logo,
-  ThemeToggle,
-  LanguageSwitcher,
-} from '@/shared/components/common';
+import { Link } from '@/i18n/navigation'
+import { GuestRoute } from '@/shared/auth'
+import { LanguageSwitcher, Logo, ThemeToggle } from '@/shared/components/common'
+import { ROUTES } from '@/shared/constants/routes'
 
 /**
  * Centered auth layout. `GuestRoute` keeps authenticated users out of
@@ -31,5 +27,5 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         </main>
       </div>
     </GuestRoute>
-  );
+  )
 }

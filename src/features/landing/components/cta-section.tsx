@@ -1,14 +1,14 @@
-import { useTranslations } from 'next-intl';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { Button } from '@/shared/components/ui/button';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
+import { Link } from '@/i18n/navigation'
+import { Button } from '@/shared/components/ui/button'
+import { ROUTES } from '@/shared/constants/routes'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
 
 /** Conversion band with a high-contrast surface. */
 export function CtaSection() {
-  const t = useTranslations('landing.cta');
+  const t = useTranslations('landing.cta')
 
   return (
     <section className="py-20 lg:py-28">
@@ -39,5 +39,5 @@ export function CtaSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

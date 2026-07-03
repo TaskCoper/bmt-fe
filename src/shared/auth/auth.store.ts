@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
-import { AUTH_STORAGE_KEY } from './auth.constants';
-import type { AuthStore } from './auth.types';
+import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
+import { AUTH_STORAGE_KEY } from './auth.constants'
+import type { AuthStore } from './auth.types'
 
 /**
  * Global auth store (client state).
@@ -33,4 +33,4 @@ export const useAuthStore = create<AuthStore>()(
       }),
     },
   ),
-);
+)

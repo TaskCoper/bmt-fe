@@ -1,9 +1,9 @@
-import { Badge } from '@/shared/components/ui/badge';
+import { Badge } from '@/shared/components/ui/badge'
 
 interface SectionHeadingProps {
-  badge?: string;
-  title: string;
-  subtitle?: string;
+  badge?: string
+  title: string
+  subtitle?: string
 }
 
 /** Centered section header shared across landing sections for consistency. */
@@ -26,5 +26,5 @@ export function SectionHeading({
         </p>
       ) : null}
     </div>
-  );
+  )
 }

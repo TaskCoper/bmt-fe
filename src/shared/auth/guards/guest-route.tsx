@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import { useEffect, type ReactNode } from 'react';
-import { useRouter } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { useAuth } from '../hooks/use-auth';
-import { AuthGuardFallback } from './auth-guard-fallback';
+import { useRouter } from '@/i18n/navigation'
+import { ROUTES } from '@/shared/constants/routes'
+import { useEffect, type ReactNode } from 'react'
+import { useAuth } from '../hooks/use-auth'
+import { AuthGuardFallback } from './auth-guard-fallback'
 
 interface GuestRouteProps {
-  children: ReactNode;
+  children: ReactNode
   /** Where to send already-authenticated users. Defaults to the dashboard. */
-  redirectTo?: string;
-  fallback?: ReactNode;
+  redirectTo?: string
+  fallback?: ReactNode
 }
 
 /**
@@ -26,20 +26,20 @@ export function GuestRoute({
   redirectTo = ROUTES.DASHBOARD,
   fallback,
 }: GuestRouteProps) {
-  const { isAuthenticated, isInitialized } = useAuth();
-  const router = useRouter();
+  const { isAuthenticated, isInitialized } = useAuth()
+  const router = useRouter()
 
-  const shouldRedirect = isInitialized && isAuthenticated;
+  const shouldRedirect = isInitialized && isAuthenticated
 
   useEffect(() => {
     if (shouldRedirect) {
-      router.replace(redirectTo);
+      router.replace(redirectTo)
     }
-  }, [shouldRedirect, router, redirectTo]);
+  }, [shouldRedirect, router, redirectTo])
 
   if (shouldRedirect) {
-    return <>{fallback ?? <AuthGuardFallback />}</>;
+    return <>{fallback ?? <AuthGuardFallback />}</>
   }
 
-  return <>{children}</>;
+  return <>{children}</>
 }

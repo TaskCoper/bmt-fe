@@ -1,3 +1,3 @@
-export { AppProviders } from './app-providers';
-export { ThemeProvider } from './theme-provider';
-export { QueryProvider } from './query-provider';
+export { AppProviders } from './app-providers'
+export { QueryProvider } from './query-provider'
+export { ThemeProvider } from './theme-provider'

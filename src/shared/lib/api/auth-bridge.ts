@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { API_CONFIG } from '@/shared/config/api.config';
-import { useAuthStore } from '@/shared/auth/auth.store';
+import { useAuthStore } from '@/shared/auth/auth.store'
+import { API_CONFIG } from '@/shared/config/api.config'
+import axios from 'axios'
 
 /**
  * Thin bridge between the HTTP client and the auth layer.
@@ -27,15 +27,15 @@ export async function refreshSession(): Promise<boolean> {
         withCredentials: true,
         timeout: API_CONFIG.timeout,
       },
-    );
-    return true;
+    )
+    return true
   } catch {
     // TODO: integrate real refresh contract / error reporting.
-    return false;
+    return false
   }
 }
 
 /** Called when the session is irrecoverable — clear client auth state. */
 export function onUnauthorized(): void {
-  useAuthStore.getState().reset();
+  useAuthStore.getState().reset()
 }

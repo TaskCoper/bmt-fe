@@ -1,38 +1,38 @@
-'use client';
+'use client'
 
-import { useTranslations, useLocale } from 'next-intl';
 import {
-  FolderKanban,
   Calculator,
+  FolderKanban,
   Library,
   UserPlus,
   type LucideIcon,
-} from 'lucide-react';
+} from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 
-import type { Locale } from '@/i18n/routing';
-import { formatDate } from '@/shared/utils';
+import type { Locale } from '@/i18n/routing'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
-import { Skeleton } from '@/shared/components/ui/skeleton';
-import { useDashboard } from '../hooks/use-dashboard';
-import type { ActivityItem } from '../types/dashboard.types';
+} from '@/shared/components/ui/card'
+import { Skeleton } from '@/shared/components/ui/skeleton'
+import { formatDate } from '@/shared/utils'
+import { useDashboard } from '../hooks/use-dashboard'
+import type { ActivityItem } from '../types/dashboard.types'
 
 const KIND_ICON: Record<ActivityItem['kind'], LucideIcon> = {
   project: FolderKanban,
   estimate: Calculator,
   library: Library,
   user: UserPlus,
-};
+}
 
 /** Recent activity timeline for the dashboard. */
 export function ActivityFeed() {
-  const t = useTranslations('dashboard');
-  const locale = useLocale() as Locale;
-  const { data, isLoading } = useDashboard();
+  const t = useTranslations('dashboard')
+  const locale = useLocale() as Locale
+  const { data, isLoading } = useDashboard()
 
   return (
     <Card>
@@ -45,7 +45,7 @@ export function ActivityFeed() {
               <Skeleton key={i} className="h-10 w-full" />
             ))
           : data.activity.map((item) => {
-              const Icon = KIND_ICON[item.kind];
+              const Icon = KIND_ICON[item.kind]
               return (
                 <div key={item.id} className="flex items-start gap-3">
                   <div className="bg-muted text-muted-foreground mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full">
@@ -63,9 +63,9 @@ export function ActivityFeed() {
                     </p>
                   </div>
                 </div>
-              );
+              )
             })}
       </CardContent>
     </Card>
-  );
+  )
 }

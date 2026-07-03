@@ -1,5 +1,5 @@
-import { QUERY_KEY_ROOTS } from '@/shared/constants/query-keys';
-import type { EstimateFilters } from '../types/estimate.types';
+import { QUERY_KEY_ROOTS } from '@/shared/constants/query-keys'
+import type { EstimateFilters } from '../types/estimate.types'
 
 /** Hierarchical query-key factory for the estimate feature. */
 export const estimateKeys = {
@@ -8,4 +8,4 @@ export const estimateKeys = {
   list: (filters: EstimateFilters) =>
     [...estimateKeys.lists(), filters] as const,
   summary: () => [...estimateKeys.all, 'summary'] as const,
-};
+}

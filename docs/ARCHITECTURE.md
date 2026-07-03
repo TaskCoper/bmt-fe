@@ -23,8 +23,8 @@ Allowed import directions (a layer may import the ones to its right):
 
 | From \ May import | shared | features | app |
 | ----------------- | :----: | :------: | :-: |
-| **app**           |   ✅   |    ✅    | —   |
-| **features**      |   ✅   |    ❌*   | ❌  |
+| **app**           |   ✅   |    ✅    |  —  |
+| **features**      |   ✅   |   ❌\*   | ❌  |
 | **shared**        |   ✅   |    ❌    | ❌  |
 
 \* **No cross-feature imports.** A feature must never import another feature's
@@ -35,11 +35,11 @@ Everything is imported through **barrels** (`index.ts`):
 
 ```ts
 // ✅ good
-import { LoginForm } from '@/features/auth';
-import { Button } from '@/shared/components/ui';
+import { LoginForm } from '@/features/auth'
+import { Button } from '@/shared/components/ui'
 
 // ❌ bad — reaching into internals
-import { LoginForm } from '@/features/auth/components/login-form';
+import { LoginForm } from '@/features/auth/components/login-form'
 ```
 
 ## 3. Feature anatomy
@@ -62,21 +62,21 @@ project/
 
 ## 4. Naming conventions
 
-| Thing                     | Convention            | Example                       |
-| ------------------------- | --------------------- | ----------------------------- |
-| Files (components)        | kebab-case            | `login-form.tsx`              |
-| Files (hooks)             | kebab-case `use-*`    | `use-projects.ts`             |
-| Files (stores)            | `*.store.ts`          | `project-filters.store.ts`    |
-| Files (api / keys)        | `*.api.ts` / `*.keys.ts` | `project.api.ts`           |
-| Files (schemas)           | `*.schema.ts`         | `login.schema.ts`             |
-| React components          | PascalCase            | `ProjectList`                 |
-| Hooks                     | camelCase `use*`      | `useProjects`                 |
-| Variables / functions     | camelCase             | `getCurrentUser`              |
-| Types / interfaces        | PascalCase            | `ProjectFilters`              |
-| Constants / enums         | UPPER_SNAKE_CASE      | `PROJECT_STATUS`              |
-| Zustand stores            | `useXStore`           | `useAuthStore`                |
-| Query key factories       | `xKeys`               | `projectKeys`                 |
-| Translation keys          | `namespace.dot.case`  | `auth.login.title`            |
+| Thing                 | Convention               | Example                    |
+| --------------------- | ------------------------ | -------------------------- |
+| Files (components)    | kebab-case               | `login-form.tsx`           |
+| Files (hooks)         | kebab-case `use-*`       | `use-projects.ts`          |
+| Files (stores)        | `*.store.ts`             | `project-filters.store.ts` |
+| Files (api / keys)    | `*.api.ts` / `*.keys.ts` | `project.api.ts`           |
+| Files (schemas)       | `*.schema.ts`            | `login.schema.ts`          |
+| React components      | PascalCase               | `ProjectList`              |
+| Hooks                 | camelCase `use*`         | `useProjects`              |
+| Variables / functions | camelCase                | `getCurrentUser`           |
+| Types / interfaces    | PascalCase               | `ProjectFilters`           |
+| Constants / enums     | UPPER_SNAKE_CASE         | `PROJECT_STATUS`           |
+| Zustand stores        | `useXStore`              | `useAuthStore`             |
+| Query key factories   | `xKeys`                  | `projectKeys`              |
+| Translation keys      | `namespace.dot.case`     | `auth.login.title`         |
 
 ## 5. State management
 

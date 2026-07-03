@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { useSyncExternalStore } from 'react';
+import { useSyncExternalStore } from 'react'
 
-const emptySubscribe = () => () => {};
-const getClientSnapshot = () => true;
-const getServerSnapshot = () => false;
+const emptySubscribe = () => () => {}
+const getClientSnapshot = () => true
+const getServerSnapshot = () => false
 
 /**
  * Returns `true` after the component has mounted on the client.
@@ -16,5 +16,5 @@ export function useMounted(): boolean {
     emptySubscribe,
     getClientSnapshot,
     getServerSnapshot,
-  );
+  )
 }

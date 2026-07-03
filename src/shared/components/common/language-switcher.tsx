@@ -1,32 +1,32 @@
-'use client';
+'use client'
 
-import { useLocale, useTranslations } from 'next-intl';
-import { useTransition } from 'react';
-import { Globe } from 'lucide-react';
+import { Globe } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
+import { useTransition } from 'react'
 
-import { usePathname, useRouter } from '@/i18n/navigation';
-import { LOCALES, type Locale } from '@/i18n/routing';
-import { Button } from '@/shared/components/ui/button';
+import { usePathname, useRouter } from '@/i18n/navigation'
+import { LOCALES, type Locale } from '@/i18n/routing'
+import { Button } from '@/shared/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/shared/components/ui/dropdown-menu';
+} from '@/shared/components/ui/dropdown-menu'
 
 /** Switches the active locale while preserving the current route. */
 export function LanguageSwitcher() {
-  const t = useTranslations('language');
-  const activeLocale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
+  const t = useTranslations('language')
+  const activeLocale = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
+  const [isPending, startTransition] = useTransition()
 
   function onSelect(locale: Locale) {
     startTransition(() => {
       // `pathname` from next-intl navigation is already locale-agnostic.
-      router.replace(pathname, { locale });
-    });
+      router.replace(pathname, { locale })
+    })
   }
 
   return (
@@ -55,5 +55,5 @@ export function LanguageSwitcher() {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

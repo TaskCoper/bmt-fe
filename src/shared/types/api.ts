@@ -6,42 +6,42 @@
 
 /** Standard success envelope. */
 export interface ApiResponse<TData = unknown> {
-  data: TData;
-  message?: string;
-  success: boolean;
+  data: TData
+  message?: string
+  success: boolean
 }
 
 /** Normalized error shape produced by the response interceptor. */
 export interface ApiError {
   /** HTTP status code, or 0 for network/timeout failures. */
-  status: number;
+  status: number
   /** Machine-readable error code from the backend, when available. */
-  code?: string;
+  code?: string
   /** Human-readable message (already localized server-side or generic). */
-  message: string;
+  message: string
   /** Field-level validation errors keyed by field name. */
-  errors?: Record<string, string[]>;
+  errors?: Record<string, string[]>
 }
 
 /** Cursor/page metadata returned by paginated list endpoints. */
 export interface PaginationMeta {
-  page: number;
-  pageSize: number;
-  totalItems: number;
-  totalPages: number;
+  page: number
+  pageSize: number
+  totalItems: number
+  totalPages: number
 }
 
 /** A page of results plus its metadata. */
 export interface PaginatedResponse<TItem> {
-  items: TItem[];
-  meta: PaginationMeta;
+  items: TItem[]
+  meta: PaginationMeta
 }
 
 /** Query parameters accepted by paginated list endpoints. */
 export interface PaginationParams {
-  page?: number;
-  pageSize?: number;
-  search?: string;
-  sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  page?: number
+  pageSize?: number
+  search?: string
+  sortBy?: string
+  sortOrder?: 'asc' | 'desc'
 }

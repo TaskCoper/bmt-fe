@@ -1,5 +1,5 @@
-import { ROLES } from '@/shared/auth';
-import type { UserRecord } from '../types/user.types';
+import { ROLES } from '@/shared/auth'
+import type { UserRecord } from '../types/user.types'
 
 /**
  * Placeholder user list for the admin screen while there is no backend.
@@ -70,4 +70,4 @@ export const MOCK_USERS: readonly UserRecord[] = [
     status: 'active',
     createdAt: '2026-05-11T03:00:00Z',
   },
-];
+]

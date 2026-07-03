@@ -1,14 +1,14 @@
-import type { PaginatedResponse } from '@/shared/types';
-import { mockDelay, paginate } from '@/shared/lib';
+import { mockDelay, paginate } from '@/shared/lib'
+import type { PaginatedResponse } from '@/shared/types'
 import {
   CONTENT_STATUS,
   CONTENT_TYPE,
   DEFAULT_CMS_PAGE_SIZE,
-} from '../constants/cms.constants';
-import type { ContentEntry, ContentFilters } from '../types/cms.types';
+} from '../constants/cms.constants'
+import type { ContentEntry, ContentFilters } from '../types/cms.types'
 
-const S = CONTENT_STATUS;
-const T = CONTENT_TYPE;
+const S = CONTENT_STATUS
+const T = CONTENT_TYPE
 
 /** Sample CMS entries for local development without a backend. */
 export const MOCK_CONTENT: ContentEntry[] = [
@@ -92,25 +92,25 @@ export const MOCK_CONTENT: ContentEntry[] = [
     author: 'Trần Thị Bình',
     updatedAt: '2026-06-21T03:00:00Z',
   },
-];
+]
 
 function applyFilters(filters: ContentFilters): ContentEntry[] {
-  let items = [...MOCK_CONTENT];
+  let items = [...MOCK_CONTENT]
   if (filters.search) {
-    const q = filters.search.toLowerCase();
-    items = items.filter((c) => c.title.toLowerCase().includes(q));
+    const q = filters.search.toLowerCase()
+    items = items.filter((c) => c.title.toLowerCase().includes(q))
   }
   if (filters.status !== 'all') {
-    items = items.filter((c) => c.status === filters.status);
+    items = items.filter((c) => c.status === filters.status)
   }
-  return items;
+  return items
 }
 
 export const mockCmsApi = {
   async list(
     filters: ContentFilters,
   ): Promise<PaginatedResponse<ContentEntry>> {
-    await mockDelay();
-    return paginate(applyFilters(filters), filters.page, DEFAULT_CMS_PAGE_SIZE);
+    await mockDelay()
+    return paginate(applyFilters(filters), filters.page, DEFAULT_CMS_PAGE_SIZE)
   },
-};
+}

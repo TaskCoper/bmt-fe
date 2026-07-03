@@ -1,11 +1,11 @@
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react'
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils'
 
 interface LoadingSpinnerProps {
-  className?: string;
+  className?: string
   /** Accessible label announced to screen readers. */
-  label?: string;
+  label?: string
 }
 
 /** Centered, accessible loading indicator. */
@@ -22,5 +22,5 @@ export function LoadingSpinner({
       <Loader2 className="text-muted-foreground size-5 animate-spin" />
       <span className="sr-only">{label}</span>
     </div>
-  );
+  )
 }

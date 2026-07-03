@@ -1,19 +1,19 @@
-'use client';
+'use client'
 
-import { AlertTriangle } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { AlertTriangle } from 'lucide-react'
+import type { ReactNode } from 'react'
 
-import { cn } from '@/shared/lib/utils';
-import { Button } from '@/shared/components/ui/button';
+import { Button } from '@/shared/components/ui/button'
+import { cn } from '@/shared/lib/utils'
 
 interface ErrorStateProps {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
   /** Label for the retry button. When omitted, no button is shown. */
-  retryLabel?: string;
-  onRetry?: () => void;
-  action?: ReactNode;
-  className?: string;
+  retryLabel?: string
+  onRetry?: () => void
+  action?: ReactNode
+  className?: string
 }
 
 /** Consistent inline error display with an optional retry action. */
@@ -53,5 +53,5 @@ export function ErrorState({
         </div>
       ) : null}
     </div>
-  );
+  )
 }

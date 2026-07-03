@@ -1,5 +1,5 @@
-import type { Project } from '../types/project.types';
-import { PROJECT_STATUS } from '../constants/project.constants';
+import { PROJECT_STATUS } from '../constants/project.constants'
+import type { Project } from '../types/project.types'
 
 /**
  * Pure business logic for the project feature.
@@ -17,4 +17,4 @@ export const projectService = {
       (a, b) =>
         new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
     ),
-};
+}

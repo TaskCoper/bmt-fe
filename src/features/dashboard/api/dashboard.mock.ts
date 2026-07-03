@@ -1,5 +1,5 @@
-import { mockDelay } from '@/shared/lib';
-import type { DashboardData } from '../types/dashboard.types';
+import { mockDelay } from '@/shared/lib'
+import type { DashboardData } from '../types/dashboard.types'
 
 /** Sample dashboard payload for local development without a backend. */
 const MOCK_DASHBOARD: DashboardData = {
@@ -87,11 +87,11 @@ const MOCK_DASHBOARD: DashboardData = {
       at: '2026-06-21T14:45:00Z',
     },
   ],
-};
+}
 
 export const mockDashboardApi = {
   async getOverview(): Promise<DashboardData> {
-    await mockDelay();
-    return MOCK_DASHBOARD;
+    await mockDelay()
+    return MOCK_DASHBOARD
   },
-};
+}

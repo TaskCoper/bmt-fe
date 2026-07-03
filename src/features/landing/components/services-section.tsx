@@ -1,22 +1,22 @@
-import { useTranslations } from 'next-intl';
 import {
-  MessagesSquare,
-  Calculator,
-  LayoutTemplate,
-  FolderKanban,
-  Library,
   Bot,
+  Calculator,
+  FolderKanban,
+  LayoutTemplate,
+  Library,
+  MessagesSquare,
   type LucideIcon,
-} from 'lucide-react';
+} from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
-import { SectionHeading } from './section-heading';
+} from '@/shared/components/ui/card'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
+import { SectionHeading } from './section-heading'
 
 type ServiceKey =
   | 'consult'
@@ -24,7 +24,7 @@ type ServiceKey =
   | 'design'
   | 'manage'
   | 'library'
-  | 'support';
+  | 'support'
 
 const SERVICES: { key: ServiceKey; icon: LucideIcon }[] = [
   { key: 'consult', icon: MessagesSquare },
@@ -33,11 +33,11 @@ const SERVICES: { key: ServiceKey; icon: LucideIcon }[] = [
   { key: 'manage', icon: FolderKanban },
   { key: 'library', icon: Library },
   { key: 'support', icon: Bot },
-];
+]
 
 /** Services grid — six cards composed from shadcn Card primitives. */
 export function ServicesSection() {
-  const t = useTranslations('landing.services');
+  const t = useTranslations('landing.services')
 
   return (
     <section id={LANDING_SECTIONS.services} className="py-20 lg:py-28">
@@ -67,5 +67,5 @@ export function ServicesSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

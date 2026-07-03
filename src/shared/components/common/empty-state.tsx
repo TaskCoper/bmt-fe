@@ -1,16 +1,16 @@
-import type { LucideIcon } from 'lucide-react';
-import { Inbox } from 'lucide-react';
-import type { ReactNode } from 'react';
+import type { LucideIcon } from 'lucide-react'
+import { Inbox } from 'lucide-react'
+import type { ReactNode } from 'react'
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils'
 
 interface EmptyStateProps {
-  icon?: LucideIcon;
-  title: string;
-  description?: string;
+  icon?: LucideIcon
+  title: string
+  description?: string
   /** Primary action (e.g. a "Create" button). */
-  action?: ReactNode;
-  className?: string;
+  action?: ReactNode
+  className?: string
 }
 
 /**
@@ -41,5 +41,5 @@ export function EmptyState({
       ) : null}
       {action ? <div className="mt-6">{action}</div> : null}
     </div>
-  );
+  )
 }

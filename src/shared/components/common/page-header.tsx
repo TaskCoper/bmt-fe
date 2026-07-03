@@ -1,13 +1,13 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils'
 
 interface PageHeaderProps {
-  title: string;
-  description?: string;
+  title: string
+  description?: string
   /** Right-aligned actions (buttons, menus). */
-  actions?: ReactNode;
-  className?: string;
+  actions?: ReactNode
+  className?: string
 }
 
 /** Standard page heading block used at the top of dashboard pages. */
@@ -34,5 +34,5 @@ export function PageHeader({
         <div className="flex items-center gap-2">{actions}</div>
       ) : null}
     </div>
-  );
+  )
 }

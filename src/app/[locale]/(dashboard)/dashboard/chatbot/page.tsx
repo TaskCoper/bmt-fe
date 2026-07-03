@@ -1,27 +1,27 @@
-import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
-import type { Locale } from '@/i18n/routing';
-import { PageHeader } from '@/shared/components/common';
-import { ChatPanel } from '@/features/chatbot';
+import { ChatPanel } from '@/features/chatbot'
+import type { Locale } from '@/i18n/routing'
+import { PageHeader } from '@/shared/components/common'
 
 interface PageProps {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: Locale }>
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'nav' });
-  return { title: t('chatbot') };
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'nav' })
+  return { title: t('chatbot') }
 }
 
 export default async function ChatbotPage({ params }: PageProps) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const tNav = await getTranslations({ locale, namespace: 'nav' });
-  const tPages = await getTranslations({ locale, namespace: 'pages' });
+  const { locale } = await params
+  setRequestLocale(locale)
+  const tNav = await getTranslations({ locale, namespace: 'nav' })
+  const tPages = await getTranslations({ locale, namespace: 'pages' })
 
   return (
     <div className="space-y-6">
@@ -31,5 +31,5 @@ export default async function ChatbotPage({ params }: PageProps) {
       />
       <ChatPanel />
     </div>
-  );
+  )
 }

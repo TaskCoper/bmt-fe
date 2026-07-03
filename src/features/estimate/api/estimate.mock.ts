@@ -1,14 +1,14 @@
-import type { PaginatedResponse } from '@/shared/types';
-import { mockDelay, paginate } from '@/shared/lib';
+import { mockDelay, paginate } from '@/shared/lib'
+import type { PaginatedResponse } from '@/shared/types'
 import {
-  ESTIMATE_STATUS,
   DEFAULT_ESTIMATE_PAGE_SIZE,
-} from '../constants/estimate.constants';
+  ESTIMATE_STATUS,
+} from '../constants/estimate.constants'
 import type {
   Estimate,
   EstimateFilters,
   EstimateSummary,
-} from '../types/estimate.types';
+} from '../types/estimate.types'
 
 /** Sample estimates for local development without a backend. */
 export const MOCK_ESTIMATES: Estimate[] = [
@@ -132,37 +132,37 @@ export const MOCK_ESTIMATES: Estimate[] = [
     itemsCount: 24,
     createdAt: '2025-11-15T03:00:00Z',
   },
-];
+]
 
 function applyFilters(filters: EstimateFilters): Estimate[] {
-  let items = [...MOCK_ESTIMATES];
+  let items = [...MOCK_ESTIMATES]
   if (filters.search) {
-    const q = filters.search.toLowerCase();
+    const q = filters.search.toLowerCase()
     items = items.filter(
       (e) =>
         e.name.toLowerCase().includes(q) ||
         e.code.toLowerCase().includes(q) ||
         e.projectName.toLowerCase().includes(q),
-    );
+    )
   }
   if (filters.status !== 'all') {
-    items = items.filter((e) => e.status === filters.status);
+    items = items.filter((e) => e.status === filters.status)
   }
-  return items;
+  return items
 }
 
 export const mockEstimateApi = {
   async list(filters: EstimateFilters): Promise<PaginatedResponse<Estimate>> {
-    await mockDelay();
+    await mockDelay()
     return paginate(
       applyFilters(filters),
       filters.page,
       DEFAULT_ESTIMATE_PAGE_SIZE,
-    );
+    )
   },
 
   async getSummary(): Promise<EstimateSummary> {
-    await mockDelay(250);
+    await mockDelay(250)
     return {
       total: MOCK_ESTIMATES.length,
       approved: MOCK_ESTIMATES.filter((e) => e.status === 'approved').length,
@@ -171,6 +171,6 @@ export const mockEstimateApi = {
         (sum, e) => sum + e.total,
         0,
       ),
-    };
+    }
   },
-};
+}

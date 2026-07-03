@@ -1,18 +1,18 @@
-import { useTranslations } from 'next-intl';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { Link } from '@/i18n/navigation';
-import { ROUTES } from '@/shared/constants/routes';
-import { Badge } from '@/shared/components/ui/badge';
-import { Button } from '@/shared/components/ui/button';
-import { LANDING_SECTIONS } from '../constants/landing.constants';
+import { Link } from '@/i18n/navigation'
+import { Badge } from '@/shared/components/ui/badge'
+import { Button } from '@/shared/components/ui/button'
+import { ROUTES } from '@/shared/constants/routes'
+import { LANDING_SECTIONS } from '../constants/landing.constants'
 
 /**
  * Marketing hero. Server-rendered, fully translated, restrained accents —
  * a subtle radial backdrop keeps it premium without flashy gradients.
  */
 export function LandingHero() {
-  const t = useTranslations('landing.hero');
+  const t = useTranslations('landing.hero')
 
   return (
     <section
@@ -45,5 +45,5 @@ export function LandingHero() {
         </div>
       </div>
     </section>
-  );
+  )
 }

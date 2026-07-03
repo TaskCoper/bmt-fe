@@ -1,15 +1,15 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
 
-import { LANDING_SECTIONS } from '../constants/landing.constants';
-import { SectionHeading } from './section-heading';
+import { LANDING_SECTIONS } from '../constants/landing.constants'
+import { SectionHeading } from './section-heading'
 
-type StepKey = 'step1' | 'step2' | 'step3' | 'step4';
+type StepKey = 'step1' | 'step2' | 'step3' | 'step4'
 
-const STEPS: StepKey[] = ['step1', 'step2', 'step3', 'step4'];
+const STEPS: StepKey[] = ['step1', 'step2', 'step3', 'step4']
 
 /** "How it works" — the 4-step reference-estimate flow. */
 export function ProcessSection() {
-  const t = useTranslations('landing.process');
+  const t = useTranslations('landing.process')
 
   return (
     <section
@@ -39,5 +39,5 @@ export function ProcessSection() {
         </ol>
       </div>
     </section>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import { siteConfig } from '@/shared/config/site';
-import { Logo } from '@/shared/components/common';
+import { Logo } from '@/shared/components/common'
+import { siteConfig } from '@/shared/config/site'
 
 /** Public marketing footer used by the landing route group. */
 export function SiteFooter() {
@@ -12,5 +12,5 @@ export function SiteFooter() {
         </p>
       </div>
     </footer>
-  );
+  )
 }
