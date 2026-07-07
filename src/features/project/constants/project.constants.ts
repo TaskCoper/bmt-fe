@@ -5,7 +5,7 @@ export const PROJECT_STATUS = {
   ACTIVE: 'active',
   ON_HOLD: 'on_hold',
   COMPLETED: 'completed',
-  ARCHIVED: 'archived',
+  ARCHIVED: 'archived'
 } as const
 
 export type ProjectStatus = (typeof PROJECT_STATUS)[keyof typeof PROJECT_STATUS]

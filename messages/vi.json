@@ -351,6 +351,7 @@
     }
   },
   "project": {
+    "title": "Dự án của tôi",
     "subtitle": "Quản lý và theo dõi các dự án xây dựng.",
     "searchPlaceholder": "Tìm dự án…",
     "count": "{count} dự án",
@@ -371,7 +372,37 @@
       "title": "Chưa có dự án",
       "description": "Không tìm thấy dự án phù hợp bộ lọc."
     },
-    "createNew": "Tạo dự án mới"
+    "createNew": "Tạo dự án mới",
+    "create": "Tạo dự án",
+    "cancel": "Hủy",
+    "houseType": {
+      "Appartment": "Căn hộ",
+      "Villa": "Biệt thự",
+      "Townhouse": "Nhà phố"
+    },
+    "dialog": {
+      "title": "Dự án",
+      "description": "Tạo dự án mới cho ngôi nhà trong mơ của bạn."
+    },
+    "form": {
+      "name": "Tên dự án",
+      "namePlaceholder": "Nhập tên dự án của bạn",
+      "houseType": "Loại nhà",
+      "description": "Mô tả",
+      "descriptionPlaceholder": "Mô tả sơ bộ về dự án của bạn",
+      "descriptionHint": "Sẽ hiện thị công khai trên dự án của bạn",
+      "charCount": "{count}/{max} ký tự"
+    },
+    "card": {
+      "mockName": "Nhà biệt thự quận 7",
+      "mockAddress": "Số 72 Lê Thánh Tôn, phường Sài Gòn, Hồ Chí Minh",
+      "mockDescription": "Nhà to, vườn rộng, nhiều thứ ăn chơi, đón ánh sáng tự nhiên",
+      "imageAlt": {
+        "Appartment": "Ảnh minh họa căn hộ",
+        "Villa": "Ảnh minh họa biệt thự",
+        "Townhouse": "Ảnh minh họa nhà phố"
+      }
+    }
   },
   "estimate": {
     "subtitle": "Lập và quản lý dự toán chi phí công trình.",

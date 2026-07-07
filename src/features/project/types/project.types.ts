@@ -22,3 +22,11 @@ export interface ProjectFilters {
   status: ProjectStatus | 'all'
   page: number
 }
+
+export const HouseType = {
+  Appartment: 'Appartment',
+  Villa: 'Villa',
+  Townhouse: 'Townhouse'
+} as const
+
+export type HouseType = (typeof HouseType)[keyof typeof HouseType]

@@ -351,6 +351,7 @@
     }
   },
   "project": {
+    "title": "My projects",
     "subtitle": "Manage and track construction projects.",
     "searchPlaceholder": "Search projects…",
     "count": "{count} projects",
@@ -371,7 +372,37 @@
       "title": "No projects",
       "description": "No projects match your filters."
     },
-    "createNew": "New project"
+    "createNew": "New project",
+    "create": "Create project",
+    "cancel": "Cancel",
+    "houseType": {
+      "Appartment": "Apartment",
+      "Villa": "Villa",
+      "Townhouse": "Townhouse"
+    },
+    "dialog": {
+      "title": "Project",
+      "description": "Create a new project for your dream home."
+    },
+    "form": {
+      "name": "Project name",
+      "namePlaceholder": "Enter your project name",
+      "houseType": "House type",
+      "description": "Description",
+      "descriptionPlaceholder": "A brief description of your project",
+      "descriptionHint": "Will be shown publicly on your project",
+      "charCount": "{count}/{max} characters"
+    },
+    "card": {
+      "mockName": "District 7 Villa",
+      "mockAddress": "72 Le Thanh Ton, Sai Gon Ward, Ho Chi Minh City",
+      "mockDescription": "Spacious home with a large garden, plenty of amenities, and natural light",
+      "imageAlt": {
+        "Appartment": "Apartment project preview",
+        "Villa": "Villa project preview",
+        "Townhouse": "Townhouse project preview"
+      }
+    }
   },
   "estimate": {
     "subtitle": "Create and manage construction cost estimates.",
