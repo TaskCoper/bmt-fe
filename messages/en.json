@@ -453,7 +453,34 @@
       },
       "colorLabel": "Primary color",
       "spaces": {
-        "subtitle": "Set up spaces for this project"
+        "title": "Space information & layout images",
+        "subtitle": "Upload layout images in floor order and describe the real space.",
+        "descriptionLabel": "Actual space description",
+        "descriptionPlaceholder": "e.g. Ground floor includes living room, open kitchen, and a rear skylight...",
+        "uploadTitle": "Layout images by floor",
+        "uploadHint": "Uploaded images are only floor layout images showing each level's floor plan.",
+        "groundFloor": "Ground floor",
+        "upperFloor": "Floor {index}",
+        "dropTitle": "Drag-and-drop a layout image here",
+        "dropHint": "JPG, PNG or HEIC. Each floor needs 1 layout image.",
+        "replaceImage": "Click or drag a new image to replace it",
+        "removeImage": "Remove image",
+        "missingDesignRequest": "Complete the design request step before entering space information.",
+        "unsupportedImage": "\"{name}\" is not a supported image format.",
+        "saved": "Space information saved"
+      },
+      "aiDesignResult": {
+        "title": "AI design result & estimate consultation file",
+        "subtitle": "Generate AI design output and prepare the estimate consultation file from the saved project inputs.",
+        "missingSpaces": "Complete the space information step before generating the design result.",
+        "readyTitle": "Inputs are ready",
+        "readyDescription": "Design request, space description, and layout images have been saved.",
+        "designOutputTitle": "AI design result",
+        "designOutputDescription": "Compile a design direction from the floor plans and selected style.",
+        "estimateProfileTitle": "Estimate consultation file",
+        "estimateProfileDescription": "Prepare the inputs for budget consultation and construction scope.",
+        "summary": "The next action will use the project data to generate design results and consultation materials.",
+        "generate": "Generate result"
       }
     },
     "card": {

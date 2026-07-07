@@ -48,3 +48,34 @@ export type CreateProjectFormValues = z.infer<ReturnType<typeof createProjectSch
 export type DesignRequestFormValues = z.infer<ReturnType<typeof designRequestSchema>>
 export type DesignRequestPayload = DesignRequestFormValues['designRequest']
 export type FloorPayload = DesignRequestPayload['floors'][number]
+
+export interface SpacesSchemaMessages {
+  required: string
+}
+
+const spaceImageSchema = z.object({
+  name: z.string().min(1),
+  type: z.string().min(1),
+  size: z.number().nonnegative(),
+  previewUrl: z.string().min(1)
+})
+
+export const spacesSchema = (m: SpacesSchemaMessages) => {
+  return z.object({
+    spaces: z.object({
+      description: z.string().min(1, { message: m.required }),
+      floors: z
+        .array(
+          z.object({
+            floorIndex: z.number().int().nonnegative(),
+            layoutImage: spaceImageSchema.nullable().refine((image) => Boolean(image), { message: m.required })
+          })
+        )
+        .min(1, { message: m.required })
+    })
+  })
+}
+
+export type SpacesFormValues = z.infer<ReturnType<typeof spacesSchema>>
+export type SpacesPayload = SpacesFormValues['spaces']
+export type SpaceImagePayload = NonNullable<SpacesPayload['floors'][number]['layoutImage']>

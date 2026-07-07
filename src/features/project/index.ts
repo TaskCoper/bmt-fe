@@ -16,6 +16,7 @@ export { projectApi } from './api/project.api'
 export { projectKeys } from './api/project.keys'
 export { default as CreateProjectDialog } from './components/create-project/create-project-dialog'
 export { default as DesignRequestForm } from './components/create-project/design-request-form'
+export { default as ProjectAIDesignResult } from './components/project-ai-design-result'
 export { default as ProjectCard } from './components/project-card'
 export { default as ProjectDetail } from './components/project-detail'
 export { default as ProjectGrid } from './components/project-grid'
@@ -29,9 +30,9 @@ export { useProjectFiltersStore } from './store/project-filters.store'
 export {
   buildProjectId,
   getProjectFlowUrls,
-  type ProjectDraft,
-  type ProjectFlowStep,
   slugifyProjectName,
   useProjectStore,
-  useSetProjectFlow
+  useSetProjectFlow,
+  type ProjectDraft,
+  type ProjectFlowStep
 } from './store/project.store'

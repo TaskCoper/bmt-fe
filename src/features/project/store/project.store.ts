@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import type { CreateProjectFormValues, DesignRequestPayload } from '../schemas/project.schema'
+import type { CreateProjectFormValues, DesignRequestPayload, SpacesPayload } from '../schemas/project.schema'
 
 const STORAGE_KEY = 'bmt.projects'
 
@@ -11,6 +11,7 @@ export interface ProjectDraft extends CreateProjectFormValues {
   id: string
   slug: string
   designRequest: DesignRequestPayload | null
+  spaces: SpacesPayload | null
   prevUrl: string | null
   nextUrl: string | null
   createdAt: string
@@ -78,12 +79,13 @@ export function buildProjectId(name: string): { id: string; slug: string; create
  * Linear flow of routes a project moves through. The order here is the source
  * of truth — prev/next URLs are always derived from it via `getProjectFlowUrls`.
  */
-export type ProjectFlowStep = 'detail' | 'design-request' | 'spaces'
+export type ProjectFlowStep = 'detail' | 'design-request' | 'spaces' | 'ai-design-result'
 
 const PROJECT_FLOW: readonly (readonly [ProjectFlowStep, string])[] = [
   ['detail', ''],
   ['design-request', '/design-request'],
-  ['spaces', '/spaces']
+  ['spaces', '/spaces'],
+  ['ai-design-result', '/ai-design-result']
 ] as const
 
 /** Prev/next URLs for a given flow position. `null` at either end of the flow. */

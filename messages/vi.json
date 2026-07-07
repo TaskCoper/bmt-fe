@@ -453,7 +453,34 @@
       },
       "colorLabel": "Tông màu chủ đạo",
       "spaces": {
-        "subtitle": "Thiết lập không gian cho dự án"
+        "title": "Thông tin không gian & hình ảnh layout",
+        "subtitle": "Tải ảnh layout theo thứ tự từng tầng và mô tả không gian thực tế.",
+        "descriptionLabel": "Mô tả không gian thực tế",
+        "descriptionPlaceholder": "VD: Tầng trệt gồm phòng khách, bếp mở, có giếng trời phía sau...",
+        "uploadTitle": "Ảnh layout từng tầng",
+        "uploadHint": "Ảnh tải lên chỉ dùng để mô tả bố trí mặt bằng của từng tầng trong nhà.",
+        "groundFloor": "Tầng trệt",
+        "upperFloor": "Tầng {index}",
+        "dropTitle": "Kéo-thả ảnh layout vào đây",
+        "dropHint": "JPG, PNG hoặc HEIC. Mỗi tầng cần 1 ảnh layout.",
+        "replaceImage": "Bấm hoặc kéo-thả ảnh mới để thay thế",
+        "removeImage": "Xoá ảnh",
+        "missingDesignRequest": "Vui lòng hoàn tất bước yêu cầu thiết kế trước khi nhập thông tin không gian.",
+        "unsupportedImage": "\"{name}\" không phải định dạng ảnh được hỗ trợ.",
+        "saved": "Đã lưu thông tin không gian"
+      },
+      "aiDesignResult": {
+        "title": "AI tạo kết quả thiết kế & Hồ sơ tư vấn dự toán",
+        "subtitle": "Tạo kết quả thiết kế AI và chuẩn bị hồ sơ tư vấn dự toán từ thông tin đã nhập.",
+        "missingSpaces": "Vui lòng hoàn tất bước thông tin không gian trước khi tạo kết quả thiết kế.",
+        "readyTitle": "Dữ liệu đã sẵn sàng",
+        "readyDescription": "Yêu cầu thiết kế, mô tả không gian và ảnh layout đã được lưu.",
+        "designOutputTitle": "Kết quả thiết kế AI",
+        "designOutputDescription": "Tổng hợp phương án thiết kế dựa trên mặt bằng và phong cách đã chọn.",
+        "estimateProfileTitle": "Hồ sơ tư vấn dự toán",
+        "estimateProfileDescription": "Chuẩn bị thông tin đầu vào cho tư vấn ngân sách và phạm vi thi công.",
+        "summary": "Bước tiếp theo sẽ dùng dữ liệu dự án để tạo kết quả thiết kế và hồ sơ tư vấn.",
+        "generate": "Tạo kết quả"
       }
     },
     "card": {
