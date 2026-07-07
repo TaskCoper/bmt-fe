@@ -8,9 +8,7 @@ interface PageProps {
   params: Promise<{ locale: Locale }>
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'legal.terms' })
   return { title: t('title') }
@@ -20,5 +18,5 @@ export default async function TermsPage({ params }: PageProps) {
   const { locale } = await params
   setRequestLocale(locale)
 
-  return <LegalPage namespace="terms" />
+  return <LegalPage namespace='terms' />
 }

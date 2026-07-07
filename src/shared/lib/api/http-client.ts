@@ -1,9 +1,5 @@
 import { API_CONFIG } from '@/shared/config/api.config'
-import axios, {
-  type AxiosInstance,
-  type AxiosResponse,
-  type InternalAxiosRequestConfig,
-} from 'axios'
+import axios, { type AxiosInstance, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios'
 import { normalizeApiError } from './api-error'
 import { onUnauthorized, refreshSession } from './auth-bridge'
 
@@ -15,7 +11,7 @@ export const httpClient: AxiosInstance = axios.create({
   baseURL: API_CONFIG.baseURL,
   timeout: API_CONFIG.timeout,
   withCredentials: API_CONFIG.withCredentials,
-  headers: { ...API_CONFIG.headers },
+  headers: { ...API_CONFIG.headers }
 })
 
 /* ---------------------------------------------------------------------------
@@ -33,7 +29,7 @@ httpClient.interceptors.request.use(
     }
     return config
   },
-  (error) => Promise.reject(error),
+  (error) => Promise.reject(error)
 )
 
 /* ---------------------------------------------------------------------------
@@ -69,12 +65,7 @@ httpClient.interceptors.response.use(
     // Attempt one transparent refresh + retry on expired session. Auth
     // endpoints are exempt so a login failure never masquerades as a session
     // expiry.
-    if (
-      status === 401 &&
-      originalRequest &&
-      !originalRequest._retry &&
-      !isRefreshExempt(originalRequest.url)
-    ) {
+    if (status === 401 && originalRequest && !originalRequest._retry && !isRefreshExempt(originalRequest.url)) {
       originalRequest._retry = true
 
       // Single-flight: concurrent 401s share one refresh call. `onUnauthorized`
@@ -96,5 +87,5 @@ httpClient.interceptors.response.use(
     }
 
     return Promise.reject(normalizeApiError(error))
-  },
+  }
 )

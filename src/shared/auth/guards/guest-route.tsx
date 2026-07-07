@@ -21,11 +21,7 @@ interface GuestRouteProps {
  * authenticated. While that redirect is in flight we swap in the fallback to
  * avoid a flash of the auth screen.
  */
-export function GuestRoute({
-  children,
-  redirectTo = ROUTES.DASHBOARD,
-  fallback,
-}: GuestRouteProps) {
+export function GuestRoute({ children, redirectTo = ROUTES.DASHBOARD, fallback }: GuestRouteProps) {
   const { isAuthenticated, isInitialized } = useAuth()
   const router = useRouter()
 

@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  keepPreviousData,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { useDebouncedValue } from '@/shared/hooks'
 import { leadsApi } from '../api/leads.api'
@@ -20,7 +15,7 @@ export function useLeads(filters: LeadFilters) {
   return useQuery({
     queryKey: leadsKeys.list(effectiveFilters),
     queryFn: () => leadsApi.list(effectiveFilters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }
 
@@ -29,6 +24,6 @@ export function useMarkLeadHandled() {
   const qc = useQueryClient()
   return useMutation({
     mutationFn: (id: string) => leadsApi.markHandled(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: leadsKeys.lists() }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: leadsKeys.lists() })
   })
 }

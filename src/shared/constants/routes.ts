@@ -33,21 +33,13 @@ export const ROUTES = {
 
   // Account
   PROFILE: '/profile',
-  SETTINGS: '/settings',
+  SETTINGS: '/settings'
 } as const
 
 export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES]
 
 /** Routes a guest may NOT access once authenticated (redirect to dashboard). */
-export const GUEST_ONLY_ROUTES: readonly string[] = [
-  ROUTES.LOGIN,
-  ROUTES.REGISTER,
-  ROUTES.FORGOT_PASSWORD,
-]
+export const GUEST_ONLY_ROUTES: readonly string[] = [ROUTES.LOGIN, ROUTES.REGISTER, ROUTES.FORGOT_PASSWORD]
 
 /** Route prefixes that require authentication. */
-export const PROTECTED_ROUTE_PREFIXES: readonly string[] = [
-  ROUTES.DASHBOARD,
-  ROUTES.PROFILE,
-  ROUTES.SETTINGS,
-]
+export const PROTECTED_ROUTE_PREFIXES: readonly string[] = [ROUTES.DASHBOARD, ROUTES.PROFILE, ROUTES.SETTINGS]

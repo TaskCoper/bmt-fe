@@ -12,11 +12,9 @@ const realLibraryApi = {
         search: filters.search || undefined,
         category: filters.category === 'all' ? undefined : filters.category,
         page: filters.page,
-        pageSize: DEFAULT_LIBRARY_PAGE_SIZE,
-      },
-    }),
+        pageSize: DEFAULT_LIBRARY_PAGE_SIZE
+      }
+    })
 }
 
-export const libraryApi = env.NEXT_PUBLIC_USE_MOCK_API
-  ? mockLibraryApi
-  : realLibraryApi
+export const libraryApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockLibraryApi : realLibraryApi

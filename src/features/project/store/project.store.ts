@@ -1,18 +1,18 @@
 'use client'
 
+import { useEffect } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import type { CreateProjectFormValues } from '../schemas/project.schema'
+import type { CreateProjectFormValues, DesignRequestPayload } from '../schemas/project.schema'
 
 const STORAGE_KEY = 'bmt.projects'
-
-export const INITIAL_PROJECT_STEP = 2
 
 export interface ProjectDraft extends CreateProjectFormValues {
   id: string
   slug: string
-  step: number
-  designRequest: string | null
+  designRequest: DesignRequestPayload | null
+  prevUrl: string | null
+  nextUrl: string | null
   createdAt: string
 }
 
@@ -23,8 +23,6 @@ interface ProjectStore {
   addProject: (project: ProjectDraft) => void
   updateProject: ({ slug, patch }: { slug: string; patch: ProjectUpdate }) => void
   removeProject: (slug: string) => void
-  nextStep: (slug: string) => void
-  prevStep: (slug: string) => void
 }
 
 export const useProjectStore = create<ProjectStore>()(
@@ -43,43 +41,7 @@ export const useProjectStore = create<ProjectStore>()(
         set((s) => {
           const { [slug]: _removed, ...rest } = s.projects
           return { projects: rest }
-        }),
-      nextStep: (slug) => {
-        set((s) => {
-          const current = s.projects[slug]
-          if (!current) return s
-
-          const nextStep = Math.max(current.step + 1, 6)
-
-          return {
-            projects: {
-              ...s.projects,
-              [slug]: {
-                ...current,
-                step: nextStep
-              }
-            }
-          }
         })
-      },
-      prevStep: (slug) => {
-        set((s) => {
-          const current = s.projects[slug]
-          if (!current) return s
-
-          const prevStep = Math.max(current.step - 1, 1)
-
-          return {
-            projects: {
-              ...s.projects,
-              [slug]: {
-                ...current,
-                step: prevStep
-              }
-            }
-          }
-        })
-      }
     }),
     {
       name: STORAGE_KEY,
@@ -110,4 +72,40 @@ export function buildProjectId(name: string): { id: string; slug: string; create
   const base = slugifyProjectName(name)
   const slug = `${base}-${now.getTime()}`
   return { id: slug, slug, createdAt: now.toISOString() }
+}
+
+/**
+ * Linear flow of routes a project moves through. The order here is the source
+ * of truth — prev/next URLs are always derived from it via `getProjectFlowUrls`.
+ */
+export type ProjectFlowStep = 'detail' | 'design-request' | 'spaces'
+
+const PROJECT_FLOW: readonly (readonly [ProjectFlowStep, string])[] = [
+  ['detail', ''],
+  ['design-request', '/design-request'],
+  ['spaces', '/spaces']
+] as const
+
+/** Prev/next URLs for a given flow position. `null` at either end of the flow. */
+export function getProjectFlowUrls(
+  slug: string,
+  current: ProjectFlowStep
+): { prevUrl: string | null; nextUrl: string | null } {
+  const idx = PROJECT_FLOW.findIndex(([step]) => step === current)
+  const buildUrl = (i: number) => {
+    const entry = PROJECT_FLOW[i]
+    return entry ? `/projects/${slug}${entry[1]}` : null
+  }
+  return { prevUrl: buildUrl(idx - 1), nextUrl: buildUrl(idx + 1) }
+}
+
+/** Sync a project's `prevUrl` / `nextUrl` with its current flow position. */
+export function useSetProjectFlow(slug: string, current: ProjectFlowStep) {
+  const updateProject = useProjectStore((s) => s.updateProject)
+  const hasProject = useProjectStore((s) => Boolean(s.projects[slug]))
+
+  useEffect(() => {
+    if (!hasProject) return
+    updateProject({ slug, patch: getProjectFlowUrls(slug, current) })
+  }, [slug, current, hasProject, updateProject])
 }

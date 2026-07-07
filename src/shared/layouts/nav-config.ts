@@ -9,7 +9,7 @@ import {
   Inbox,
   Images,
   Building2,
-  type LucideIcon,
+  type LucideIcon
 } from 'lucide-react'
 
 import { ROUTES } from '@/shared/constants/routes'
@@ -52,30 +52,30 @@ export const DASHBOARD_NAV: readonly NavItem[] = [
     labelKey: 'cms',
     href: ROUTES.CMS,
     icon: FileText,
-    roles: [ROLES.ADMIN],
+    roles: [ROLES.ADMIN]
   },
   {
     labelKey: 'adminGallery',
     href: ROUTES.ADMIN_GALLERY,
     icon: Images,
-    roles: [ROLES.ADMIN],
+    roles: [ROLES.ADMIN]
   },
   {
     labelKey: 'adminPortfolio',
     href: ROUTES.ADMIN_PORTFOLIO,
     icon: Building2,
-    roles: [ROLES.ADMIN],
+    roles: [ROLES.ADMIN]
   },
   {
     labelKey: 'leads',
     href: ROUTES.LEADS,
     icon: Inbox,
-    roles: [ROLES.ADMIN],
+    roles: [ROLES.ADMIN]
   },
   {
     labelKey: 'users',
     href: ROUTES.USERS,
     icon: Users,
-    roles: [ROLES.ADMIN],
-  },
+    roles: [ROLES.ADMIN]
+  }
 ]

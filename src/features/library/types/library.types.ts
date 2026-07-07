@@ -1,7 +1,4 @@
-import type {
-  LibraryCategory,
-  PriceRegion,
-} from '../constants/library.constants'
+import type { LibraryCategory, PriceRegion } from '../constants/library.constants'
 
 /** A historical unit-price point (kept so old projects pin their price). */
 export interface PricePoint {

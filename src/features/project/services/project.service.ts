@@ -9,12 +9,8 @@ import type { Project } from '../types/project.types'
  */
 export const projectService = {
   isEditable: (project: Project): boolean =>
-    project.status !== PROJECT_STATUS.ARCHIVED &&
-    project.status !== PROJECT_STATUS.COMPLETED,
+    project.status !== PROJECT_STATUS.ARCHIVED && project.status !== PROJECT_STATUS.COMPLETED,
 
   sortByRecent: (projects: Project[]): Project[] =>
-    [...projects].sort(
-      (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
-    ),
+    [...projects].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
 }

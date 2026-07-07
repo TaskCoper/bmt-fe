@@ -14,5 +14,5 @@ export const FALLBACK_LOCALE: Locale = 'en'
 export const routing = defineRouting({
   locales: LOCALES,
   defaultLocale: DEFAULT_LOCALE,
-  localePrefix: 'always',
+  localePrefix: 'always'
 })

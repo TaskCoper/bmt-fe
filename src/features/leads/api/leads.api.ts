@@ -10,15 +10,13 @@ const realLeadsApi = {
       params: {
         search: filters.search || undefined,
         status: filters.status === 'all' ? undefined : filters.status,
-        page: filters.page,
-      },
+        page: filters.page
+      }
     }),
   markHandled: (id: string) =>
     http.patch<{ id: string; status: string }>(`/leads/${id}`, {
-      status: 'handled',
-    }),
+      status: 'handled'
+    })
 }
 
-export const leadsApi = env.NEXT_PUBLIC_USE_MOCK_API
-  ? mockLeadsApi
-  : realLeadsApi
+export const leadsApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockLeadsApi : realLeadsApi

@@ -17,9 +17,8 @@ export function normalizeApiError(error: unknown): ApiError {
       return {
         status: error.response.status,
         code: data?.code,
-        message:
-          data?.message ?? defaultMessageForStatus(error.response.status),
-        errors: data?.errors,
+        message: data?.message ?? defaultMessageForStatus(error.response.status),
+        errors: data?.errors
       }
     }
 
@@ -30,14 +29,13 @@ export function normalizeApiError(error: unknown): ApiError {
       message:
         error.code === 'ECONNABORTED'
           ? 'Request timed out. Please try again.'
-          : 'Network error. Check your connection and try again.',
+          : 'Network error. Check your connection and try again.'
     }
   }
 
   return {
     status: 0,
-    message:
-      error instanceof Error ? error.message : 'An unexpected error occurred.',
+    message: error instanceof Error ? error.message : 'An unexpected error occurred.'
   }
 }
 
@@ -66,10 +64,5 @@ function defaultMessageForStatus(status: number): string {
 
 /** Type guard for narrowing an unknown error to {@link ApiError}. */
 export function isApiError(value: unknown): value is ApiError {
-  return (
-    typeof value === 'object' &&
-    value !== null &&
-    'status' in value &&
-    'message' in value
-  )
+  return typeof value === 'object' && value !== null && 'status' in value && 'message' in value
 }

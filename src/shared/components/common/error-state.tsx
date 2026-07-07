@@ -17,35 +17,24 @@ interface ErrorStateProps {
 }
 
 /** Consistent inline error display with an optional retry action. */
-export function ErrorState({
-  title,
-  description,
-  retryLabel,
-  onRetry,
-  action,
-  className,
-}: ErrorStateProps) {
+export function ErrorState({ title, description, retryLabel, onRetry, action, className }: ErrorStateProps) {
   return (
     <div
-      role="alert"
+      role='alert'
       className={cn(
         'flex flex-col items-center justify-center rounded-lg border border-dashed px-6 py-12 text-center',
-        className,
+        className
       )}
     >
-      <div className="bg-destructive/10 text-destructive flex size-12 items-center justify-center rounded-full">
-        <AlertTriangle className="size-6" />
+      <div className='bg-destructive/10 text-destructive flex size-12 items-center justify-center rounded-full'>
+        <AlertTriangle className='size-6' />
       </div>
-      <h3 className="mt-4 text-sm font-semibold">{title}</h3>
-      {description ? (
-        <p className="text-muted-foreground mt-1 max-w-sm text-sm">
-          {description}
-        </p>
-      ) : null}
+      <h3 className='mt-4 text-sm font-semibold'>{title}</h3>
+      {description ? <p className='text-muted-foreground mt-1 max-w-sm text-sm'>{description}</p> : null}
       {(retryLabel && onRetry) || action ? (
-        <div className="mt-6 flex items-center gap-2">
+        <div className='mt-6 flex items-center gap-2'>
           {retryLabel && onRetry ? (
-            <Button variant="outline" onClick={onRetry}>
+            <Button variant='outline' onClick={onRetry}>
               {retryLabel}
             </Button>
           ) : null}

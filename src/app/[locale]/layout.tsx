@@ -14,23 +14,22 @@ const geistSans = Geist({
   variable: '--font-geist-sans',
   // 'latin-ext' covers Vietnamese diacritics; Geist has no 'vietnamese' subset.
   subsets: ['latin', 'latin-ext'],
-  display: 'swap',
+  display: 'swap'
 })
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
-  display: 'swap',
+  display: 'swap'
 })
 
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
-    template: `%s · ${siteConfig.name}`,
+    template: `%s · ${siteConfig.name}`
   },
-  description:
-    'Plan, estimate and manage construction projects on one premium platform.',
-  metadataBase: new URL(siteConfig.url),
+  description: 'Plan, estimate and manage construction projects on one premium platform.',
+  metadataBase: new URL(siteConfig.url)
 }
 
 /** Pre-render a static shell for every supported locale. */
@@ -40,7 +39,7 @@ export function generateStaticParams() {
 
 export default async function LocaleLayout({
   children,
-  params,
+  params
 }: {
   children: React.ReactNode
   params: Promise<{ locale: string }>
@@ -56,9 +55,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
         {/* Messages are provided automatically from i18n/request.ts */}
         <NextIntlClientProvider>
           <AppProviders>

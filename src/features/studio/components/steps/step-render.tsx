@@ -26,50 +26,45 @@ export function StepRender() {
 
   return (
     <StepSection title={t('title')} description={t('hint')}>
-      <div className="flex items-center gap-2">
-        <Badge variant="secondary">
-          {t('count', { count: result.renders.length })}
-        </Badge>
-        <Badge variant="success">{t('favCount', { count: favCount })}</Badge>
+      <div className='flex items-center gap-2'>
+        <Badge variant='secondary'>{t('count', { count: result.renders.length })}</Badge>
+        <Badge variant='success'>{t('favCount', { count: favCount })}</Badge>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {result.renders.map((render) => (
-          <figure key={render.id} className="overflow-hidden rounded-lg border">
-            <div className="relative aspect-[4/3]">
+          <figure key={render.id} className='overflow-hidden rounded-lg border'>
+            <div className='relative aspect-[4/3]'>
               <div
-                className="size-full"
+                className='size-full'
                 style={{
-                  background: `linear-gradient(135deg, hsl(${render.hue} 70% 55%), hsl(${(render.hue + 40) % 360} 65% 35%))`,
+                  background: `linear-gradient(135deg, hsl(${render.hue} 70% 55%), hsl(${(render.hue + 40) % 360} 65% 35%))`
                 }}
               />
-              <span className="absolute top-2 left-2 rounded bg-black/40 px-2 py-0.5 text-xs font-medium text-white">
-                {t(`kind.${render.kind}`)} ·{' '}
-                {t('floorLabel', { floor: render.floor })}
+              <span className='absolute top-2 left-2 rounded bg-black/40 px-2 py-0.5 text-xs font-medium text-white'>
+                {t(`kind.${render.kind}`)} · {t('floorLabel', { floor: render.floor })}
               </span>
               <button
-                type="button"
+                type='button'
                 onClick={() => toggleFavorite(render.id)}
                 aria-label={t('favorite')}
                 aria-pressed={render.favorite}
-                className="bg-background/80 hover:bg-background absolute top-2 right-2 rounded-full p-1.5 transition-colors"
+                className='bg-background/80 hover:bg-background absolute top-2 right-2 rounded-full p-1.5 transition-colors'
               >
                 <Heart
                   className={cn(
                     'size-4',
-                    render.favorite
-                      ? 'fill-destructive text-destructive'
-                      : 'text-muted-foreground',
+                    render.favorite ? 'fill-destructive text-destructive' : 'text-muted-foreground'
                   )}
                 />
               </button>
             </div>
-            <figcaption className="p-2">
+            <figcaption className='p-2'>
               <Input
                 value={render.caption}
                 onChange={(e) => setCaption(render.id, e.target.value)}
                 placeholder={t('captionPlaceholder')}
-                className="h-8 border-0 px-1 text-sm shadow-none focus-visible:ring-0"
+                className='h-8 border-0 px-1 text-sm shadow-none focus-visible:ring-0'
               />
             </figcaption>
           </figure>

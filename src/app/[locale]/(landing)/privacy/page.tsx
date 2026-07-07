@@ -8,9 +8,7 @@ interface PageProps {
   params: Promise<{ locale: Locale }>
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'legal.privacy' })
   return { title: t('title') }
@@ -20,5 +18,5 @@ export default async function PrivacyPage({ params }: PageProps) {
   const { locale } = await params
   setRequestLocale(locale)
 
-  return <LegalPage namespace="privacy" />
+  return <LegalPage namespace='privacy' />
 }

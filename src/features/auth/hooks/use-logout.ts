@@ -23,6 +23,6 @@ export function useLogout() {
       reset()
       queryClient.clear()
       router.replace(ROUTES.LOGIN)
-    },
+    }
   })
 }

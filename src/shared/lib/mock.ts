@@ -7,15 +7,10 @@ import type { PaginatedResponse } from '@/shared/types'
  */
 
 /** Simulate network latency so loading/skeleton states are exercised. */
-export const mockDelay = (ms = 450) =>
-  new Promise<void>((resolve) => setTimeout(resolve, ms))
+export const mockDelay = (ms = 450) => new Promise<void>((resolve) => setTimeout(resolve, ms))
 
 /** Slice an in-memory array into a {@link PaginatedResponse} page. */
-export function paginate<T>(
-  items: readonly T[],
-  page: number,
-  pageSize: number,
-): PaginatedResponse<T> {
+export function paginate<T>(items: readonly T[], page: number, pageSize: number): PaginatedResponse<T> {
   const totalItems = items.length
   const totalPages = Math.max(1, Math.ceil(totalItems / pageSize))
   const safePage = Math.min(Math.max(1, page), totalPages)
@@ -23,6 +18,6 @@ export function paginate<T>(
 
   return {
     items: items.slice(start, start + pageSize),
-    meta: { page: safePage, pageSize, totalItems, totalPages },
+    meta: { page: safePage, pageSize, totalItems, totalPages }
   }
 }

@@ -5,5 +5,5 @@ import type { LeadFilters } from '../types/lead.types'
 export const leadsKeys = {
   all: [QUERY_KEY_ROOTS.leads] as const,
   lists: () => [...leadsKeys.all, 'list'] as const,
-  list: (filters: LeadFilters) => [...leadsKeys.lists(), filters] as const,
+  list: (filters: LeadFilters) => [...leadsKeys.lists(), filters] as const
 }

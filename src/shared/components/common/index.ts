@@ -1,3 +1,4 @@
+export { ComboboxField } from './combobox-field'
 export { EmptyState } from './empty-state'
 export { ErrorState } from './error-state'
 export { LanguageSwitcher } from './language-switcher'

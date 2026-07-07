@@ -15,6 +15,6 @@ export function useLibrary(filters: LibraryFilters) {
   return useQuery({
     queryKey: libraryKeys.list(effectiveFilters),
     queryFn: () => libraryApi.list(effectiveFilters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }

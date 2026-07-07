@@ -14,7 +14,7 @@ interface ProjectFiltersStore {
 const INITIAL_FILTERS: ProjectFilters = {
   search: '',
   status: 'all',
-  page: 1,
+  page: 1
 }
 
 /**
@@ -24,10 +24,8 @@ const INITIAL_FILTERS: ProjectFilters = {
 export const useProjectFiltersStore = create<ProjectFiltersStore>((set) => ({
   filters: INITIAL_FILTERS,
   // Changing search/status resets pagination to page 1.
-  setSearch: (search) =>
-    set((s) => ({ filters: { ...s.filters, search, page: 1 } })),
-  setStatus: (status) =>
-    set((s) => ({ filters: { ...s.filters, status, page: 1 } })),
+  setSearch: (search) => set((s) => ({ filters: { ...s.filters, search, page: 1 } })),
+  setStatus: (status) => set((s) => ({ filters: { ...s.filters, status, page: 1 } })),
   setPage: (page) => set((s) => ({ filters: { ...s.filters, page } })),
-  reset: () => set({ filters: INITIAL_FILTERS }),
+  reset: () => set({ filters: INITIAL_FILTERS })
 }))

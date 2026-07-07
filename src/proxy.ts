@@ -1,9 +1,6 @@
 import { routing } from '@/i18n/routing'
 import { AUTH_COOKIE_NAME } from '@/shared/auth/auth.constants'
-import {
-  GUEST_ONLY_ROUTES,
-  PROTECTED_ROUTE_PREFIXES,
-} from '@/shared/constants/routes'
+import { GUEST_ONLY_ROUTES, PROTECTED_ROUTE_PREFIXES } from '@/shared/constants/routes'
 import createMiddleware from 'next-intl/middleware'
 import { type NextRequest, NextResponse } from 'next/server'
 
@@ -71,5 +68,5 @@ export default function proxy(request: NextRequest) {
 
 export const config = {
   // Run on every path except Next internals, API proxy and static assets.
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 }

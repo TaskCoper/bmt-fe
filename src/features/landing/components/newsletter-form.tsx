@@ -30,31 +30,22 @@ export function NewsletterForm() {
 
   return (
     <div>
-      <h3 className="text-sm font-semibold">{t('title')}</h3>
-      <p className="text-muted-foreground mt-2 text-sm">{t('subtitle')}</p>
-      <form onSubmit={onSubmit} className="mt-4 flex gap-2">
+      <h3 className='text-sm font-semibold'>{t('title')}</h3>
+      <p className='text-muted-foreground mt-2 text-sm'>{t('subtitle')}</p>
+      <form onSubmit={onSubmit} className='mt-4 flex gap-2'>
         <Input
-          type="email"
+          type='email'
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={t('placeholder')}
           aria-label={t('title')}
         />
-        <Button
-          type="submit"
-          size="icon"
-          disabled={pending}
-          aria-label={t('cta')}
-        >
-          {pending ? (
-            <Loader2 className="size-4 animate-spin" />
-          ) : (
-            <Send className="size-4" />
-          )}
+        <Button type='submit' size='icon' disabled={pending} aria-label={t('cta')}>
+          {pending ? <Loader2 className='size-4 animate-spin' /> : <Send className='size-4' />}
         </Button>
       </form>
-      <p className="text-muted-foreground mt-2 text-xs">{t('optInNote')}</p>
+      <p className='text-muted-foreground mt-2 text-xs'>{t('optInNote')}</p>
     </div>
   )
 }

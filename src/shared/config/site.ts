@@ -18,8 +18,8 @@ export const siteConfig = {
     email: 'hello@bmt-ai.construction',
     zaloUrl: 'https://zalo.me/0000000000',
     messengerUrl: 'https://m.me/bmtdecor',
-    facebookUrl: 'https://facebook.com/bmtdecor',
-  },
+    facebookUrl: 'https://facebook.com/bmtdecor'
+  }
 } as const
 
 export type SiteConfig = typeof siteConfig

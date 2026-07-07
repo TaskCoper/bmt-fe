@@ -11,7 +11,7 @@ import {
   IMAGE_ACCEPT_ATTR,
   MAX_IMAGES_PER_FLOOR,
   MAX_IMAGE_SIZE_BYTES,
-  MAX_IMAGE_SIZE_MB,
+  MAX_IMAGE_SIZE_MB
 } from '../constants/studio.constants'
 import { useWizardStore } from '../store/wizard.store'
 
@@ -21,13 +21,7 @@ const ACCEPTED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'heic', 'heif']
  * Drag-and-drop image dropzone for a single floor (UI mock — captures file
  * names only, no real upload). Shows placeholder thumbnails with remove.
  */
-export function ImageUploader({
-  floor,
-  label,
-}: {
-  floor: number
-  label: string
-}) {
+export function ImageUploader({ floor, label }: { floor: number; label: string }) {
   const t = useTranslations('studio.space')
   const inputRef = useRef<HTMLInputElement>(null)
   const [dragging, setDragging] = useState(false)
@@ -36,10 +30,7 @@ export function ImageUploader({
   // useMemo — returning `.filter(...)` straight from the selector creates a
   // new array every render and trips Zustand's getSnapshot cache (infinite loop).
   const allImages = useWizardStore((s) => s.data.images)
-  const images = useMemo(
-    () => allImages.filter((i) => i.floor === floor),
-    [allImages, floor],
-  )
+  const images = useMemo(() => allImages.filter((i) => i.floor === floor), [allImages, floor])
   const addImages = useWizardStore((s) => s.addImages)
   const removeImage = useWizardStore((s) => s.removeImage)
 
@@ -50,9 +41,7 @@ export function ImageUploader({
     const valid: string[] = []
     for (const file of Array.from(files)) {
       const ext = file.name.split('.').pop()?.toLowerCase() ?? ''
-      const typeOk =
-        (ACCEPTED_IMAGE_MIME as readonly string[]).includes(file.type) ||
-        ACCEPTED_EXTENSIONS.includes(ext)
+      const typeOk = (ACCEPTED_IMAGE_MIME as readonly string[]).includes(file.type) || ACCEPTED_EXTENSIONS.includes(ext)
       if (!typeOk) {
         toast.error(t('errorType', { name: file.name }))
         continue
@@ -78,10 +67,10 @@ export function ImageUploader({
   }
 
   return (
-    <div className="space-y-3">
-      <p className="text-sm font-medium">{label}</p>
+    <div className='space-y-3'>
+      <p className='text-sm font-medium'>{label}</p>
       <div
-        role="button"
+        role='button'
         tabIndex={0}
         onClick={() => inputRef.current?.click()}
         onKeyDown={(e) => {
@@ -99,20 +88,18 @@ export function ImageUploader({
         }}
         className={cn(
           'flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-6 text-center transition-colors',
-          dragging
-            ? 'border-primary bg-primary/5'
-            : 'hover:border-primary/50 hover:bg-muted/40',
+          dragging ? 'border-primary bg-primary/5' : 'hover:border-primary/50 hover:bg-muted/40'
         )}
       >
-        <ImagePlus className="text-muted-foreground size-6" />
-        <p className="text-sm font-medium">{t('dropTitle')}</p>
-        <p className="text-muted-foreground text-xs">{t('dropHint')}</p>
+        <ImagePlus className='text-muted-foreground size-6' />
+        <p className='text-sm font-medium'>{t('dropTitle')}</p>
+        <p className='text-muted-foreground text-xs'>{t('dropHint')}</p>
         <input
           ref={inputRef}
-          type="file"
+          type='file'
           accept={IMAGE_ACCEPT_ATTR}
           multiple
-          className="sr-only"
+          className='sr-only'
           onChange={(e) => {
             handleFiles(e.target.files)
             e.target.value = ''
@@ -121,27 +108,22 @@ export function ImageUploader({
       </div>
 
       {images.length > 0 ? (
-        <ul className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <ul className='grid grid-cols-2 gap-2 sm:grid-cols-4'>
           {images.map((img) => (
-            <li
-              key={img.id}
-              className="group bg-muted relative aspect-square overflow-hidden rounded-md border"
-            >
-              <div className="from-primary/20 to-primary/5 flex size-full items-center justify-center bg-gradient-to-br p-2">
-                <span className="text-muted-foreground line-clamp-3 text-center text-[10px] break-all">
-                  {img.name}
-                </span>
+            <li key={img.id} className='group bg-muted relative aspect-square overflow-hidden rounded-md border'>
+              <div className='from-primary/20 to-primary/5 flex size-full items-center justify-center bg-gradient-to-br p-2'>
+                <span className='text-muted-foreground line-clamp-3 text-center text-[10px] break-all'>{img.name}</span>
               </div>
               <button
-                type="button"
+                type='button'
                 onClick={(e) => {
                   e.stopPropagation()
                   removeImage(img.id)
                 }}
                 aria-label={t('remove')}
-                className="bg-background/80 absolute top-1 right-1 rounded-full p-1 opacity-0 transition-opacity group-hover:opacity-100"
+                className='bg-background/80 absolute top-1 right-1 rounded-full p-1 opacity-0 transition-opacity group-hover:opacity-100'
               >
-                <X className="size-3.5" />
+                <X className='size-3.5' />
               </button>
             </li>
           ))}

@@ -5,5 +5,5 @@ import type { GalleryFilters } from '../types/gallery.types'
 export const galleryKeys = {
   all: [QUERY_KEY_ROOTS.gallery] as const,
   lists: () => [...galleryKeys.all, 'list'] as const,
-  list: (filters: GalleryFilters) => [...galleryKeys.lists(), filters] as const,
+  list: (filters: GalleryFilters) => [...galleryKeys.lists(), filters] as const
 }

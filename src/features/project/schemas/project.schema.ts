@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { DESCRIPTION_MAX_LENGTH, NAME_MAX_LENGTH } from '../hooks/use-create-project'
-import { HouseType } from '../types/project.types'
+import { Direction, FloorLayout, FloorLighting, HouseStyle, HouseType, RoofStyle } from '../types/project.types'
 
 export interface ProjectSchemaMessages {
   required: string
@@ -15,11 +15,36 @@ export const createProjectSchema = (m: ProjectSchemaMessages) => {
   })
 }
 
-export const designRequestSchema = () => {
+export interface DesignRequestSchemaMessages {
+  required: string
+  invalidArea: string
+}
+
+export const designRequestSchema = (m: DesignRequestSchemaMessages) => {
+  const floorSchema = z.object({
+    area: z.number({ message: m.invalidArea }).positive({ message: m.invalidArea }),
+    layout: z.enum(FloorLayout),
+    lighting: z.enum(FloorLighting),
+    color: z.string().min(1, { message: m.required })
+  })
+
   return z.object({
-    designRequest: z.string().min(1).max(10_000)
+    designRequest: z.object({
+      style: z.enum(HouseStyle),
+      roofStyle: z.enum(RoofStyle).optional(),
+      hasTum: z.boolean().optional(),
+      direction: z.enum(Direction),
+      address: z.string().min(1, { message: m.required }),
+      city: z.string().min(1, { message: m.required }),
+      cityCode: z.number().refine((v) => v > 0, { message: m.required }),
+      ward: z.string().min(1, { message: m.required }),
+      wardCode: z.number().refine((v) => v > 0, { message: m.required }),
+      floors: z.array(floorSchema).min(1, { message: m.required })
+    })
   })
 }
 
 export type CreateProjectFormValues = z.infer<ReturnType<typeof createProjectSchema>>
 export type DesignRequestFormValues = z.infer<ReturnType<typeof designRequestSchema>>
+export type DesignRequestPayload = DesignRequestFormValues['designRequest']
+export type FloorPayload = DesignRequestPayload['floors'][number]

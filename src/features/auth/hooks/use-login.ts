@@ -28,9 +28,7 @@ export function useLogin(redirectTo: string = ROUTES.DASHBOARD) {
       router.replace(redirectTo)
     },
     onError: (error) => {
-      toast.error(
-        isApiError(error) ? error.message : 'Unable to sign in. Try again.',
-      )
-    },
+      toast.error(isApiError(error) ? error.message : 'Unable to sign in. Try again.')
+    }
   })
 }

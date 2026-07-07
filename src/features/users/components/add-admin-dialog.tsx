@@ -17,20 +17,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from '@/shared/components/ui/dialog'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/shared/components/ui/form'
-import {
-  createAdminSchema,
-  type AdminFormValues,
-} from '../schemas/admin.schema'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/components/ui/form'
+import { createAdminSchema, type AdminFormValues } from '../schemas/admin.schema'
 
 /**
  * Create-admin dialog. Admins can only create other admins (customers
@@ -42,14 +32,11 @@ export function AddAdminDialog() {
   const [open, setOpen] = useState(false)
   const [pending, setPending] = useState(false)
 
-  const schema = useMemo(
-    () => createAdminSchema({ required: tv('required'), email: tv('email') }),
-    [tv],
-  )
+  const schema = useMemo(() => createAdminSchema({ required: tv('required'), email: tv('email') }), [tv])
 
   const form = useForm<AdminFormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { name: '', email: '' },
+    defaultValues: { name: '', email: '' }
   })
 
   function onSubmit() {
@@ -66,7 +53,7 @@ export function AddAdminDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
-          <UserPlus className="size-4" />
+          <UserPlus className='size-4' />
           {t('trigger')}
         </Button>
       </DialogTrigger>
@@ -76,14 +63,10 @@ export function AddAdminDialog() {
           <DialogDescription>{t('description')}</DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4"
-            id="add-admin-form"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4' id='add-admin-form'>
             <FormField
               control={form.control}
-              name="name"
+              name='name'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('nameLabel')}</FormLabel>
@@ -96,16 +79,12 @@ export function AddAdminDialog() {
             />
             <FormField
               control={form.control}
-              name="email"
+              name='email'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('emailLabel')}</FormLabel>
                   <FormControl>
-                    <Input
-                      type="email"
-                      placeholder={t('emailPlaceholder')}
-                      {...field}
-                    />
+                    <Input type='email' placeholder={t('emailPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,12 +94,12 @@ export function AddAdminDialog() {
         </Form>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline" type="button">
+            <Button variant='outline' type='button'>
               {t('cancel')}
             </Button>
           </DialogClose>
-          <Button type="submit" form="add-admin-form" disabled={pending}>
-            {pending ? <Loader2 className="size-4 animate-spin" /> : null}
+          <Button type='submit' form='add-admin-form' disabled={pending}>
+            {pending ? <Loader2 className='size-4 animate-spin' /> : null}
             {t('submit')}
           </Button>
         </DialogFooter>

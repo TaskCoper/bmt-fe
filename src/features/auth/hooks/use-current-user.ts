@@ -21,7 +21,7 @@ export function useCurrentUser() {
     queryFn: authApi.getCurrentUser,
     // Don't hammer the endpoint on a clearly-expired session.
     retry: false,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 5 * 60 * 1000
   })
 
   useEffect(() => {

@@ -5,5 +5,5 @@ import type { ContentFilters } from '../types/cms.types'
 export const cmsKeys = {
   all: [QUERY_KEY_ROOTS.cms] as const,
   lists: () => [...cmsKeys.all, 'list'] as const,
-  list: (filters: ContentFilters) => [...cmsKeys.lists(), filters] as const,
+  list: (filters: ContentFilters) => [...cmsKeys.lists(), filters] as const
 }

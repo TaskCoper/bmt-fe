@@ -21,13 +21,7 @@ export function AdminGuard({ children }: { children: ReactNode }) {
   return (
     <RoleGuard
       allow={[ROLES.ADMIN]}
-      fallback={
-        <EmptyState
-          icon={ShieldAlert}
-          title={t('title')}
-          description={t('description')}
-        />
-      }
+      fallback={<EmptyState icon={ShieldAlert} title={t('title')} description={t('description')} />}
     >
       {children}
     </RoleGuard>

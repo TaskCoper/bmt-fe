@@ -5,7 +5,7 @@ import type {
   EstimateCategoryId,
   HouseDirection,
   LayoutOption,
-  LightingOption,
+  LightingOption
 } from '../constants/studio.constants'
 
 /** An uploaded image reference (mock — holds a name + object URL/placeholder). */

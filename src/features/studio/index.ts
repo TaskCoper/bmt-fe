@@ -16,12 +16,6 @@ export {
   type WizardStepId,
   type BudgetPackageId,
   type ConstructionType,
-  type DesignStyleId,
+  type DesignStyleId
 } from './constants/studio.constants'
-export type {
-  WizardData,
-  BudgetBreakdown,
-  GenerateResult,
-  EstimateCategory,
-  EstimateItem,
-} from './types/studio.types'
+export type { WizardData, BudgetBreakdown, GenerateResult, EstimateCategory, EstimateItem } from './types/studio.types'

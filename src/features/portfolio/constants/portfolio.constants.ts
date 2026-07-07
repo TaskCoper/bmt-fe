@@ -4,8 +4,7 @@
 export const PORTFOLIO_CATEGORY = {
   APARTMENT: 'apartment',
   TOWNHOUSE: 'townhouse',
-  VILLA: 'villa',
+  VILLA: 'villa'
 } as const
 
-export type PortfolioCategory =
-  (typeof PORTFOLIO_CATEGORY)[keyof typeof PORTFOLIO_CATEGORY]
+export type PortfolioCategory = (typeof PORTFOLIO_CATEGORY)[keyof typeof PORTFOLIO_CATEGORY]

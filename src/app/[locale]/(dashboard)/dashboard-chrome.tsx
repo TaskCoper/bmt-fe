@@ -13,9 +13,5 @@ import { DashboardLayout } from '@/shared/layouts'
 export function DashboardChrome({ children }: { children: ReactNode }) {
   const logout = useLogout()
 
-  return (
-    <DashboardLayout onLogout={() => logout.mutate()}>
-      {children}
-    </DashboardLayout>
-  )
+  return <DashboardLayout onLogout={() => logout.mutate()}>{children}</DashboardLayout>
 }

@@ -1,8 +1,4 @@
-import {
-  QueryClient,
-  defaultShouldDehydrateQuery,
-  isServer,
-} from '@tanstack/react-query'
+import { QueryClient, defaultShouldDehydrateQuery, isServer } from '@tanstack/react-query'
 import { isApiError } from './api'
 
 /**
@@ -22,18 +18,16 @@ export function makeQueryClient(): QueryClient {
             return false
           }
           return failureCount < 2
-        },
+        }
       },
       mutations: {
-        retry: false,
+        retry: false
       },
       dehydrate: {
         // Include pending queries so streamed SSR prefetches hydrate cleanly.
-        shouldDehydrateQuery: (query) =>
-          defaultShouldDehydrateQuery(query) ||
-          query.state.status === 'pending',
-      },
-    },
+        shouldDehydrateQuery: (query) => defaultShouldDehydrateQuery(query) || query.state.status === 'pending'
+      }
+    }
   })
 }
 

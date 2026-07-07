@@ -8,15 +8,15 @@ export const INITIAL_MESSAGES: ChatMessage[] = [
     role: 'assistant',
     content:
       'Xin chào! Tôi là trợ lý AI của BMT. Tôi có thể giúp bạn ước tính chi phí, tra cứu đơn giá vật tư và lập dự toán. Bạn cần hỗ trợ gì?',
-    at: '2026-06-24T01:00:00Z',
-  },
+    at: '2026-06-24T01:00:00Z'
+  }
 ]
 
 /** Quick-start prompts offered before the user types anything. */
 export const SUGGESTIONS = [
   'Ước tính chi phí sơn 100m² tường',
   'Đơn giá xi măng và thép hôm nay',
-  'Lập dự toán sơ bộ cho căn hộ 60m²',
+  'Lập dự toán sơ bộ cho căn hộ 60m²'
 ]
 
 /** Canned, keyword-based replies — stands in for a real LLM endpoint. */
@@ -38,5 +38,5 @@ export const mockChatbotApi = {
   async sendMessage(text: string): Promise<string> {
     await mockDelay(900)
     return generateReply(text)
-  },
+  }
 }

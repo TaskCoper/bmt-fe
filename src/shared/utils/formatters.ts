@@ -11,29 +11,21 @@ export function formatDate(
   options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: 'short',
-    day: 'numeric',
-  },
+    day: 'numeric'
+  }
 ): string {
   const date = value instanceof Date ? value : new Date(value)
   return new Intl.DateTimeFormat(locale, options).format(date)
 }
 
-export function formatNumber(
-  value: number,
-  locale: Locale,
-  options?: Intl.NumberFormatOptions,
-): string {
+export function formatNumber(value: number, locale: Locale, options?: Intl.NumberFormatOptions): string {
   return new Intl.NumberFormat(locale, options).format(value)
 }
 
-export function formatCurrency(
-  value: number,
-  locale: Locale,
-  currency = 'VND',
-): string {
+export function formatCurrency(value: number, locale: Locale, currency = 'VND'): string {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency,
-    maximumFractionDigits: currency === 'VND' ? 0 : 2,
+    maximumFractionDigits: currency === 'VND' ? 0 : 2
   }).format(value)
 }

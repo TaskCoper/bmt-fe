@@ -1,10 +1,5 @@
 /** Project status mirror (no cross-feature import allowed). */
-export type RecentProjectStatus =
-  | 'draft'
-  | 'active'
-  | 'on_hold'
-  | 'completed'
-  | 'archived'
+export type RecentProjectStatus = 'draft' | 'active' | 'on_hold' | 'completed' | 'archived'
 
 /** Headline KPIs for the dashboard overview (stakeholder Q&A §7.2.3). */
 export interface DashboardStats {

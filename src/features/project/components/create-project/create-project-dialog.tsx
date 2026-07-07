@@ -15,7 +15,7 @@ import { useState } from 'react'
 import { FormProvider, type SubmitHandler } from 'react-hook-form'
 import { useCreateProject } from '../../hooks/use-create-project'
 import { type CreateProjectFormValues } from '../../schemas/project.schema'
-import { buildProjectId, INITIAL_PROJECT_STEP, useProjectStore } from '../../store/project.store'
+import { buildProjectId, getProjectFlowUrls, useProjectStore } from '../../store/project.store'
 import CreateProjectForm from './create-project-form'
 
 interface CreateProjectDialogProps {
@@ -32,7 +32,8 @@ export default function CreateProjectDialog({ children }: CreateProjectDialogPro
 
   const onSubmit: SubmitHandler<CreateProjectFormValues> = (body) => {
     const { id, slug, createdAt } = buildProjectId(body.name)
-    addProject({ ...body, id, slug, createdAt, step: INITIAL_PROJECT_STEP, designRequest: null })
+    const flow = getProjectFlowUrls(slug, 'detail')
+    addProject({ ...body, id, slug, createdAt, designRequest: null, ...flow })
     setOpen(false)
     methods.reset()
     router.push(`/projects/${slug}`)

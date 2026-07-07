@@ -14,12 +14,11 @@ import { mockAuthApi } from './auth.mock'
  * these through an in-browser mock (see {@link mockAuthApi}).
  */
 const AuthApi = {
-  login: (payload: LoginPayload) =>
-    http.post<LoginResponse>('/auth/login', payload),
+  login: (payload: LoginPayload) => http.post<LoginResponse>('/auth/login', payload),
 
   logout: () => http.post<void>('/auth/logout'),
 
-  getCurrentUser: () => http.get<AuthUser>('/auth/me'),
+  getCurrentUser: () => http.get<AuthUser>('/auth/me')
 }
 
 export const authApi = env.NEXT_PUBLIC_USE_MOCK_AUTH ? mockAuthApi : AuthApi

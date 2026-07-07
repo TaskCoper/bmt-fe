@@ -8,15 +8,10 @@ import {
   DEFAULT_PRIMARY_COLOR,
   MAX_REGENERATIONS,
   WIZARD_STEPS,
-  type DesignStyleId,
+  type DesignStyleId
 } from '../constants/studio.constants'
 import { generateResult } from '../services/studio.service'
-import type {
-  ExportOptions,
-  GenerateResult,
-  UploadedImage,
-  WizardData,
-} from '../types/studio.types'
+import type { ExportOptions, GenerateResult, UploadedImage, WizardData } from '../types/studio.types'
 
 const INITIAL_DATA: WizardData = {
   name: '',
@@ -31,7 +26,7 @@ const INITIAL_DATA: WizardData = {
   layout: 'open',
   lighting: 'natural',
   direction: 'south',
-  primaryColor: DEFAULT_PRIMARY_COLOR,
+  primaryColor: DEFAULT_PRIMARY_COLOR
 }
 
 const INITIAL_EXPORT: ExportOptions = {
@@ -41,7 +36,7 @@ const INITIAL_EXPORT: ExportOptions = {
   estimate: true,
   summary: true,
   renders: true,
-  language: 'vi',
+  language: 'vi'
 }
 
 let imageSeq = 0
@@ -87,10 +82,7 @@ interface WizardState {
   setCaption: (id: string, caption: string) => void
 
   // step 6 — export
-  setExportOption: <K extends keyof ExportOptions>(
-    key: K,
-    value: ExportOptions[K],
-  ) => void
+  setExportOption: <K extends keyof ExportOptions>(key: K, value: ExportOptions[K]) => void
 
   reset: () => void
 }
@@ -110,7 +102,7 @@ export const useWizardStore = create<WizardState>((set, get) => ({
       const clamped = Math.max(0, Math.min(index, WIZARD_STEPS.length - 1))
       return {
         stepIndex: clamped,
-        furthestStep: Math.max(s.furthestStep, clamped),
+        furthestStep: Math.max(s.furthestStep, clamped)
       }
     }),
 
@@ -135,7 +127,7 @@ export const useWizardStore = create<WizardState>((set, get) => ({
         pendingNav: null,
         result: null,
         regenCount: 0,
-        stepIndex: Math.max(0, Math.min(target, WIZARD_STEPS.length - 1)),
+        stepIndex: Math.max(0, Math.min(target, WIZARD_STEPS.length - 1))
       }
     }),
 
@@ -146,9 +138,7 @@ export const useWizardStore = create<WizardState>((set, get) => ({
   toggleStyle: (style) =>
     set((s) => {
       const has = s.data.styles.includes(style)
-      const styles = has
-        ? s.data.styles.filter((x) => x !== style)
-        : [...s.data.styles, style]
+      const styles = has ? s.data.styles.filter((x) => x !== style) : [...s.data.styles, style]
       return { data: { ...s.data, styles } }
     }),
 
@@ -157,14 +147,14 @@ export const useWizardStore = create<WizardState>((set, get) => ({
       const added: UploadedImage[] = names.map((name) => ({
         id: `img-${++imageSeq}`,
         name,
-        floor,
+        floor
       }))
       return { data: { ...s.data, images: [...s.data.images, ...added] } }
     }),
 
   removeImage: (id) =>
     set((s) => ({
-      data: { ...s.data, images: s.data.images.filter((i) => i.id !== id) },
+      data: { ...s.data, images: s.data.images.filter((i) => i.id !== id) }
     })),
 
   generate: async () => {
@@ -188,12 +178,10 @@ export const useWizardStore = create<WizardState>((set, get) => ({
         ? {
             result: {
               ...s.result,
-              renders: s.result.renders.map((r) =>
-                r.id === id ? { ...r, favorite: !r.favorite } : r,
-              ),
-            },
+              renders: s.result.renders.map((r) => (r.id === id ? { ...r, favorite: !r.favorite } : r))
+            }
           }
-        : {},
+        : {}
     ),
 
   setCaption: (id, caption) =>
@@ -202,16 +190,13 @@ export const useWizardStore = create<WizardState>((set, get) => ({
         ? {
             result: {
               ...s.result,
-              renders: s.result.renders.map((r) =>
-                r.id === id ? { ...r, caption } : r,
-              ),
-            },
+              renders: s.result.renders.map((r) => (r.id === id ? { ...r, caption } : r))
+            }
           }
-        : {},
+        : {}
     ),
 
-  setExportOption: (key, value) =>
-    set((s) => ({ exportOptions: { ...s.exportOptions, [key]: value } })),
+  setExportOption: (key, value) => set((s) => ({ exportOptions: { ...s.exportOptions, [key]: value } })),
 
   reset: () =>
     set({
@@ -222,6 +207,6 @@ export const useWizardStore = create<WizardState>((set, get) => ({
       isGenerating: false,
       regenCount: 0,
       exportOptions: INITIAL_EXPORT,
-      pendingNav: null,
-    }),
+      pendingNav: null
+    })
 }))

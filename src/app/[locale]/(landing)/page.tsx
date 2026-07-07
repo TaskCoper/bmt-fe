@@ -7,7 +7,7 @@ import {
   LandingHero,
   ProcessSection,
   ServicesSection,
-  StatsSection,
+  StatsSection
 } from '@/features/landing'
 import type { Locale } from '@/i18n/routing'
 

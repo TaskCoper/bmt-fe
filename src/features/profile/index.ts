@@ -3,8 +3,4 @@
  * profile view + editable details (UI-first, mock save).
  */
 export { ProfilePanel } from './components/profile-panel'
-export {
-  createProfileSchema,
-  type ProfileFormValues,
-  type ProfileSchemaMessages,
-} from './schemas/profile.schema'
+export { createProfileSchema, type ProfileFormValues, type ProfileSchemaMessages } from './schemas/profile.schema'

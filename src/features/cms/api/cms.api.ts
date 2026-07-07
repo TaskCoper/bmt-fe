@@ -12,9 +12,9 @@ const realCmsApi = {
         search: filters.search || undefined,
         status: filters.status === 'all' ? undefined : filters.status,
         page: filters.page,
-        pageSize: DEFAULT_CMS_PAGE_SIZE,
-      },
-    }),
+        pageSize: DEFAULT_CMS_PAGE_SIZE
+      }
+    })
 }
 
 export const cmsApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockCmsApi : realCmsApi

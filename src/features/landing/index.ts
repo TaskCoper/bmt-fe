@@ -13,8 +13,4 @@ export { ContactSection } from './components/contact-section'
 export { LandingFooter } from './components/landing-footer'
 export { FloatingContact } from './components/floating-contact'
 export { LegalPage } from './components/legal-page'
-export {
-  LANDING_SECTIONS,
-  LANDING_NAV,
-  type LandingSectionId,
-} from './constants/landing.constants'
+export { LANDING_SECTIONS, LANDING_NAV, type LandingSectionId } from './constants/landing.constants'

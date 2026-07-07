@@ -20,6 +20,6 @@ export function useProjects() {
   return useQuery({
     queryKey: projectKeys.list(effectiveFilters),
     queryFn: () => projectApi.list(effectiveFilters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }

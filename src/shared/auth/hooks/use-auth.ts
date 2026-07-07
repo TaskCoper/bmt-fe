@@ -21,8 +21,7 @@ export function useAuth() {
       isAuthenticated,
       isInitialized,
       hasRole: (role: Role) => roles.includes(role),
-      hasAnyRole: (allowed: readonly Role[]) =>
-        allowed.some((r) => roles.includes(r)),
+      hasAnyRole: (allowed: readonly Role[]) => allowed.some((r) => roles.includes(r))
     }
   }, [user, isAuthenticated, isInitialized])
 }

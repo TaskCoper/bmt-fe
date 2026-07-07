@@ -18,18 +18,15 @@ export function DashboardSidebar() {
   const { hasAnyRole } = useAuth()
 
   return (
-    <aside className="bg-sidebar text-sidebar-foreground border-sidebar-border hidden w-64 shrink-0 flex-col border-r lg:flex">
-      <div className="flex h-16 items-center px-6">
-        <Link href="/dashboard" aria-label={t('dashboard')}>
+    <aside className='bg-sidebar text-sidebar-foreground border-sidebar-border hidden w-64 shrink-0 flex-col border-r lg:flex'>
+      <div className='flex h-16 items-center px-6'>
+        <Link href='/dashboard' aria-label={t('dashboard')}>
           <Logo />
         </Link>
       </div>
-      <nav className="flex-1 space-y-1 px-3 py-2">
-        {DASHBOARD_NAV.filter(
-          (item) => !item.roles || hasAnyRole(item.roles),
-        ).map((item) => {
-          const active =
-            pathname === item.href || pathname.startsWith(`${item.href}/`)
+      <nav className='flex-1 space-y-1 px-3 py-2'>
+        {DASHBOARD_NAV.filter((item) => !item.roles || hasAnyRole(item.roles)).map((item) => {
+          const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
           const Icon = item.icon
           return (
             <Link
@@ -40,10 +37,10 @@ export function DashboardSidebar() {
                 'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
                 active
                   ? 'bg-sidebar-accent text-sidebar-accent-foreground'
-                  : 'text-muted-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground',
+                  : 'text-muted-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground'
               )}
             >
-              <Icon className="size-4 shrink-0" />
+              <Icon className='size-4 shrink-0' />
               {t(item.labelKey)}
             </Link>
           )

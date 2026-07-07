@@ -18,7 +18,7 @@ export function WizardStepper() {
   const requestGoTo = useWizardStore((s) => s.requestGoTo)
 
   return (
-    <ol className="space-y-1">
+    <ol className='space-y-1'>
       {WIZARD_STEPS.map((step, index) => {
         const isActive = index === stepIndex
         const isDone = index < furthestStep
@@ -27,7 +27,7 @@ export function WizardStepper() {
         return (
           <li key={step}>
             <button
-              type="button"
+              type='button'
               disabled={!reachable}
               onClick={() => reachable && requestGoTo(index)}
               aria-current={isActive ? 'step' : undefined}
@@ -37,7 +37,7 @@ export function WizardStepper() {
                   ? 'bg-primary/10 text-foreground'
                   : reachable
                     ? 'hover:bg-muted text-muted-foreground'
-                    : 'cursor-not-allowed opacity-50',
+                    : 'cursor-not-allowed opacity-50'
               )}
             >
               <span
@@ -47,18 +47,14 @@ export function WizardStepper() {
                     ? 'border-primary bg-primary text-primary-foreground'
                     : isDone
                       ? 'border-success bg-success text-success-foreground'
-                      : 'border-border text-muted-foreground',
+                      : 'border-border text-muted-foreground'
                 )}
               >
-                {isDone ? <Check className="size-4" /> : index + 1}
+                {isDone ? <Check className='size-4' /> : index + 1}
               </span>
-              <span className="min-w-0 flex-1">
-                <span className="block text-sm font-medium">
-                  {t(`${step}.title`)}
-                </span>
-                <span className="text-muted-foreground block truncate text-xs">
-                  {t(`${step}.subtitle`)}
-                </span>
+              <span className='min-w-0 flex-1'>
+                <span className='block text-sm font-medium'>{t(`${step}.title`)}</span>
+                <span className='text-muted-foreground block truncate text-xs'>{t(`${step}.subtitle`)}</span>
               </span>
             </button>
           </li>

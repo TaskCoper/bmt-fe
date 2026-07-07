@@ -15,6 +15,6 @@ export function useContent(filters: ContentFilters) {
   return useQuery({
     queryKey: cmsKeys.list(effectiveFilters),
     queryFn: () => cmsApi.list(effectiveFilters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }

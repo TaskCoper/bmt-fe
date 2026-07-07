@@ -13,9 +13,7 @@ interface PageProps {
   params: Promise<{ locale: Locale }>
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'nav' })
   return { title: t('projects') }
@@ -28,14 +26,14 @@ export default async function ProjectsPage({ params }: PageProps) {
   const t = await getTranslations({ locale, namespace: 'project' })
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       <PageHeader
         title={tNav('projects')}
         description={t('subtitle')}
         actions={
           <Button asChild>
             <Link href={ROUTES.PROJECT_NEW}>
-              <Plus className="size-4" />
+              <Plus className='size-4' />
               {t('createNew')}
             </Link>
           </Button>

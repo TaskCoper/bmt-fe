@@ -9,9 +9,7 @@ interface PageProps {
   params: Promise<{ locale: Locale }>
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'settings' })
   return { title: t('title') }
@@ -23,7 +21,7 @@ export default async function SettingsPage({ params }: PageProps) {
   const t = await getTranslations({ locale, namespace: 'settings' })
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       <PageHeader title={t('title')} description={t('subtitle')} />
       <SettingsPanel />
     </div>

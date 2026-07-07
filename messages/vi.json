@@ -17,7 +17,14 @@
     "more": "Thêm",
     "actions": "Thao tác",
     "pageOf": "Trang {page}/{total}",
-    "comingSoon": "Sắp ra mắt"
+    "comingSoon": "Sắp ra mắt",
+    "optional": "tuỳ chọn",
+    "combobox": {
+      "placeholder": "Chọn một mục",
+      "searchPlaceholder": "Tìm kiếm…",
+      "emptyMessage": "Không tìm thấy kết quả",
+      "optional": "tuỳ chọn"
+    }
   },
   "nav": {
     "home": "Trang chủ",
@@ -391,7 +398,63 @@
       "description": "Mô tả",
       "descriptionPlaceholder": "Mô tả sơ bộ về dự án của bạn",
       "descriptionHint": "Sẽ hiện thị công khai trên dự án của bạn",
-      "charCount": "{count}/{max} ký tự"
+      "charCount": "{count}/{max} ký tự",
+      "projectNotFound": "Không tìm thấy dự án",
+      "designRequestTitle": "Yêu cầu thiết kế",
+      "designRequestSubtitle": "Chọn phong cách, hướng nhà và cấu hình từng tầng cho ngôi nhà của bạn.",
+      "styleLabel": "Phong cách nhà",
+      "style": {
+        "roof": "Nhà mái",
+        "modern": "Nhà phố hiện đại",
+        "neoclassical": "Nhà tân cổ điển"
+      },
+      "roofStyleLabel": "Kiểu mái",
+      "roofStyle": {
+        "thai": "Mái Thái",
+        "japanese": "Mái Nhật",
+        "traditional": "Ngói truyền thống",
+        "other": "Khác"
+      },
+      "tumLabel": "Có tum hay không?",
+      "tum": {
+        "yes": "Có tum",
+        "no": "Không tum"
+      },
+      "directionLabel": "Hướng nhà ưu tiên",
+      "direction": {
+        "east": "Đông",
+        "west": "Tây",
+        "south": "Nam",
+        "north": "Bắc"
+      },
+      "addressLabel": "Địa chỉ",
+      "addressPlaceholder": "Số nhà, tên đường…",
+      "cityLabel": "Tỉnh / Thành phố",
+      "cityPlaceholder": "Chọn tỉnh / thành phố",
+      "citySearchPlaceholder": "Tìm tỉnh / thành phố…",
+      "wardLabel": "Phường / Xã",
+      "wardPlaceholder": "Chọn phường / xã",
+      "wardSearchPlaceholder": "Tìm phường / xã…",
+      "floorsLabel": "Các tầng",
+      "floorTitle": "Tầng {index}",
+      "addFloor": "Thêm tầng",
+      "removeFloor": "Xoá tầng",
+      "areaLabel": "Diện tích xây dựng (m²)",
+      "areaPlaceholder": "VD: 80",
+      "layoutLabel": "Bố cục không gian",
+      "layout": {
+        "open": "Không gian mở",
+        "separated": "Phòng riêng biệt"
+      },
+      "lightingLabel": "Ưu tiên ánh sáng",
+      "lighting": {
+        "natural": "Tự nhiên",
+        "artificial": "Nhân tạo"
+      },
+      "colorLabel": "Tông màu chủ đạo",
+      "spaces": {
+        "subtitle": "Thiết lập không gian cho dự án"
+      }
     },
     "card": {
       "mockName": "Nhà biệt thự quận 7",
@@ -679,7 +742,8 @@
     "passwordMin": "Mật khẩu phải có ít nhất {min} ký tự",
     "passwordMismatch": "Mật khẩu xác nhận không khớp",
     "agreeTerms": "Bạn cần đồng ý với điều khoản",
-    "phone": "Số điện thoại không hợp lệ"
+    "phone": "Số điện thoại không hợp lệ",
+    "positiveNumber": "Nhập một số lớn hơn 0"
   },
   "studio": {
     "title": "Tạo dự án mới",

@@ -15,7 +15,7 @@ export function useEstimates(filters: EstimateFilters) {
   return useQuery({
     queryKey: estimateKeys.list(effectiveFilters),
     queryFn: () => estimateApi.list(effectiveFilters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }
 
@@ -23,6 +23,6 @@ export function useEstimates(filters: EstimateFilters) {
 export function useEstimateSummary() {
   return useQuery({
     queryKey: estimateKeys.summary(),
-    queryFn: estimateApi.getSummary,
+    queryFn: estimateApi.getSummary
   })
 }

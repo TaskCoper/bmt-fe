@@ -17,7 +17,14 @@
     "more": "More",
     "actions": "Actions",
     "pageOf": "Page {page} of {total}",
-    "comingSoon": "Coming soon"
+    "comingSoon": "Coming soon",
+    "optional": "optional",
+    "combobox": {
+      "placeholder": "Select an item",
+      "searchPlaceholder": "Search…",
+      "emptyMessage": "No results found",
+      "optional": "optional"
+    }
   },
   "nav": {
     "home": "Home",
@@ -391,7 +398,63 @@
       "description": "Description",
       "descriptionPlaceholder": "A brief description of your project",
       "descriptionHint": "Will be shown publicly on your project",
-      "charCount": "{count}/{max} characters"
+      "charCount": "{count}/{max} characters",
+      "projectNotFound": "Project not found",
+      "designRequestTitle": "Design request",
+      "designRequestSubtitle": "Choose a style, orientation and floor configuration for your home.",
+      "styleLabel": "House style",
+      "style": {
+        "roof": "Roofed house",
+        "modern": "Modern townhouse",
+        "neoclassical": "Neoclassical"
+      },
+      "roofStyleLabel": "Roof style",
+      "roofStyle": {
+        "thai": "Thai",
+        "japanese": "Japanese",
+        "traditional": "Traditional tile",
+        "other": "Other"
+      },
+      "tumLabel": "Rooftop room (tum)?",
+      "tum": {
+        "yes": "With tum",
+        "no": "No tum"
+      },
+      "directionLabel": "Preferred orientation",
+      "direction": {
+        "east": "East",
+        "west": "West",
+        "south": "South",
+        "north": "North"
+      },
+      "addressLabel": "Address",
+      "addressPlaceholder": "Street number, street name…",
+      "cityLabel": "Province / City",
+      "cityPlaceholder": "Select a province / city",
+      "citySearchPlaceholder": "Search province / city…",
+      "wardLabel": "Ward",
+      "wardPlaceholder": "Select a ward",
+      "wardSearchPlaceholder": "Search ward…",
+      "floorsLabel": "Floors",
+      "floorTitle": "Floor {index}",
+      "addFloor": "Add floor",
+      "removeFloor": "Remove floor",
+      "areaLabel": "Built area (m²)",
+      "areaPlaceholder": "e.g. 80",
+      "layoutLabel": "Space layout",
+      "layout": {
+        "open": "Open plan",
+        "separated": "Separated rooms"
+      },
+      "lightingLabel": "Preferred lighting",
+      "lighting": {
+        "natural": "Natural",
+        "artificial": "Artificial"
+      },
+      "colorLabel": "Primary color",
+      "spaces": {
+        "subtitle": "Set up spaces for this project"
+      }
     },
     "card": {
       "mockName": "District 7 Villa",
@@ -679,7 +742,8 @@
     "passwordMin": "Password must be at least {min} characters",
     "passwordMismatch": "Passwords do not match",
     "agreeTerms": "You must agree to the terms",
-    "phone": "Enter a valid phone number"
+    "phone": "Enter a valid phone number",
+    "positiveNumber": "Enter a number greater than 0"
   },
   "studio": {
     "title": "New project",

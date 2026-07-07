@@ -12,26 +12,10 @@ import { ROUTES } from '@/shared/constants/routes'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Checkbox } from '@/shared/components/ui/checkbox'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/shared/components/ui/card'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/shared/components/ui/form'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/components/ui/form'
 import { useLogin } from '../hooks/use-login'
-import {
-  createLoginSchema,
-  type LoginFormValues,
-} from '../schemas/login.schema'
+import { createLoginSchema, type LoginFormValues } from '../schemas/login.schema'
 import { GoogleButton } from './google-button'
 
 /**
@@ -50,15 +34,15 @@ export function LoginForm() {
       createLoginSchema({
         required: tv('required'),
         email: tv('email'),
-        passwordMin: tv('passwordMin', { min: 8 }),
+        passwordMin: tv('passwordMin', { min: 8 })
       }),
-    [tv],
+    [tv]
   )
   const login = useLogin(redirectTo)
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { email: '', password: '', rememberMe: false },
+    defaultValues: { email: '', password: '', rememberMe: false }
   })
 
   function onSubmit(values: LoginFormValues) {
@@ -66,27 +50,22 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader className="text-center">
-        <CardTitle className="text-title">{t('title')}</CardTitle>
+    <Card className='w-full max-w-sm'>
+      <CardHeader className='text-center'>
+        <CardTitle className='text-title'>{t('title')}</CardTitle>
         <CardDescription>{t('subtitle')}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
             <FormField
               control={form.control}
-              name="email"
+              name='email'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('emailLabel')}</FormLabel>
                   <FormControl>
-                    <Input
-                      type="email"
-                      autoComplete="email"
-                      placeholder={t('emailPlaceholder')}
-                      {...field}
-                    />
+                    <Input type='email' autoComplete='email' placeholder={t('emailPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -95,22 +74,19 @@ export function LoginForm() {
 
             <FormField
               control={form.control}
-              name="password"
+              name='password'
               render={({ field }) => (
                 <FormItem>
-                  <div className="flex items-center justify-between">
+                  <div className='flex items-center justify-between'>
                     <FormLabel>{t('passwordLabel')}</FormLabel>
-                    <Link
-                      href={ROUTES.FORGOT_PASSWORD}
-                      className="text-muted-foreground hover:text-foreground text-sm"
-                    >
+                    <Link href={ROUTES.FORGOT_PASSWORD} className='text-muted-foreground hover:text-foreground text-sm'>
                       {t('forgotPassword')}
                     </Link>
                   </div>
                   <FormControl>
                     <Input
-                      type="password"
-                      autoComplete="current-password"
+                      type='password'
+                      autoComplete='current-password'
                       placeholder={t('passwordPlaceholder')}
                       {...field}
                     />
@@ -122,45 +98,35 @@ export function LoginForm() {
 
             <FormField
               control={form.control}
-              name="rememberMe"
+              name='rememberMe'
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center gap-2 space-y-0">
+                <FormItem className='flex flex-row items-center gap-2 space-y-0'>
                   <FormControl>
-                    <Checkbox
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                    />
+                    <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                   </FormControl>
-                  <FormLabel className="font-normal">
-                    {t('rememberMe')}
-                  </FormLabel>
+                  <FormLabel className='font-normal'>{t('rememberMe')}</FormLabel>
                 </FormItem>
               )}
             />
 
-            <Button type="submit" className="w-full" disabled={login.isPending}>
-              {login.isPending ? (
-                <Loader2 className="size-4 animate-spin" />
-              ) : null}
+            <Button type='submit' className='w-full' disabled={login.isPending}>
+              {login.isPending ? <Loader2 className='size-4 animate-spin' /> : null}
               {t('submit')}
             </Button>
           </form>
         </Form>
 
-        <div className="my-6 flex items-center gap-3">
-          <span className="bg-border h-px flex-1" />
-          <span className="text-muted-foreground text-xs">{tSocial('or')}</span>
-          <span className="bg-border h-px flex-1" />
+        <div className='my-6 flex items-center gap-3'>
+          <span className='bg-border h-px flex-1' />
+          <span className='text-muted-foreground text-xs'>{tSocial('or')}</span>
+          <span className='bg-border h-px flex-1' />
         </div>
 
         <GoogleButton />
 
-        <p className="text-muted-foreground mt-6 text-center text-sm">
+        <p className='text-muted-foreground mt-6 text-center text-sm'>
           {t('noAccount')}{' '}
-          <Link
-            href={ROUTES.REGISTER}
-            className="text-foreground font-medium hover:underline"
-          >
+          <Link href={ROUTES.REGISTER} className='text-foreground font-medium hover:underline'>
             {t('signUp')}
           </Link>
         </p>

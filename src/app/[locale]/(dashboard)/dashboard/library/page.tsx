@@ -9,9 +9,7 @@ interface PageProps {
   params: Promise<{ locale: Locale }>
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'nav' })
   return { title: t('library') }
@@ -24,11 +22,8 @@ export default async function LibraryPage({ params }: PageProps) {
   const tPages = await getTranslations({ locale, namespace: 'pages' })
 
   return (
-    <div className="space-y-6">
-      <PageHeader
-        title={tNav('library')}
-        description={tPages('library.subtitle')}
-      />
+    <div className='space-y-6'>
+      <PageHeader title={tNav('library')} description={tPages('library.subtitle')} />
       <LibraryTable />
     </div>
   )

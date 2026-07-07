@@ -1,14 +1,7 @@
 import { mockDelay, paginate } from '@/shared/lib'
 import type { PaginatedResponse } from '@/shared/types'
-import {
-  DEFAULT_PROJECT_PAGE_SIZE,
-  PROJECT_STATUS,
-} from '../constants/project.constants'
-import type {
-  CreateProjectPayload,
-  Project,
-  ProjectFilters,
-} from '../types/project.types'
+import { DEFAULT_PROJECT_PAGE_SIZE, PROJECT_STATUS } from '../constants/project.constants'
+import type { CreateProjectPayload, Project, ProjectFilters } from '../types/project.types'
 
 /**
  * Sample projects for local development without a backend.
@@ -21,7 +14,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Cải tạo toàn bộ căn hộ 2 phòng ngủ, 78m².',
     status: PROJECT_STATUS.ACTIVE,
     createdAt: '2026-05-02T03:00:00Z',
-    updatedAt: '2026-06-18T08:30:00Z',
+    updatedAt: '2026-06-18T08:30:00Z'
   },
   {
     id: 'p-02',
@@ -29,7 +22,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Setup nội thất quán café 120m² phong cách công nghiệp.',
     status: PROJECT_STATUS.ACTIVE,
     createdAt: '2026-04-15T03:00:00Z',
-    updatedAt: '2026-06-12T10:00:00Z',
+    updatedAt: '2026-06-12T10:00:00Z'
   },
   {
     id: 'p-03',
@@ -37,7 +30,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Xây mới nhà phố 1 trệt 3 lầu tại Thủ Đức.',
     status: PROJECT_STATUS.ON_HOLD,
     createdAt: '2026-03-20T03:00:00Z',
-    updatedAt: '2026-05-28T09:15:00Z',
+    updatedAt: '2026-05-28T09:15:00Z'
   },
   {
     id: 'p-04',
@@ -45,7 +38,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Cải tạo văn phòng 300m² tầng 8.',
     status: PROJECT_STATUS.COMPLETED,
     createdAt: '2026-01-10T03:00:00Z',
-    updatedAt: '2026-04-02T07:45:00Z',
+    updatedAt: '2026-04-02T07:45:00Z'
   },
   {
     id: 'p-05',
@@ -53,7 +46,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Hoàn thiện nội thất biệt thự song lập.',
     status: PROJECT_STATUS.DRAFT,
     createdAt: '2026-06-01T03:00:00Z',
-    updatedAt: '2026-06-20T11:00:00Z',
+    updatedAt: '2026-06-20T11:00:00Z'
   },
   {
     id: 'p-06',
@@ -61,7 +54,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Thi công showroom 250m² mặt tiền Cộng Hòa.',
     status: PROJECT_STATUS.ACTIVE,
     createdAt: '2026-05-18T03:00:00Z',
-    updatedAt: '2026-06-19T14:20:00Z',
+    updatedAt: '2026-06-19T14:20:00Z'
   },
   {
     id: 'p-07',
@@ -69,7 +62,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Nâng cấp khu bếp và khu vực phục vụ 400m².',
     status: PROJECT_STATUS.ON_HOLD,
     createdAt: '2026-02-25T03:00:00Z',
-    updatedAt: '2026-05-15T06:30:00Z',
+    updatedAt: '2026-05-15T06:30:00Z'
   },
   {
     id: 'p-08',
@@ -77,7 +70,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Cải tạo căn studio 45m² cho thuê.',
     status: PROJECT_STATUS.COMPLETED,
     createdAt: '2025-12-05T03:00:00Z',
-    updatedAt: '2026-03-10T08:00:00Z',
+    updatedAt: '2026-03-10T08:00:00Z'
   },
   {
     id: 'p-09',
@@ -85,7 +78,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Thi công mới spa 2 tầng 500m².',
     status: PROJECT_STATUS.ACTIVE,
     createdAt: '2026-05-25T03:00:00Z',
-    updatedAt: '2026-06-21T09:40:00Z',
+    updatedAt: '2026-06-21T09:40:00Z'
   },
   {
     id: 'p-10',
@@ -93,7 +86,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Xây dựng nhà kho khung thép 1.200m².',
     status: PROJECT_STATUS.DRAFT,
     createdAt: '2026-06-10T03:00:00Z',
-    updatedAt: '2026-06-22T13:10:00Z',
+    updatedAt: '2026-06-22T13:10:00Z'
   },
   {
     id: 'p-11',
@@ -101,7 +94,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Cải tạo và mở rộng khu lớp học.',
     status: PROJECT_STATUS.ARCHIVED,
     createdAt: '2025-09-01T03:00:00Z',
-    updatedAt: '2026-01-20T07:00:00Z',
+    updatedAt: '2026-01-20T07:00:00Z'
   },
   {
     id: 'p-12',
@@ -109,7 +102,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Hoàn thiện nội thất cao cấp tầng 72.',
     status: PROJECT_STATUS.ACTIVE,
     createdAt: '2026-04-28T03:00:00Z',
-    updatedAt: '2026-06-17T15:00:00Z',
+    updatedAt: '2026-06-17T15:00:00Z'
   },
   {
     id: 'p-13',
@@ -117,7 +110,7 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Thi công phòng khám 90m² tại Gò Vấp.',
     status: PROJECT_STATUS.COMPLETED,
     createdAt: '2025-11-12T03:00:00Z',
-    updatedAt: '2026-02-14T10:30:00Z',
+    updatedAt: '2026-02-14T10:30:00Z'
   },
   {
     id: 'p-14',
@@ -125,19 +118,15 @@ export const MOCK_PROJECTS: Project[] = [
     description: 'Cải tạo không gian 180m² phong cách thiền.',
     status: PROJECT_STATUS.DRAFT,
     createdAt: '2026-06-15T03:00:00Z',
-    updatedAt: '2026-06-23T08:50:00Z',
-  },
+    updatedAt: '2026-06-23T08:50:00Z'
+  }
 ]
 
 function applyFilters(filters: ProjectFilters): Project[] {
   let items = [...MOCK_PROJECTS]
   if (filters.search) {
     const q = filters.search.toLowerCase()
-    items = items.filter(
-      (p) =>
-        p.name.toLowerCase().includes(q) ||
-        p.description?.toLowerCase().includes(q),
-    )
+    items = items.filter((p) => p.name.toLowerCase().includes(q) || p.description?.toLowerCase().includes(q))
   }
   if (filters.status !== 'all') {
     items = items.filter((p) => p.status === filters.status)
@@ -148,11 +137,7 @@ function applyFilters(filters: ProjectFilters): Project[] {
 export const mockProjectApi = {
   async list(filters: ProjectFilters): Promise<PaginatedResponse<Project>> {
     await mockDelay()
-    return paginate(
-      applyFilters(filters),
-      filters.page,
-      DEFAULT_PROJECT_PAGE_SIZE,
-    )
+    return paginate(applyFilters(filters), filters.page, DEFAULT_PROJECT_PAGE_SIZE)
   },
 
   async getById(id: string): Promise<Project> {
@@ -170,11 +155,11 @@ export const mockProjectApi = {
       description: payload.description,
       status: PROJECT_STATUS.DRAFT,
       createdAt: '2026-06-24T00:00:00Z',
-      updatedAt: '2026-06-24T00:00:00Z',
+      updatedAt: '2026-06-24T00:00:00Z'
     }
   },
 
   async remove(): Promise<void> {
     await mockDelay(200)
-  },
+  }
 }

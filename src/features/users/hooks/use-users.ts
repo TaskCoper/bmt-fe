@@ -15,6 +15,6 @@ export function useUsers(filters: UserFilters) {
   return useQuery({
     queryKey: usersKeys.list(effectiveFilters),
     queryFn: () => usersApi.list(effectiveFilters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }

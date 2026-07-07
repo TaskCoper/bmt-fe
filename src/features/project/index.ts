@@ -20,6 +20,7 @@ export { default as ProjectCard } from './components/project-card'
 export { default as ProjectDetail } from './components/project-detail'
 export { default as ProjectGrid } from './components/project-grid'
 export { ProjectList } from './components/project-list'
+export { default as ProjectSpaces } from './components/project-spaces'
 export { DEFAULT_PROJECT_PAGE_SIZE, PROJECT_STATUS, type ProjectStatus } from './constants/project.constants'
 export { useProjects } from './hooks/use-projects'
 export { createProjectSchema, type CreateProjectFormValues, type ProjectSchemaMessages } from './schemas/project.schema'
@@ -27,8 +28,10 @@ export { projectService } from './services/project.service'
 export { useProjectFiltersStore } from './store/project-filters.store'
 export {
   buildProjectId,
-  INITIAL_PROJECT_STEP,
+  getProjectFlowUrls,
+  type ProjectDraft,
+  type ProjectFlowStep,
   slugifyProjectName,
   useProjectStore,
-  type ProjectDraft
+  useSetProjectFlow
 } from './store/project.store'

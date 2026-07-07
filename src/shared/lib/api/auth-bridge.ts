@@ -25,8 +25,8 @@ export async function refreshSession(): Promise<boolean> {
       {
         baseURL: API_CONFIG.baseURL,
         withCredentials: true,
-        timeout: API_CONFIG.timeout,
-      },
+        timeout: API_CONFIG.timeout
+      }
     )
     return true
   } catch {

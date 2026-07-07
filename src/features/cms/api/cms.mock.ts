@@ -1,10 +1,6 @@
 import { mockDelay, paginate } from '@/shared/lib'
 import type { PaginatedResponse } from '@/shared/types'
-import {
-  CONTENT_STATUS,
-  CONTENT_TYPE,
-  DEFAULT_CMS_PAGE_SIZE,
-} from '../constants/cms.constants'
+import { CONTENT_STATUS, CONTENT_TYPE, DEFAULT_CMS_PAGE_SIZE } from '../constants/cms.constants'
 import type { ContentEntry, ContentFilters } from '../types/cms.types'
 
 const S = CONTENT_STATUS
@@ -18,7 +14,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.PAGE,
     status: S.PUBLISHED,
     author: 'Admin',
-    updatedAt: '2026-06-20T03:00:00Z',
+    updatedAt: '2026-06-20T03:00:00Z'
   },
   {
     id: 'c-02',
@@ -26,7 +22,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.PAGE,
     status: S.PUBLISHED,
     author: 'Admin',
-    updatedAt: '2026-06-18T03:00:00Z',
+    updatedAt: '2026-06-18T03:00:00Z'
   },
   {
     id: 'c-03',
@@ -34,7 +30,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.POST,
     status: S.PUBLISHED,
     author: 'Nguyễn Văn An',
-    updatedAt: '2026-06-15T03:00:00Z',
+    updatedAt: '2026-06-15T03:00:00Z'
   },
   {
     id: 'c-04',
@@ -42,7 +38,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.POST,
     status: S.SCHEDULED,
     author: 'Trần Thị Bình',
-    updatedAt: '2026-06-22T03:00:00Z',
+    updatedAt: '2026-06-22T03:00:00Z'
   },
   {
     id: 'c-05',
@@ -50,7 +46,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.BANNER,
     status: S.DRAFT,
     author: 'Admin',
-    updatedAt: '2026-06-23T03:00:00Z',
+    updatedAt: '2026-06-23T03:00:00Z'
   },
   {
     id: 'c-06',
@@ -58,7 +54,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.POST,
     status: S.PUBLISHED,
     author: 'Nguyễn Văn An',
-    updatedAt: '2026-06-10T03:00:00Z',
+    updatedAt: '2026-06-10T03:00:00Z'
   },
   {
     id: 'c-07',
@@ -66,7 +62,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.PAGE,
     status: S.PUBLISHED,
     author: 'Admin',
-    updatedAt: '2026-05-28T03:00:00Z',
+    updatedAt: '2026-05-28T03:00:00Z'
   },
   {
     id: 'c-08',
@@ -74,7 +70,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.PAGE,
     status: S.DRAFT,
     author: 'Admin',
-    updatedAt: '2026-05-28T03:00:00Z',
+    updatedAt: '2026-05-28T03:00:00Z'
   },
   {
     id: 'c-09',
@@ -82,7 +78,7 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.BANNER,
     status: S.PUBLISHED,
     author: 'Admin',
-    updatedAt: '2026-06-05T03:00:00Z',
+    updatedAt: '2026-06-05T03:00:00Z'
   },
   {
     id: 'c-10',
@@ -90,8 +86,8 @@ export const MOCK_CONTENT: ContentEntry[] = [
     type: T.POST,
     status: S.SCHEDULED,
     author: 'Trần Thị Bình',
-    updatedAt: '2026-06-21T03:00:00Z',
-  },
+    updatedAt: '2026-06-21T03:00:00Z'
+  }
 ]
 
 function applyFilters(filters: ContentFilters): ContentEntry[] {
@@ -107,10 +103,8 @@ function applyFilters(filters: ContentFilters): ContentEntry[] {
 }
 
 export const mockCmsApi = {
-  async list(
-    filters: ContentFilters,
-  ): Promise<PaginatedResponse<ContentEntry>> {
+  async list(filters: ContentFilters): Promise<PaginatedResponse<ContentEntry>> {
     await mockDelay()
     return paginate(applyFilters(filters), filters.page, DEFAULT_CMS_PAGE_SIZE)
-  },
+  }
 }

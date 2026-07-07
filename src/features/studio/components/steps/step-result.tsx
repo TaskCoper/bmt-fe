@@ -7,12 +7,7 @@ import { Loader2, RefreshCw, Sparkles } from 'lucide-react'
 import type { Locale } from '@/i18n/routing'
 import { formatDate } from '@/shared/utils'
 import { MAX_REGENERATIONS } from '../../constants/studio.constants'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/shared/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card'
 import { Button } from '@/shared/components/ui/button'
 import { useWizardStore } from '../../store/wizard.store'
 import { StepSection } from '../step-section'
@@ -41,21 +36,21 @@ export function StepResult() {
 
   if (isGenerating || !result) {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
-        <div className="bg-primary/10 flex size-16 items-center justify-center rounded-full">
+      <div className='flex flex-col items-center justify-center gap-4 py-24 text-center'>
+        <div className='bg-primary/10 flex size-16 items-center justify-center rounded-full'>
           {isGenerating ? (
-            <Loader2 className="text-primary size-8 animate-spin" />
+            <Loader2 className='text-primary size-8 animate-spin' />
           ) : (
-            <Sparkles className="text-primary size-8" />
+            <Sparkles className='text-primary size-8' />
           )}
         </div>
-        <div className="space-y-1">
-          <p className="text-lg font-semibold">{t('generating')}</p>
-          <p className="text-muted-foreground text-sm">{t('generatingHint')}</p>
+        <div className='space-y-1'>
+          <p className='text-lg font-semibold'>{t('generating')}</p>
+          <p className='text-muted-foreground text-sm'>{t('generatingHint')}</p>
         </div>
         {!isGenerating ? (
           <Button onClick={() => void generate()}>
-            <Sparkles className="size-4" />
+            <Sparkles className='size-4' />
             {t('regenerate')}
           </Button>
         ) : null}
@@ -64,31 +59,22 @@ export function StepResult() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className='space-y-8'>
       {/* Regenerate control — capped at MAX_REGENERATIONS per project */}
-      <div className="flex flex-wrap items-center justify-end gap-3">
+      <div className='flex flex-wrap items-center justify-end gap-3'>
         {regenLeft > 0 ? (
-          <span className="text-muted-foreground text-xs">
-            {t('regenLeft', { count: regenLeft })}
-          </span>
+          <span className='text-muted-foreground text-xs'>{t('regenLeft', { count: regenLeft })}</span>
         ) : (
-          <span className="text-destructive text-xs">
-            {t('regenExhausted')}
-          </span>
+          <span className='text-destructive text-xs'>{t('regenExhausted')}</span>
         )}
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => void regenerate()}
-          disabled={regenLeft <= 0}
-        >
-          <RefreshCw className="size-4" />
+        <Button variant='outline' size='sm' onClick={() => void regenerate()} disabled={regenLeft <= 0}>
+          <RefreshCw className='size-4' />
           {t('regenerate')}
         </Button>
       </div>
 
       {/* 4A — 2D drawing + 4D area summary */}
-      <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+      <div className='grid gap-6 lg:grid-cols-[1.6fr_1fr]'>
         <StepSection title={t('drawingTitle')}>
           <FloorPlan />
         </StepSection>
@@ -104,21 +90,21 @@ export function StepResult() {
 
       {/* 4E — aggregate summary + donut */}
       <StepSection title={t('summaryTitle')}>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className='grid gap-6 lg:grid-cols-2'>
           <BudgetSummary budget={result.budget} />
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">{t('structureTitle')}</CardTitle>
+              <CardTitle className='text-base'>{t('structureTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
               <CostDonut budget={result.budget} />
             </CardContent>
           </Card>
         </div>
-        <p className="text-muted-foreground text-xs">
+        <p className='text-muted-foreground text-xs'>
           {t('disclaimer')}{' '}
           {t('estimatedOn', {
-            date: formatDate(result.generatedAt, locale),
+            date: formatDate(result.generatedAt, locale)
           })}
         </p>
       </StepSection>

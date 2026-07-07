@@ -6,14 +6,7 @@
  */
 
 /** The 6 sequential steps of the design flow. */
-export const WIZARD_STEPS = [
-  'create',
-  'space',
-  'design',
-  'result',
-  'render',
-  'export',
-] as const
+export const WIZARD_STEPS = ['create', 'space', 'design', 'result', 'render', 'export'] as const
 
 export type WizardStepId = (typeof WIZARD_STEPS)[number]
 
@@ -24,11 +17,10 @@ export const CONSTRUCTION_TYPES = {
   VILLA: 'villa',
   OFFICE: 'office',
   COMMERCIAL: 'commercial',
-  HOTEL: 'hotel',
+  HOTEL: 'hotel'
 } as const
 
-export type ConstructionType =
-  (typeof CONSTRUCTION_TYPES)[keyof typeof CONSTRUCTION_TYPES]
+export type ConstructionType = (typeof CONSTRUCTION_TYPES)[keyof typeof CONSTRUCTION_TYPES]
 
 /** Construction-type options with their MVP availability. */
 export const CONSTRUCTION_TYPE_OPTIONS: ReadonlyArray<{
@@ -41,7 +33,7 @@ export const CONSTRUCTION_TYPE_OPTIONS: ReadonlyArray<{
   { value: CONSTRUCTION_TYPES.VILLA, group: 'residential', mvp: true },
   { value: CONSTRUCTION_TYPES.OFFICE, group: 'commercial', mvp: false },
   { value: CONSTRUCTION_TYPES.COMMERCIAL, group: 'commercial', mvp: false },
-  { value: CONSTRUCTION_TYPES.HOTEL, group: 'commercial', mvp: false },
+  { value: CONSTRUCTION_TYPES.HOTEL, group: 'commercial', mvp: false }
 ]
 
 /**
@@ -53,12 +45,7 @@ export const MAX_IMAGE_SIZE_BYTES = MAX_IMAGE_SIZE_MB * 1024 * 1024
 export const MAX_IMAGES_PER_FLOOR = 5
 export const MAX_FLOORS = 3
 /** Accepted image MIME types + extensions for the file input / validation. */
-export const ACCEPTED_IMAGE_MIME = [
-  'image/jpeg',
-  'image/png',
-  'image/heic',
-  'image/heif',
-] as const
+export const ACCEPTED_IMAGE_MIME = ['image/jpeg', 'image/png', 'image/heic', 'image/heif'] as const
 export const IMAGE_ACCEPT_ATTR = '.jpg,.jpeg,.png,.heic,.heif,image/*'
 
 /** Max AI re-generations allowed per project (the first run is automatic). */
@@ -71,11 +58,10 @@ export const ROUGH_COST_PER_SQM = 3_500_000
 export const BUDGET_PACKAGES = {
   BASIC: 'basic',
   STANDARD: 'standard',
-  PREMIUM: 'premium',
+  PREMIUM: 'premium'
 } as const
 
-export type BudgetPackageId =
-  (typeof BUDGET_PACKAGES)[keyof typeof BUDGET_PACKAGES]
+export type BudgetPackageId = (typeof BUDGET_PACKAGES)[keyof typeof BUDGET_PACKAGES]
 
 export interface BudgetPackage {
   id: BudgetPackageId
@@ -89,18 +75,18 @@ export const BUDGET_PACKAGE_LIST: readonly BudgetPackage[] = [
   {
     id: BUDGET_PACKAGES.BASIC,
     finishingPerSqm: 1_800_000,
-    interiorPerSqm: 2_000_000,
+    interiorPerSqm: 2_000_000
   },
   {
     id: BUDGET_PACKAGES.STANDARD,
     finishingPerSqm: 2_800_000,
-    interiorPerSqm: 3_500_000,
+    interiorPerSqm: 3_500_000
   },
   {
     id: BUDGET_PACKAGES.PREMIUM,
     finishingPerSqm: 4_500_000,
-    interiorPerSqm: 6_000_000,
-  },
+    interiorPerSqm: 6_000_000
+  }
 ]
 
 /** Design styles (multi-select). */
@@ -108,7 +94,7 @@ export const DESIGN_STYLES = {
   MODERN: 'modern',
   MINIMALIST: 'minimalist',
   INDOCHINE: 'indochine',
-  TRADITIONAL: 'traditional',
+  TRADITIONAL: 'traditional'
 } as const
 
 export type DesignStyleId = (typeof DESIGN_STYLES)[keyof typeof DESIGN_STYLES]

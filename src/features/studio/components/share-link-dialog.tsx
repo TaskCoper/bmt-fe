@@ -13,7 +13,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from '@/shared/components/ui/dialog'
 
 /**
@@ -33,8 +33,8 @@ export function ShareLinkDialog({ projectName }: { projectName: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">
-          <Link2 className="size-4" />
+        <Button variant='outline'>
+          <Link2 className='size-4' />
           {t('manageLink')}
         </Button>
       </DialogTrigger>
@@ -45,31 +45,26 @@ export function ShareLinkDialog({ projectName }: { projectName: string }) {
         </DialogHeader>
 
         {revoked ? (
-          <div className="space-y-3">
-            <p className="text-muted-foreground text-sm">{t('revokedNote')}</p>
+          <div className='space-y-3'>
+            <p className='text-muted-foreground text-sm'>{t('revokedNote')}</p>
             <Button onClick={() => setRevoked(false)}>{t('recreate')}</Button>
           </div>
         ) : (
-          <div className="space-y-3">
-            <div className="flex gap-2">
-              <Input readOnly value={link} className="font-mono text-xs" />
-              <Button
-                variant="outline"
-                size="icon"
-                aria-label={t('copy')}
-                onClick={() => toast.success(t('copied'))}
-              >
-                <Copy className="size-4" />
+          <div className='space-y-3'>
+            <div className='flex gap-2'>
+              <Input readOnly value={link} className='font-mono text-xs' />
+              <Button variant='outline' size='icon' aria-label={t('copy')} onClick={() => toast.success(t('copied'))}>
+                <Copy className='size-4' />
               </Button>
             </div>
             <Button
-              variant="destructive"
+              variant='destructive'
               onClick={() => {
                 setRevoked(true)
                 toast.success(t('revoked'))
               }}
             >
-              <Ban className="size-4" />
+              <Ban className='size-4' />
               {t('revoke')}
             </Button>
           </div>

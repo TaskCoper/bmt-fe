@@ -12,19 +12,11 @@ export { useLogout } from './hooks/use-logout'
 export { useCurrentUser } from './hooks/use-current-user'
 export { authApi } from './api/auth.api'
 export { authKeys } from './api/auth.keys'
-export {
-  createLoginSchema,
-  type LoginFormValues,
-  type LoginSchemaMessages,
-} from './schemas/login.schema'
-export {
-  createRegisterSchema,
-  type RegisterFormValues,
-  type RegisterSchemaMessages,
-} from './schemas/register.schema'
+export { createLoginSchema, type LoginFormValues, type LoginSchemaMessages } from './schemas/login.schema'
+export { createRegisterSchema, type RegisterFormValues, type RegisterSchemaMessages } from './schemas/register.schema'
 export {
   createForgotPasswordSchema,
   type ForgotPasswordFormValues,
-  type ForgotPasswordSchemaMessages,
+  type ForgotPasswordSchemaMessages
 } from './schemas/forgot-password.schema'
 export type { LoginPayload, LoginResponse } from './types/auth.types'
