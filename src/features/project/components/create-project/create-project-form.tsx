@@ -15,7 +15,7 @@ export default function CreateProjectForm() {
   const t = useTranslations('project')
 
   return (
-    <div>
+    <>
       <Controller
         name='name'
         control={control}
@@ -144,6 +144,6 @@ export default function CreateProjectForm() {
           </Field>
         )}
       />
-    </div>
+    </>
   )
 }

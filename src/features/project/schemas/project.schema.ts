@@ -7,7 +7,7 @@ export interface ProjectSchemaMessages {
   maxName: string
 }
 
-export function createProjectSchema(m: ProjectSchemaMessages) {
+export const createProjectSchema = (m: ProjectSchemaMessages) => {
   return z.object({
     name: z.string().min(1, { message: m.required }).max(NAME_MAX_LENGTH, { message: m.maxName }),
     description: z.string().max(DESCRIPTION_MAX_LENGTH).optional(),
@@ -15,4 +15,11 @@ export function createProjectSchema(m: ProjectSchemaMessages) {
   })
 }
 
+export const designRequestSchema = () => {
+  return z.object({
+    designRequest: z.string().min(1).max(10_000)
+  })
+}
+
 export type CreateProjectFormValues = z.infer<ReturnType<typeof createProjectSchema>>
+export type DesignRequestFormValues = z.infer<ReturnType<typeof designRequestSchema>>
