@@ -54,13 +54,16 @@ export function CostDonut({ budget }: { budget: BudgetBreakdown }) {
 
       <ul className="space-y-2">
         {SEGMENTS.map((seg) => (
-          <li key={seg.key} className="flex items-center gap-2 text-sm">
+          <li
+            key={seg.key}
+            className="border-glass-border bg-background/40 flex items-center gap-2.5 rounded-lg border px-3 py-2 text-sm backdrop-blur-sm"
+          >
             <span
-              className="size-3 shrink-0 rounded-full"
+              className="size-3 shrink-0 rounded-full ring-1 ring-black/5 ring-inset"
               style={{ backgroundColor: seg.color }}
             />
             <span className="font-medium">{t(`portion.${seg.key}`)}</span>
-            <span className="text-muted-foreground tabular-nums">
+            <span className="text-muted-foreground tracking-tight tabular-nums">
               {Math.round(shares[seg.key] * 100)}%
             </span>
           </li>
