@@ -175,6 +175,8 @@
   /* Typography — font families */
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  /* Display — Be Vietnam Pro (headings, brand shell); full VN diacritics. */
+  --font-display: var(--font-be-vietnam), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 
   /* Typography — semantic scale (clamped for responsive display headings) */
   --text-display: clamp(2.5rem, 1.5rem + 3vw, 3.75rem);
@@ -254,6 +256,14 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Headings use the Be Vietnam Pro display family for brand character. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+
   /* Consistent, accessible focus indicator across interactive elements. */
   :focus-visible {
     @apply outline-ring outline-2 outline-offset-2;
@@ -269,5 +279,366 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* =============================================================================
+ * LIQUID GLASS LAYER  (BMT Decor AI Studio — visionOS direction)
+ *
+ * Luminous frosted panels floating over a cinematic, dimensional canvas.
+ * The signature is light: a specular gradient rim catches the edge, an inner
+ * vibrancy glow lifts the surface, and heavy blur + saturate refracts the
+ * drifting colour orbs behind. Tokens are semantic (light + dark pairs);
+ * dark mode is driven by the `.dark` class (next-themes), given equal care.
+ * ========================================================================== */
+:root {
+  /* Frosted fills — kept translucent so the grid behind shows through the
+   * frost (that see-through blur is what reads as glass in light mode). */
+  --glass-bg: oklch(1 0 0 / 0.3);
+  --glass-bg-strong: oklch(1 0 0 / 0.46);
+  --glass-2: oklch(1 0 0 / 0.22); /* subtle inner fills (inputs, chips) */
+  --glass-inset: oklch(0.98 0.005 85 / 0.42);
+
+  /* Specular edges — bright rim highlight + faint counter-edge. */
+  --glass-rim: oklch(1 0 0 / 0.92);
+  --glass-rim-2: oklch(1 0 0 / 0.18);
+  --glass-border: oklch(1 0 0 / 0.5); /* for border-glass-border utility */
+
+  --glass-blur: 30px;
+
+  /* Layered, warm-tinted depth shadows — never a hard grey drop. */
+  --glass-shadow-sm: 0 1px 3px -1px oklch(0.3 0.03 60 / 0.14), 0 8px 20px -12px oklch(0.3 0.03 60 / 0.28);
+  --glass-shadow:
+    0 2px 6px -2px oklch(0.3 0.03 60 / 0.16), 0 30px 60px -24px oklch(0.3 0.03 60 / 0.4),
+    0 12px 30px -18px oklch(0.3 0.03 60 / 0.3);
+  --glow-amber: 0 0 0 1px oklch(0.77 0.155 65 / 0.4), 0 20px 50px -18px oklch(0.77 0.155 65 / 0.5);
+
+  --radius-glass: 1.5rem;
+  --radius-glass-sm: 1.125rem;
+
+  /* Cinematic canvas orbs. */
+  --orb-1: oklch(0.85 0.14 72 / 0.72); /* amber */
+  --orb-2: oklch(0.72 0.13 46 / 0.58); /* terracotta */
+  --orb-3: oklch(0.8 0.08 165 / 0.5); /* sage */
+  --orb-4: oklch(0.76 0.08 240 / 0.46); /* cool sky (depth contrast) */
+  --grid-line: oklch(0.45 0.04 60 / 0.13); /* visible enough to blur through glass */
+  --grid-hot: oklch(0.82 0.15 72 / 0.6); /* brighter lines near the cursor */
+  --vignette: oklch(0.28 0.04 55 / 0.16);
+  /* gentle warm haze so frosted glass has something to refract (no loud wash) */
+  --warm-1: oklch(0.88 0.11 75 / 0.28);
+  --warm-2: oklch(0.83 0.08 52 / 0.18);
+}
+
+.dark {
+  --glass-bg: oklch(0.29 0.014 60 / 0.44);
+  --glass-bg-strong: oklch(0.34 0.016 60 / 0.58);
+  --glass-2: oklch(0.26 0.012 60 / 0.32);
+  --glass-inset: oklch(0.22 0.01 60 / 0.5);
+
+  --glass-rim: oklch(0.92 0.03 85 / 0.42);
+  --glass-rim-2: oklch(1 0 0 / 0.06);
+  --glass-border: oklch(1 0 0 / 0.12);
+
+  --glass-shadow-sm: 0 2px 6px -2px oklch(0 0 0 / 0.6), 0 10px 26px -14px oklch(0 0 0 / 0.7);
+  --glass-shadow:
+    0 2px 8px -2px oklch(0 0 0 / 0.6), 0 34px 70px -22px oklch(0 0 0 / 0.85), 0 14px 34px -18px oklch(0 0 0 / 0.6);
+  --glow-amber: 0 0 0 1px oklch(0.8 0.155 68 / 0.35), 0 26px 60px -18px oklch(0.8 0.155 68 / 0.45);
+
+  --orb-1: oklch(0.72 0.16 72 / 0.4);
+  --orb-2: oklch(0.62 0.14 44 / 0.34);
+  --orb-3: oklch(0.62 0.09 165 / 0.28);
+  --orb-4: oklch(0.55 0.1 245 / 0.34);
+  --grid-line: oklch(1 0 0 / 0.05);
+  --grid-hot: oklch(0.85 0.16 75 / 0.5);
+  --vignette: oklch(0 0 0 / 0.55);
+  --warm-1: oklch(0.72 0.14 72 / 0.16);
+  --warm-2: oklch(0.6 0.1 45 / 0.12);
+}
+
+@theme inline {
+  --color-glass-border: var(--glass-border);
+}
+
+@layer components {
+  /* Shared liquid-glass surface behaviour (rim + inner glow + stacking). */
+  .glass-panel,
+  .glass-panel-strong,
+  .glass-card {
+    position: relative;
+    isolation: isolate;
+    border-radius: var(--radius-glass);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%) brightness(1.05);
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%) brightness(1.05);
+    box-shadow: var(--glass-shadow);
+  }
+  /* Specular gradient rim — the visionOS light-catch edge. */
+  .glass-panel::before,
+  .glass-panel-strong::before,
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1.25px;
+    pointer-events: none;
+    background: linear-gradient(
+      140deg,
+      var(--glass-rim),
+      var(--glass-rim-2) 26%,
+      transparent 52%,
+      var(--glass-rim-2) 80%,
+      var(--glass-rim)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  /* Inner vibrancy glow (top-left light pooling). */
+  .glass-panel::after,
+  .glass-panel-strong::after,
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(120% 80% at 15% 0%, oklch(1 0 0 / 0.16), transparent 46%);
+  }
+  /* Keep real content above the glow, below the rim. */
+  .glass-panel > *,
+  .glass-panel-strong > *,
+  .glass-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glass-panel {
+    background: var(--glass-bg);
+  }
+  .glass-panel-strong {
+    background: var(--glass-bg-strong);
+  }
+
+  /* Interactive tile — lifts on hover, warms + glows on selection. */
+  .glass-card {
+    background: var(--glass-bg);
+    border-radius: var(--radius-glass-sm);
+    box-shadow: var(--glass-shadow-sm);
+    transition:
+      transform var(--duration-normal) var(--ease-out-soft),
+      box-shadow var(--duration-normal) var(--ease-out-soft);
+  }
+  .glass-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--glass-shadow);
+  }
+  .glass-selected {
+    background: oklch(0.77 0.155 65 / 0.13);
+    box-shadow: var(--glow-amber);
+  }
+
+  /* Recessed track (segmented controls, sliders, progress rails). */
+  .glass-inset {
+    background: var(--glass-2);
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 1px 2px oklch(0 0 0 / 0.06);
+  }
+
+  /* Hide scrollbars on horizontal rails without disabling scroll. */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* --- Cinematic ambient canvas -------------------------------------------
+   * Drifting colour orbs + blueprint grid + vignette + grain give the frost
+   * something dimensional to refract. Scoped to a positioned parent so it
+   * never bleeds over the app sidebar/header. */
+  .ambient-aura {
+    pointer-events: none;
+    /* pointer position (set from JS); starts off-screen so no glow until move */
+    --mx: -1000px;
+    --my: -1000px;
+  }
+  /* soft warm haze — the only ambient light, gentle enough to stay legible
+   * while giving the frosted glass panels something to refract. */
+  .ambient-warm {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(40rem 32rem at 14% -8%, var(--warm-1), transparent 58%),
+      radial-gradient(36rem 30rem at 90% 112%, var(--warm-2), transparent 60%);
+  }
+  .ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+  }
+  .ambient-orb.orb-1 {
+    width: 52vw;
+    height: 52vw;
+    left: -12vw;
+    top: -16vw;
+    background: var(--orb-1);
+    animation: orb-a 26s var(--ease-out-soft) infinite;
+  }
+  .ambient-orb.orb-2 {
+    width: 46vw;
+    height: 46vw;
+    right: -14vw;
+    top: -10vw;
+    background: var(--orb-2);
+    animation: orb-b 30s var(--ease-out-soft) infinite;
+  }
+  .ambient-orb.orb-3 {
+    width: 44vw;
+    height: 44vw;
+    left: 4vw;
+    bottom: -20vw;
+    background: var(--orb-3);
+    animation: orb-a 34s var(--ease-out-soft) infinite reverse;
+  }
+  .ambient-orb.orb-4 {
+    width: 40vw;
+    height: 40vw;
+    right: -8vw;
+    bottom: -16vw;
+    background: var(--orb-4);
+    animation: orb-b 28s var(--ease-out-soft) infinite;
+  }
+  .ambient-grid {
+    position: absolute;
+    inset: -2px;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 52px 52px;
+    -webkit-mask-image: radial-gradient(130% 90% at 50% 4%, #000 45%, transparent 92%);
+    mask-image: radial-gradient(130% 90% at 50% 4%, #000 45%, transparent 92%);
+  }
+  /* a soft amber light sweeps the grid so cells glow as it passes. */
+  .ambient-grid::after {
+    content: '';
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(26rem 26rem at 50% 50%, oklch(0.85 0.14 72 / 0.14), transparent 62%);
+    animation: grid-sweep 16s var(--ease-out-soft) infinite;
+  }
+
+  /* brighter copy of the grid, revealed only around the cursor (shimmer). */
+  .ambient-grid-cursor {
+    position: absolute;
+    inset: -2px;
+    background-image:
+      linear-gradient(var(--grid-hot) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-hot) 1px, transparent 1px);
+    background-size: 52px 52px;
+    -webkit-mask-image: radial-gradient(circle 150px at var(--mx) var(--my), #000 0%, transparent 72%);
+    mask-image: radial-gradient(circle 150px at var(--mx) var(--my), #000 0%, transparent 72%);
+    transition: opacity 0.4s var(--ease-out-soft);
+  }
+
+  /* shares the grid's static origin so cells sit exactly inside a square. */
+  .ambient-cells {
+    position: absolute;
+    inset: -2px;
+  }
+  /* a whole grid square that fills with colour on a staggered timer —
+   * exactly one cell (52px), square corners, snapped to the grid lines. */
+  .ambient-cell {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    background: var(--cell-color, var(--grid-hot));
+    opacity: 0;
+    animation: cell-blink var(--dur, 4s) var(--ease-out-soft) infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  .ambient-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 120% at 50% 35%, transparent 55%, var(--vignette));
+  }
+  .ambient-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@keyframes orb-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, 6%, 0) scale(1.08);
+  }
+}
+@keyframes orb-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-5%, 4%, 0) scale(1.1);
+  }
+}
+@keyframes grid-sweep {
+  0% {
+    transform: translate3d(-28%, -18%, 0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(34%, 26%, 0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(-28%, -18%, 0);
+    opacity: 0.35;
+  }
+}
+@keyframes cell-blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  9% {
+    opacity: 1;
+  }
+  24% {
+    opacity: 0;
+  }
+}
+
+/* Sheen sweep used by hero surfaces + the generating overlay. */
+@keyframes glass-sheen {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb,
+  .ambient-grid,
+  .ambient-grid::after,
+  .ambient-grid-cursor,
+  .ambient-cells,
+  .ambient-cell {
+    animation: none !important;
+  }
+  .ambient-cells {
+    display: none;
   }
 }

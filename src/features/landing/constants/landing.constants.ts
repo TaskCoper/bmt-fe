@@ -21,10 +21,9 @@ export interface LandingNavItem {
 
 /** Primary in-page navigation for the landing header. */
 export const LANDING_NAV: readonly LandingNavItem[] = [
-  { labelKey: 'services', sectionId: LANDING_SECTIONS.services },
-  { labelKey: 'process', sectionId: LANDING_SECTIONS.process },
-  { labelKey: 'projects', sectionId: LANDING_SECTIONS.projects },
   { labelKey: 'about', sectionId: LANDING_SECTIONS.about },
+  { labelKey: 'services', sectionId: LANDING_SECTIONS.services },
+  { labelKey: 'projects', sectionId: LANDING_SECTIONS.projects },
   { labelKey: 'contact', sectionId: LANDING_SECTIONS.contact }
 ]
 

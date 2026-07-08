@@ -64,11 +64,86 @@
       "contact": "Liên hệ"
     },
     "hero": {
-      "badge": "Trí tuệ xây dựng cho doanh nghiệp",
-      "title": "Xây dựng thông minh hơn với dự toán bằng AI",
-      "subtitle": "Lập kế hoạch, dự toán và quản lý dự án xây dựng trên một nền tảng hiện đại, cao cấp — được hỗ trợ bởi AI.",
-      "primaryCta": "Tạo dự toán",
-      "secondaryCta": "Xem dự án"
+      "badge": "Nền tảng thiết kế tích hợp AI",
+      "title": "Biến ý tưởng ngôi nhà thành hồ sơ thiết kế & dự toán — trong vài phút",
+      "subtitle": "Studio thiết kế AI, thư viện mẫu và đơn giá theo vùng, trợ lý AI — tất cả trên một nền tảng đưa bạn từ ý tưởng đến dự toán, bản vẽ, render và hồ sơ PDF chia sẻ được.",
+      "primaryCta": "Tạo dự toán miễn phí",
+      "secondaryCta": "Xem dự án mẫu",
+      "chip1": "Dự toán trong vài phút",
+      "chip2": "Bản vẽ 2D + Render 3D",
+      "chip3": "Xuất PDF · chia sẻ QR",
+      "previewProject": "Nhà phố hiện đại · Đắk Lắk",
+      "previewTotalLabel": "Tổng dự toán dự kiến",
+      "previewTotal": "2,18 tỷ ₫",
+      "previewFit": "Khớp ngân sách 2,2 tỷ",
+      "previewRough": "Phần thô",
+      "previewFinishing": "Hoàn thiện",
+      "previewInterior": "Nội thất",
+      "previewDrawing": "Bản vẽ 2D · Tầng trệt"
+    },
+    "features": {
+      "badge": "Nền tảng làm được gì cho bạn",
+      "title": "Một nền tảng cho cả hành trình xây nhà",
+      "subtitle": "Từ tham khảo ý tưởng, dự toán, tra đơn giá đến quản lý dự án — mọi công cụ ở cùng một nơi.",
+      "studio": {
+        "tag": "6 bước",
+        "title": "Studio thiết kế AI",
+        "description": "Từ yêu cầu → dự toán chi tiết, bản vẽ 2D, render 3D và file PDF — trọn quy trình trong một luồng."
+      },
+      "estimate": {
+        "tag": "Trong vài phút",
+        "title": "Dự toán nhanh",
+        "description": "Ước tính chi phí tức thì cho hạng mục cần làm mà không phải đi hết quy trình."
+      },
+      "gallery": {
+        "tag": "Theo phong cách",
+        "title": "Thư viện thiết kế mẫu",
+        "description": "Duyệt mẫu nhà theo phong cách và loại công trình để chốt gu và ngân sách."
+      },
+      "portfolio": {
+        "tag": "Công trình thật",
+        "title": "Dự án tham khảo",
+        "description": "Khám phá công trình đã hoàn thành với phạm vi và ngân sách minh bạch."
+      },
+      "library": {
+        "tag": "Theo vùng miền",
+        "title": "Thư viện đơn giá VLXD",
+        "description": "Đơn giá vật tư và nhân công luôn được cập nhật theo khu vực của bạn."
+      },
+      "chatbot": {
+        "tag": "24/7",
+        "title": "Trợ lý AI",
+        "description": "Hỏi–đáp và hướng dẫn tức thì ngay trong ứng dụng, bất cứ lúc nào.",
+        "q": "Chi phí phần thô cho 80m²?",
+        "a": "Khoảng 280 triệu — mình gợi ý gói phù hợp nhé."
+      },
+      "dashboard": {
+        "tag": "Một nơi",
+        "title": "Quản lý dự án",
+        "description": "Theo dõi mọi dự án, dự toán và phiên bản chỉnh sửa trên một bảng điều khiển."
+      }
+    },
+    "spotlight": {
+      "cta": "Dùng thử ngay",
+      "pkgBasic": "Cơ bản",
+      "pkgStandard": "Tiêu chuẩn",
+      "pkgVip": "VIP",
+      "estimate": {
+        "eyebrow": "Dự toán bằng AI",
+        "title": "Bảng dự toán chi tiết, chia theo gói — khớp ngân sách của bạn",
+        "description": "Hệ thống bóc tách chi phí 3 hạng mục và gợi ý gói vật liệu phù hợp, so sánh trực tiếp với ngân sách bạn đặt ra.",
+        "bullet1": "3 hạng mục: phần thô · hoàn thiện · nội thất",
+        "bullet2": "3 gói Cơ bản / Tiêu chuẩn / VIP, có badge phù hợp ngân sách",
+        "bullet3": "Đơn giá theo vùng miền, cập nhật định kỳ"
+      },
+      "visuals": {
+        "eyebrow": "Bản vẽ & Render",
+        "title": "Từ layout mặt bằng đến bản vẽ 2D và ảnh render 3D",
+        "description": "Tải ảnh layout từng tầng, AI dựng bản vẽ bố trí và ảnh render trực quan để bạn hình dung không gian thật.",
+        "bullet1": "Bản vẽ 2D sinh theo từng tầng",
+        "bullet2": "Render nội – ngoại thất, lưu vào gallery",
+        "bullet3": "Đánh dấu ảnh yêu thích để đưa vào hồ sơ"
+      }
     },
     "services": {
       "badge": "Dịch vụ",
@@ -1048,68 +1123,123 @@
     "positiveNumber": "Nhập một số lớn hơn 0"
   },
   "studio": {
-    "title": "Tạo dự án mới",
-    "subtitle": "Quy trình thiết kế BMT Decor AI gồm 6 bước, từ khởi tạo đến xuất file PDF.",
-    "progressLabel": "Bước {current}/{total}",
+    "title": "Studio thiết kế AI",
+    "subtitle": "Biến mặt bằng thành bản vẽ 2D, dự toán chi phí và ảnh render 3D.",
     "nav": {
       "back": "Quay lại",
       "next": "Tiếp tục",
-      "finish": "Hoàn tất"
+      "finish": "Hoàn tất",
+      "createProject": "Dự án mới",
+      "saveExit": "Lưu & thoát",
+      "studioEyebrow": "Studio thiết kế",
+      "progressLabel": "Tiến trình",
+      "stepOf": "Bước {current} / {total}"
+    },
+    "hero": {
+      "requirements": {
+        "title": "Ngôi nhà trong hình dung của bạn, dựng thành dữ liệu cho AI.",
+        "lede": "Địa chỉ, quy mô, phong cách và ngân sách — để BMT Decor AI phác bản vẽ và bảng dự toán khớp định hướng của bạn ngay từ khung hình đầu tiên."
+      },
+      "layouts": {
+        "title": "Tải lên layout từng tầng để AI đọc không gian thật.",
+        "lede": "Kéo-thả ảnh mặt bằng theo thứ tự Tầng trệt → Lầu 1 → Lầu 2 …; xem trước ngay sau khi tải lên."
+      },
+      "result": {
+        "title": "Dự toán trọn gói, trình bày như một hồ sơ tư vấn thật.",
+        "lede": "Cá nhân hóa theo tên, mã dự án và khu vực của bạn — kèm bản vẽ 2D, cơ cấu chi phí và ba gói vật liệu để lựa chọn."
+      },
+      "render": {
+        "title": "Không gian của bạn, trực quan hóa bằng ảnh render 3D.",
+        "lede": "Duyệt gallery render, đánh dấu yêu thích và thêm chú thích cho từng ảnh."
+      },
+      "export": {
+        "title": "Xuất toàn bộ dự án thành một hồ sơ PDF hoàn chỉnh.",
+        "lede": "Chọn nội dung đưa vào, xem trước và chia sẻ qua link hoặc mã QR cho khách hàng, nhà thầu."
+      },
+      "create": {
+        "title": "Khởi tạo không gian làm việc cho dự án mới.",
+        "lede": "Đặt tên và chọn loại công trình — hệ thống sinh mã dự án riêng và lưu vào bảng điều khiển của bạn."
+      }
+    },
+    "preview": {
+      "title": "Phác thảo sơ bộ",
+      "hint": "Cập nhật theo lựa chọn của bạn",
+      "storeys": "{count} tầng",
+      "floorArea": "≈ {area} m² sàn",
+      "tum": "Có tum"
     },
     "steps": {
       "create": {
-        "title": "Tạo dự án",
-        "subtitle": "Khởi tạo workspace",
-        "description": "Đặt tên dự án và chọn loại công trình để khởi tạo workspace riêng."
+        "title": "Dự án",
+        "subtitle": "Tên & loại"
       },
-      "space": {
-        "title": "Nhập thông tin",
-        "subtitle": "Hình ảnh & không gian",
-        "description": "Tải lên hình ảnh từng tầng và mô tả không gian thực tế."
+      "requirements": {
+        "title": "Yêu cầu",
+        "subtitle": "Mô tả & ngân sách"
       },
-      "design": {
-        "title": "Yêu cầu & ngân sách",
-        "subtitle": "Phong cách & chi phí",
-        "description": "Chọn gói ngân sách, phong cách và định hướng thiết kế."
+      "layouts": {
+        "title": "Mặt bằng",
+        "subtitle": "Upload từng tầng"
       },
       "result": {
-        "title": "Kết quả AI",
-        "subtitle": "Bản vẽ & dự toán",
-        "description": "AI sinh bản vẽ 2D và bảng dự toán chi tiết theo lựa chọn của bạn."
+        "title": "Kết quả",
+        "subtitle": "2D & dự toán"
       },
       "render": {
-        "title": "Render 3D",
-        "subtitle": "Thư viện hình ảnh",
-        "description": "Xem, chú thích và đánh dấu yêu thích các ảnh render 3D."
+        "title": "Render",
+        "subtitle": "Thư viện 3D"
       },
       "export": {
-        "title": "Xuất PDF",
-        "subtitle": "Tài liệu & chia sẻ",
-        "description": "Tùy chỉnh nội dung, ngôn ngữ và xuất file PDF để chia sẻ."
+        "title": "Xuất",
+        "subtitle": "PDF & chia sẻ"
       }
     },
+    "guard": {
+      "lockedTooltip": "Hoàn thành Bước {step} trước",
+      "missing": "Không tìm thấy dự án",
+      "missingHint": "Có thể dự án đã bị xoá. Quay lại danh sách dự án.",
+      "backToProjects": "Về danh sách dự án"
+    },
+    "editWarning": {
+      "title": "Sửa bước trước đó?",
+      "description": "Bạn đã có kết quả AI. Sửa bước này sẽ huỷ kết quả và bạn cần tạo lại.",
+      "cancel": "Giữ kết quả",
+      "confirm": "Huỷ & sửa"
+    },
+    "board": {
+      "title": "Dự án thiết kế",
+      "subtitle": "Tiếp tục một thiết kế đang làm dở hoặc tạo mới.",
+      "emptyTitle": "Chưa có dự án thiết kế",
+      "emptyHint": "Tạo dự án đầu tiên để quy hoạch, dự toán và render ngôi nhà.",
+      "create": "Dự án mới",
+      "updated": "Cập nhật {date}",
+      "continue": "Tiếp tục · Bước {step}",
+      "open": "Mở",
+      "remove": "Xoá"
+    },
     "create": {
-      "basics": "Thông tin cơ bản",
+      "basics": "Tên dự án",
       "nameLabel": "Tên dự án",
-      "namePlaceholder": "VD: Cải tạo căn hộ Vinhomes",
+      "namePlaceholder": "VD: Nhà phố anh Nam — Quận 7",
       "typeLabel": "Loại công trình",
-      "typeHint": "Hiện hỗ trợ nhà ở dân dụng. Loại thương mại sẽ ra mắt sau.",
-      "noteLabel": "Ghi chú sơ bộ",
-      "notePlaceholder": "Mô tả ngắn gọn mong muốn, bối cảnh dự án…",
-      "noteHint": "Tùy chọn — giúp AI hiểu rõ hơn nhu cầu của bạn."
+      "typeHint": "Hiện chỉ hỗ trợ nhà ở — loại thương mại sắp ra mắt.",
+      "noteLabel": "Ghi chú",
+      "notePlaceholder": "Điều gì nhóm thiết kế cần biết…",
+      "noteHint": "Không bắt buộc.",
+      "submit": "Tạo dự án"
     },
     "constructionType": {
       "apartment": {
         "label": "Căn hộ",
-        "desc": "Chung cư, studio"
+        "desc": "Chung cư & căn hộ"
       },
       "townhouse": {
         "label": "Nhà phố",
-        "desc": "Nhà liền kề, nhà ống"
+        "desc": "Nhà phố & liền kề"
       },
       "villa": {
         "label": "Biệt thự",
-        "desc": "Đơn lập, song lập"
+        "desc": "Biệt thự & nhà vườn"
       },
       "office": {
         "label": "Văn phòng",
@@ -1117,144 +1247,189 @@
       },
       "commercial": {
         "label": "Thương mại",
-        "desc": "Cửa hàng, showroom"
+        "desc": "Cửa hàng & showroom"
       },
       "hotel": {
         "label": "Khách sạn",
-        "desc": "Lưu trú, nghỉ dưỡng"
+        "desc": "Lưu trú"
       }
     },
-    "space": {
-      "uploadTitle": "Tải lên hình ảnh",
-      "uploadHint": "Tải ảnh theo thứ tự từng tầng. Kéo-thả hoặc bấm để chọn.",
-      "floor": {
-        "ground": "Tầng trệt",
-        "first": "Tầng 1",
-        "second": "Tầng 2"
-      },
-      "infoTitle": "Thông tin mô tả",
-      "infoHint": "Tùy chọn — cung cấp thêm để dự toán chính xác hơn.",
-      "areaLabel": "Diện tích",
-      "roomsLabel": "Danh sách phòng",
-      "roomsPlaceholder": "VD: 2 phòng ngủ, 1 phòng khách, 1 bếp…",
-      "dropTitle": "Kéo-thả ảnh vào đây",
-      "dropHint": "JPG, PNG hoặc HEIC — tối đa 10MB mỗi ảnh, tối đa 5 ảnh/tầng",
-      "remove": "Xóa ảnh",
-      "errorType": "\"{name}\" không phải định dạng ảnh hợp lệ (dùng JPG, PNG hoặc HEIC).",
-      "errorSize": "\"{name}\" vượt quá giới hạn {max}MB.",
-      "errorMax": "Tối đa {max} ảnh mỗi tầng."
+    "requirements": {
+      "buildingTitle": "Thông tin công trình",
+      "buildingHint": "Vị trí, số tầng và diện tích xây dựng.",
+      "styleTitle": "Phong cách",
+      "styleHint": "Chọn hướng kiến trúc.",
+      "extraTitle": "Yêu cầu thêm",
+      "extraHint": "Không bắt buộc — tinh chỉnh mô tả.",
+      "budgetTitle": "Ngân sách",
+      "budgetHint": "Mốc mục tiêu để đối chiếu dự toán ở Bước 4."
     },
-    "budget": {
-      "title": "Ngân sách",
-      "hint": "Phần thô cố định tối thiểu. Chọn gói cho phần hoàn thiện và nội thất.",
-      "perSqm": "VNĐ/m²",
-      "autoUpdate": "Tổng dự kiến tự động cập nhật theo gói và diện tích.",
-      "total": "TỔNG DỰ KIẾN",
-      "portion": {
-        "rough": "Phần thô",
-        "finishing": "Phần hoàn thiện",
-        "interior": "Phần nội thất"
-      },
-      "roughNote": "Cố định tối thiểu",
-      "finishingNote": "Tính từ gói đã chọn",
-      "interiorNote": "Tính từ gói đã chọn",
-      "donutLabel": "Cơ cấu chi phí theo hạng mục"
-    },
-    "package": {
-      "basic": {
-        "name": "Gói 1 — BASIC",
-        "desc": "Vật liệu tiêu chuẩn, tối ưu chi phí"
-      },
-      "standard": {
-        "name": "Gói 2 — TIÊU CHUẨN",
-        "desc": "Cân bằng chất lượng và chi phí"
-      },
-      "premium": {
-        "name": "Gói 3 — PREMIUM",
-        "desc": "Vật liệu cao cấp, hoàn thiện tinh tế"
+    "address": {
+      "label": "Địa chỉ / tỉnh thành",
+      "placeholder": "Chọn tỉnh/thành",
+      "regionLabel": "Vùng",
+      "region": {
+        "north": "Miền Bắc",
+        "central": "Miền Trung",
+        "south": "Miền Nam"
       }
     },
-    "design": {
-      "styleTitle": "Phong cách thiết kế",
-      "styleHint": "Chọn một hoặc nhiều phong cách (có thể kết hợp).",
-      "moodboardUpload": "Tải ảnh mood board",
-      "moodboardCount": "{count} ảnh mood board",
-      "prefTitle": "Yêu cầu thiết kế",
-      "prefHint": "Tinh chỉnh định hướng không gian cho bản vẽ.",
-      "layoutLabel": "Bố cục không gian",
-      "layout": {
-        "open": "Không gian mở",
-        "separated": "Phòng riêng biệt"
+    "floors": {
+      "label": "Số tầng",
+      "hint": "Quyết định số mặt bằng bạn upload ở bước sau.",
+      "ground": "Chỉ trệt",
+      "plus": "Trệt +{n}"
+    },
+    "area": {
+      "buildLabel": "Diện tích xây dựng",
+      "land": "Diện tích đất",
+      "ground": "DTXD tầng trệt",
+      "totalFloor": "Tổng diện tích sàn",
+      "usable": "Diện tích sử dụng",
+      "floors": "Số tầng",
+      "height": "Chiều cao ước tính",
+      "floorsValue": "{count} tầng"
+    },
+    "style": {
+      "name": {
+        "roof_thai": "Mái Thái",
+        "roof_japanese": "Mái Nhật",
+        "roof_traditional": "Mái ngói truyền thống",
+        "modern_townhouse": "Nhà phố hiện đại",
+        "neoclassical": "Tân cổ điển"
       },
-      "lightingLabel": "Ưu tiên ánh sáng",
+      "desc": {
+        "roof_thai": "Mái dốc cao, đua mái thoáng",
+        "roof_japanese": "Độ dốc thấp, đường nét gọn",
+        "roof_traditional": "Mái ngói kiểu Việt",
+        "modern_townhouse": "Đường nét phẳng, kính lớn",
+        "neoclassical": "Đối xứng & phào chỉ"
+      },
+      "groupRoof": "Nhà mái",
+      "groupModern": "Hiện đại"
+    },
+    "tum": {
+      "label": "Tum (phòng trên mái)",
+      "on": "Có tum",
+      "off": "Không tum"
+    },
+    "extra": {
+      "openPlanLabel": "Bố cục không gian",
+      "openPlanOn": "Không gian mở",
+      "openPlanOff": "Phòng riêng",
+      "lightingLabel": "Ánh sáng",
+      "directionLabel": "Hướng nhà",
+      "colorLabel": "Tông màu chủ đạo",
+      "colorHint": "Chọn một hoặc nhiều màu nhấn.",
       "lighting": {
         "natural": "Tự nhiên",
         "artificial": "Nhân tạo"
       },
-      "directionLabel": "Hướng nhà",
       "direction": {
         "east": "Đông",
         "west": "Tây",
         "south": "Nam",
         "north": "Bắc"
-      },
-      "colorLabel": "Tông màu chủ đạo"
+      }
     },
-    "style": {
-      "modern": "Hiện đại",
-      "minimalist": "Tối giản",
-      "indochine": "Đông Dương",
-      "traditional": "Truyền thống Việt"
+    "budget": {
+      "sliderLabel": "Ngân sách mục tiêu",
+      "sliderHint": "Kéo hoặc nhập tổng mục tiêu (VNĐ).",
+      "portion": {
+        "rough": "Phần thô",
+        "finishing": "Hoàn thiện",
+        "interior": "Nội thất"
+      },
+      "total": "Tổng dự toán",
+      "perSqm": "/m²",
+      "roughNote": "Kết cấu & xây tô",
+      "finishingNote": "Sàn, sơn, cửa",
+      "interiorNote": "Nội thất & chiếu sáng",
+      "donutLabel": "Cơ cấu chi phí"
+    },
+    "layouts": {
+      "guideTitle": "Tải mặt bằng cho từng tầng",
+      "guideHint": "Chỉ ảnh mặt bằng — mỗi tầng một hoặc nhiều ảnh.",
+      "sampleGood": "Đúng: mặt bằng rõ nét",
+      "sampleBad": "Tránh: ảnh chụp, sổ đỏ, mặt tiền",
+      "floorGround": "Tầng trệt",
+      "floorUpper": "Tầng {n}",
+      "dropTitle": "Kéo thả hoặc bấm để tải lên",
+      "dropHint": "JPG / PNG / HEIC · tối đa {max}MB mỗi ảnh",
+      "remove": "Xoá",
+      "uploaded": "Đã tải {count}",
+      "incomplete": "Cần ít nhất một mặt bằng cho mỗi tầng để tiếp tục.",
+      "generate": "Tạo kết quả bằng AI",
+      "errorType": "{name} không đúng định dạng ảnh.",
+      "errorSize": "{name} vượt quá {max}MB.",
+      "errorMax": "Tối đa {max} ảnh mỗi tầng."
+    },
+    "ai": {
+      "title": "AI đang dựng thiết kế của bạn",
+      "subtitle": "Thường chỉ mất một lát — vui lòng ở lại trang này.",
+      "line1": "Đang phân tích mặt bằng…",
+      "line2": "Đang phác bản vẽ 2D…",
+      "line3": "Đang lập dự toán phần thô…",
+      "line4": "Đang chuẩn bị ảnh render 3D…"
     },
     "result": {
-      "generating": "AI đang xử lý thiết kế…",
-      "generatingHint": "Đang sinh bản vẽ và bảng dự toán dựa trên thông tin của bạn.",
-      "regenerate": "Tạo lại kết quả",
+      "generating": "Đang tạo kết quả…",
+      "generatingHint": "AI đang chuẩn bị bản vẽ và dự toán.",
+      "regenerate": "Tạo lại",
       "regenLeft": "Còn {count} lần tạo lại",
-      "regenExhausted": "Đã hết lượt tạo lại — vui lòng liên hệ hỗ trợ.",
-      "drawingTitle": "Bản vẽ bố trí (2D)",
-      "areaTitle": "Diện tích xây dựng",
-      "estimateTitle": "Bảng dự toán chi tiết",
-      "estimateHint": "Di chuột vào từng hạng mục để xem vật liệu và biện pháp thi công.",
-      "summaryTitle": "Tổng hợp dự toán",
+      "regenExhausted": "Đã hết lượt tạo lại",
+      "drawingTitle": "Bản vẽ 2D",
+      "areaTitle": "Bảng diện tích",
+      "estimateTitle": "Dự toán chi phí",
+      "estimateHint": "Chọn gói cho từng phần — tổng cập nhật tức thì.",
+      "summaryTitle": "Tổng hợp",
       "structureTitle": "Cơ cấu chi phí",
-      "disclaimer": "Đây là mức dự toán tham khảo, chi phí thực tế có thể thay đổi theo thị trường vật liệu và đơn vị thi công.",
-      "estimatedOn": "Ngày lập: {date}",
-      "room": {
-        "living": "Phòng khách",
-        "kitchen": "Bếp",
-        "bedroom": "Phòng ngủ",
-        "bath": "WC",
-        "hall": "Hành lang"
-      },
+      "disclaimer": "Dự toán mang tính tham khảo, có thể đổi khi thiết kế chi tiết.",
+      "estimatedOn": "Lập ngày {date}.",
+      "confirmRender": "Xác nhận → Render 3D"
+    },
+    "viewer": {
       "zoomIn": "Phóng to",
       "zoomOut": "Thu nhỏ",
-      "zoomReset": "Đặt lại",
-      "drawingHint": "Dùng các nút để phóng to/thu nhỏ bản vẽ."
-    },
-    "area": {
-      "land": "Diện tích đất / khuôn viên",
-      "ground": "Diện tích xây dựng tầng trệt",
-      "totalFloor": "Tổng diện tích sàn xây dựng",
-      "usable": "Diện tích sử dụng thực tế",
-      "floors": "Số tầng",
-      "height": "Chiều cao công trình ước tính",
-      "floorsValue": "{count} tầng"
+      "reset": "Đặt lại",
+      "fullscreen": "Toàn màn hình",
+      "floorGround": "Trệt",
+      "floorUpper": "Tầng {n}"
     },
     "estimate": {
-      "tip": {
-        "material": "Vật liệu đề xuất",
-        "method": "Biện pháp thi công",
-        "note": "Ghi chú"
+      "colItem": "Hạng mục",
+      "colTier": "Gói",
+      "colAmount": "Thành tiền",
+      "colQuantity": "SL",
+      "colUnitPrice": "Đơn giá",
+      "colDetail": "",
+      "viewDetail": "Xem chi tiết",
+      "roughSingle": "Chi phí phần thô cố định",
+      "selectTier": "Chọn {tier}",
+      "tabRough": "Phần thô",
+      "tabFinishing": "Hoàn thiện",
+      "tabInterior": "Nội thất"
+    },
+    "progress": {
+      "label": "Đã chọn so với ngân sách",
+      "within": "Dưới mục tiêu {amount}",
+      "over": "Vượt mục tiêu {amount}",
+      "exact": "Vừa đúng mục tiêu",
+      "hint": "Hạ một gói để vừa ngân sách."
+    },
+    "package": {
+      "basic": {
+        "name": "Cơ bản",
+        "desc": "Vật liệu tiết kiệm"
       },
-      "col": {
-        "item": "Hạng mục",
-        "quantity": "Khối lượng",
-        "unitPrice": "Đơn giá",
-        "amount": "Thành tiền"
+      "standard": {
+        "name": "Tiêu chuẩn",
+        "desc": "Chất lượng cân bằng"
       },
-      "vsBudget": "Tổng hạng mục",
-      "budgetUsage": "{pct}% so với ngân sách gói đã chọn"
+      "premium": {
+        "name": "VIP",
+        "desc": "Hoàn thiện cao cấp"
+      }
     },
     "unit": {
       "m2": "m²",
@@ -1262,141 +1437,177 @@
       "kg": "kg",
       "set": "bộ"
     },
+    "detail": {
+      "heading": "{section} · {tier}",
+      "subtitle": "Chi tiết hạng mục, vật liệu và biện pháp thi công.",
+      "colItem": "Hạng mục",
+      "colQuantity": "Khối lượng",
+      "colMaterial": "Vật liệu đề xuất",
+      "colDetail": "",
+      "open": "Chi tiết",
+      "drawerTitle": "Chi tiết hạng mục",
+      "material": "Vật liệu đề xuất",
+      "alternatives": "Vật liệu thay thế",
+      "method": "Biện pháp thi công",
+      "close": "Đóng"
+    },
+    "render": {
+      "emptyTitle": "Chưa có ảnh render",
+      "emptyHint": "Hãy tạo kết quả AI trước để xem render 3D.",
+      "title": "Ảnh render 3D",
+      "hint": "Chọn yêu thích để đưa vào PDF.",
+      "count": "{count} ảnh",
+      "favCount": "{count} yêu thích",
+      "floorLabel": "Tầng {floor}",
+      "favorite": "Yêu thích",
+      "captionPlaceholder": "Thêm chú thích…",
+      "filterAll": "Tất cả",
+      "filterFav": "Yêu thích",
+      "kind": {
+        "exterior": "Ngoại thất",
+        "interior": "Nội thất"
+      },
+      "prev": "Trước",
+      "next": "Sau",
+      "close": "Đóng"
+    },
+    "export": {
+      "contentTitle": "Nội dung PDF",
+      "contentHint": "Chọn các mục cần đưa vào.",
+      "section": {
+        "coverPage": "Trang bìa",
+        "projectInfo": "Thông tin dự án",
+        "drawings": "Bản vẽ 2D",
+        "estimate": "Dự toán chi phí",
+        "summary": "Tổng hợp chi phí",
+        "renders": "Render đã yêu thích"
+      },
+      "languageTitle": "Ngôn ngữ & tiền tệ",
+      "language": {
+        "vi": "Tiếng Việt",
+        "en": "Tiếng Anh"
+      },
+      "currencyNote": "Tiền tệ: VNĐ",
+      "previewTitle": "Xem trước",
+      "exportButton": "Xuất PDF",
+      "exportSuccess": "Đã xuất PDF (mô phỏng).",
+      "footerNote": "Mọi trang đều có footer BMT Decor.",
+      "untitled": "Dự án chưa đặt tên",
+      "page": {
+        "cover": "Bìa",
+        "info": "Thông tin",
+        "drawings": "Bản vẽ",
+        "estimate": "Dự toán",
+        "renders": "Render"
+      }
+    },
+    "share": {
+      "openButton": "Chia sẻ",
+      "modalTitle": "Chia sẻ thiết kế",
+      "modalHint": "Bất kỳ ai có link đều xem được PDF online.",
+      "linkLabel": "Link công khai",
+      "copy": "Sao chép",
+      "copied": "Đã sao chép link",
+      "emailLabel": "Gửi qua email",
+      "emailPlaceholder": "ten@email.com",
+      "emailAdd": "Thêm",
+      "emailSend": "Gửi",
+      "emailSent": "Đã gửi email (mô phỏng).",
+      "qrLabel": "Mã QR",
+      "revoke": "Thu hồi link",
+      "revoked": "Đã thu hồi link",
+      "recreate": "Tạo link mới"
+    },
+    "sharePage": {
+      "heading": "{name}",
+      "subtitle": "Hồ sơ thiết kế · BMT Decor AI",
+      "madeBy": "Thực hiện bởi BMT Decor",
+      "contact": "Liên hệ chúng tôi để được tư vấn chi tiết."
+    },
     "items": {
       "rough": {
         "foundation": {
-          "name": "Móng & nền",
-          "material": "Bê tông cốt thép mác 250",
-          "method": "Đào móng, đổ bê tông cốt thép",
-          "note": "Phụ thuộc địa chất thực tế"
+          "name": "Móng",
+          "material": "Bê tông cốt thép M250",
+          "alt": "Móng băng hoặc cọc khoan nhồi tuỳ địa chất.",
+          "method": "Đào, đặt thép, đổ & bảo dưỡng.",
+          "note": "Tuỳ khảo sát địa chất."
         },
         "frame": {
           "name": "Khung kết cấu",
-          "material": "Thép & bê tông mác 300",
-          "method": "Đổ cột, dầm, sàn",
-          "note": "Theo tiêu chuẩn kết cấu"
+          "material": "Cột & dầm BTCT",
+          "alt": "Khung thép cho nhịp lớn.",
+          "method": "Cốp pha, thép, đổ bê tông từng tầng.",
+          "note": "Theo số tầng."
         },
         "masonry": {
-          "name": "Xây tô",
-          "material": "Gạch ống, vữa xi măng",
-          "method": "Xây tường, tô trát hoàn thiện thô",
-          "note": "Bao gồm tường bao và ngăn"
+          "name": "Tường xây",
+          "material": "Gạch đất nung",
+          "alt": "Gạch AAC nhẹ.",
+          "method": "Xây, tô, bảo dưỡng.",
+          "note": "Bao gồm tô tường."
         }
       },
       "finishing": {
         "flooring": {
           "name": "Lát sàn",
-          "material": "Gạch granite / sàn gỗ",
-          "method": "Cán nền, lát hoàn thiện",
-          "note": "Chọn theo gói ngân sách"
+          "material": "Gạch porcelain 60×60",
+          "alt": "Sàn gỗ kỹ thuật hoặc đá tự nhiên.",
+          "method": "Cân bằng, lát, chà ron.",
+          "note": "Theo diện tích sàn."
         },
         "painting": {
-          "name": "Sơn nước",
-          "material": "Sơn nội & ngoại thất",
-          "method": "Bả matit, sơn lót và phủ",
-          "note": "2 lớp phủ tiêu chuẩn"
+          "name": "Sơn",
+          "material": "Sơn nước trong/ngoài",
+          "alt": "Sơn vôi hoặc giấy dán tường.",
+          "method": "Bả, 2 lớp phủ.",
+          "note": "Bao gồm lớp lót."
         },
         "ceiling": {
-          "name": "Trần thạch cao",
-          "material": "Tấm thạch cao khung xương",
-          "method": "Đóng trần, xử lý mối nối",
-          "note": "Bao gồm đèn âm trần"
+          "name": "Trần",
+          "material": "Thạch cao khung xương",
+          "alt": "Trần bê tông để trần.",
+          "method": "Dựng khung, đóng tấm, xử lý.",
+          "note": "Bao gồm phào."
         },
         "doors": {
-          "name": "Cửa & phụ kiện",
-          "material": "Cửa gỗ công nghiệp / nhôm kính",
-          "method": "Lắp đặt cửa và khóa",
-          "note": "Theo số lượng phòng"
+          "name": "Cửa",
+          "material": "Nhôm kính cường lực",
+          "alt": "Cửa gỗ công nghiệp.",
+          "method": "Gia công & lắp đặt.",
+          "note": "Theo bộ cửa."
         }
       },
       "interior": {
         "living": {
-          "name": "Nội thất phòng khách",
-          "material": "Sofa, kệ TV, bàn trà",
-          "method": "Gia công và lắp đặt",
-          "note": "Trọn bộ phòng khách"
+          "name": "Phòng khách",
+          "material": "Sofa nỉ & vách TV",
+          "alt": "Sofa da hoặc module.",
+          "method": "Sản xuất & lắp đặt.",
+          "note": "Trọn bộ."
         },
         "kitchen": {
-          "name": "Tủ bếp",
-          "material": "Tủ bếp gỗ + đá bàn bếp",
-          "method": "Đo đạc, thi công tại chỗ",
-          "note": "Bao gồm bồn rửa"
+          "name": "Bếp",
+          "material": "Tủ acrylic & mặt đá",
+          "alt": "Laminate hoặc gỗ tự nhiên.",
+          "method": "Đo, đóng, lắp.",
+          "note": "Chưa gồm thiết bị."
         },
         "bedroom": {
-          "name": "Nội thất phòng ngủ",
-          "material": "Giường, tủ áo, bàn trang điểm",
-          "method": "Gia công và lắp đặt",
-          "note": "Trọn bộ mỗi phòng ngủ"
+          "name": "Phòng ngủ",
+          "material": "Giường, tủ áo & bàn",
+          "alt": "Melamine hoặc gỗ tự nhiên.",
+          "method": "Sản xuất & lắp đặt.",
+          "note": "Theo phòng."
         },
         "lighting": {
-          "name": "Chiếu sáng & trang trí",
-          "material": "Đèn trang trí, rèm cửa",
-          "method": "Lắp đặt thiết bị chiếu sáng",
-          "note": "Theo concept thiết kế"
+          "name": "Chiếu sáng",
+          "material": "Đèn LED âm trần & trang trí",
+          "alt": "Hệ đèn thông minh.",
+          "method": "Đi dây & lắp đặt.",
+          "note": "Toàn nhà."
         }
       }
-    },
-    "render": {
-      "emptyTitle": "Chưa có ảnh render",
-      "emptyHint": "Hoàn tất bước tạo kết quả AI để xem ảnh render 3D.",
-      "title": "Thư viện ảnh render 3D",
-      "hint": "Tất cả ảnh được lưu vào dự án. Thêm chú thích và đánh dấu yêu thích.",
-      "count": "{count} ảnh",
-      "favCount": "{count} yêu thích",
-      "kind": {
-        "exterior": "Ngoại thất",
-        "interior": "Nội thất"
-      },
-      "floorLabel": "Tầng {floor}",
-      "favorite": "Yêu thích",
-      "captionPlaceholder": "Thêm chú thích…"
-    },
-    "export": {
-      "contentTitle": "Nội dung đưa vào PDF",
-      "contentHint": "Chọn các phần muốn xuất ra file.",
-      "section": {
-        "coverPage": "Trang bìa",
-        "projectInfo": "Thông tin dự án",
-        "drawings": "Bản vẽ bố trí",
-        "estimate": "Bảng dự toán chi tiết",
-        "summary": "Tổng hợp dự toán",
-        "renders": "Hình ảnh render 3D"
-      },
-      "languageTitle": "Ngôn ngữ",
-      "language": {
-        "vi": "Tiếng Việt",
-        "en": "English"
-      },
-      "exportTitle": "Xuất file",
-      "untitled": "Dự án chưa đặt tên",
-      "readyHint": "Tài liệu sẵn sàng để xuất PDF.",
-      "exportButton": "Xuất PDF",
-      "exportSuccess": "Đã xuất file PDF (demo).",
-      "shareTitle": "Chia sẻ",
-      "shareHint": "Chia sẻ kết quả dự án với khách hàng hoặc nhà thầu. Liên kết có hiệu lực 90 ngày và có thể thu hồi bất cứ lúc nào.",
-      "shareLink": "Tạo link xem online",
-      "shareEmail": "Gửi qua email",
-      "shareQr": "Mã QR",
-      "linkCopied": "Đã sao chép link chia sẻ.",
-      "emailSent": "Đã gửi email (demo).",
-      "qrShown": "Đã tạo mã QR (demo)."
-    },
-    "editWarning": {
-      "title": "Chỉnh sửa và chạy lại?",
-      "description": "Chỉnh sửa thông tin sẽ xóa kết quả AI hiện tại và chạy lại từ đầu. Bạn có chắc không?",
-      "cancel": "Hủy",
-      "confirm": "Xóa & chỉnh sửa"
-    },
-    "share": {
-      "manageLink": "Link chia sẻ",
-      "linkTitle": "Link chia sẻ công khai",
-      "linkExpiry": "Có hiệu lực 90 ngày. Bạn có thể thu hồi bất cứ lúc nào.",
-      "copy": "Sao chép",
-      "copied": "Đã sao chép link.",
-      "revoke": "Thu hồi link",
-      "revoked": "Đã thu hồi link chia sẻ.",
-      "revokedNote": "Link này đã bị thu hồi và không còn hoạt động.",
-      "recreate": "Tạo link mới"
     }
   },
   "profile": {

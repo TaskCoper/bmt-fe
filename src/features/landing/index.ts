@@ -4,6 +4,7 @@
  */
 export { LandingNavbar } from './components/landing-navbar'
 export { LandingHero } from './components/landing-hero'
+export { FeatureSpotlights } from './components/feature-spotlights'
 export { ServicesSection } from './components/services-section'
 export { ProcessSection } from './components/process-section'
 export { FeaturedProjects } from './components/featured-projects'

@@ -1,43 +1,113 @@
-import { Bot, Calculator, FolderKanban, LayoutTemplate, Library, MessagesSquare, type LucideIcon } from 'lucide-react'
+import { cn } from '@/shared/lib/utils'
+import {
+  Bot,
+  Building2,
+  Calculator,
+  Images,
+  LayoutDashboard,
+  LayoutTemplate,
+  Library,
+  type LucideIcon
+} from 'lucide-react'
 import { useTranslations } from 'next-intl'
-
-import { Card, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
 import { LANDING_SECTIONS } from '../constants/landing.constants'
 import { SectionHeading } from './section-heading'
 
-type ServiceKey = 'consult' | 'estimate' | 'design' | 'manage' | 'library' | 'support'
+type FeatureKey = 'studio' | 'estimate' | 'gallery' | 'portfolio' | 'library' | 'chatbot' | 'dashboard'
 
-const SERVICES: { key: ServiceKey; icon: LucideIcon }[] = [
-  { key: 'consult', icon: MessagesSquare },
+/** Order fills a clean 3×3 bento: two featured (span-2) cards on opposite rows. */
+const FEATURES: { key: FeatureKey; icon: LucideIcon; featured?: boolean }[] = [
+  { key: 'studio', icon: LayoutTemplate, featured: true },
   { key: 'estimate', icon: Calculator },
-  { key: 'design', icon: LayoutTemplate },
-  { key: 'manage', icon: FolderKanban },
+  { key: 'gallery', icon: Images },
+  { key: 'portfolio', icon: Building2 },
   { key: 'library', icon: Library },
-  { key: 'support', icon: Bot }
+  { key: 'chatbot', icon: Bot, featured: true },
+  { key: 'dashboard', icon: LayoutDashboard }
 ]
 
-/** Services grid — six cards composed from shadcn Card primitives. */
+/**
+ * "What the platform does" — a 3×3 bento of the full platform's capabilities
+ * (design studio, quick estimate, design gallery, portfolio, price library, AI
+ * assistant, project dashboard). Two flagship cards are featured with a small
+ * visual so the value is shown, not just told.
+ */
 export function ServicesSection() {
-  const t = useTranslations('landing.services')
+  const t = useTranslations('landing.features')
 
   return (
-    <section id={LANDING_SECTIONS.services} className='py-20 lg:py-28'>
+    <section id={LANDING_SECTIONS.services} className='relative py-20 lg:py-28'>
       <div className='mx-auto w-full max-w-7xl px-4 lg:px-8'>
         <SectionHeading badge={t('badge')} title={t('title')} subtitle={t('subtitle')} />
+
         <div className='mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3'>
-          {SERVICES.map(({ key, icon: Icon }) => (
-            <Card key={key} className='transition-shadow duration-[--duration-normal] hover:shadow-md'>
-              <CardHeader>
-                <div className='bg-primary/10 text-primary flex size-11 items-center justify-center rounded-lg'>
+          {FEATURES.map(({ key, icon: Icon, featured }) => (
+            <article
+              key={key}
+              className={cn('glass-card flex flex-col p-6 sm:p-7', featured && 'sm:col-span-2 lg:col-span-2')}
+            >
+              <div className='flex items-center gap-3'>
+                <span className='border-primary/25 from-primary/20 to-primary/5 text-primary flex size-11 shrink-0 items-center justify-center rounded-2xl border bg-gradient-to-br'>
                   <Icon className='size-5' />
+                </span>
+                <span className='glass-inset text-muted-foreground rounded-full px-2.5 py-1 text-[0.7rem] font-semibold tracking-wide'>
+                  {t(`${key}.tag`)}
+                </span>
+              </div>
+
+              <h3 className='mt-5 text-lg font-semibold tracking-tight'>{t(`${key}.title`)}</h3>
+              <p className='text-muted-foreground mt-2 max-w-xl text-sm text-pretty'>{t(`${key}.description`)}</p>
+
+              {featured ? (
+                <div className='mt-6 flex flex-1 items-end'>
+                  {key === 'studio' ? <CostBar /> : <ChatPreview q={t('chatbot.q')} a={t('chatbot.a')} />}
                 </div>
-                <CardTitle className='mt-4 text-base'>{t(`${key}.title`)}</CardTitle>
-                <CardDescription>{t(`${key}.description`)}</CardDescription>
-              </CardHeader>
-            </Card>
+              ) : null}
+            </article>
           ))}
         </div>
       </div>
     </section>
+  )
+}
+
+/** Mini 3-category cost split for the studio card. */
+function CostBar() {
+  return (
+    <div className='w-full'>
+      <div className='glass-inset flex h-3 overflow-hidden rounded-full'>
+        <span className='bg-primary' style={{ width: '52%' }} />
+        <span className='bg-chart-2' style={{ width: '30%' }} />
+        <span className='bg-chart-3' style={{ width: '18%' }} />
+      </div>
+      <div className='mt-3 flex flex-wrap gap-4 text-xs'>
+        {(
+          [
+            ['bg-primary', '52%'],
+            ['bg-chart-2', '30%'],
+            ['bg-chart-3', '18%']
+          ] as const
+        ).map(([color, pct]) => (
+          <span key={pct} className='text-muted-foreground flex items-center gap-1.5'>
+            <span className={cn('size-2.5 rounded-[4px]', color)} />
+            <b className='text-foreground tabular-nums'>{pct}</b>
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/** Mini chat bubbles for the AI assistant card. */
+function ChatPreview({ q, a }: { q: string; a: string }) {
+  return (
+    <div className='flex w-full flex-col gap-2'>
+      <span className='glass-inset text-muted-foreground max-w-[70%] self-start rounded-2xl rounded-bl-md px-3.5 py-2 text-xs'>
+        {q}
+      </span>
+      <span className='bg-primary/15 text-foreground max-w-[75%] self-end rounded-2xl rounded-br-md px-3.5 py-2 text-xs font-medium'>
+        {a}
+      </span>
+    </div>
   )
 }

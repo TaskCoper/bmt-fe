@@ -1,13 +1,13 @@
-import type { Metadata } from 'next'
-import { NextIntlClientProvider, hasLocale } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
-import { Geist, Geist_Mono } from 'next/font/google'
-import { notFound } from 'next/navigation'
-
 import { AuthBootstrap } from '@/features/auth'
 import { routing } from '@/i18n/routing'
 import { siteConfig } from '@/shared/config/site'
 import { AppProviders } from '@/shared/providers'
+import type { Metadata } from 'next'
+import { NextIntlClientProvider, hasLocale } from 'next-intl'
+import { setRequestLocale } from 'next-intl/server'
+import { Be_Vietnam_Pro, Geist, Geist_Mono } from 'next/font/google'
+import { notFound } from 'next/navigation'
+
 import '../globals.css'
 
 const geistSans = Geist({
@@ -20,6 +20,14 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+  display: 'swap'
+})
+
+// Display font for headings & the brand shell — full Vietnamese subset support.
+const beVietnamPro = Be_Vietnam_Pro({
+  variable: '--font-be-vietnam',
+  subsets: ['latin', 'latin-ext', 'vietnamese'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap'
 })
 
@@ -55,7 +63,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${beVietnamPro.variable} font-sans antialiased`}>
         {/* Messages are provided automatically from i18n/request.ts */}
         <NextIntlClientProvider>
           <AppProviders>

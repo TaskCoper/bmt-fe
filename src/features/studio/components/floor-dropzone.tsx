@@ -1,11 +1,11 @@
 'use client'
 
-import { useMemo, useRef, useState } from 'react'
-import { useTranslations } from 'next-intl'
-import { toast } from 'sonner'
-import { ImagePlus, X } from 'lucide-react'
-
+import { Badge } from '@/shared/components/ui/badge'
 import { cn } from '@/shared/lib/utils'
+import { ImagePlus, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useMemo, useRef, useState } from 'react'
+import { toast } from 'sonner'
 import {
   ACCEPTED_IMAGE_MIME,
   IMAGE_ACCEPT_ATTR,
@@ -13,31 +13,27 @@ import {
   MAX_IMAGE_SIZE_BYTES,
   MAX_IMAGE_SIZE_MB
 } from '../constants/studio.constants'
-import { useWizardStore } from '../store/wizard.store'
+import { useCurrentProject, useWizardStore } from '../store/wizard.store'
 
 const ACCEPTED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'heic', 'heif']
 
 /**
- * Drag-and-drop image dropzone for a single floor (UI mock — captures file
- * names only, no real upload). Shows placeholder thumbnails with remove.
+ * Drag-and-drop floor-plan dropzone for a single floor (UI mock — captures file
+ * names only). Placeholder thumbnails with remove; enforces per-floor cap.
  */
-export function ImageUploader({ floor, label }: { floor: number; label: string }) {
-  const t = useTranslations('studio.space')
+export function FloorDropzone({ floor, label }: { floor: number; label: string }) {
+  const t = useTranslations('studio.layouts')
   const inputRef = useRef<HTMLInputElement>(null)
   const [dragging, setDragging] = useState(false)
 
-  // Select the stable array reference, then derive the floor subset with
-  // useMemo — returning `.filter(...)` straight from the selector creates a
-  // new array every render and trips Zustand's getSnapshot cache (infinite loop).
-  const allImages = useWizardStore((s) => s.data.images)
-  const images = useMemo(() => allImages.filter((i) => i.floor === floor), [allImages, floor])
+  const project = useCurrentProject()
+  const allImages = project?.data.images
+  const images = useMemo(() => (allImages ?? []).filter((i) => i.floor === floor), [allImages, floor])
   const addImages = useWizardStore((s) => s.addImages)
   const removeImage = useWizardStore((s) => s.removeImage)
 
   const handleFiles = (files: FileList | null) => {
     if (!files || files.length === 0) return
-
-    // Validate type + size; collect the ones that pass.
     const valid: string[] = []
     for (const file of Array.from(files)) {
       const ext = file.name.split('.').pop()?.toLowerCase() ?? ''
@@ -54,7 +50,6 @@ export function ImageUploader({ floor, label }: { floor: number; label: string }
     }
     if (valid.length === 0) return
 
-    // Enforce the per-floor cap.
     const remaining = MAX_IMAGES_PER_FLOOR - images.length
     if (remaining <= 0) {
       toast.error(t('errorMax', { max: MAX_IMAGES_PER_FLOOR }))
@@ -67,8 +62,12 @@ export function ImageUploader({ floor, label }: { floor: number; label: string }
   }
 
   return (
-    <div className='space-y-3'>
-      <p className='text-sm font-medium'>{label}</p>
+    <div className='border-glass-border bg-background/40 space-y-3 rounded-xl border p-4 backdrop-blur-sm'>
+      <div className='flex items-center justify-between'>
+        <p className='text-sm font-medium'>{label}</p>
+        {images.length > 0 ? <Badge variant='secondary'>{t('uploaded', { count: images.length })}</Badge> : null}
+      </div>
+
       <div
         role='button'
         tabIndex={0}
@@ -87,13 +86,15 @@ export function ImageUploader({ floor, label }: { floor: number; label: string }
           handleFiles(e.dataTransfer.files)
         }}
         className={cn(
-          'flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed p-6 text-center transition-colors',
-          dragging ? 'border-primary bg-primary/5' : 'hover:border-primary/50 hover:bg-muted/40'
+          'flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed p-6 text-center transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]',
+          dragging
+            ? 'border-primary/40 bg-primary/5'
+            : 'border-glass-border hover:border-primary/40 hover:bg-background/60'
         )}
       >
         <ImagePlus className='text-muted-foreground size-6' />
         <p className='text-sm font-medium'>{t('dropTitle')}</p>
-        <p className='text-muted-foreground text-xs'>{t('dropHint')}</p>
+        <p className='text-muted-foreground text-xs'>{t('dropHint', { max: MAX_IMAGE_SIZE_MB })}</p>
         <input
           ref={inputRef}
           type='file'
@@ -110,7 +111,10 @@ export function ImageUploader({ floor, label }: { floor: number; label: string }
       {images.length > 0 ? (
         <ul className='grid grid-cols-2 gap-2 sm:grid-cols-4'>
           {images.map((img) => (
-            <li key={img.id} className='group bg-muted relative aspect-square overflow-hidden rounded-md border'>
+            <li
+              key={img.id}
+              className='group border-glass-border bg-background/40 relative aspect-square overflow-hidden rounded-xl border backdrop-blur-sm'
+            >
               <div className='from-primary/20 to-primary/5 flex size-full items-center justify-center bg-gradient-to-br p-2'>
                 <span className='text-muted-foreground line-clamp-3 text-center text-[10px] break-all'>{img.name}</span>
               </div>
@@ -121,7 +125,7 @@ export function ImageUploader({ floor, label }: { floor: number; label: string }
                   removeImage(img.id)
                 }}
                 aria-label={t('remove')}
-                className='bg-background/80 absolute top-1 right-1 rounded-full p-1 opacity-0 transition-opacity group-hover:opacity-100'
+                className='bg-background/70 border-glass-border absolute top-1 right-1 rounded-full border p-1 opacity-0 backdrop-blur transition-opacity group-hover:opacity-100'
               >
                 <X className='size-3.5' />
               </button>

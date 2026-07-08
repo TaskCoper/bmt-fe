@@ -1,32 +1,41 @@
 'use client'
 
+import { useMemo } from 'react'
 import { create } from 'zustand'
-
+import { persist } from 'zustand/middleware'
 import {
-  BUDGET_PACKAGES,
   CONSTRUCTION_TYPES,
   DEFAULT_PRIMARY_COLOR,
+  DEFAULT_SELECTION,
+  HOUSE_STYLES,
   MAX_REGENERATIONS,
-  WIZARD_STEPS,
-  type DesignStyleId
+  type HouseStyle
 } from '../constants/studio.constants'
 import { generateResult } from '../services/studio.service'
-import type { ExportOptions, GenerateResult, UploadedImage, WizardData } from '../types/studio.types'
+import type {
+  EstimateSelection,
+  ExportOptions,
+  ProjectSnapshot,
+  UploadedImage,
+  WizardData
+} from '../types/studio.types'
 
 const INITIAL_DATA: WizardData = {
   name: '',
   constructionType: CONSTRUCTION_TYPES.APARTMENT,
   note: '',
-  images: [],
+  address: '',
+  region: 'south',
+  floors: 1,
   area: 80,
-  rooms: '',
-  packageId: BUDGET_PACKAGES.STANDARD,
-  styles: ['modern'],
-  moodboardCount: 0,
-  layout: 'open',
+  style: HOUSE_STYLES.MODERN_TOWNHOUSE,
+  hasTum: false,
+  openPlan: true,
   lighting: 'natural',
   direction: 'south',
-  primaryColor: DEFAULT_PRIMARY_COLOR
+  primaryColors: [DEFAULT_PRIMARY_COLOR],
+  budget: 2_000_000_000,
+  images: []
 }
 
 const INITIAL_EXPORT: ExportOptions = {
@@ -39,43 +48,44 @@ const INITIAL_EXPORT: ExportOptions = {
   language: 'vi'
 }
 
-let imageSeq = 0
+/** Stable unique id (crypto in the browser; predictable fallback otherwise). */
+function makeId(prefix = 'p'): string {
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+    return `${prefix}-${crypto.randomUUID()}`
+  }
+  return `${prefix}-${Math.abs(Math.floor(performance.now() * 1000)).toString(36)}`
+}
 
-/** Index of the first AI-result step — editing earlier steps invalidates it. */
-const RESULT_STEP = WIZARD_STEPS.indexOf('result')
+/** Return a copy of `snap` with `patch` applied and `updatedAt` bumped. */
+function touch(snap: ProjectSnapshot, patch: Partial<ProjectSnapshot>): ProjectSnapshot {
+  return { ...snap, ...patch, updatedAt: new Date().toISOString() }
+}
 
-interface WizardState {
-  stepIndex: number
-  /** Highest step index the user has reached (for stepper completion marks). */
-  furthestStep: number
-  data: WizardData
-  result: GenerateResult | null
+interface StudioState {
+  /** All design projects, keyed by id — the persisted "autosave" substrate. */
+  projects: Record<string, ProjectSnapshot>
+  /** Currently-open project (route-driven; NOT persisted). */
+  currentId: string | null
   isGenerating: boolean
-  /** How many times the user has re-run the AI (capped at MAX_REGENERATIONS). */
-  regenCount: number
-  exportOptions: ExportOptions
-  /** Pending backward navigation awaiting confirmation (edit-after-result). */
-  pendingNav: number | null
+  /** Pending navigation path awaiting edit-after-result confirmation. */
+  pendingNav: string | null
 
-  // navigation
-  goTo: (index: number) => void
-  next: () => void
-  back: () => void
-  /** Guarded navigation: warns before editing once an AI result exists. */
-  requestGoTo: (index: number) => void
-  confirmNav: () => void
-  cancelNav: () => void
+  // lifecycle
+  createProject: (input: { name: string; constructionType: WizardData['constructionType']; note: string }) => string
+  openProject: (id: string) => boolean
+  deleteProject: (id: string) => void
 
-  // data mutation
+  // data mutation (operate on the current project)
   patch: (partial: Partial<WizardData>) => void
-  toggleStyle: (style: DesignStyleId) => void
+  setStyle: (style: HouseStyle) => void
   addImages: (floor: number, names: string[]) => void
   removeImage: (id: string) => void
+  setSelection: (partial: Partial<EstimateSelection>) => void
 
   // generation (mock async)
   generate: () => Promise<void>
-  /** Re-run the AI; no-ops once MAX_REGENERATIONS is reached. */
   regenerate: () => Promise<void>
+  clearResult: () => void
 
   // step 5 — render gallery
   toggleFavorite: (id: string) => void
@@ -84,129 +94,188 @@ interface WizardState {
   // step 6 — export
   setExportOption: <K extends keyof ExportOptions>(key: K, value: ExportOptions[K]) => void
 
-  reset: () => void
+  // edit-after-result nav guard
+  setPendingNav: (path: string | null) => void
 }
 
-export const useWizardStore = create<WizardState>((set, get) => ({
-  stepIndex: 0,
-  furthestStep: 0,
-  data: INITIAL_DATA,
-  result: null,
-  isGenerating: false,
-  regenCount: 0,
-  exportOptions: INITIAL_EXPORT,
-  pendingNav: null,
+/** Apply `mutate` to the current project's snapshot, if any. */
+function withCurrent(
+  state: StudioState,
+  mutate: (snap: ProjectSnapshot) => Partial<ProjectSnapshot>
+): Partial<StudioState> {
+  const id = state.currentId
+  if (!id) return {}
+  const snap = state.projects[id]
+  if (!snap) return {}
+  return { projects: { ...state.projects, [id]: touch(snap, mutate(snap)) } }
+}
 
-  goTo: (index) =>
-    set((s) => {
-      const clamped = Math.max(0, Math.min(index, WIZARD_STEPS.length - 1))
-      return {
-        stepIndex: clamped,
-        furthestStep: Math.max(s.furthestStep, clamped)
-      }
-    }),
-
-  next: () => get().goTo(get().stepIndex + 1),
-  back: () => get().requestGoTo(get().stepIndex - 1),
-
-  requestGoTo: (index) => {
-    const { result } = get()
-    // Editing an input step (before the result) after AI has produced a result
-    // requires confirmation — it will discard the result and re-run.
-    if (result && index < RESULT_STEP) {
-      set({ pendingNav: index })
-      return
-    }
-    get().goTo(index)
-  },
-
-  confirmNav: () =>
-    set((s) => {
-      const target = s.pendingNav ?? s.stepIndex
-      return {
-        pendingNav: null,
-        result: null,
-        regenCount: 0,
-        stepIndex: Math.max(0, Math.min(target, WIZARD_STEPS.length - 1))
-      }
-    }),
-
-  cancelNav: () => set({ pendingNav: null }),
-
-  patch: (partial) => set((s) => ({ data: { ...s.data, ...partial } })),
-
-  toggleStyle: (style) =>
-    set((s) => {
-      const has = s.data.styles.includes(style)
-      const styles = has ? s.data.styles.filter((x) => x !== style) : [...s.data.styles, style]
-      return { data: { ...s.data, styles } }
-    }),
-
-  addImages: (floor, names) =>
-    set((s) => {
-      const added: UploadedImage[] = names.map((name) => ({
-        id: `img-${++imageSeq}`,
-        name,
-        floor
-      }))
-      return { data: { ...s.data, images: [...s.data.images, ...added] } }
-    }),
-
-  removeImage: (id) =>
-    set((s) => ({
-      data: { ...s.data, images: s.data.images.filter((i) => i.id !== id) }
-    })),
-
-  generate: async () => {
-    set({ isGenerating: true })
-    // Simulate AI processing latency (UI-only mock).
-    await new Promise((r) => setTimeout(r, 1400))
-    const result = generateResult(get().data, new Date().toISOString())
-    set({ isGenerating: false, result })
-  },
-
-  regenerate: async () => {
-    const { regenCount, isGenerating } = get()
-    if (isGenerating || regenCount >= MAX_REGENERATIONS) return
-    set({ regenCount: regenCount + 1 })
-    await get().generate()
-  },
-
-  toggleFavorite: (id) =>
-    set((s) =>
-      s.result
-        ? {
-            result: {
-              ...s.result,
-              renders: s.result.renders.map((r) => (r.id === id ? { ...r, favorite: !r.favorite } : r))
-            }
-          }
-        : {}
-    ),
-
-  setCaption: (id, caption) =>
-    set((s) =>
-      s.result
-        ? {
-            result: {
-              ...s.result,
-              renders: s.result.renders.map((r) => (r.id === id ? { ...r, caption } : r))
-            }
-          }
-        : {}
-    ),
-
-  setExportOption: (key, value) => set((s) => ({ exportOptions: { ...s.exportOptions, [key]: value } })),
-
-  reset: () =>
-    set({
-      stepIndex: 0,
-      furthestStep: 0,
-      data: INITIAL_DATA,
-      result: null,
+export const useWizardStore = create<StudioState>()(
+  persist(
+    (set, get) => ({
+      projects: {},
+      currentId: null,
       isGenerating: false,
-      regenCount: 0,
-      exportOptions: INITIAL_EXPORT,
-      pendingNav: null
-    })
-}))
+      pendingNav: null,
+
+      createProject: (input) => {
+        const id = makeId()
+        const now = new Date().toISOString()
+        const snapshot: ProjectSnapshot = {
+          id,
+          data: {
+            ...INITIAL_DATA,
+            name: input.name,
+            constructionType: input.constructionType,
+            note: input.note
+          },
+          selection: { ...DEFAULT_SELECTION },
+          result: null,
+          regenCount: 0,
+          exportOptions: { ...INITIAL_EXPORT },
+          createdAt: now,
+          updatedAt: now
+        }
+        set((s) => ({
+          projects: { ...s.projects, [id]: snapshot },
+          currentId: id
+        }))
+        return id
+      },
+
+      openProject: (id) => {
+        if (!get().projects[id]) return false
+        set({ currentId: id })
+        return true
+      },
+
+      deleteProject: (id) =>
+        set((s) => {
+          const next = { ...s.projects }
+          delete next[id]
+          return {
+            projects: next,
+            currentId: s.currentId === id ? null : s.currentId
+          }
+        }),
+
+      patch: (partial) => set((s) => withCurrent(s, (snap) => ({ data: { ...snap.data, ...partial } }))),
+
+      setStyle: (style) => set((s) => withCurrent(s, (snap) => ({ data: { ...snap.data, style } }))),
+
+      addImages: (floor, names) =>
+        set((s) =>
+          withCurrent(s, (snap) => {
+            const added: UploadedImage[] = names.map((name) => ({
+              id: makeId('img'),
+              name,
+              floor
+            }))
+            return {
+              data: { ...snap.data, images: [...snap.data.images, ...added] }
+            }
+          })
+        ),
+
+      removeImage: (id) =>
+        set((s) =>
+          withCurrent(s, (snap) => ({
+            data: {
+              ...snap.data,
+              images: snap.data.images.filter((i) => i.id !== id)
+            }
+          }))
+        ),
+
+      setSelection: (partial) =>
+        set((s) =>
+          withCurrent(s, (snap) => ({
+            selection: { ...snap.selection, ...partial }
+          }))
+        ),
+
+      generate: async () => {
+        const id = get().currentId
+        if (!id || get().isGenerating) return
+        set({ isGenerating: true })
+        // Simulate AI processing latency (UI-only mock).
+        await new Promise((r) => setTimeout(r, 1600))
+        const snap = get().projects[id]
+        if (!snap) {
+          set({ isGenerating: false })
+          return
+        }
+        const result = generateResult(snap.data, new Date().toISOString())
+        set((s) => ({
+          isGenerating: false,
+          ...withCurrent({ ...s, currentId: id }, () => ({ result }))
+        }))
+      },
+
+      regenerate: async () => {
+        const id = get().currentId
+        if (!id) return
+        const snap = get().projects[id]
+        if (!snap || snap.regenCount >= MAX_REGENERATIONS || get().isGenerating) return
+        set((s) => withCurrent(s, (cur) => ({ regenCount: cur.regenCount + 1 })))
+        await get().generate()
+      },
+
+      clearResult: () => set((s) => withCurrent(s, () => ({ result: null, regenCount: 0 }))),
+
+      toggleFavorite: (rid) =>
+        set((s) =>
+          withCurrent(s, (snap) =>
+            snap.result
+              ? {
+                  result: {
+                    ...snap.result,
+                    renders: snap.result.renders.map((r) => (r.id === rid ? { ...r, favorite: !r.favorite } : r))
+                  }
+                }
+              : {}
+          )
+        ),
+
+      setCaption: (rid, caption) =>
+        set((s) =>
+          withCurrent(s, (snap) =>
+            snap.result
+              ? {
+                  result: {
+                    ...snap.result,
+                    renders: snap.result.renders.map((r) => (r.id === rid ? { ...r, caption } : r))
+                  }
+                }
+              : {}
+          )
+        ),
+
+      setExportOption: (key, value) =>
+        set((s) =>
+          withCurrent(s, (snap) => ({
+            exportOptions: { ...snap.exportOptions, [key]: value }
+          }))
+        ),
+
+      setPendingNav: (path) => set({ pendingNav: path })
+    }),
+    {
+      name: 'bmt-studio',
+      version: 1,
+      // Persist only the project registry — currentId is route-driven.
+      partialize: (s) => ({ projects: s.projects })
+    }
+  )
+)
+
+/** The currently-open project snapshot, or null. */
+export function useCurrentProject(): ProjectSnapshot | null {
+  return useWizardStore((s) => (s.currentId ? (s.projects[s.currentId] ?? null) : null))
+}
+
+/** All projects, newest-updated first (for the dashboard list). */
+export function useProjectList(): ProjectSnapshot[] {
+  const projects = useWizardStore((s) => s.projects)
+  return useMemo(() => Object.values(projects).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)), [projects])
+}
