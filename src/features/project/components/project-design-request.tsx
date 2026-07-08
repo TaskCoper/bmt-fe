@@ -22,10 +22,10 @@ import { Plus, Trash2 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { Controller, FormProvider, type SubmitHandler, useFieldArray } from 'react-hook-form'
-import { useDesignRequest } from '../../hooks/use-design-request'
-import { type DesignRequestFormValues } from '../../schemas/project.schema'
-import { useProjectStore, useSetProjectFlow } from '../../store/project.store'
-import { COLOR_PRESETS, Direction, FloorLayout, FloorLighting, HouseStyle, RoofStyle } from '../../types/project.types'
+import { useDesignRequest } from '../hooks/use-design-request'
+import { type DesignRequestFormValues } from '../schemas/project.schema'
+import { useProjectStore, useSetProjectFlow } from '../store/project.store'
+import { COLOR_PRESETS, Direction, FloorLayout, FloorLighting, HouseStyle, RoofStyle } from '../types/project.types'
 
 const HOUSE_STYLE_OPTIONS = [HouseStyle.Roof, HouseStyle.Modern, HouseStyle.Neoclassical] as const
 const ROOF_STYLE_OPTIONS = [RoofStyle.Thai, RoofStyle.Japanese, RoofStyle.Traditional, RoofStyle.Other] as const
@@ -33,7 +33,7 @@ const DIRECTION_OPTIONS = [Direction.East, Direction.West, Direction.South, Dire
 const LAYOUT_OPTIONS = [FloorLayout.Open, FloorLayout.Separated] as const
 const LIGHTING_OPTIONS = [FloorLighting.Natural, FloorLighting.Artificial] as const
 
-export default function DesignRequestForm({ slug }: { slug: string }) {
+export default function ProjectDesignRequest({ slug }: { slug: string }) {
   const t = useTranslations('project.form')
   const tc = useTranslations('common')
 
