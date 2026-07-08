@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import { Badge } from '@/shared/components/ui/badge'
 import { Button } from '@/shared/components/ui/button'
-import { Card } from '@/shared/components/ui/card'
 import { ROUTES } from '@/shared/constants/routes'
 import { LANDING_SECTIONS } from '../constants/landing.constants'
 import { SectionHeading } from './section-heading'
@@ -21,7 +20,7 @@ export function FeaturedProjects() {
   const t = useTranslations('landing.projects')
 
   return (
-    <section id={LANDING_SECTIONS.projects} className="py-20 lg:py-28">
+    <section id={LANDING_SECTIONS.projects} className="relative py-20 lg:py-28">
       <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
         <SectionHeading
           badge={t('badge')}
@@ -30,20 +29,28 @@ export function FeaturedProjects() {
         />
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
           {PROJECTS.map((key) => (
-            <Card key={key} className="group overflow-hidden p-0">
-              <div className="bg-muted text-muted-foreground flex aspect-[4/3] items-center justify-center">
-                <ImageIcon className="size-8" />
+            <article key={key} className="glass-card group overflow-hidden">
+              <div className="text-muted-foreground/60 relative flex aspect-[4/3] items-center justify-center">
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      'radial-gradient(120% 90% at 50% 0%, oklch(0.77 0.155 65 / 0.16), transparent 60%), repeating-linear-gradient(0deg, var(--grid-line) 0 1px, transparent 1px 24px), repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 24px)',
+                  }}
+                />
+                <ImageIcon className="relative size-8" />
               </div>
-              <div className="flex items-start justify-between gap-3 p-5">
+              <div className="border-glass-border flex items-start justify-between gap-3 border-t p-5">
                 <div>
                   <Badge variant="outline" className="mb-2">
                     {t(`${key}.category`)}
                   </Badge>
                   <h3 className="text-sm font-semibold">{t(`${key}.name`)}</h3>
                 </div>
-                <ArrowUpRight className="text-muted-foreground group-hover:text-foreground size-4 shrink-0 transition-colors" />
+                <ArrowUpRight className="text-muted-foreground group-hover:text-primary size-4 shrink-0 transition-colors" />
               </div>
-            </Card>
+            </article>
           ))}
         </div>
         <div className="mt-10 flex justify-center">

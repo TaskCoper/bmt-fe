@@ -5,9 +5,9 @@ import { Plus } from 'lucide-react'
 import type { Locale } from '@/i18n/routing'
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/shared/constants/routes'
-import { PageHeader } from '@/shared/components/common'
+import { AmbientAura, PageHeader } from '@/shared/components/common'
 import { Button } from '@/shared/components/ui/button'
-import { ProjectList } from '@/features/project'
+import { ProjectsBoard } from '@/features/studio'
 
 interface PageProps {
   params: Promise<{ locale: Locale }>
@@ -25,10 +25,11 @@ export default async function ProjectsPage({ params }: PageProps) {
   const { locale } = await params
   setRequestLocale(locale)
   const tNav = await getTranslations({ locale, namespace: 'nav' })
-  const t = await getTranslations({ locale, namespace: 'project' })
+  const t = await getTranslations({ locale, namespace: 'studio.board' })
 
   return (
-    <div className="space-y-6">
+    <div className="relative space-y-6">
+      <AmbientAura />
       <PageHeader
         title={tNav('projects')}
         description={t('subtitle')}
@@ -36,12 +37,12 @@ export default async function ProjectsPage({ params }: PageProps) {
           <Button asChild>
             <Link href={ROUTES.PROJECT_NEW}>
               <Plus className="size-4" />
-              {t('createNew')}
+              {t('create')}
             </Link>
           </Button>
         }
       />
-      <ProjectList />
+      <ProjectsBoard />
     </div>
   )
 }

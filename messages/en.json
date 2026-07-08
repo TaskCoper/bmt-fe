@@ -57,11 +57,86 @@
       "contact": "Contact"
     },
     "hero": {
-      "badge": "Enterprise construction intelligence",
-      "title": "Build smarter with AI-driven estimates",
-      "subtitle": "Plan, estimate and manage construction projects on one premium, modern platform — powered by AI.",
-      "primaryCta": "Create an estimate",
-      "secondaryCta": "Explore projects"
+      "badge": "AI-integrated design platform",
+      "title": "Turn your home idea into a design & cost dossier — in minutes",
+      "subtitle": "An AI design studio, a style & regional price library, and an AI assistant — one platform that takes you from idea to estimate, drawings, renders and a share-ready PDF.",
+      "primaryCta": "Create a free estimate",
+      "secondaryCta": "See sample projects",
+      "chip1": "Estimate in minutes",
+      "chip2": "2D drawings + 3D renders",
+      "chip3": "Export PDF · share via QR",
+      "previewProject": "Modern townhouse · Đắk Lắk",
+      "previewTotalLabel": "Estimated total",
+      "previewTotal": "₫2.18B",
+      "previewFit": "Within your ₫2.2B budget",
+      "previewRough": "Structure",
+      "previewFinishing": "Finishing",
+      "previewInterior": "Interior",
+      "previewDrawing": "2D drawing · Ground floor"
+    },
+    "features": {
+      "badge": "What the platform does for you",
+      "title": "One platform for the whole home-building journey",
+      "subtitle": "From browsing ideas and estimating to looking up unit prices and managing projects — every tool in one place.",
+      "studio": {
+        "tag": "6 steps",
+        "title": "AI design studio",
+        "description": "From brief → detailed estimate, 2D drawings, 3D renders and a PDF — the whole flow in one place."
+      },
+      "estimate": {
+        "tag": "In minutes",
+        "title": "Quick estimate",
+        "description": "Instantly ballpark the cost of the items you need without running the full flow."
+      },
+      "gallery": {
+        "tag": "By style",
+        "title": "Design reference library",
+        "description": "Browse home designs by style and building type to settle on a look and a budget."
+      },
+      "portfolio": {
+        "tag": "Real builds",
+        "title": "Reference projects",
+        "description": "Explore completed builds with transparent scope and budgets."
+      },
+      "library": {
+        "tag": "Region-aware",
+        "title": "Material price library",
+        "description": "Material and labour unit prices kept up to date for your region."
+      },
+      "chatbot": {
+        "tag": "24/7",
+        "title": "AI assistant",
+        "description": "Instant answers and guidance right inside the app, any time.",
+        "q": "Rough-build cost for 80m²?",
+        "a": "Around ₫280M — let me suggest a fitting package."
+      },
+      "dashboard": {
+        "tag": "One place",
+        "title": "Project management",
+        "description": "Track every project, estimate and revision on a single dashboard."
+      }
+    },
+    "spotlight": {
+      "cta": "Try it now",
+      "pkgBasic": "Basic",
+      "pkgStandard": "Standard",
+      "pkgVip": "VIP",
+      "estimate": {
+        "eyebrow": "AI estimate",
+        "title": "A detailed, package-based estimate — matched to your budget",
+        "description": "The system breaks costs into three categories and suggests the right material package, compared directly against the budget you set.",
+        "bullet1": "Three categories: structure · finishing · interior",
+        "bullet2": "Basic / Standard / VIP packages with a budget-fit badge",
+        "bullet3": "Region-based unit prices, updated regularly"
+      },
+      "visuals": {
+        "eyebrow": "Drawings & renders",
+        "title": "From floor layouts to 2D drawings and 3D renders",
+        "description": "Upload each floor's layout and the AI produces layout drawings and photorealistic renders so you can picture the real space.",
+        "bullet1": "2D drawings generated per floor",
+        "bullet2": "Interior & exterior renders saved to a gallery",
+        "bullet3": "Favourite the shots you want in the dossier"
+      }
     },
     "services": {
       "badge": "Services",
@@ -651,213 +726,313 @@
     "phone": "Enter a valid phone number"
   },
   "studio": {
-    "title": "New project",
-    "subtitle": "The BMT Decor AI design flow in 6 steps, from setup to PDF export.",
-    "progressLabel": "Step {current}/{total}",
+    "title": "AI Design Studio",
+    "subtitle": "Turn a floor plan into a 2D drawing, cost estimate and 3D renders.",
     "nav": {
       "back": "Back",
       "next": "Continue",
-      "finish": "Finish"
+      "finish": "Finish",
+      "createProject": "New project",
+      "saveExit": "Save & exit",
+      "studioEyebrow": "Design Studio",
+      "progressLabel": "Progress",
+      "stepOf": "Step {current} / {total}"
+    },
+    "hero": {
+      "requirements": {
+        "title": "The home you're picturing, turned into data for the AI.",
+        "lede": "Address, scale, style and budget — so BMT Decor AI can sketch drawings and an estimate that match your direction from the very first frame."
+      },
+      "layouts": {
+        "title": "Upload each floor's layout so the AI reads the real space.",
+        "lede": "Drag & drop floor-plan images in order — Ground → 1st → 2nd …; preview instantly on upload."
+      },
+      "result": {
+        "title": "A turnkey estimate, presented like a real advisory dossier.",
+        "lede": "Personalised to your name, project code and region — with 2D drawings, a cost breakdown and three material packages to choose from."
+      },
+      "render": {
+        "title": "Your space, visualised through 3D renders.",
+        "lede": "Browse the render gallery, favourite the ones you love and add a caption to each."
+      },
+      "export": {
+        "title": "Export the whole project into one polished PDF dossier.",
+        "lede": "Pick what to include, preview it, then share via a link or QR code for clients and contractors."
+      },
+      "create": {
+        "title": "Spin up a workspace for your new project.",
+        "lede": "Name it and pick the construction type — the system mints a unique project ID and saves it to your dashboard."
+      }
+    },
+    "preview": {
+      "title": "Live sketch",
+      "hint": "Updates with your choices",
+      "storeys": "{count} storeys",
+      "floorArea": "≈ {area} m² floor",
+      "tum": "With tum"
     },
     "steps": {
       "create": {
-        "title": "Create project",
-        "subtitle": "Initialize workspace",
-        "description": "Name your project and choose a construction type to spin up a workspace."
+        "title": "Project",
+        "subtitle": "Name & type"
       },
-      "space": {
-        "title": "Add information",
-        "subtitle": "Images & space",
-        "description": "Upload images per floor and describe the actual space."
+      "requirements": {
+        "title": "Requirements",
+        "subtitle": "Brief & budget"
       },
-      "design": {
-        "title": "Brief & budget",
-        "subtitle": "Style & cost",
-        "description": "Pick a budget package, styles and design direction."
+      "layouts": {
+        "title": "Layouts",
+        "subtitle": "Upload per floor"
       },
       "result": {
-        "title": "AI result",
-        "subtitle": "Drawing & estimate",
-        "description": "AI generates a 2D drawing and a detailed cost estimate from your inputs."
+        "title": "Result",
+        "subtitle": "2D & estimate"
       },
       "render": {
-        "title": "3D render",
-        "subtitle": "Image gallery",
-        "description": "View, caption and favorite the 3D render images."
+        "title": "Renders",
+        "subtitle": "3D gallery"
       },
       "export": {
-        "title": "Export PDF",
-        "subtitle": "Document & share",
-        "description": "Customize content and language, then export a shareable PDF."
+        "title": "Export",
+        "subtitle": "PDF & share"
       }
     },
+    "guard": {
+      "lockedTooltip": "Finish step {step} first",
+      "missing": "Project not found",
+      "missingHint": "It may have been removed. Return to your projects.",
+      "backToProjects": "Back to projects"
+    },
+    "editWarning": {
+      "title": "Edit an earlier step?",
+      "description": "You already have an AI result. Editing this step will discard the result and you will need to regenerate it.",
+      "cancel": "Keep result",
+      "confirm": "Discard & edit"
+    },
+    "board": {
+      "title": "Design projects",
+      "subtitle": "Continue an in-progress design or start a new one.",
+      "emptyTitle": "No design projects yet",
+      "emptyHint": "Create your first project to plan, estimate and render a home.",
+      "create": "New project",
+      "updated": "Updated {date}",
+      "continue": "Continue · Step {step}",
+      "open": "Open",
+      "remove": "Delete"
+    },
     "create": {
-      "basics": "Basics",
+      "basics": "Project name",
       "nameLabel": "Project name",
-      "namePlaceholder": "e.g. Vinhomes apartment renovation",
+      "namePlaceholder": "e.g. Mr. Nam townhouse — District 7",
       "typeLabel": "Construction type",
-      "typeHint": "Residential is supported now. Commercial types are coming soon.",
-      "noteLabel": "Preliminary note",
-      "notePlaceholder": "Briefly describe your goals, project context…",
-      "noteHint": "Optional — helps the AI understand your needs better."
+      "typeHint": "Residential only for now — commercial types are coming soon.",
+      "noteLabel": "Note",
+      "notePlaceholder": "Anything the design team should know…",
+      "noteHint": "Optional.",
+      "submit": "Create project"
     },
     "constructionType": {
       "apartment": {
         "label": "Apartment",
-        "desc": "Condo, studio"
+        "desc": "Flats & condominiums"
       },
       "townhouse": {
         "label": "Townhouse",
-        "desc": "Row house, tube house"
+        "desc": "Street & row houses"
       },
       "villa": {
         "label": "Villa",
-        "desc": "Detached, semi-detached"
+        "desc": "Detached & garden houses"
       },
       "office": {
         "label": "Office",
-        "desc": "Workspace"
+        "desc": "Workspaces"
       },
       "commercial": {
         "label": "Commercial",
-        "desc": "Shop, showroom"
+        "desc": "Shops & showrooms"
       },
       "hotel": {
         "label": "Hotel",
-        "desc": "Hospitality, resort"
+        "desc": "Hospitality"
       }
     },
-    "space": {
-      "uploadTitle": "Upload images",
-      "uploadHint": "Upload images in floor order. Drag-and-drop or click to select.",
-      "floor": {
-        "ground": "Ground floor",
-        "first": "Floor 1",
-        "second": "Floor 2"
-      },
-      "infoTitle": "Description",
-      "infoHint": "Optional — add more for a more accurate estimate.",
-      "areaLabel": "Floor area",
-      "roomsLabel": "Room list",
-      "roomsPlaceholder": "e.g. 2 bedrooms, 1 living room, 1 kitchen…",
-      "dropTitle": "Drag-and-drop images here",
-      "dropHint": "JPG, PNG or HEIC — up to 10MB each, max 5 per floor",
-      "remove": "Remove image",
-      "errorType": "\"{name}\" is not a supported image (use JPG, PNG or HEIC).",
-      "errorSize": "\"{name}\" exceeds the {max}MB limit.",
-      "errorMax": "Up to {max} images per floor."
+    "requirements": {
+      "buildingTitle": "Building information",
+      "buildingHint": "Location, floors and build area.",
+      "styleTitle": "Style",
+      "styleHint": "Pick the architectural direction.",
+      "extraTitle": "Extra preferences",
+      "extraHint": "Optional — refine the brief.",
+      "budgetTitle": "Budget",
+      "budgetHint": "A target used to track your estimate in step 4."
     },
-    "budget": {
-      "title": "Budget",
-      "hint": "Rough construction is a fixed minimum. Pick a package for finishing and interior.",
-      "perSqm": "VND/m²",
-      "autoUpdate": "The estimated total updates automatically with package and area.",
-      "total": "ESTIMATED TOTAL",
-      "portion": {
-        "rough": "Rough",
-        "finishing": "Finishing",
-        "interior": "Interior"
-      },
-      "roughNote": "Fixed minimum",
-      "finishingNote": "From selected package",
-      "interiorNote": "From selected package",
-      "donutLabel": "Cost structure by category"
-    },
-    "package": {
-      "basic": {
-        "name": "Package 1 — BASIC",
-        "desc": "Standard materials, cost-optimized"
-      },
-      "standard": {
-        "name": "Package 2 — STANDARD",
-        "desc": "Balanced quality and cost"
-      },
-      "premium": {
-        "name": "Package 3 — PREMIUM",
-        "desc": "Premium materials, refined finishing"
+    "address": {
+      "label": "Address / province",
+      "placeholder": "Select a province",
+      "regionLabel": "Region",
+      "region": {
+        "north": "Northern",
+        "central": "Central",
+        "south": "Southern"
       }
     },
-    "design": {
-      "styleTitle": "Design style",
-      "styleHint": "Pick one or more styles (they can be combined).",
-      "moodboardUpload": "Upload mood board",
-      "moodboardCount": "{count} mood board images",
-      "prefTitle": "Design preferences",
-      "prefHint": "Fine-tune the spatial direction for the drawing.",
-      "layoutLabel": "Spatial layout",
-      "layout": {
-        "open": "Open plan",
-        "separated": "Separate rooms"
+    "floors": {
+      "label": "Number of floors",
+      "hint": "Determines how many floor plans you upload next.",
+      "ground": "Ground only",
+      "plus": "Ground +{n}"
+    },
+    "area": {
+      "buildLabel": "Build area",
+      "land": "Land area",
+      "ground": "Ground floor area",
+      "totalFloor": "Total floor area",
+      "usable": "Usable area",
+      "floors": "Storeys",
+      "height": "Estimated height",
+      "floorsValue": "{count} storeys"
+    },
+    "style": {
+      "name": {
+        "roof_thai": "Thai roof",
+        "roof_japanese": "Japanese roof",
+        "roof_traditional": "Traditional tiled roof",
+        "modern_townhouse": "Modern townhouse",
+        "neoclassical": "Neoclassical"
       },
-      "lightingLabel": "Lighting preference",
+      "desc": {
+        "roof_thai": "Steep hip roof, airy eaves",
+        "roof_japanese": "Low pitch, clean lines",
+        "roof_traditional": "Vietnamese tiled roof",
+        "modern_townhouse": "Flat lines, large glazing",
+        "neoclassical": "Symmetry & mouldings"
+      },
+      "groupRoof": "Roofed houses",
+      "groupModern": "Modern"
+    },
+    "tum": {
+      "label": "Rooftop room (tum)",
+      "on": "With tum",
+      "off": "No tum"
+    },
+    "extra": {
+      "openPlanLabel": "Space layout",
+      "openPlanOn": "Open plan",
+      "openPlanOff": "Separate rooms",
+      "lightingLabel": "Lighting",
+      "directionLabel": "House orientation",
+      "colorLabel": "Primary palette",
+      "colorHint": "Pick one or more accent colors.",
       "lighting": {
         "natural": "Natural",
         "artificial": "Artificial"
       },
-      "directionLabel": "House orientation",
       "direction": {
         "east": "East",
         "west": "West",
         "south": "South",
         "north": "North"
-      },
-      "colorLabel": "Primary color"
+      }
     },
-    "style": {
-      "modern": "Modern",
-      "minimalist": "Minimalist",
-      "indochine": "Indochine",
-      "traditional": "Vietnamese traditional"
+    "budget": {
+      "sliderLabel": "Target budget",
+      "sliderHint": "Drag or type your target total (VNĐ).",
+      "portion": {
+        "rough": "Rough",
+        "finishing": "Finishing",
+        "interior": "Interior"
+      },
+      "total": "Total estimate",
+      "perSqm": "/m²",
+      "roughNote": "Structure & masonry",
+      "finishingNote": "Floors, paint, doors",
+      "interiorNote": "Furniture & lighting",
+      "donutLabel": "Cost structure"
+    },
+    "layouts": {
+      "guideTitle": "Upload a floor plan for each floor",
+      "guideHint": "Only floor-plan images — one or more per floor.",
+      "sampleGood": "Good: a clear floor plan",
+      "sampleBad": "Avoid: photos, deeds, façades",
+      "floorGround": "Ground floor",
+      "floorUpper": "Floor {n}",
+      "dropTitle": "Drag & drop or click to upload",
+      "dropHint": "JPG / PNG / HEIC · up to {max}MB each",
+      "remove": "Remove",
+      "uploaded": "{count} uploaded",
+      "incomplete": "Upload at least one plan for every floor to continue.",
+      "generate": "Generate with AI",
+      "errorType": "{name} is not a supported image.",
+      "errorSize": "{name} exceeds {max}MB.",
+      "errorMax": "Up to {max} images per floor."
+    },
+    "ai": {
+      "title": "AI is working on your design",
+      "subtitle": "This usually takes a moment — please stay on this page.",
+      "line1": "Analysing floor plans…",
+      "line2": "Drafting the 2D drawing…",
+      "line3": "Estimating the rough construction…",
+      "line4": "Preparing 3D renders…"
     },
     "result": {
-      "generating": "AI is processing the design…",
-      "generatingHint": "Generating the drawing and estimate based on your inputs.",
-      "regenerate": "Regenerate result",
+      "generating": "Generating your result…",
+      "generatingHint": "The AI is preparing your drawing and estimate.",
+      "regenerate": "Regenerate",
       "regenLeft": "{count} regenerations left",
-      "regenExhausted": "Regeneration limit reached — please contact support.",
-      "drawingTitle": "Layout drawing (2D)",
-      "areaTitle": "Construction area",
-      "estimateTitle": "Detailed cost estimate",
-      "estimateHint": "Hover each item to see materials and construction method.",
-      "summaryTitle": "Estimate summary",
+      "regenExhausted": "No regenerations left",
+      "drawingTitle": "2D drawing",
+      "areaTitle": "Area summary",
+      "estimateTitle": "Cost estimate",
+      "estimateHint": "Pick a package per section — totals update instantly.",
+      "summaryTitle": "Summary",
       "structureTitle": "Cost structure",
-      "disclaimer": "This is a reference estimate; actual costs may vary with material market and contractor.",
-      "estimatedOn": "Issued: {date}",
-      "room": {
-        "living": "Living",
-        "kitchen": "Kitchen",
-        "bedroom": "Bedroom",
-        "bath": "Bath",
-        "hall": "Hall"
-      },
+      "disclaimer": "Estimate is indicative and may change during detailed design.",
+      "estimatedOn": "Estimated on {date}.",
+      "confirmRender": "Confirm → 3D renders"
+    },
+    "viewer": {
       "zoomIn": "Zoom in",
       "zoomOut": "Zoom out",
-      "zoomReset": "Reset",
-      "drawingHint": "Use the buttons to zoom the drawing in/out."
-    },
-    "area": {
-      "land": "Land / lot area",
-      "ground": "Ground floor built area",
-      "totalFloor": "Total built floor area",
-      "usable": "Actual usable area",
-      "floors": "Floors",
-      "height": "Estimated building height",
-      "floorsValue": "{count} floors"
+      "reset": "Reset view",
+      "fullscreen": "Fullscreen",
+      "floorGround": "Ground",
+      "floorUpper": "Floor {n}"
     },
     "estimate": {
-      "tip": {
-        "material": "Suggested material",
-        "method": "Construction method",
-        "note": "Note"
+      "colItem": "Item",
+      "colTier": "Package",
+      "colAmount": "Amount",
+      "colQuantity": "Qty",
+      "colUnitPrice": "Unit price",
+      "colDetail": "",
+      "viewDetail": "View detail",
+      "roughSingle": "Fixed rough cost",
+      "selectTier": "Select {tier}",
+      "tabRough": "Rough",
+      "tabFinishing": "Finishing",
+      "tabInterior": "Interior"
+    },
+    "progress": {
+      "label": "Selected vs target budget",
+      "within": "{amount} under target",
+      "over": "{amount} over target",
+      "exact": "On target",
+      "hint": "Lower a package to fit your budget."
+    },
+    "package": {
+      "basic": {
+        "name": "Basic",
+        "desc": "Economical materials"
       },
-      "col": {
-        "item": "Item",
-        "quantity": "Quantity",
-        "unitPrice": "Unit price",
-        "amount": "Amount"
+      "standard": {
+        "name": "Standard",
+        "desc": "Balanced quality"
       },
-      "vsBudget": "Category total",
-      "budgetUsage": "{pct}% of the selected package budget"
+      "premium": {
+        "name": "VIP",
+        "desc": "Premium finishes"
+      }
     },
     "unit": {
       "m2": "m²",
@@ -865,141 +1040,177 @@
       "kg": "kg",
       "set": "set"
     },
+    "detail": {
+      "heading": "{section} · {tier}",
+      "subtitle": "Detailed items, materials and construction method.",
+      "colItem": "Item",
+      "colQuantity": "Quantity",
+      "colMaterial": "Suggested material",
+      "colDetail": "",
+      "open": "Detail",
+      "drawerTitle": "Item detail",
+      "material": "Suggested material",
+      "alternatives": "Alternative materials",
+      "method": "Construction method",
+      "close": "Close"
+    },
+    "render": {
+      "emptyTitle": "No renders yet",
+      "emptyHint": "Generate an AI result first to see 3D renders.",
+      "title": "3D renders",
+      "hint": "Favorite the images to include in your PDF.",
+      "count": "{count} images",
+      "favCount": "{count} favorites",
+      "floorLabel": "Floor {floor}",
+      "favorite": "Favorite",
+      "captionPlaceholder": "Add a caption…",
+      "filterAll": "All",
+      "filterFav": "Favorites",
+      "kind": {
+        "exterior": "Exterior",
+        "interior": "Interior"
+      },
+      "prev": "Previous",
+      "next": "Next",
+      "close": "Close"
+    },
+    "export": {
+      "contentTitle": "PDF content",
+      "contentHint": "Choose which sections to include.",
+      "section": {
+        "coverPage": "Cover page",
+        "projectInfo": "Project information",
+        "drawings": "2D drawings",
+        "estimate": "Cost estimate",
+        "summary": "Cost summary",
+        "renders": "Favorited renders"
+      },
+      "languageTitle": "Language & currency",
+      "language": {
+        "vi": "Vietnamese",
+        "en": "English"
+      },
+      "currencyNote": "Currency: VNĐ",
+      "previewTitle": "Preview",
+      "exportButton": "Export PDF",
+      "exportSuccess": "PDF exported (mock).",
+      "footerNote": "Every page carries the BMT Decor footer.",
+      "untitled": "Untitled project",
+      "page": {
+        "cover": "Cover",
+        "info": "Project info",
+        "drawings": "Drawings",
+        "estimate": "Estimate",
+        "renders": "Renders"
+      }
+    },
+    "share": {
+      "openButton": "Share",
+      "modalTitle": "Share this design",
+      "modalHint": "Anyone with the link can view the PDF online.",
+      "linkLabel": "Public link",
+      "copy": "Copy",
+      "copied": "Link copied",
+      "emailLabel": "Send by email",
+      "emailPlaceholder": "name@email.com",
+      "emailAdd": "Add",
+      "emailSend": "Send",
+      "emailSent": "Emails sent (mock).",
+      "qrLabel": "QR code",
+      "revoke": "Revoke link",
+      "revoked": "Link revoked",
+      "recreate": "Create new link"
+    },
+    "sharePage": {
+      "heading": "{name}",
+      "subtitle": "Design proposal · BMT Decor AI",
+      "madeBy": "Prepared by BMT Decor",
+      "contact": "Contact us for a detailed consultation."
+    },
     "items": {
       "rough": {
         "foundation": {
-          "name": "Foundation & base",
-          "material": "Reinforced concrete grade 250",
-          "method": "Excavate and pour reinforced concrete",
-          "note": "Depends on actual geology"
+          "name": "Foundation",
+          "material": "Reinforced concrete M250",
+          "alt": "Strip footing or bored piles depending on soil.",
+          "method": "Excavate, place rebar, pour & cure.",
+          "note": "Depends on soil survey."
         },
         "frame": {
           "name": "Structural frame",
-          "material": "Steel & concrete grade 300",
-          "method": "Cast columns, beams, slabs",
-          "note": "Per structural standards"
+          "material": "RC columns & beams",
+          "alt": "Steel frame for large spans.",
+          "method": "Formwork, rebar, concrete per floor.",
+          "note": "Sized to storeys."
         },
         "masonry": {
-          "name": "Masonry",
-          "material": "Hollow brick, cement mortar",
-          "method": "Build and plaster walls",
-          "note": "Includes exterior and partition walls"
+          "name": "Masonry walls",
+          "material": "Fired clay brick",
+          "alt": "AAC lightweight block.",
+          "method": "Lay, plaster, cure.",
+          "note": "Includes plastering."
         }
       },
       "finishing": {
         "flooring": {
           "name": "Flooring",
-          "material": "Granite tile / wood floor",
-          "method": "Screed base, lay finish",
-          "note": "Per budget package"
+          "material": "Porcelain tile 60×60",
+          "alt": "Engineered wood or natural stone.",
+          "method": "Level, lay, grout.",
+          "note": "Per floor area."
         },
         "painting": {
-          "name": "Painting",
-          "material": "Interior & exterior paint",
-          "method": "Putty, primer and topcoat",
-          "note": "2 standard topcoats"
+          "name": "Paint",
+          "material": "Interior/exterior emulsion",
+          "alt": "Lime wash or wallpaper.",
+          "method": "Prime, 2 coats.",
+          "note": "Includes primer."
         },
         "ceiling": {
-          "name": "Gypsum ceiling",
-          "material": "Gypsum board on frame",
-          "method": "Install ceiling, treat joints",
-          "note": "Includes recessed lights"
+          "name": "Ceiling",
+          "material": "Gypsum plasterboard",
+          "alt": "Exposed concrete finish.",
+          "method": "Frame, board, skim.",
+          "note": "Includes cornices."
         },
         "doors": {
-          "name": "Doors & hardware",
-          "material": "Engineered wood / aluminum-glass",
-          "method": "Install doors and locks",
-          "note": "By room count"
+          "name": "Doors & windows",
+          "material": "Aluminium & tempered glass",
+          "alt": "Engineered timber doors.",
+          "method": "Fabricate & install.",
+          "note": "Per opening."
         }
       },
       "interior": {
         "living": {
-          "name": "Living room furniture",
-          "material": "Sofa, TV cabinet, coffee table",
-          "method": "Fabricate and install",
-          "note": "Full living room set"
+          "name": "Living room",
+          "material": "Fabric sofa & TV wall",
+          "alt": "Leather or modular sofa.",
+          "method": "Manufacture & install.",
+          "note": "Full set."
         },
         "kitchen": {
-          "name": "Kitchen cabinets",
-          "material": "Wood cabinets + stone countertop",
-          "method": "Measure, build on site",
-          "note": "Includes sink"
+          "name": "Kitchen",
+          "material": "Acrylic cabinets & stone top",
+          "alt": "Laminate or solid wood.",
+          "method": "Measure, build, fit.",
+          "note": "Excludes appliances."
         },
         "bedroom": {
-          "name": "Bedroom furniture",
-          "material": "Bed, wardrobe, dresser",
-          "method": "Fabricate and install",
-          "note": "Full set per bedroom"
+          "name": "Bedroom",
+          "material": "Bed, wardrobe & desk",
+          "alt": "Melamine or natural wood.",
+          "method": "Manufacture & install.",
+          "note": "Per bedroom."
         },
         "lighting": {
-          "name": "Lighting & decor",
-          "material": "Decorative lights, curtains",
-          "method": "Install lighting fixtures",
-          "note": "Per design concept"
+          "name": "Lighting",
+          "material": "LED downlights & décor lamps",
+          "alt": "Smart lighting system.",
+          "method": "Wire & mount.",
+          "note": "Whole house."
         }
       }
-    },
-    "render": {
-      "emptyTitle": "No render images yet",
-      "emptyHint": "Complete the AI result step to view 3D renders.",
-      "title": "3D render gallery",
-      "hint": "All images are saved to the project. Add captions and favorite them.",
-      "count": "{count} images",
-      "favCount": "{count} favorites",
-      "kind": {
-        "exterior": "Exterior",
-        "interior": "Interior"
-      },
-      "floorLabel": "Floor {floor}",
-      "favorite": "Favorite",
-      "captionPlaceholder": "Add a caption…"
-    },
-    "export": {
-      "contentTitle": "PDF content",
-      "contentHint": "Choose the sections to export.",
-      "section": {
-        "coverPage": "Cover page",
-        "projectInfo": "Project info",
-        "drawings": "Layout drawings",
-        "estimate": "Detailed estimate",
-        "summary": "Estimate summary",
-        "renders": "3D render images"
-      },
-      "languageTitle": "Language",
-      "language": {
-        "vi": "Tiếng Việt",
-        "en": "English"
-      },
-      "exportTitle": "Export file",
-      "untitled": "Untitled project",
-      "readyHint": "Your document is ready to export as PDF.",
-      "exportButton": "Export PDF",
-      "exportSuccess": "PDF exported (demo).",
-      "shareTitle": "Share",
-      "shareHint": "Share the project result with clients or contractors. The link is valid for 90 days and can be revoked anytime.",
-      "shareLink": "Create online link",
-      "shareEmail": "Send via email",
-      "shareQr": "QR code",
-      "linkCopied": "Share link copied.",
-      "emailSent": "Email sent (demo).",
-      "qrShown": "QR code generated (demo)."
-    },
-    "editWarning": {
-      "title": "Edit and re-run?",
-      "description": "Editing this information will discard the current AI result and run it again. Are you sure?",
-      "cancel": "Cancel",
-      "confirm": "Discard & edit"
-    },
-    "share": {
-      "manageLink": "Share link",
-      "linkTitle": "Public share link",
-      "linkExpiry": "Valid for 90 days. You can revoke it anytime.",
-      "copy": "Copy",
-      "copied": "Link copied.",
-      "revoke": "Revoke link",
-      "revoked": "Share link revoked.",
-      "revokedNote": "This link has been revoked and no longer works.",
-      "recreate": "Create a new link"
     }
   },
   "profile": {

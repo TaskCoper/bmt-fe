@@ -25,14 +25,16 @@ export function AreaSummary({ area }: { area: AreaSummaryData }) {
   ]
 
   return (
-    <dl className="divide-y rounded-lg border text-sm">
+    <dl className="divide-glass-border border-glass-border bg-background/40 divide-y rounded-xl border text-sm backdrop-blur-sm">
       {rows.map((row) => (
         <div
           key={row.key}
-          className="flex items-center justify-between px-4 py-2.5"
+          className="flex items-center justify-between px-4 py-3"
         >
           <dt className="text-muted-foreground">{t(row.key)}</dt>
-          <dd className="font-medium tabular-nums">{row.value}</dd>
+          <dd className="font-medium tracking-tight tabular-nums">
+            {row.value}
+          </dd>
         </div>
       ))}
     </dl>
