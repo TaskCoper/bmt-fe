@@ -11,7 +11,8 @@ import {
   CardTitle,
   RadioGroup,
   RadioGroupItem,
-  Separator
+  Separator,
+  Slider
 } from '@/shared/components/ui'
 import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field'
 import { Input } from '@/shared/components/ui/input'
@@ -32,6 +33,21 @@ const ROOF_STYLE_OPTIONS = [RoofStyle.Thai, RoofStyle.Japanese, RoofStyle.Tradit
 const DIRECTION_OPTIONS = [Direction.East, Direction.West, Direction.South, Direction.North] as const
 const LAYOUT_OPTIONS = [FloorLayout.Open, FloorLayout.Separated] as const
 const LIGHTING_OPTIONS = [FloorLighting.Natural, FloorLighting.Artificial] as const
+
+const BUDGET_MIN = 300_000_000
+const BUDGET_MAX = 15_000_000_000
+const BUDGET_STEP = 50_000_000
+const BUDGET_DEFAULT = 2_000_000_000
+const BUDGET_VND = new Intl.NumberFormat('vi-VN', { maximumFractionDigits: 0 })
+
+function formatBudget(value: number): string {
+  return `${BUDGET_VND.format(value)} ₫`
+}
+
+function clampBudget(value: number): number {
+  if (!Number.isFinite(value)) return BUDGET_DEFAULT
+  return Math.min(Math.max(value, BUDGET_MIN), BUDGET_MAX)
+}
 
 export default function ProjectDesignRequest({ slug }: { slug: string }) {
   const t = useTranslations('project.form')
@@ -81,6 +97,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
         style: draft?.style ?? HouseStyle.Modern,
         roofStyle: draft?.roofStyle,
         hasTum: draft?.hasTum ?? false,
+        budgetAmount: draft?.budgetAmount ?? BUDGET_DEFAULT,
         direction: draft?.direction ?? Direction.South,
         address: draft?.address ?? '',
         city: draft?.city ?? '',
@@ -250,6 +267,63 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
                 </RadioGroup>
               </Field>
             )}
+          />
+
+          <Separator />
+
+          <Controller
+            name='designRequest.budgetAmount'
+            control={control}
+            render={({ field }) => {
+              const current = clampBudget(field.value ?? BUDGET_DEFAULT)
+              return (
+                <Field className='gap-3'>
+                  <FieldLabel className='gap-0.5'>
+                    Ngân sách dự kiến
+                    <span className='text-destructive font-semibold'>*</span>
+                  </FieldLabel>
+                  <p className='text-muted-foreground text-xs'>
+                    Kéo thanh trượt hoặc nhập trực tiếp mức ngân sách tổng bạn dự trù cho công trình. Ở bước 4, hệ thống
+                    sẽ so sánh dự toán với con số này khi bạn chọn các gói vật liệu khác nhau.
+                  </p>
+
+                  <div className='flex items-center gap-3'>
+                    <Input
+                      type='number'
+                      inputMode='numeric'
+                      min={BUDGET_MIN}
+                      max={BUDGET_MAX}
+                      step={BUDGET_STEP}
+                      value={current}
+                      onChange={(e) => {
+                        const parsed = e.target.valueAsNumber
+                        field.onChange(Number.isFinite(parsed) ? parsed : BUDGET_DEFAULT)
+                      }}
+                      className='w-56'
+                    />
+                    <span className='text-muted-foreground text-sm'>₫</span>
+                    <span className='text-foreground text-sm font-semibold tabular-nums'>{formatBudget(current)}</span>
+                  </div>
+
+                  <Slider
+                    min={BUDGET_MIN}
+                    max={BUDGET_MAX}
+                    step={BUDGET_STEP}
+                    value={[current]}
+                    onValueChange={(vals) => {
+                      const next = vals[0]
+                      if (typeof next === 'number') field.onChange(clampBudget(next))
+                    }}
+                    className='pt-2'
+                  />
+
+                  <div className='text-muted-foreground flex justify-between text-xs'>
+                    <span>{formatBudget(BUDGET_MIN)}</span>
+                    <span>{formatBudget(BUDGET_MAX)}</span>
+                  </div>
+                </Field>
+              )
+            }}
           />
 
           <Separator />

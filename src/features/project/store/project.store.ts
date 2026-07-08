@@ -46,7 +46,23 @@ export const useProjectStore = create<ProjectStore>()(
     }),
     {
       name: STORAGE_KEY,
-      storage: createJSONStorage(() => localStorage)
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        projects: Object.fromEntries(
+          Object.entries(state.projects).map(([slug, project]) => [
+            slug,
+            {
+              ...project,
+              spaces: project.spaces
+                ? {
+                    ...project.spaces,
+                    floors: project.spaces.floors.map((floor) => ({ ...floor, layoutImage: null }))
+                  }
+                : null
+            }
+          ])
+        )
+      })
     }
   )
 )

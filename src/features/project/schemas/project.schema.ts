@@ -33,6 +33,7 @@ export const designRequestSchema = (m: DesignRequestSchemaMessages) => {
       style: z.enum(HouseStyle),
       roofStyle: z.enum(RoofStyle).optional(),
       hasTum: z.boolean().optional(),
+      budgetAmount: z.number().positive({ message: m.invalidArea }).optional(),
       direction: z.enum(Direction),
       address: z.string().min(1, { message: m.required }),
       city: z.string().min(1, { message: m.required }),

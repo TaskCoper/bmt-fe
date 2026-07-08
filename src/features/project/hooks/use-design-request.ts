@@ -12,6 +12,7 @@ const defaultValues: DesignRequestFormValues = {
     style: HouseStyle.Modern,
     roofStyle: undefined,
     hasTum: false,
+    budgetAmount: 2_000_000_000,
     direction: Direction.South,
     address: '',
     city: '',
