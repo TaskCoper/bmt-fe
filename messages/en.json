@@ -470,17 +470,292 @@
         "saved": "Space information saved"
       },
       "aiDesignResult": {
-        "title": "AI design result & estimate consultation file",
-        "subtitle": "Generate AI design output and prepare the estimate consultation file from the saved project inputs.",
+        "title": "Step 4 · AI Design Result",
+        "subtitle": "AI analyses the plans, proposes a design direction and drafts a reference estimate for your project.",
         "missingSpaces": "Complete the space information step before generating the design result.",
-        "readyTitle": "Inputs are ready",
-        "readyDescription": "Design request, space description, and layout images have been saved.",
-        "designOutputTitle": "AI design result",
-        "designOutputDescription": "Compile a design direction from the floor plans and selected style.",
-        "estimateProfileTitle": "Estimate consultation file",
-        "estimateProfileDescription": "Prepare the inputs for budget consultation and construction scope.",
-        "summary": "The next action will use the project data to generate design results and consultation materials.",
-        "generate": "Generate result"
+        "loading": "AI is analysing and generating…",
+        "tooltipHint": "Hover (or tap on mobile) the ? icon to see a detailed explanation.",
+        "configChip": "{houseType, select, Townhouse {Townhouse} Villa {Villa} Appartment {Apartment} other {House}} · 1 ground + {upperFloors} upper{hasTum, select, yes { + tum} other {}}",
+        "section4A": "4A · 2D floor plans",
+        "section4B": "4B · Detailed estimate",
+        "section4D": "4D · Area information",
+        "section4E": "4E · Estimate summary",
+        "consultation": {
+          "body": "Dear <pill>{customerName}</pill>. For a home of <pill>{landArea} m²</pill> × <pill>{floorCount} floors</pill> (total floor area ~<pill>{totalFloorArea} m²</pill>), the total investment in <pill>{city}</pill> usually ranges from <pill>{budgetMin}–{budgetMax} bn VND</pill>.",
+          "distribution": "Market average distribution: rough 50–55% · finishing 30–35% · interior 15–20%.",
+          "tumNote": "Includes a rooftop stairwell (tum) as configured."
+        },
+        "floorTabs": {
+          "ground": "Ground",
+          "floor1": "Floor 1",
+          "floor2": "Floor 2",
+          "floor3": "Floor 3",
+          "floor4": "Floor 4",
+          "roof": "Special floor",
+          "tum": "Tum"
+        },
+        "rooms": {
+          "living": "Living",
+          "kitchen": "Kitchen",
+          "dining": "Dining",
+          "bath": "Bath",
+          "wc": "Half-bath",
+          "bedroom1": "Bedroom 1",
+          "bedroom2": "Bedroom 2",
+          "bedroom3": "Bedroom 3",
+          "stairs": "Stairs",
+          "balcony": "Balcony",
+          "laundry": "Laundry",
+          "attic": "Tum",
+          "terrace": "Terrace"
+        },
+        "zoomIn": "Zoom in",
+        "zoomOut": "Zoom out",
+        "reset": "Reset",
+        "area": {
+          "land": "Land area",
+          "groundFloor": "Ground floor area",
+          "totalFloor": "Total floor area",
+          "usable": "Usable area",
+          "floorCount": "Number of floors",
+          "floorCountValue": "{count} floors",
+          "floorCountNote": "({upperFloors, plural, one {1 ground + # upper} other {1 ground + # upper}}{hasTum, select, yes {, plus tum} other {}})",
+          "height": "Estimated height",
+          "heightValue": "≈ {height} m"
+        },
+        "packageSelector": {
+          "header": "Choose material package",
+          "active": "Selected",
+          "finishing": "Finishing",
+          "interior": "Interior",
+          "roughLocked": "Rough (locked)",
+          "perSqm": "{value} mn/m²",
+          "roughNote": "Rough is fixed at 3.5 mn/m² regardless of tier. Finishing × total floor · Interior × usable area."
+        },
+        "packages": {
+          "basic": {
+            "name": "Basic",
+            "description": "Cost-optimised, uses standard materials."
+          },
+          "standard": {
+            "name": "Standard",
+            "description": "Balanced cost and quality."
+          },
+          "premium": {
+            "name": "Premium",
+            "description": "Premium materials, refined finishing."
+          }
+        },
+        "estimateTabs": {
+          "rough": "Rough",
+          "finishing": "Finishing",
+          "interior": "Interior"
+        },
+        "columns": {
+          "code": "Code",
+          "item": "Item",
+          "unit": "Unit",
+          "quantity": "Qty",
+          "unitPrice": "Unit price",
+          "amount": "Amount"
+        },
+        "units": {
+          "m2": "m²",
+          "m3": "m³",
+          "md": "m (linear)",
+          "bo": "set",
+          "cai": "pcs",
+          "set": "set"
+        },
+        "conditionalBadge": "Cond",
+        "items": {
+          "rough": {
+            "THO-01": {
+              "name": "Foundation & reinforced concrete",
+              "material": "M250 concrete, Viet Nhat rebar.",
+              "method": "Excavate footings, fabricate rebar, pour concrete per structural drawings.",
+              "note": "Applies to load-bearing foundation, columns, beams, and slabs."
+            },
+            "THO-02": {
+              "name": "Masonry walls",
+              "material": "Tuynel bricks with M75 cement mortar.",
+              "method": "Build 100–200 mm walls, plaster both sides plumb.",
+              "note": "Includes both partition and external perimeter walls."
+            },
+            "THO-03": {
+              "name": "Waterproofing",
+              "material": "Sika Latex TH or equivalent.",
+              "method": "Two coats on bathroom floors, roof deck and adjoining walls.",
+              "note": "5-year warranty per supplier standard."
+            },
+            "THO-04": {
+              "name": "Embedded electrical & plumbing",
+              "material": "Binh Minh PVC conduit, Cadivi 2×2.5 mm² wire.",
+              "method": "Run conduits inside walls and slabs before pouring concrete.",
+              "note": "Includes Internet and camera signal lines."
+            },
+            "THO-05": {
+              "name": "Concrete staircase",
+              "material": "M250 reinforced concrete, film-faced formwork.",
+              "method": "Pour staircase monolithically, grind tread surfaces.",
+              "note": "Treads prepared for stone cladding in the finishing stage."
+            },
+            "THO-TUM": {
+              "name": "Rooftop tum (stair enclosure)",
+              "material": "Tuynel brick + RC roof.",
+              "method": "Build enclosing walls + pour RC roof over the rooftop stair.",
+              "note": "Shown only when the project has tum enabled."
+            },
+            "THO-ST": {
+              "name": "Terrace parapet / railing",
+              "material": "RC + plastered brick, or stainless-steel railing.",
+              "method": "Build a 900 mm perimeter wall, waterproof the base fillet.",
+              "note": "Shown only when the project has an open (unroofed) terrace."
+            }
+          },
+          "finishing": {
+            "HT-01": {
+              "name": "Floor & wall tiling",
+              "material": "Basic: 60×60 ceramic. Standard: Dong Tam granite. Premium: natural marble.",
+              "method": "Tile every floor, tile bathroom & kitchen walls.",
+              "note": "Includes adhesive and mildew-resistant grout."
+            },
+            "HT-02": {
+              "name": "Wall paint",
+              "material": "Basic: Nippon Vatex. Standard: Jotun Majestic. Premium: Dulux Ambiance 5-in-1.",
+              "method": "1 primer + 2 top coats, with crack-resistant putty prep.",
+              "note": "Includes exterior and ceiling paint."
+            },
+            "HT-03": {
+              "name": "Plasterboard ceiling",
+              "material": "Basic: Vinh Tuong frame, 9 mm board. Standard: moisture-proof board. Premium: tray ceiling + cove lighting.",
+              "method": "Install framing, skim-coat and paint.",
+              "note": "Includes AC service access hatches."
+            },
+            "HT-04": {
+              "name": "Doors & windows",
+              "material": "Basic: Xingfa aluminium. Standard: PMI aluminium + Low-E glass. Premium: solid wood + acoustic glass.",
+              "method": "Fabricate at the workshop, install and finish on site.",
+              "note": "Includes brand-name locks and hinges."
+            },
+            "HT-05": {
+              "name": "Sanitary ware",
+              "material": "Basic: Inax basic. Standard: American Standard. Premium: Toto / Kohler.",
+              "method": "Install toilet, basin, shower and matching accessories.",
+              "note": "1 set per bathroom."
+            },
+            "HT-06": {
+              "name": "Electrical devices & lighting",
+              "material": "Basic: Sino switches, local LED. Standard: Panasonic + Rang Dong. Premium: Schneider + Philips Hue.",
+              "method": "Install switches, sockets and lighting throughout the home.",
+              "note": "Includes decorative living-room fixtures."
+            }
+          },
+          "interior": {
+            "NT-01": {
+              "name": "Kitchen cabinets",
+              "material": "Basic: moisture-proof MDF. Standard: gloss acrylic. Premium: natural wood + quartz stone.",
+              "method": "Made to measure, fitted with Blum/Hafele hardware.",
+              "note": "Includes stone benchtop and stainless-steel sink."
+            },
+            "NT-02": {
+              "name": "Wardrobes",
+              "material": "Basic: melamine MDF. Standard: laminate MDF. Premium: natural walnut.",
+              "method": "Built in against wall per drawings, custom compartments.",
+              "note": "1 wardrobe per bedroom."
+            },
+            "NT-03": {
+              "name": "Beds + mattresses",
+              "material": "Basic: engineered wood + spring mattress. Standard: oak + foam mattress. Premium: walnut + latex mattress.",
+              "method": "Built at the workshop, delivered and installed.",
+              "note": "1m6 or 1m8 size depending on the room."
+            },
+            "NT-04": {
+              "name": "Sofa + coffee table",
+              "material": "Basic: fabric sofa + MDF table. Standard: PU-leather sofa + wooden table. Premium: full leather sofa + stone table.",
+              "method": "Sized to the living room; delivered and installed as a set.",
+              "note": "1 set per living room."
+            },
+            "NT-05": {
+              "name": "Dining table + chairs",
+              "material": "Basic: engineered wood, 6 chairs. Standard: solid wood, 6 chairs. Premium: natural stone, 8 chairs.",
+              "method": "Ordered to fit the dining room.",
+              "note": "1 set per dining room."
+            },
+            "NT-06": {
+              "name": "TV console + curtains + decor lights",
+              "material": "Basic: MDF console + fabric curtains. Standard: laminate + 2-layer curtains. Premium: solid wood + premium curtains.",
+              "method": "Turnkey install of living- and bedroom decor accessories.",
+              "note": "Includes living-room chandelier and bedside lamps."
+            }
+          }
+        },
+        "itemDetail": {
+          "material": "Recommended material",
+          "method": "Construction method",
+          "quantityRow": "Estimated quantity",
+          "unitPriceRow": "Unit price",
+          "totalRow": "Amount",
+          "note": "Note",
+          "nearestDealer": "Nearest dealer",
+          "packageLabel": "(For {tier} package)"
+        },
+        "progressTarget": "Estimated {actual} / target {target}",
+        "totalSummary": {
+          "portion": "Portion",
+          "amount": "Amount",
+          "share": "Share",
+          "portionRough": "Rough (fixed)",
+          "portionFinishing": "Finishing",
+          "portionInterior": "Interior",
+          "totalRow": "TOTAL",
+          "disclaimer": "This is a reference estimate; the actual cost may vary after the site survey.",
+          "generatedAt": "Generated on: {date}"
+        },
+        "donut": {
+          "portion": {
+            "rough": "Rough",
+            "finishing": "Finishing",
+            "interior": "Interior"
+          },
+          "label": "Cost share chart"
+        },
+        "houseTypeValue": {
+          "Townhouse": "Townhouse",
+          "Villa": "Villa",
+          "Appartment": "Apartment"
+        },
+        "inputSummary": {
+          "title": "Design inputs"
+        },
+        "ctas": {
+          "regenerate": "Regenerate design",
+          "exportPdf": "Export PDF",
+          "pdfComingSoon": "PDF export is coming in the next release.",
+          "nextStep": "Go to step 5 · Render",
+          "nextStepDisabled": "Step 5 (Render) is coming soon."
+        },
+        "tooltips": {
+          "chip": "A townhouse supports up to 1 ground + 4 upper floors + 1 special floor (tum and/or terrace). The config is inherited from the project-creation step.",
+          "marketShares": "These are average market cost shares — only a rough reference. The donut below reflects the real numbers for your project; the two can differ.",
+          "tum": "The tum is a small enclosure over the rooftop stairwell. The terrace is an open rooftop (for drying laundry, relaxing). The owner picks these when creating the project.",
+          "area": {
+            "land": "Total plot area, taken from the title deed or drawing.",
+            "groundFloor": "The actually-built ground-floor footprint — usually smaller than the plot because of front/back yards and pathways.",
+            "totalFloor": "Sum of the floor area of every level (ground + upper floors + tum). Used to price rough and finishing.",
+            "usable": "Livable area = total floor × {factor, number, ::percent}. Townhouses lose ~20% to stairs, walls, service shafts (apartments are higher because they don't need private stairs). Interior is priced against this number.",
+            "floorCount": "Counted as 1 ground + 4 upper floors = 5, plus any tum. The tum is treated as an auxiliary floor, so it's listed separately.",
+            "height": "Estimated as number of floors × ~3.2 m + tum height. Just an estimate, not the surveyed height."
+          },
+          "packageHeader": "The package sets the finishing and interior material grade — the higher, the pricier per m². Switching packages recomputes those two portions.",
+          "roughLocked": "Rough is the structural skeleton (foundation, columns, beams, slabs, walls). It's tied to the structure, not to the fanciness of the interior — so its price stays the same at every tier. Finishing is priced over the total floor (all tiling and paint); interior is priced over the usable area (furniture only lives in real usable space).",
+          "unit": "Quantity unit: m² (area), m³ (volume), m (linear metre — for things measured by length like railings), set (a bundled scope like a staircase).",
+          "btct": "BTCT = reinforced concrete. Covers foundations, columns, beams and slabs — the frame that carries all the home's load.",
+          "md": "m (linear) = linear metre. The railing runs along the terrace edge, so it's measured by length rather than area. Only applies if a terrace is chosen.",
+          "dk": "Cond = conditional line item: it only appears when the project has tum / terrace enabled in the creation step.",
+          "progressTarget": "The target is the expected spend for this portion alone. The bar shows how much of it is used — over 100% turns red as a warning.",
+          "donut": "The percentages come from the real numbers for the three portions in the table — this reflects your project directly, unlike the market averages in the consultation copy at the top."
+        }
       }
     },
     "card": {
