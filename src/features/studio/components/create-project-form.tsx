@@ -1,21 +1,16 @@
 'use client'
 
-import { useState } from 'react'
-import { useTranslations } from 'next-intl'
-import { ArrowRight } from 'lucide-react'
-
 import { useRouter } from '@/i18n/navigation'
-import { cn } from '@/shared/lib/utils'
 import { Badge } from '@/shared/components/ui/badge'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Label } from '@/shared/components/ui/label'
 import { Textarea } from '@/shared/components/ui/textarea'
-import {
-  CONSTRUCTION_TYPE_OPTIONS,
-  projectStepPath,
-  type ConstructionType,
-} from '../constants/studio.constants'
+import { cn } from '@/shared/lib/utils'
+import { ArrowRight } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
+import { CONSTRUCTION_TYPE_OPTIONS, projectStepPath, type ConstructionType } from '../constants/studio.constants'
 import { useWizardStore } from '../store/wizard.store'
 import { StepSection } from './step-section'
 
@@ -38,20 +33,20 @@ export function CreateProjectForm() {
     const id = createProject({
       name: name.trim(),
       constructionType: type,
-      note,
+      note
     })
     router.push(projectStepPath(id, 'requirements'))
   }
 
   return (
-    <div className="space-y-8">
+    <div className='space-y-8'>
       <StepSection title={t('basics')}>
-        <div className="space-y-2">
-          <Label htmlFor="project-name">
-            {t('nameLabel')} <span className="text-destructive">*</span>
+        <div className='space-y-2'>
+          <Label htmlFor='project-name'>
+            {t('nameLabel')} <span className='text-destructive'>*</span>
           </Label>
           <Input
-            id="project-name"
+            id='project-name'
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder={t('namePlaceholder')}
@@ -61,31 +56,27 @@ export function CreateProjectForm() {
       </StepSection>
 
       <StepSection title={t('typeLabel')} description={t('typeHint')}>
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className='grid gap-3 sm:grid-cols-3'>
           {CONSTRUCTION_TYPE_OPTIONS.map((opt) => {
             const selected = type === opt.value
             const disabled = !opt.mvp
             return (
               <button
                 key={opt.value}
-                type="button"
+                type='button'
                 disabled={disabled}
                 onClick={() => setType(opt.value)}
                 className={cn(
                   'glass-card p-4 text-left',
                   selected && 'glass-selected',
                   disabled &&
-                    'cursor-not-allowed opacity-55 hover:translate-y-0 hover:shadow-[inset_0_1px_0_0_var(--glass-hairline),var(--glass-shadow-sm)]',
+                    'cursor-not-allowed opacity-55 hover:translate-y-0 hover:shadow-[inset_0_1px_0_0_var(--glass-hairline),var(--glass-shadow-sm)]'
                 )}
               >
-                <span className="block text-sm font-medium">
-                  {tType(`${opt.value}.label`)}
-                </span>
-                <span className="text-muted-foreground mt-1 block text-xs">
-                  {tType(`${opt.value}.desc`)}
-                </span>
+                <span className='block text-sm font-medium'>{tType(`${opt.value}.label`)}</span>
+                <span className='text-muted-foreground mt-1 block text-xs'>{tType(`${opt.value}.desc`)}</span>
                 {disabled ? (
-                  <Badge variant="secondary" className="mt-2">
+                  <Badge variant='secondary' className='mt-2'>
                     {tCommon('comingSoon')}
                   </Badge>
                 ) : null}
@@ -96,26 +87,26 @@ export function CreateProjectForm() {
       </StepSection>
 
       <StepSection title={t('noteLabel')}>
-        <div className="space-y-2">
+        <div className='space-y-2'>
           <Textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder={t('notePlaceholder')}
             rows={4}
           />
-          <p className="text-muted-foreground text-xs">{t('noteHint')}</p>
+          <p className='text-muted-foreground text-xs'>{t('noteHint')}</p>
         </div>
       </StepSection>
 
-      <div className="border-border/50 flex justify-end border-t pt-6">
+      <div className='border-border/50 flex justify-end border-t pt-6'>
         <Button
-          size="lg"
+          size='lg'
           onClick={submit}
           disabled={!canSubmit}
-          className="shadow-[0_8px_24px_-8px_oklch(0.77_0.155_65_/_0.6)]"
+          className='shadow-[0_8px_24px_-8px_oklch(0.77_0.155_65_/_0.6)]'
         >
           {t('submit')}
-          <ArrowRight className="size-4" />
+          <ArrowRight className='size-4' />
         </Button>
       </div>
     </div>

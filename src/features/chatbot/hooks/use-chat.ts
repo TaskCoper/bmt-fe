@@ -7,12 +7,7 @@ import { useAuth } from '@/shared/auth'
 import { chatbotApi } from '../api/chatbot.api'
 import { INITIAL_MESSAGES } from '../api/chatbot.mock'
 import { CHAT_DAILY_LIMIT } from '../constants/chatbot.constants'
-import {
-  getServerCount,
-  getTodayCount,
-  incrementTodayCount,
-  subscribeUsage,
-} from '../services/chat-quota'
+import { getServerCount, getTodayCount, incrementTodayCount, subscribeUsage } from '../services/chat-quota'
 import type { ChatMessage } from '../types/chatbot.types'
 
 /**
@@ -24,16 +19,10 @@ import type { ChatMessage } from '../types/chatbot.types'
 export function useChat() {
   const { isAuthenticated } = useAuth()
   const [messages, setMessages] = useState<ChatMessage[]>(INITIAL_MESSAGES)
-  const used = useSyncExternalStore(
-    subscribeUsage,
-    getTodayCount,
-    getServerCount,
-  )
+  const used = useSyncExternalStore(subscribeUsage, getTodayCount, getServerCount)
   const counter = useRef(0)
 
-  const dailyLimit = isAuthenticated
-    ? CHAT_DAILY_LIMIT.customer
-    : CHAT_DAILY_LIMIT.guest
+  const dailyLimit = isAuthenticated ? CHAT_DAILY_LIMIT.customer : CHAT_DAILY_LIMIT.guest
   const remaining = Math.max(0, dailyLimit - used)
   const limitReached = remaining <= 0
 
@@ -48,10 +37,10 @@ export function useChat() {
           id: nextId(),
           role: 'assistant',
           content: reply,
-          at: new Date().toISOString(),
-        },
+          at: new Date().toISOString()
+        }
       ])
-    },
+    }
   })
 
   const send = useCallback(
@@ -66,12 +55,12 @@ export function useChat() {
           id: `u-${counter.current}-${prev.length}`,
           role: 'user',
           content: trimmed,
-          at: new Date().toISOString(),
-        },
+          at: new Date().toISOString()
+        }
       ])
       mutation.mutate(trimmed)
     },
-    [mutation, dailyLimit],
+    [mutation, dailyLimit]
   )
 
   return {
@@ -80,6 +69,6 @@ export function useChat() {
     isReplying: mutation.isPending,
     remaining,
     dailyLimit,
-    limitReached,
+    limitReached
   }
 }

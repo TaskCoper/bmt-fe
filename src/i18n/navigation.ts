@@ -6,5 +6,4 @@ import { routing } from './routing'
  * `next/link` and `next/navigation` equivalents so the active locale prefix
  * is applied automatically.
  */
-export const { Link, redirect, usePathname, useRouter, getPathname } =
-  createNavigation(routing)
+export const { Link, redirect, usePathname, useRouter, getPathname } = createNavigation(routing)

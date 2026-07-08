@@ -19,101 +19,97 @@
   /* Radius scale -------------------------------------------------------- */
   --radius: 0.625rem; /* base; sm/md/lg/xl derive from this in @theme inline */
 
-  /* Surface & text ------------------------------------------------------
-   * BMT Decor brand: paper (warm off-white) surfaces, ink (near-black warm)
-   * text. Amber is the single brand accent (see --primary). */
-  --background: oklch(0.982 0.005 85); /* paper #FAF8F5 */
-  --foreground: oklch(0.205 0.012 55); /* ink #171412 */
-  --card: oklch(1 0 0); /* pure-white surface for cards/tables */
-  --card-foreground: oklch(0.205 0.012 55);
+  /* Surface & text ------------------------------------------------------ */
+  --background: oklch(0.988 0.004 91.446);
+  --foreground: oklch(0.164 0.007 270.998);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.164 0.007 270.998);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.205 0.012 55);
+  --popover-foreground: oklch(0.164 0.007 270.998);
 
-  /* Brand roles ---------------------------------------------------------
-   * Amber primary; foreground is ink because amber is light — dark text on
-   * amber clears WCAG where white would not. */
-  --primary: oklch(0.77 0.155 65); /* amber #F2A413 */
-  --primary-foreground: oklch(0.205 0.012 55);
-  --secondary: oklch(0.965 0.025 80); /* amber-soft #FEF4E0 */
-  --secondary-foreground: oklch(0.3 0.02 60);
-  --muted: oklch(0.955 0.008 80);
-  --muted-foreground: oklch(0.52 0.015 55);
-  --accent: oklch(0.965 0.025 80); /* amber-soft — hover/badge bg */
-  --accent-foreground: oklch(0.3 0.03 60);
+  /* Brand roles: sampled from BMT_Decor_AI.pdf (#0d0e11, #f0b747). ----- */
+  --primary: oklch(0.812 0.141 80.97);
+  --primary-foreground: oklch(0.164 0.007 270.998);
+  --secondary: oklch(0.971 0.009 84.573);
+  --secondary-foreground: oklch(0.281 0.007 95.323);
+  --muted: oklch(0.971 0.009 84.573);
+  --muted-foreground: oklch(0.526 0.017 84.593);
+  --accent: oklch(0.965 0.045 90.391);
+  --accent-foreground: oklch(0.293 0.046 72.184);
 
   /* Status roles -------------------------------------------------------- */
-  --destructive: oklch(0.55 0.19 27); /* danger #C0392B */
-  --destructive-foreground: oklch(0.985 0 0);
-  --success: oklch(0.55 0.11 150); /* #2E7D4F */
-  --success-foreground: oklch(0.985 0 0);
-  --warning: oklch(0.68 0.15 62); /* #C77700 */
-  --warning-foreground: oklch(0.205 0.012 55);
+  --destructive: oklch(0.637 0.208 25.331);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.627 0.133 159.564);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.812 0.141 80.97);
+  --warning-foreground: oklch(0.164 0.007 270.998);
 
   /* Borders, inputs, focus rings --------------------------------------- */
-  --border: oklch(0.9 0.008 80); /* line #E8E2D9 */
-  --input: oklch(0.9 0.008 80);
-  --ring: oklch(0.77 0.155 65); /* amber focus ring */
+  --border: oklch(0.906 0.031 86.463);
+  --input: oklch(0.906 0.031 86.463);
+  --ring: oklch(0.729 0.148 78.467);
 
-  /* Charts — warm decor palette (rough/finishing/interior = 1/2/3) ------ */
-  --chart-1: oklch(0.77 0.155 65); /* amber */
-  --chart-2: oklch(0.62 0.11 45); /* terracotta */
-  --chart-3: oklch(0.6 0.06 165); /* sage */
-  --chart-4: oklch(0.828 0.12 84);
-  --chart-5: oklch(0.7 0.13 55);
+  /* Charts -------------------------------------------------------------- */
+  --chart-1: oklch(0.812 0.141 80.97);
+  --chart-2: oklch(0.164 0.007 270.998);
+  --chart-3: oklch(0.606 0.027 83.378);
+  --chart-4: oklch(0.626 0.133 72.961);
+  --chart-5: oklch(0.627 0.133 159.564);
 
   /* Sidebar (dashboard shell) ------------------------------------------ */
-  --sidebar: oklch(0.99 0.004 85);
-  --sidebar-foreground: oklch(0.205 0.012 55);
-  --sidebar-primary: oklch(0.77 0.155 65);
-  --sidebar-primary-foreground: oklch(0.205 0.012 55);
-  --sidebar-accent: oklch(0.965 0.025 80);
-  --sidebar-accent-foreground: oklch(0.3 0.03 60);
-  --sidebar-border: oklch(0.9 0.008 80);
-  --sidebar-ring: oklch(0.77 0.155 65);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.164 0.007 270.998);
+  --sidebar-primary: oklch(0.812 0.141 80.97);
+  --sidebar-primary-foreground: oklch(0.164 0.007 270.998);
+  --sidebar-accent: oklch(0.971 0.009 84.573);
+  --sidebar-accent-foreground: oklch(0.281 0.007 95.323);
+  --sidebar-border: oklch(0.906 0.031 86.463);
+  --sidebar-ring: oklch(0.729 0.148 78.467);
 }
 
 .dark {
-  --background: oklch(0.17 0.008 55); /* warm ink-dark */
-  --foreground: oklch(0.97 0.004 85);
-  --card: oklch(0.215 0.01 55);
-  --card-foreground: oklch(0.97 0.004 85);
-  --popover: oklch(0.215 0.01 55);
-  --popover-foreground: oklch(0.97 0.004 85);
+  --background: oklch(0.164 0.007 270.998);
+  --foreground: oklch(0.988 0.004 91.446);
+  --card: oklch(0.209 0 0);
+  --card-foreground: oklch(0.988 0.004 91.446);
+  --popover: oklch(0.209 0 0);
+  --popover-foreground: oklch(0.988 0.004 91.446);
 
-  --primary: oklch(0.8 0.155 68); /* amber, a touch brighter on dark */
-  --primary-foreground: oklch(0.2 0.012 55);
-  --secondary: oklch(0.28 0.012 60);
-  --secondary-foreground: oklch(0.97 0.004 85);
-  --muted: oklch(0.28 0.012 60);
-  --muted-foreground: oklch(0.72 0.012 70);
-  --accent: oklch(0.32 0.03 65);
-  --accent-foreground: oklch(0.97 0.004 85);
+  --primary: oklch(0.812 0.141 80.97);
+  --primary-foreground: oklch(0.164 0.007 270.998);
+  --secondary: oklch(0.281 0.007 95.323);
+  --secondary-foreground: oklch(0.988 0.004 91.446);
+  --muted: oklch(0.281 0.007 95.323);
+  --muted-foreground: oklch(0.837 0.045 85.221);
+  --accent: oklch(0.293 0.046 72.184);
+  --accent-foreground: oklch(0.965 0.045 90.391);
 
-  --destructive: oklch(0.62 0.19 27);
-  --destructive-foreground: oklch(0.985 0 0);
-  --success: oklch(0.65 0.12 150);
-  --success-foreground: oklch(0.2 0.01 55);
-  --warning: oklch(0.8 0.15 70);
-  --warning-foreground: oklch(0.2 0.012 55);
+  --destructive: oklch(0.637 0.208 25.331);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.627 0.133 159.564);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.812 0.141 80.97);
+  --warning-foreground: oklch(0.164 0.007 270.998);
 
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.8 0.155 68);
+  --border: oklch(0.988 0.004 91.446 / 14%);
+  --input: oklch(0.988 0.004 91.446 / 18%);
+  --ring: oklch(0.812 0.141 80.97);
 
-  --chart-1: oklch(0.8 0.155 68);
-  --chart-2: oklch(0.68 0.11 45);
-  --chart-3: oklch(0.65 0.07 165);
-  --chart-4: oklch(0.828 0.12 84);
-  --chart-5: oklch(0.7 0.13 55);
+  --chart-1: oklch(0.812 0.141 80.97);
+  --chart-2: oklch(0.965 0.045 90.391);
+  --chart-3: oklch(0.837 0.045 85.221);
+  --chart-4: oklch(0.626 0.133 72.961);
+  --chart-5: oklch(0.627 0.133 159.564);
 
-  --sidebar: oklch(0.2 0.01 55);
-  --sidebar-foreground: oklch(0.97 0.004 85);
-  --sidebar-primary: oklch(0.8 0.155 68);
-  --sidebar-primary-foreground: oklch(0.2 0.012 55);
-  --sidebar-accent: oklch(0.3 0.02 60);
-  --sidebar-accent-foreground: oklch(0.97 0.004 85);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.8 0.155 68);
+  --sidebar: oklch(0.209 0 0);
+  --sidebar-foreground: oklch(0.988 0.004 91.446);
+  --sidebar-primary: oklch(0.812 0.141 80.97);
+  --sidebar-primary-foreground: oklch(0.164 0.007 270.998);
+  --sidebar-accent: oklch(0.281 0.007 95.323);
+  --sidebar-accent-foreground: oklch(0.988 0.004 91.446);
+  --sidebar-border: oklch(0.988 0.004 91.446 / 14%);
+  --sidebar-ring: oklch(0.812 0.141 80.97);
 }
 
 /* =============================================================================
@@ -177,14 +173,10 @@
    * e.g. use `p-4`/`gap-6` rather than a custom `p-md`. */
 
   /* Typography — font families */
-  --font-sans:
-    var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
-    sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   /* Display — Be Vietnam Pro (headings, brand shell); full VN diacritics. */
-  --font-display:
-    var(--font-be-vietnam), var(--font-geist-sans), ui-sans-serif, system-ui,
-    sans-serif;
+  --font-display: var(--font-be-vietnam), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 
   /* Typography — semantic scale (clamped for responsive display headings) */
   --text-display: clamp(2.5rem, 1.5rem + 3vw, 3.75rem);
@@ -210,12 +202,9 @@
 
   /* Shadow scale (subtle, premium — avoid heavy drop shadows) */
   --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.05);
-  --shadow-md:
-    0 2px 4px -1px oklch(0 0 0 / 0.06), 0 4px 6px -1px oklch(0 0 0 / 0.05);
-  --shadow-lg:
-    0 4px 6px -2px oklch(0 0 0 / 0.05), 0 10px 15px -3px oklch(0 0 0 / 0.08);
-  --shadow-xl:
-    0 10px 20px -5px oklch(0 0 0 / 0.08), 0 20px 25px -5px oklch(0 0 0 / 0.1);
+  --shadow-md: 0 2px 4px -1px oklch(0 0 0 / 0.06), 0 4px 6px -1px oklch(0 0 0 / 0.05);
+  --shadow-lg: 0 4px 6px -2px oklch(0 0 0 / 0.05), 0 10px 15px -3px oklch(0 0 0 / 0.08);
+  --shadow-xl: 0 10px 20px -5px oklch(0 0 0 / 0.08), 0 20px 25px -5px oklch(0 0 0 / 0.1);
 
   /* Animation durations */
   --duration-fast: 150ms;
@@ -224,6 +213,26 @@
 
   /* Easing */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  @keyframes liquid-drift {
+    0% {
+      background-position:
+        0% 0%,
+        100% 100%,
+        0% 0%;
+    }
+    50% {
+      background-position:
+        30% 20%,
+        70% 80%,
+        0% 0%;
+    }
+    100% {
+      background-position:
+        0% 0%,
+        100% 100%,
+        0% 0%;
+    }
+  }
 }
 
 /* =============================================================================
@@ -298,16 +307,11 @@
   --glass-blur: 30px;
 
   /* Layered, warm-tinted depth shadows — never a hard grey drop. */
-  --glass-shadow-sm:
-    0 1px 3px -1px oklch(0.3 0.03 60 / 0.14),
-    0 8px 20px -12px oklch(0.3 0.03 60 / 0.28);
+  --glass-shadow-sm: 0 1px 3px -1px oklch(0.3 0.03 60 / 0.14), 0 8px 20px -12px oklch(0.3 0.03 60 / 0.28);
   --glass-shadow:
-    0 2px 6px -2px oklch(0.3 0.03 60 / 0.16),
-    0 30px 60px -24px oklch(0.3 0.03 60 / 0.4),
+    0 2px 6px -2px oklch(0.3 0.03 60 / 0.16), 0 30px 60px -24px oklch(0.3 0.03 60 / 0.4),
     0 12px 30px -18px oklch(0.3 0.03 60 / 0.3);
-  --glow-amber:
-    0 0 0 1px oklch(0.77 0.155 65 / 0.4),
-    0 20px 50px -18px oklch(0.77 0.155 65 / 0.5);
+  --glow-amber: 0 0 0 1px oklch(0.77 0.155 65 / 0.4), 0 20px 50px -18px oklch(0.77 0.155 65 / 0.5);
 
   --radius-glass: 1.5rem;
   --radius-glass-sm: 1.125rem;
@@ -317,9 +321,7 @@
   --orb-2: oklch(0.72 0.13 46 / 0.58); /* terracotta */
   --orb-3: oklch(0.8 0.08 165 / 0.5); /* sage */
   --orb-4: oklch(0.76 0.08 240 / 0.46); /* cool sky (depth contrast) */
-  --grid-line: oklch(
-    0.45 0.04 60 / 0.13
-  ); /* visible enough to blur through glass */
+  --grid-line: oklch(0.45 0.04 60 / 0.13); /* visible enough to blur through glass */
   --grid-hot: oklch(0.82 0.15 72 / 0.6); /* brighter lines near the cursor */
   --vignette: oklch(0.28 0.04 55 / 0.16);
   /* gentle warm haze so frosted glass has something to refract (no loud wash) */
@@ -337,14 +339,10 @@
   --glass-rim-2: oklch(1 0 0 / 0.06);
   --glass-border: oklch(1 0 0 / 0.12);
 
-  --glass-shadow-sm:
-    0 2px 6px -2px oklch(0 0 0 / 0.6), 0 10px 26px -14px oklch(0 0 0 / 0.7);
+  --glass-shadow-sm: 0 2px 6px -2px oklch(0 0 0 / 0.6), 0 10px 26px -14px oklch(0 0 0 / 0.7);
   --glass-shadow:
-    0 2px 8px -2px oklch(0 0 0 / 0.6), 0 34px 70px -22px oklch(0 0 0 / 0.85),
-    0 14px 34px -18px oklch(0 0 0 / 0.6);
-  --glow-amber:
-    0 0 0 1px oklch(0.8 0.155 68 / 0.35),
-    0 26px 60px -18px oklch(0.8 0.155 68 / 0.45);
+    0 2px 8px -2px oklch(0 0 0 / 0.6), 0 34px 70px -22px oklch(0 0 0 / 0.85), 0 14px 34px -18px oklch(0 0 0 / 0.6);
+  --glow-amber: 0 0 0 1px oklch(0.8 0.155 68 / 0.35), 0 26px 60px -18px oklch(0.8 0.155 68 / 0.45);
 
   --orb-1: oklch(0.72 0.16 72 / 0.4);
   --orb-2: oklch(0.62 0.14 44 / 0.34);
@@ -369,8 +367,7 @@
     position: relative;
     isolation: isolate;
     border-radius: var(--radius-glass);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%)
-      brightness(1.05);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%) brightness(1.05);
     backdrop-filter: blur(var(--glass-blur)) saturate(180%) brightness(1.05);
     box-shadow: var(--glass-shadow);
   }
@@ -409,11 +406,7 @@
     z-index: 0;
     border-radius: inherit;
     pointer-events: none;
-    background: radial-gradient(
-      120% 80% at 15% 0%,
-      oklch(1 0 0 / 0.16),
-      transparent 46%
-    );
+    background: radial-gradient(120% 80% at 15% 0%, oklch(1 0 0 / 0.16), transparent 46%);
   }
   /* Keep real content above the glow, below the rim. */
   .glass-panel > *,
@@ -526,11 +519,7 @@
       linear-gradient(var(--grid-line) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 52px 52px;
-    -webkit-mask-image: radial-gradient(
-      130% 90% at 50% 4%,
-      #000 45%,
-      transparent 92%
-    );
+    -webkit-mask-image: radial-gradient(130% 90% at 50% 4%, #000 45%, transparent 92%);
     mask-image: radial-gradient(130% 90% at 50% 4%, #000 45%, transparent 92%);
   }
   /* a soft amber light sweeps the grid so cells glow as it passes. */
@@ -538,11 +527,7 @@
     content: '';
     position: absolute;
     inset: -20%;
-    background: radial-gradient(
-      26rem 26rem at 50% 50%,
-      oklch(0.85 0.14 72 / 0.14),
-      transparent 62%
-    );
+    background: radial-gradient(26rem 26rem at 50% 50%, oklch(0.85 0.14 72 / 0.14), transparent 62%);
     animation: grid-sweep 16s var(--ease-out-soft) infinite;
   }
 
@@ -554,16 +539,8 @@
       linear-gradient(var(--grid-hot) 1px, transparent 1px),
       linear-gradient(90deg, var(--grid-hot) 1px, transparent 1px);
     background-size: 52px 52px;
-    -webkit-mask-image: radial-gradient(
-      circle 150px at var(--mx) var(--my),
-      #000 0%,
-      transparent 72%
-    );
-    mask-image: radial-gradient(
-      circle 150px at var(--mx) var(--my),
-      #000 0%,
-      transparent 72%
-    );
+    -webkit-mask-image: radial-gradient(circle 150px at var(--mx) var(--my), #000 0%, transparent 72%);
+    mask-image: radial-gradient(circle 150px at var(--mx) var(--my), #000 0%, transparent 72%);
     transition: opacity 0.4s var(--ease-out-soft);
   }
 
@@ -586,11 +563,7 @@
   .ambient-vignette {
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-      120% 120% at 50% 35%,
-      transparent 55%,
-      var(--vignette)
-    );
+    background: radial-gradient(120% 120% at 50% 35%, transparent 55%, var(--vignette));
   }
   .ambient-grain {
     position: absolute;

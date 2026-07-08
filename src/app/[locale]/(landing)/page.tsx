@@ -8,7 +8,7 @@ import {
   LandingHero,
   ProcessSection,
   ServicesSection,
-  StatsSection,
+  StatsSection
 } from '@/features/landing'
 import { AmbientAura } from '@/shared/components/common'
 import type { Locale } from '@/i18n/routing'
@@ -22,8 +22,8 @@ export default async function HomePage({ params }: PageProps) {
   setRequestLocale(locale)
 
   return (
-    <div className="relative">
-      <AmbientAura className="fixed" />
+    <div className='relative'>
+      <AmbientAura className='fixed' />
       <LandingHero />
       <FeatureSpotlights />
       <ProcessSection />

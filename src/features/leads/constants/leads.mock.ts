@@ -11,7 +11,7 @@ export const MOCK_LEADS: readonly LeadRecord[] = [
     needType: 'design',
     message: 'Cần tư vấn thiết kế nội thất căn hộ 2 phòng ngủ.',
     status: LEAD_STATUS.NEW,
-    createdAt: '2026-06-28T02:10:00Z',
+    createdAt: '2026-06-28T02:10:00Z'
   },
   {
     id: 'ld-02',
@@ -21,7 +21,7 @@ export const MOCK_LEADS: readonly LeadRecord[] = [
     needType: 'estimate',
     message: 'Xin báo giá dự toán nhà phố 3 tầng.',
     status: LEAD_STATUS.NEW,
-    createdAt: '2026-06-27T08:45:00Z',
+    createdAt: '2026-06-27T08:45:00Z'
   },
   {
     id: 'ld-03',
@@ -31,7 +31,7 @@ export const MOCK_LEADS: readonly LeadRecord[] = [
     needType: 'construction',
     message: 'Muốn thi công trọn gói biệt thự.',
     status: LEAD_STATUS.HANDLED,
-    createdAt: '2026-06-25T10:00:00Z',
+    createdAt: '2026-06-25T10:00:00Z'
   },
   {
     id: 'ld-04',
@@ -41,7 +41,7 @@ export const MOCK_LEADS: readonly LeadRecord[] = [
     needType: 'consult',
     message: 'Tư vấn phong cách Japandi cho căn hộ studio.',
     status: LEAD_STATUS.NEW,
-    createdAt: '2026-06-24T14:30:00Z',
+    createdAt: '2026-06-24T14:30:00Z'
   },
   {
     id: 'ld-05',
@@ -51,7 +51,7 @@ export const MOCK_LEADS: readonly LeadRecord[] = [
     needType: 'other',
     message: 'Hỏi về dịch vụ bảo trì sau thi công.',
     status: LEAD_STATUS.HANDLED,
-    createdAt: '2026-06-22T09:15:00Z',
+    createdAt: '2026-06-22T09:15:00Z'
   },
   {
     id: 'ld-06',
@@ -61,6 +61,6 @@ export const MOCK_LEADS: readonly LeadRecord[] = [
     needType: 'estimate',
     message: 'Cần dự toán cải tạo căn hộ chung cư 70m².',
     status: LEAD_STATUS.NEW,
-    createdAt: '2026-06-21T03:05:00Z',
-  },
+    createdAt: '2026-06-21T03:05:00Z'
+  }
 ]

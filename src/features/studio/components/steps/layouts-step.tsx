@@ -26,13 +26,10 @@ export function LayoutsStep({ projectId }: { projectId: string }) {
   const images = project?.data.images
 
   // Ground floor (0) + `floors` upper floors, in fixed order.
-  const floorList = useMemo(
-    () => Array.from({ length: floors + 1 }, (_, i) => i),
-    [floors],
-  )
+  const floorList = useMemo(() => Array.from({ length: floors + 1 }, (_, i) => i), [floors])
   const complete = useMemo(
     () => floorList.every((f) => (images ?? []).some((img) => img.floor === f)),
-    [floorList, images],
+    [floorList, images]
   )
 
   const runGenerate = async () => {
@@ -41,26 +38,22 @@ export function LayoutsStep({ projectId }: { projectId: string }) {
   }
 
   return (
-    <div className="space-y-8">
+    <div className='space-y-8'>
       <StepSection title={t('guideTitle')} description={t('guideHint')}>
-        <div className="mb-4 grid gap-3 sm:grid-cols-2">
-          <div className="text-success border-glass-border bg-background/40 flex items-center gap-2 rounded-xl border p-3 text-sm backdrop-blur-sm">
-            <ThumbsUp className="size-4 shrink-0" />
+        <div className='mb-4 grid gap-3 sm:grid-cols-2'>
+          <div className='text-success border-glass-border bg-background/40 flex items-center gap-2 rounded-xl border p-3 text-sm backdrop-blur-sm'>
+            <ThumbsUp className='size-4 shrink-0' />
             {t('sampleGood')}
           </div>
-          <div className="text-destructive border-glass-border bg-background/40 flex items-center gap-2 rounded-xl border p-3 text-sm backdrop-blur-sm">
-            <ThumbsDown className="size-4 shrink-0" />
+          <div className='text-destructive border-glass-border bg-background/40 flex items-center gap-2 rounded-xl border p-3 text-sm backdrop-blur-sm'>
+            <ThumbsDown className='size-4 shrink-0' />
             {t('sampleBad')}
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className='space-y-4'>
           {floorList.map((f) => (
-            <FloorDropzone
-              key={f}
-              floor={f}
-              label={f === 0 ? t('floorGround') : t('floorUpper', { n: f })}
-            />
+            <FloorDropzone key={f} floor={f} label={f === 0 ? t('floorGround') : t('floorUpper', { n: f })} />
           ))}
         </div>
       </StepSection>
@@ -73,7 +66,7 @@ export function LayoutsStep({ projectId }: { projectId: string }) {
 
       <StepFooter
         projectId={projectId}
-        step="layouts"
+        step='layouts'
         nextLabel={t('generate')}
         nextDisabled={!complete || isGenerating}
         onNext={() => void runGenerate()}

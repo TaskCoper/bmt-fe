@@ -4,7 +4,7 @@
  */
 export const CHAT_DAILY_LIMIT = {
   customer: 30,
-  guest: 10,
+  guest: 10
 } as const
 
 /** localStorage key holding `{ date, count }` for the per-day quota. */

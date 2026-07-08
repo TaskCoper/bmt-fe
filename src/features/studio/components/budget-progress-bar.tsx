@@ -10,15 +10,7 @@ import { formatCurrency } from '@/shared/utils'
  * Selected-total vs target-budget bar. Colour AND an explicit delta amount
  * signal over/under budget (never colour alone).
  */
-export function BudgetProgressBar({
-  total,
-  target,
-  className,
-}: {
-  total: number
-  target: number
-  className?: string
-}) {
+export function BudgetProgressBar({ total, target, className }: { total: number; target: number; className?: string }) {
   const t = useTranslations('studio.progress')
   const locale = useLocale() as Locale
 
@@ -29,18 +21,8 @@ export function BudgetProgressBar({
 
   // ≤100% ok, ≤110% warning, above danger.
   const tone = ratio <= 1 ? 'success' : ratio <= 1.1 ? 'warning' : 'destructive'
-  const barColor =
-    tone === 'success'
-      ? 'bg-success'
-      : tone === 'warning'
-        ? 'bg-warning'
-        : 'bg-destructive'
-  const textColor =
-    tone === 'success'
-      ? 'text-success'
-      : tone === 'warning'
-        ? 'text-warning'
-        : 'text-destructive'
+  const barColor = tone === 'success' ? 'bg-success' : tone === 'warning' ? 'bg-warning' : 'bg-destructive'
+  const textColor = tone === 'success' ? 'text-success' : tone === 'warning' ? 'text-warning' : 'text-destructive'
 
   const message =
     delta === 0
@@ -51,24 +33,20 @@ export function BudgetProgressBar({
 
   return (
     <div className={cn('space-y-1.5', className)}>
-      <div className="flex items-center justify-between text-sm">
-        <span className="text-muted-foreground">{t('label')}</span>
-        <span className={cn('font-medium tabular-nums', textColor)}>
-          {message}
-        </span>
+      <div className='flex items-center justify-between text-sm'>
+        <span className='text-muted-foreground'>{t('label')}</span>
+        <span className={cn('font-medium tabular-nums', textColor)}>{message}</span>
       </div>
-      <div className="glass-inset h-2.5 w-full overflow-hidden rounded-full">
+      <div className='glass-inset h-2.5 w-full overflow-hidden rounded-full'>
         <div
           className={cn(
             'h-full rounded-full transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]',
-            barColor,
+            barColor
           )}
           style={{ width: `${Math.max(2, pct)}%` }}
         />
       </div>
-      {over ? (
-        <p className="text-muted-foreground text-xs">{t('hint')}</p>
-      ) : null}
+      {over ? <p className='text-muted-foreground text-xs'>{t('hint')}</p> : null}
     </div>
   )
 }

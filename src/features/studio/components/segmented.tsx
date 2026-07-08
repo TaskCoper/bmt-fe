@@ -8,7 +8,7 @@ export function Segmented<T extends string | number>({
   options,
   onChange,
   render,
-  className,
+  className
 }: {
   value: T
   options: readonly T[]
@@ -17,22 +17,17 @@ export function Segmented<T extends string | number>({
   className?: string
 }) {
   return (
-    <div
-      className={cn(
-        'glass-inset inline-flex flex-wrap gap-1 rounded-xl p-1',
-        className,
-      )}
-    >
+    <div className={cn('glass-inset inline-flex flex-wrap gap-1 rounded-xl p-1', className)}>
       {options.map((opt) => (
         <button
           key={String(opt)}
-          type="button"
+          type='button'
           onClick={() => onChange(opt)}
           className={cn(
             'rounded-lg px-3.5 py-1.5 text-sm font-medium transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]',
             value === opt
               ? 'bg-background/90 text-foreground border-glass-border border shadow-sm backdrop-blur'
-              : 'text-muted-foreground hover:text-foreground',
+              : 'text-muted-foreground hover:text-foreground'
           )}
         >
           {render(opt)}

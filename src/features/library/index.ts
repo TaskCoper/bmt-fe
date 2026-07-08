@@ -8,10 +8,6 @@ export {
   PRICE_REGION,
   DEFAULT_LIBRARY_PAGE_SIZE,
   type LibraryCategory,
-  type PriceRegion,
+  type PriceRegion
 } from './constants/library.constants'
-export type {
-  LibraryItem,
-  LibraryFilters,
-  PricePoint,
-} from './types/library.types'
+export type { LibraryItem, LibraryFilters, PricePoint } from './types/library.types'

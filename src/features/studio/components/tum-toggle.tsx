@@ -14,7 +14,7 @@ export function TumToggle() {
   const hasTum = project?.data.hasTum ?? false
 
   return (
-    <div className="animate-in fade-in slide-in-from-top-1 space-y-2">
+    <div className='animate-in fade-in slide-in-from-top-1 space-y-2'>
       <Label>{t('label')}</Label>
       <Segmented
         value={hasTum ? 'on' : 'off'}

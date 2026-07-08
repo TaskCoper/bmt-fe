@@ -21,7 +21,7 @@ const publicEnvSchema = z.object({
   NEXT_PUBLIC_USE_MOCK_API: z
     .enum(['true', 'false'])
     .default('false')
-    .transform((v) => v === 'true'),
+    .transform((v) => v === 'true')
 })
 
 const parsed = publicEnvSchema.safeParse({
@@ -30,15 +30,12 @@ const parsed = publicEnvSchema.safeParse({
   NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
   NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   NEXT_PUBLIC_USE_MOCK_AUTH: process.env.NEXT_PUBLIC_USE_MOCK_AUTH,
-  NEXT_PUBLIC_USE_MOCK_API: process.env.NEXT_PUBLIC_USE_MOCK_API,
+  NEXT_PUBLIC_USE_MOCK_API: process.env.NEXT_PUBLIC_USE_MOCK_API
 })
 
 if (!parsed.success) {
   // Surface a readable error during local dev / CI builds.
-  console.error(
-    '❌ Invalid environment variables:',
-    parsed.error.flatten().fieldErrors,
-  )
+  console.error('❌ Invalid environment variables:', parsed.error.flatten().fieldErrors)
   throw new Error('Invalid environment variables. See .env.example.')
 }
 

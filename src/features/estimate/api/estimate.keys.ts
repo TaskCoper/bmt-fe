@@ -5,7 +5,6 @@ import type { EstimateFilters } from '../types/estimate.types'
 export const estimateKeys = {
   all: [QUERY_KEY_ROOTS.estimates] as const,
   lists: () => [...estimateKeys.all, 'list'] as const,
-  list: (filters: EstimateFilters) =>
-    [...estimateKeys.lists(), filters] as const,
-  summary: () => [...estimateKeys.all, 'summary'] as const,
+  list: (filters: EstimateFilters) => [...estimateKeys.lists(), filters] as const,
+  summary: () => [...estimateKeys.all, 'summary'] as const
 }

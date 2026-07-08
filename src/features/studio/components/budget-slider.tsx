@@ -27,22 +27,22 @@ export function BudgetSlider() {
   }
 
   return (
-    <div className="space-y-5">
-      <div className="border-glass-border bg-background/40 flex flex-wrap items-end justify-between gap-3 rounded-xl border p-4 backdrop-blur-sm">
-        <div className="space-y-1">
+    <div className='space-y-5'>
+      <div className='border-glass-border bg-background/40 flex flex-wrap items-end justify-between gap-3 rounded-xl border p-4 backdrop-blur-sm'>
+        <div className='space-y-1'>
           <Label>{t('sliderLabel')}</Label>
-          <p className="text-primary text-3xl font-semibold tracking-tight tabular-nums">
+          <p className='text-primary text-3xl font-semibold tracking-tight tabular-nums'>
             {formatCurrency(budget, locale)}
           </p>
         </div>
-        <div className="w-56">
+        <div className='w-56'>
           <Input
-            type="number"
+            type='number'
             min={0}
             step={STEP}
             value={budget || ''}
             onChange={(e) => setBudget(Number(e.target.value))}
-            className="tabular-nums"
+            className='tabular-nums'
           />
         </div>
       </div>
@@ -53,7 +53,7 @@ export function BudgetSlider() {
         value={[Math.min(MAX, Math.max(MIN, budget))]}
         onValueChange={([v]) => setBudget(v ?? MIN)}
       />
-      <p className="text-muted-foreground text-xs">{t('sliderHint')}</p>
+      <p className='text-muted-foreground text-xs'>{t('sliderHint')}</p>
     </div>
   )
 }

@@ -11,7 +11,7 @@ export function usePortfolio(filters: PortfolioFilters) {
   return useQuery({
     queryKey: portfolioKeys.list(filters),
     queryFn: () => portfolioApi.list(filters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }
 
@@ -20,7 +20,7 @@ export function usePortfolioAdmin(filters: PortfolioFilters) {
   return useQuery({
     queryKey: [...portfolioKeys.list(filters), 'admin'],
     queryFn: () => portfolioApi.listAll(filters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }
 
@@ -28,6 +28,6 @@ export function usePortfolioAdmin(filters: PortfolioFilters) {
 export function usePortfolioItem(slug: string) {
   return useQuery({
     queryKey: portfolioKeys.detail(slug),
-    queryFn: () => portfolioApi.getBySlug(slug),
+    queryFn: () => portfolioApi.getBySlug(slug)
   })
 }

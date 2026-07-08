@@ -80,5 +80,5 @@ export const PROVINCES: readonly Province[] = [
   { id: 'hau-giang', name: 'Hậu Giang', region: 'south' },
   { id: 'soc-trang', name: 'Sóc Trăng', region: 'south' },
   { id: 'bac-lieu', name: 'Bạc Liêu', region: 'south' },
-  { id: 'ca-mau', name: 'Cà Mau', region: 'south' },
+  { id: 'ca-mau', name: 'Cà Mau', region: 'south' }
 ]

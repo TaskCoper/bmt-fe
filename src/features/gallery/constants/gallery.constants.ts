@@ -7,7 +7,7 @@ export const GALLERY_STYLE = {
   SCANDINAVIAN: 'scandinavian',
   JAPANDI: 'japandi',
   INDOCHINE: 'indochine',
-  MINIMALIST: 'minimalist',
+  MINIMALIST: 'minimalist'
 } as const
 
 export type GalleryStyle = (typeof GALLERY_STYLE)[keyof typeof GALLERY_STYLE]
@@ -16,17 +16,16 @@ export type GalleryStyle = (typeof GALLERY_STYLE)[keyof typeof GALLERY_STYLE]
 export const GALLERY_BUILDING = {
   APARTMENT: 'apartment',
   TOWNHOUSE: 'townhouse',
-  VILLA: 'villa',
+  VILLA: 'villa'
 } as const
 
-export type GalleryBuilding =
-  (typeof GALLERY_BUILDING)[keyof typeof GALLERY_BUILDING]
+export type GalleryBuilding = (typeof GALLERY_BUILDING)[keyof typeof GALLERY_BUILDING]
 
 /** Asset kinds in the library. */
 export const GALLERY_KIND = {
   IMAGE: 'image',
   DRAWING: 'drawing',
-  PDF: 'pdf',
+  PDF: 'pdf'
 } as const
 
 export type GalleryKind = (typeof GALLERY_KIND)[keyof typeof GALLERY_KIND]

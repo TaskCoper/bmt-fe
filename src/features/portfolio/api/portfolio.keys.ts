@@ -5,8 +5,7 @@ import type { PortfolioFilters } from '../types/portfolio.types'
 export const portfolioKeys = {
   all: [QUERY_KEY_ROOTS.portfolio] as const,
   lists: () => [...portfolioKeys.all, 'list'] as const,
-  list: (filters: PortfolioFilters) =>
-    [...portfolioKeys.lists(), filters] as const,
+  list: (filters: PortfolioFilters) => [...portfolioKeys.lists(), filters] as const,
   details: () => [...portfolioKeys.all, 'detail'] as const,
-  detail: (slug: string) => [...portfolioKeys.details(), slug] as const,
+  detail: (slug: string) => [...portfolioKeys.details(), slug] as const
 }

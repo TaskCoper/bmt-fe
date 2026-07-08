@@ -10,21 +10,8 @@ import { Loader2, ShieldCheck } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Textarea } from '@/shared/components/ui/textarea'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/shared/components/ui/select'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/shared/components/ui/form'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui/select'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/components/ui/form'
 import { LEAD_NEED_TYPES } from '../constants/landing.constants'
 import { createLeadSchema, type LeadFormValues } from '../schemas/lead.schema'
 
@@ -42,9 +29,9 @@ export function LeadForm() {
       createLeadSchema({
         required: tv('required'),
         email: tv('email'),
-        phone: tv('phone'),
+        phone: tv('phone')
       }),
-    [tv],
+    [tv]
   )
 
   const form = useForm<LeadFormValues>({
@@ -54,8 +41,8 @@ export function LeadForm() {
       phone: '',
       email: '',
       needType: 'design',
-      message: '',
-    },
+      message: ''
+    }
   })
 
   function onSubmit() {
@@ -69,22 +56,18 @@ export function LeadForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <div className="grid gap-4 sm:grid-cols-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+        <div className='grid gap-4 sm:grid-cols-2'>
           <FormField
             control={form.control}
-            name="name"
+            name='name'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {t('nameLabel')} <span className="text-destructive">*</span>
+                  {t('nameLabel')} <span className='text-destructive'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input
-                    autoComplete="name"
-                    placeholder={t('namePlaceholder')}
-                    {...field}
-                  />
+                  <Input autoComplete='name' placeholder={t('namePlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -93,19 +76,14 @@ export function LeadForm() {
 
           <FormField
             control={form.control}
-            name="phone"
+            name='phone'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {t('phoneLabel')} <span className="text-destructive">*</span>
+                  {t('phoneLabel')} <span className='text-destructive'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    autoComplete="tel"
-                    placeholder={t('phonePlaceholder')}
-                    {...field}
-                  />
+                  <Input type='tel' autoComplete='tel' placeholder={t('phonePlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -114,17 +92,12 @@ export function LeadForm() {
 
           <FormField
             control={form.control}
-            name="email"
+            name='email'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{t('emailLabel')}</FormLabel>
                 <FormControl>
-                  <Input
-                    type="email"
-                    autoComplete="email"
-                    placeholder={t('emailPlaceholder')}
-                    {...field}
-                  />
+                  <Input type='email' autoComplete='email' placeholder={t('emailPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -133,13 +106,13 @@ export function LeadForm() {
 
           <FormField
             control={form.control}
-            name="needType"
+            name='needType'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{t('needTypeLabel')}</FormLabel>
                 <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className='w-full'>
                       <SelectValue />
                     </SelectTrigger>
                   </FormControl>
@@ -159,29 +132,25 @@ export function LeadForm() {
 
         <FormField
           control={form.control}
-          name="message"
+          name='message'
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('messageLabel')}</FormLabel>
               <FormControl>
-                <Textarea
-                  rows={4}
-                  placeholder={t('messagePlaceholder')}
-                  {...field}
-                />
+                <Textarea rows={4} placeholder={t('messagePlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-muted-foreground flex items-center gap-1.5 text-xs">
-            <ShieldCheck className="size-3.5" />
+        <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
+          <p className='text-muted-foreground flex items-center gap-1.5 text-xs'>
+            <ShieldCheck className='size-3.5' />
             {t('spamNote')}
           </p>
-          <Button type="submit" disabled={pending} className="sm:w-auto">
-            {pending ? <Loader2 className="size-4 animate-spin" /> : null}
+          <Button type='submit' disabled={pending} className='sm:w-auto'>
+            {pending ? <Loader2 className='size-4 animate-spin' /> : null}
             {t('submit')}
           </Button>
         </div>

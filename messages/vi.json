@@ -17,7 +17,14 @@
     "more": "Thêm",
     "actions": "Thao tác",
     "pageOf": "Trang {page}/{total}",
-    "comingSoon": "Sắp ra mắt"
+    "comingSoon": "Sắp ra mắt",
+    "optional": "tuỳ chọn",
+    "combobox": {
+      "placeholder": "Chọn một mục",
+      "searchPlaceholder": "Tìm kiếm…",
+      "emptyMessage": "Không tìm thấy kết quả",
+      "optional": "tuỳ chọn"
+    }
   },
   "nav": {
     "home": "Trang chủ",
@@ -426,6 +433,7 @@
     }
   },
   "project": {
+    "title": "Dự án của tôi",
     "subtitle": "Quản lý và theo dõi các dự án xây dựng.",
     "searchPlaceholder": "Tìm dự án…",
     "count": "{count} dự án",
@@ -446,7 +454,395 @@
       "title": "Chưa có dự án",
       "description": "Không tìm thấy dự án phù hợp bộ lọc."
     },
-    "createNew": "Tạo dự án mới"
+    "createNew": "Tạo dự án mới",
+    "create": "Tạo dự án",
+    "cancel": "Hủy",
+    "houseType": {
+      "Appartment": "Căn hộ",
+      "Villa": "Biệt thự",
+      "Townhouse": "Nhà phố"
+    },
+    "dialog": {
+      "title": "Dự án",
+      "description": "Tạo dự án mới cho ngôi nhà trong mơ của bạn."
+    },
+    "form": {
+      "name": "Tên dự án",
+      "namePlaceholder": "Nhập tên dự án của bạn",
+      "houseType": "Loại nhà",
+      "description": "Mô tả",
+      "descriptionPlaceholder": "Mô tả sơ bộ về dự án của bạn",
+      "descriptionHint": "Sẽ hiện thị công khai trên dự án của bạn",
+      "charCount": "{count}/{max} ký tự",
+      "projectNotFound": "Không tìm thấy dự án",
+      "designRequestTitle": "Yêu cầu thiết kế",
+      "designRequestSubtitle": "Chọn phong cách, hướng nhà và cấu hình từng tầng cho ngôi nhà của bạn.",
+      "styleLabel": "Phong cách nhà",
+      "style": {
+        "roof": "Nhà mái",
+        "modern": "Nhà phố hiện đại",
+        "neoclassical": "Nhà tân cổ điển"
+      },
+      "roofStyleLabel": "Kiểu mái",
+      "roofStyle": {
+        "thai": "Mái Thái",
+        "japanese": "Mái Nhật",
+        "traditional": "Ngói truyền thống",
+        "other": "Khác"
+      },
+      "tumLabel": "Có tum hay không?",
+      "tum": {
+        "yes": "Có tum",
+        "no": "Không tum"
+      },
+      "directionLabel": "Hướng nhà ưu tiên",
+      "direction": {
+        "east": "Đông",
+        "west": "Tây",
+        "south": "Nam",
+        "north": "Bắc"
+      },
+      "addressLabel": "Địa chỉ",
+      "addressPlaceholder": "Số nhà, tên đường…",
+      "cityLabel": "Tỉnh / Thành phố",
+      "cityPlaceholder": "Chọn tỉnh / thành phố",
+      "citySearchPlaceholder": "Tìm tỉnh / thành phố…",
+      "wardLabel": "Phường / Xã",
+      "wardPlaceholder": "Chọn phường / xã",
+      "wardSearchPlaceholder": "Tìm phường / xã…",
+      "floorsLabel": "Các tầng",
+      "floorTitle": "Tầng {index}",
+      "addFloor": "Thêm tầng",
+      "removeFloor": "Xoá tầng",
+      "areaLabel": "Diện tích xây dựng (m²)",
+      "areaPlaceholder": "VD: 80",
+      "layoutLabel": "Bố cục không gian",
+      "layout": {
+        "open": "Không gian mở",
+        "separated": "Phòng riêng biệt"
+      },
+      "lightingLabel": "Ưu tiên ánh sáng",
+      "lighting": {
+        "natural": "Tự nhiên",
+        "artificial": "Nhân tạo"
+      },
+      "colorLabel": "Tông màu chủ đạo",
+      "spaces": {
+        "title": "Thông tin không gian & hình ảnh layout",
+        "subtitle": "Tải ảnh layout theo thứ tự từng tầng và mô tả không gian thực tế.",
+        "descriptionLabel": "Mô tả không gian thực tế",
+        "descriptionPlaceholder": "VD: Tầng trệt gồm phòng khách, bếp mở, có giếng trời phía sau...",
+        "uploadTitle": "Ảnh layout từng tầng",
+        "uploadHint": "Ảnh tải lên chỉ dùng để mô tả bố trí mặt bằng của từng tầng trong nhà.",
+        "groundFloor": "Tầng trệt",
+        "upperFloor": "Tầng {index}",
+        "dropTitle": "Kéo-thả ảnh layout vào đây",
+        "dropHint": "JPG, PNG hoặc HEIC. Mỗi tầng cần 1 ảnh layout.",
+        "replaceImage": "Bấm hoặc kéo-thả ảnh mới để thay thế",
+        "removeImage": "Xoá ảnh",
+        "missingDesignRequest": "Vui lòng hoàn tất bước yêu cầu thiết kế trước khi nhập thông tin không gian.",
+        "unsupportedImage": "\"{name}\" không phải định dạng ảnh được hỗ trợ.",
+        "saved": "Đã lưu thông tin không gian"
+      },
+      "aiDesignResult": {
+        "title": "Bước 4 · Kết quả thiết kế AI",
+        "subtitle": "AI phân tích bản vẽ, gợi ý phương án và lập dự toán tham khảo cho dự án của bạn.",
+        "missingSpaces": "Vui lòng hoàn tất bước thông tin không gian trước khi tạo kết quả thiết kế.",
+        "loading": "AI đang phân tích và tạo phương án…",
+        "tooltipHint": "Di chuột (hoặc chạm trên điện thoại) vào biểu tượng ? để xem giải thích chi tiết.",
+        "configChip": "{houseType, select, Townhouse {Nhà phố} Villa {Biệt thự} Appartment {Căn hộ} other {Nhà}} · 1 trệt + {upperFloors} lầu{hasTum, select, yes { + tum} other {}}",
+        "section4A": "4A · Bản vẽ mặt bằng 2D",
+        "section4B": "4B · Bảng dự toán chi tiết",
+        "section4D": "4D · Thông tin diện tích công trình",
+        "section4E": "4E · Tổng hợp dự toán",
+        "consultation": {
+          "body": "Kính chào Anh/Chị <pill>{customerName}</pill>. Với quy mô <pill>{landArea} m²</pill> × <pill>{floorCount} tầng</pill> (tổng sàn ~<pill>{totalFloorArea} m²</pill>), tổng mức đầu tư tại <pill>{city}</pill> thường dao động <pill>{budgetMin}–{budgetMax} tỷ</pill>.",
+          "distribution": "Phân bổ tham khảo thị trường: thô 50–55% · hoàn thiện 30–35% · nội thất 15–20%.",
+          "tumNote": "Đã bao gồm tum (buồng thang mái) theo cấu hình bạn chọn."
+        },
+        "floorTabs": {
+          "ground": "Trệt",
+          "floor1": "Lầu 1",
+          "floor2": "Lầu 2",
+          "floor3": "Lầu 3",
+          "floor4": "Lầu 4",
+          "roof": "Tầng đặc biệt",
+          "tum": "Tum"
+        },
+        "rooms": {
+          "living": "Phòng khách",
+          "kitchen": "Bếp",
+          "dining": "Phòng ăn",
+          "bath": "WC",
+          "wc": "WC nhỏ",
+          "bedroom1": "Phòng ngủ 1",
+          "bedroom2": "Phòng ngủ 2",
+          "bedroom3": "Phòng ngủ 3",
+          "stairs": "Cầu thang",
+          "balcony": "Ban công",
+          "laundry": "Giặt phơi",
+          "attic": "Tum",
+          "terrace": "Sân thượng"
+        },
+        "zoomIn": "Phóng to",
+        "zoomOut": "Thu nhỏ",
+        "reset": "Về mặc định",
+        "area": {
+          "land": "Diện tích đất",
+          "groundFloor": "Sàn tầng trệt",
+          "totalFloor": "Tổng sàn xây dựng",
+          "usable": "Diện tích sử dụng",
+          "floorCount": "Số tầng",
+          "floorCountValue": "{count} tầng",
+          "floorCountNote": "({upperFloors, plural, one {1 trệt + # lầu} other {1 trệt + # lầu}}{hasTum, select, yes {, thêm tum} other {}})",
+          "height": "Chiều cao ước tính",
+          "heightValue": "≈ {height} m"
+        },
+        "packageSelector": {
+          "header": "Chọn gói vật liệu",
+          "active": "Đang chọn",
+          "finishing": "Hoàn thiện",
+          "interior": "Nội thất",
+          "roughLocked": "Phần thô (khoá)",
+          "perSqm": "{value} tr/m²",
+          "roughNote": "Phần thô 3.5 tr/m² — cố định, không đổi theo gói. Hoàn thiện × sàn · Nội thất × sử dụng."
+        },
+        "packages": {
+          "basic": {
+            "name": "Basic",
+            "description": "Tối ưu chi phí, dùng vật liệu phổ thông."
+          },
+          "standard": {
+            "name": "Tiêu chuẩn",
+            "description": "Cân bằng chi phí và chất lượng."
+          },
+          "premium": {
+            "name": "Premium",
+            "description": "Vật liệu cao cấp, hoàn thiện chi tiết."
+          }
+        },
+        "estimateTabs": {
+          "rough": "Phần thô",
+          "finishing": "Phần hoàn thiện",
+          "interior": "Phần nội thất"
+        },
+        "columns": {
+          "code": "Mã",
+          "item": "Hạng mục",
+          "unit": "ĐVT",
+          "quantity": "KL",
+          "unitPrice": "Đơn giá",
+          "amount": "Thành tiền"
+        },
+        "units": {
+          "m2": "m²",
+          "m3": "m³",
+          "md": "md",
+          "bo": "bộ",
+          "cai": "cái",
+          "set": "bộ"
+        },
+        "conditionalBadge": "ĐK",
+        "items": {
+          "rough": {
+            "THO-01": {
+              "name": "Móng & kết cấu BTCT",
+              "material": "Bê tông mác 250, thép Việt Nhật.",
+              "method": "Đào móng, gia công cốt thép, đổ bê tông theo bản vẽ kỹ thuật.",
+              "note": "Áp dụng cho móng, cột, dầm, sàn chịu lực chính."
+            },
+            "THO-02": {
+              "name": "Xây tô tường",
+              "material": "Gạch tuynel 4 lỗ, vữa xi măng M75.",
+              "method": "Xây tường 100–200 mm, tô hai mặt phẳng thẳng.",
+              "note": "Bao gồm cả tường ngăn phòng và tường bao ngoài."
+            },
+            "THO-03": {
+              "name": "Chống thấm",
+              "material": "Sika Latex TH hoặc tương đương.",
+              "method": "Quét 2 lớp cho sàn WC, sân thượng và tường tiếp giáp.",
+              "note": "Bảo hành 5 năm theo chuẩn nhà cung cấp."
+            },
+            "THO-04": {
+              "name": "Điện–nước âm tường (ống chờ)",
+              "material": "Ống nhựa PVC Bình Minh, dây Cadivi 2×2.5 mm².",
+              "method": "Đi ống chờ trong tường và sàn trước khi đổ bê tông.",
+              "note": "Bao gồm dây tín hiệu Internet và camera."
+            },
+            "THO-05": {
+              "name": "Cầu thang bê tông",
+              "material": "Bê tông cốt thép M250, cốp pha phủ phim.",
+              "method": "Đổ cầu thang liền khối, mài hoàn thiện mặt bậc.",
+              "note": "Chuẩn bị mặt bậc để ốp đá ở bước hoàn thiện."
+            },
+            "THO-TUM": {
+              "name": "Xây tum (buồng thang mái)",
+              "material": "Gạch tuynel, mái BTCT.",
+              "method": "Xây tường bao + đổ mái BTCT cho buồng thang lên sân thượng.",
+              "note": "Chỉ hiện khi cấu hình dự án có bật tum."
+            },
+            "THO-ST": {
+              "name": "Lan can / tường rào sân thượng",
+              "material": "BTCT + gạch tô hoặc lan can inox.",
+              "method": "Xây tường 900 mm bao quanh sân thượng, chống thấm bo chân.",
+              "note": "Chỉ hiện khi cấu hình dự án có sân thượng không mái."
+            }
+          },
+          "finishing": {
+            "HT-01": {
+              "name": "Ốp lát gạch nền/tường",
+              "material": "Basic: gạch men 60×60. Tiêu chuẩn: granite Đồng Tâm. Premium: đá tự nhiên Marble.",
+              "method": "Lát nền toàn bộ tầng, ốp tường WC & bếp.",
+              "note": "Đã bao gồm keo dán và ron chống nấm mốc."
+            },
+            "HT-02": {
+              "name": "Sơn nước",
+              "material": "Basic: Nippon Vatex. Tiêu chuẩn: Jotun Majestic. Premium: Dulux Ambiance 5in1.",
+              "method": "1 lớp sơn lót + 2 lớp sơn phủ, xử lý bột trét chống nứt.",
+              "note": "Bao gồm cả sơn ngoại thất và trần."
+            },
+            "HT-03": {
+              "name": "Trần thạch cao",
+              "material": "Basic: khung Vĩnh Tường, tấm 9 mm. Tiêu chuẩn: tấm chống ẩm. Premium: trần giật cấp + đèn hắt.",
+              "method": "Thi công khung xương và bả sơn hoàn thiện.",
+              "note": "Bao gồm ô kỹ thuật thăm trần điều hoà."
+            },
+            "HT-04": {
+              "name": "Cửa đi / cửa sổ",
+              "material": "Basic: nhôm hệ Xingfa nhập khẩu. Tiêu chuẩn: nhôm PMI + kính Low-E. Premium: gỗ tự nhiên + kính cách âm.",
+              "method": "Sản xuất tại xưởng, lắp đặt và hoàn thiện tại công trình.",
+              "note": "Bao gồm phụ kiện khoá và bản lề chính hãng."
+            },
+            "HT-05": {
+              "name": "Thiết bị vệ sinh",
+              "material": "Basic: Inax cơ bản. Tiêu chuẩn: American Standard. Premium: Toto/Kohler.",
+              "method": "Lắp đặt bồn cầu, lavabo, sen tắm và phụ kiện đồng bộ.",
+              "note": "1 bộ / phòng WC."
+            },
+            "HT-06": {
+              "name": "Thiết bị điện & chiếu sáng",
+              "material": "Basic: công tắc Sino, đèn LED nội. Tiêu chuẩn: Panasonic + Rạng Đông. Premium: Schneider + Philips Hue.",
+              "method": "Lắp đặt công tắc, ổ cắm, hệ đèn chiếu sáng toàn bộ nhà.",
+              "note": "Bao gồm đèn trang trí phòng khách."
+            }
+          },
+          "interior": {
+            "NT-01": {
+              "name": "Tủ bếp",
+              "material": "Basic: MDF chống ẩm. Tiêu chuẩn: Acrylic bóng gương. Premium: gỗ tự nhiên + đá thạch anh.",
+              "method": "Đóng theo kích thước thực tế, lắp đặt phụ kiện Blum/Hafele.",
+              "note": "Bao gồm mặt đá và chậu rửa inox."
+            },
+            "NT-02": {
+              "name": "Tủ quần áo",
+              "material": "Basic: MDF phủ Melamine. Tiêu chuẩn: MDF phủ Laminate. Premium: gỗ Óc chó tự nhiên.",
+              "method": "Đóng âm tường theo bản vẽ, chia ngăn tuỳ nhu cầu.",
+              "note": "1 tủ / phòng ngủ."
+            },
+            "NT-03": {
+              "name": "Giường + nệm",
+              "material": "Basic: gỗ công nghiệp + nệm lò xo. Tiêu chuẩn: gỗ sồi + nệm foam. Premium: gỗ Óc chó + nệm cao su.",
+              "method": "Đóng tại xưởng, giao lắp tại nhà.",
+              "note": "Kích thước 1m6 hoặc 1m8 tuỳ phòng."
+            },
+            "NT-04": {
+              "name": "Sofa + bàn trà",
+              "material": "Basic: sofa nỉ + bàn MDF. Tiêu chuẩn: sofa da PU + bàn gỗ. Premium: sofa da thật + bàn đá.",
+              "method": "Đặt theo kích thước phòng khách; giao lắp trọn gói.",
+              "note": "1 bộ / phòng khách."
+            },
+            "NT-05": {
+              "name": "Bàn ăn + ghế",
+              "material": "Basic: gỗ công nghiệp 6 ghế. Tiêu chuẩn: gỗ tự nhiên 6 ghế. Premium: đá tự nhiên 8 ghế.",
+              "method": "Đặt hàng theo kích thước phòng ăn.",
+              "note": "1 bộ / phòng ăn."
+            },
+            "NT-06": {
+              "name": "Kệ tivi + rèm + đèn trang trí",
+              "material": "Basic: kệ MDF + rèm vải. Tiêu chuẩn: kệ Laminate + rèm 2 lớp. Premium: kệ gỗ tự nhiên + rèm cao cấp.",
+              "method": "Lắp đặt trọn gói phụ kiện trang trí phòng khách + phòng ngủ.",
+              "note": "Bao gồm đèn chùm phòng khách và đèn ngủ."
+            }
+          }
+        },
+        "itemDetail": {
+          "material": "Vật liệu đề xuất",
+          "method": "Biện pháp thi công",
+          "quantityRow": "Khối lượng ước tính",
+          "unitPriceRow": "Đơn giá",
+          "totalRow": "Thành tiền",
+          "note": "Ghi chú",
+          "nearestDealer": "Đại lý gần nhất",
+          "packageLabel": "(Theo gói {tier})"
+        },
+        "progressTarget": "Đã ước tính {actual} / mục tiêu {target}",
+        "totalSummary": {
+          "portion": "Hạng mục",
+          "amount": "Số tiền",
+          "share": "Tỷ trọng",
+          "portionRough": "Phần thô (cố định)",
+          "portionFinishing": "Phần hoàn thiện",
+          "portionInterior": "Phần nội thất",
+          "totalRow": "TỔNG DỰ KIẾN",
+          "disclaimer": "Đây là mức dự toán tham khảo, chi phí thực tế có thể thay đổi sau khảo sát thực địa.",
+          "generatedAt": "Ngày lập: {date}"
+        },
+        "donut": {
+          "portion": {
+            "rough": "Phần thô",
+            "finishing": "Phần hoàn thiện",
+            "interior": "Phần nội thất"
+          },
+          "label": "Biểu đồ tỷ trọng chi phí"
+        },
+        "houseTypeValue": {
+          "Townhouse": "Nhà phố",
+          "Villa": "Biệt thự",
+          "Appartment": "Căn hộ"
+        },
+        "inputSummary": {
+          "title": "Thông tin đầu vào"
+        },
+        "ctas": {
+          "regenerate": "Tạo lại thiết kế",
+          "exportPdf": "Xuất PDF",
+          "pdfComingSoon": "Xuất PDF sẽ có ở bản kế tiếp.",
+          "nextStep": "Sang bước 5 · Render",
+          "nextStepDisabled": "Bước 5 (Render) sắp ra mắt."
+        },
+        "tooltips": {
+          "chip": "Nhà phố tối đa 1 trệt + 4 lầu + 1 tầng đặc biệt (tum và/hoặc sân thượng). Cấu hình lấy từ bước tạo dự án.",
+          "marketShares": "Đây là tỷ lệ phân bổ chi phí trung bình của thị trường, chỉ để tham khảo nhanh. Donut phía dưới mới là tỷ lệ thật của dự án — hai chỗ có thể lệch nhau.",
+          "tum": "Tum là buồng nhỏ che lối cầu thang lên mái. Sân thượng là phần mái để trống (phơi đồ, thư giãn). Có hay không do chủ nhà chọn khi tạo dự án.",
+          "area": {
+            "land": "Diện tích khuôn viên lô đất, đo từ sổ đỏ hoặc bản vẽ.",
+            "groundFloor": "Phần thực sự xây ở tầng trệt, thường nhỏ hơn diện tích đất vì phải chừa sân, lối đi.",
+            "totalFloor": "Cộng diện tích sàn của tất cả các tầng (trệt + các lầu + tum). Dùng để tính phần thô và hoàn thiện.",
+            "usable": "Diện tích ở thực tế = tổng sàn × {factor, number, ::percent}. Nhà phố mất ~20% cho cầu thang, tường, ô kỹ thuật (căn hộ thường cao hơn vì không có cầu thang riêng). Phần nội thất tính trên con số này.",
+            "floorCount": "Cách đếm: 1 trệt + 4 lầu = 5 tầng, cộng thêm tum. Tum tính là tầng phụ nên ghi riêng.",
+            "height": "Ước tính = số tầng × ~3.2 m + phần tum. Chỉ là con số dự kiến, chưa phải cao độ đo thực tế."
+          },
+          "packageHeader": "Gói quyết định chất lượng vật liệu hoàn thiện & nội thất — càng cao thì vật liệu càng cao cấp, giá mỗi m² càng lớn. Đổi gói, giá 2 phần này tự tính lại.",
+          "roughLocked": "Phần thô là khung xương chịu lực của nhà (móng, cột, dầm, sàn, tường). Nó phụ thuộc kết cấu chứ không phụ thuộc nội thất sang hay bình dân — nên giá giữ nguyên ở mọi gói. Hoàn thiện tính trên tổng sàn (ốp lát, sơn phủ toàn bộ); nội thất tính trên diện tích sử dụng (đồ đạc chỉ đặt trong không gian ở thực).",
+          "unit": "Đơn vị tính khối lượng: m² (diện tích), m³ (khối), md (mét dài — cho thứ chạy theo chiều dài như lan can), bộ (trọn gói như cầu thang).",
+          "btct": "BTCT = bê tông cốt thép. Là móng, cột, dầm, sàn — bộ khung chịu toàn bộ tải trọng ngôi nhà.",
+          "md": "md = mét dài. Lan can chạy quanh mép sân thượng nên tính theo chiều dài, không theo diện tích. Chỉ có khi chọn sân thượng.",
+          "dk": "ĐK = hạng mục điều kiện: chỉ hiện khi dự án có bật tum / sân thượng ở bước tạo dự án.",
+          "progressTarget": "Ngân sách mục tiêu là mức chi dự kiến cho riêng phần này. Thanh cho biết đang dùng bao nhiêu % — vượt 100% đổi đỏ để cảnh báo.",
+          "donut": "Tỷ lệ tính từ số tiền thật của 3 phần trong bảng, phản ánh đúng dự án — khác với dải % tham khảo ở văn mẫu."
+        }
+      }
+    },
+    "card": {
+      "mockName": "Nhà biệt thự quận 7",
+      "mockAddress": "Số 72 Lê Thánh Tôn, phường Sài Gòn, Hồ Chí Minh",
+      "mockDescription": "Nhà to, vườn rộng, nhiều thứ ăn chơi, đón ánh sáng tự nhiên",
+      "imageAlt": {
+        "Appartment": "Ảnh minh họa căn hộ",
+        "Villa": "Ảnh minh họa biệt thự",
+        "Townhouse": "Ảnh minh họa nhà phố"
+      }
+    }
   },
   "estimate": {
     "subtitle": "Lập và quản lý dự toán chi phí công trình.",
@@ -723,7 +1119,8 @@
     "passwordMin": "Mật khẩu phải có ít nhất {min} ký tự",
     "passwordMismatch": "Mật khẩu xác nhận không khớp",
     "agreeTerms": "Bạn cần đồng ý với điều khoản",
-    "phone": "Số điện thoại không hợp lệ"
+    "phone": "Số điện thoại không hợp lệ",
+    "positiveNumber": "Nhập một số lớn hơn 0"
   },
   "studio": {
     "title": "Studio thiết kế AI",

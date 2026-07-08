@@ -12,25 +12,9 @@ import { ROUTES } from '@/shared/constants/routes'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Checkbox } from '@/shared/components/ui/checkbox'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/shared/components/ui/card'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/shared/components/ui/form'
-import {
-  createRegisterSchema,
-  type RegisterFormValues,
-} from '../schemas/register.schema'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/components/ui/form'
+import { createRegisterSchema, type RegisterFormValues } from '../schemas/register.schema'
 import { GoogleButton } from './google-button'
 
 /**
@@ -51,9 +35,9 @@ export function RegisterForm() {
         email: tv('email'),
         passwordMin: tv('passwordMin', { min: 8 }),
         passwordMismatch: tv('passwordMismatch'),
-        agreeTerms: tv('agreeTerms'),
+        agreeTerms: tv('agreeTerms')
       }),
-    [tv],
+    [tv]
   )
 
   const form = useForm<RegisterFormValues>({
@@ -63,8 +47,8 @@ export function RegisterForm() {
       email: '',
       password: '',
       confirmPassword: '',
-      agreeTerms: false,
-    },
+      agreeTerms: false
+    }
   })
 
   function onSubmit() {
@@ -78,26 +62,22 @@ export function RegisterForm() {
   }
 
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader className="text-center">
-        <CardTitle className="text-title">{t('title')}</CardTitle>
+    <Card className='w-full max-w-sm'>
+      <CardHeader className='text-center'>
+        <CardTitle className='text-title'>{t('title')}</CardTitle>
         <CardDescription>{t('subtitle')}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
             <FormField
               control={form.control}
-              name="name"
+              name='name'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('nameLabel')}</FormLabel>
                   <FormControl>
-                    <Input
-                      autoComplete="name"
-                      placeholder={t('namePlaceholder')}
-                      {...field}
-                    />
+                    <Input autoComplete='name' placeholder={t('namePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -106,17 +86,12 @@ export function RegisterForm() {
 
             <FormField
               control={form.control}
-              name="email"
+              name='email'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('emailLabel')}</FormLabel>
                   <FormControl>
-                    <Input
-                      type="email"
-                      autoComplete="email"
-                      placeholder={t('emailPlaceholder')}
-                      {...field}
-                    />
+                    <Input type='email' autoComplete='email' placeholder={t('emailPlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -125,14 +100,14 @@ export function RegisterForm() {
 
             <FormField
               control={form.control}
-              name="password"
+              name='password'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('passwordLabel')}</FormLabel>
                   <FormControl>
                     <Input
-                      type="password"
-                      autoComplete="new-password"
+                      type='password'
+                      autoComplete='new-password'
                       placeholder={t('passwordPlaceholder')}
                       {...field}
                     />
@@ -144,14 +119,14 @@ export function RegisterForm() {
 
             <FormField
               control={form.control}
-              name="confirmPassword"
+              name='confirmPassword'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('confirmPasswordLabel')}</FormLabel>
                   <FormControl>
                     <Input
-                      type="password"
-                      autoComplete="new-password"
+                      type='password'
+                      autoComplete='new-password'
                       placeholder={t('confirmPasswordPlaceholder')}
                       {...field}
                     />
@@ -163,23 +138,20 @@ export function RegisterForm() {
 
             <FormField
               control={form.control}
-              name="agreeTerms"
+              name='agreeTerms'
               render={({ field }) => (
-                <FormItem className="space-y-1">
-                  <div className="flex flex-row items-center gap-2">
+                <FormItem className='space-y-1'>
+                  <div className='flex flex-row items-center gap-2'>
                     <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
+                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                     </FormControl>
-                    <FormLabel className="font-normal">
+                    <FormLabel className='font-normal'>
                       {t.rich('agree', {
                         terms: (chunks) => (
                           <Link
                             href={ROUTES.TERMS}
-                            target="_blank"
-                            className="text-foreground font-medium hover:underline"
+                            target='_blank'
+                            className='text-foreground font-medium hover:underline'
                           >
                             {chunks}
                           </Link>
@@ -187,12 +159,12 @@ export function RegisterForm() {
                         privacy: (chunks) => (
                           <Link
                             href={ROUTES.PRIVACY}
-                            target="_blank"
-                            className="text-foreground font-medium hover:underline"
+                            target='_blank'
+                            className='text-foreground font-medium hover:underline'
                           >
                             {chunks}
                           </Link>
-                        ),
+                        )
                       })}
                     </FormLabel>
                   </div>
@@ -201,27 +173,24 @@ export function RegisterForm() {
               )}
             />
 
-            <Button type="submit" className="w-full" disabled={pending}>
-              {pending ? <Loader2 className="size-4 animate-spin" /> : null}
+            <Button type='submit' className='w-full' disabled={pending}>
+              {pending ? <Loader2 className='size-4 animate-spin' /> : null}
               {t('submit')}
             </Button>
           </form>
         </Form>
 
-        <div className="my-6 flex items-center gap-3">
-          <span className="bg-border h-px flex-1" />
-          <span className="text-muted-foreground text-xs">{tSocial('or')}</span>
-          <span className="bg-border h-px flex-1" />
+        <div className='my-6 flex items-center gap-3'>
+          <span className='bg-border h-px flex-1' />
+          <span className='text-muted-foreground text-xs'>{tSocial('or')}</span>
+          <span className='bg-border h-px flex-1' />
         </div>
 
         <GoogleButton />
 
-        <p className="text-muted-foreground mt-6 text-center text-sm">
+        <p className='text-muted-foreground mt-6 text-center text-sm'>
           {t('haveAccount')}{' '}
-          <Link
-            href={ROUTES.LOGIN}
-            className="text-foreground font-medium hover:underline"
-          >
+          <Link href={ROUTES.LOGIN} className='text-foreground font-medium hover:underline'>
             {t('signIn')}
           </Link>
         </p>

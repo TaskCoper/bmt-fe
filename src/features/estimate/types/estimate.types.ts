@@ -2,7 +2,7 @@ import type {
   EstimateBuilding,
   EstimatePackageId,
   EstimatePortion,
-  EstimateStatus,
+  EstimateStatus
 } from '../constants/estimate.constants'
 
 /** A cost estimate as returned by the backend. */

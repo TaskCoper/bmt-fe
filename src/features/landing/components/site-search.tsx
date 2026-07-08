@@ -6,11 +6,7 @@ import { Search } from 'lucide-react'
 
 import { cn } from '@/shared/lib/utils'
 import { Input } from '@/shared/components/ui/input'
-import {
-  Popover,
-  PopoverAnchor,
-  PopoverContent,
-} from '@/shared/components/ui/popover'
+import { Popover, PopoverAnchor, PopoverContent } from '@/shared/components/ui/popover'
 import { LANDING_SECTIONS } from '../constants/landing.constants'
 
 interface SearchEntry {
@@ -30,73 +26,73 @@ const ENTRIES: readonly SearchEntry[] = [
   {
     labelKey: 'nav.services',
     href: `#${LANDING_SECTIONS.services}`,
-    scopeKey: 'page',
+    scopeKey: 'page'
   },
   {
     labelKey: 'nav.process',
     href: `#${LANDING_SECTIONS.process}`,
-    scopeKey: 'page',
+    scopeKey: 'page'
   },
   {
     labelKey: 'nav.projects',
     href: `#${LANDING_SECTIONS.projects}`,
-    scopeKey: 'page',
+    scopeKey: 'page'
   },
   {
     labelKey: 'nav.about',
     href: `#${LANDING_SECTIONS.about}`,
-    scopeKey: 'page',
+    scopeKey: 'page'
   },
   {
     labelKey: 'nav.contact',
     href: `#${LANDING_SECTIONS.contact}`,
-    scopeKey: 'page',
+    scopeKey: 'page'
   },
   {
     labelKey: 'services.consult.title',
     href: `#${LANDING_SECTIONS.services}`,
-    scopeKey: 'service',
+    scopeKey: 'service'
   },
   {
     labelKey: 'services.estimate.title',
     href: `#${LANDING_SECTIONS.services}`,
-    scopeKey: 'service',
+    scopeKey: 'service'
   },
   {
     labelKey: 'services.design.title',
     href: `#${LANDING_SECTIONS.services}`,
-    scopeKey: 'service',
+    scopeKey: 'service'
   },
   {
     labelKey: 'services.manage.title',
     href: `#${LANDING_SECTIONS.services}`,
-    scopeKey: 'service',
+    scopeKey: 'service'
   },
   {
     labelKey: 'services.library.title',
     href: `#${LANDING_SECTIONS.services}`,
-    scopeKey: 'service',
+    scopeKey: 'service'
   },
   {
     labelKey: 'services.support.title',
     href: `#${LANDING_SECTIONS.services}`,
-    scopeKey: 'service',
+    scopeKey: 'service'
   },
   {
     labelKey: 'projects.item1.name',
     href: `#${LANDING_SECTIONS.projects}`,
-    scopeKey: 'project',
+    scopeKey: 'project'
   },
   {
     labelKey: 'projects.item2.name',
     href: `#${LANDING_SECTIONS.projects}`,
-    scopeKey: 'project',
+    scopeKey: 'project'
   },
   {
     labelKey: 'projects.item3.name',
     href: `#${LANDING_SECTIONS.projects}`,
-    scopeKey: 'project',
-  },
+    scopeKey: 'project'
+  }
 ]
 
 const MAX_RESULTS = 5
@@ -112,7 +108,7 @@ export function SiteSearch() {
     if (!q) return []
     return ENTRIES.map((e) => ({
       ...e,
-      label: t(e.labelKey as Parameters<typeof t>[0]),
+      label: t(e.labelKey as Parameters<typeof t>[0])
     }))
       .filter((e) => e.label.toLowerCase().includes(q))
       .slice(0, MAX_RESULTS)
@@ -123,26 +119,24 @@ export function SiteSearch() {
   return (
     <Popover open={open}>
       <PopoverAnchor asChild>
-        <div className="relative w-full max-w-xs">
-          <Search className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
+        <div className='relative w-full max-w-xs'>
+          <Search className='text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2' />
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={tSearch('placeholder')}
             aria-label={tSearch('placeholder')}
-            className="h-9 pl-8"
+            className='h-9 pl-8'
           />
         </div>
       </PopoverAnchor>
       <PopoverContent
-        align="start"
+        align='start'
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className="w-(--radix-popover-trigger-width) p-1"
+        className='w-(--radix-popover-trigger-width) p-1'
       >
         {results.length === 0 ? (
-          <p className="text-muted-foreground px-3 py-2 text-sm">
-            {tSearch('empty')}
-          </p>
+          <p className='text-muted-foreground px-3 py-2 text-sm'>{tSearch('empty')}</p>
         ) : (
           <ul>
             {results.map((r) => (
@@ -150,15 +144,11 @@ export function SiteSearch() {
                 <a
                   href={r.href}
                   onClick={() => setQuery('')}
-                  className={cn(
-                    'hover:bg-accent flex items-center justify-between gap-2 rounded-md px-3 py-2 text-sm',
-                  )}
+                  className={cn('hover:bg-accent flex items-center justify-between gap-2 rounded-md px-3 py-2 text-sm')}
                 >
-                  <span className="truncate">{r.label}</span>
-                  <span className="text-muted-foreground shrink-0 text-xs">
-                    {tSearch(
-                      `scope.${r.scopeKey}` as Parameters<typeof tSearch>[0],
-                    )}
+                  <span className='truncate'>{r.label}</span>
+                  <span className='text-muted-foreground shrink-0 text-xs'>
+                    {tSearch(`scope.${r.scopeKey}` as Parameters<typeof tSearch>[0])}
                   </span>
                 </a>
               </li>

@@ -15,7 +15,7 @@ export function FloorSegmented() {
   const floors = project?.data.floors ?? 0
 
   return (
-    <div className="space-y-2">
+    <div className='space-y-2'>
       <Label>{t('label')}</Label>
       <Segmented
         value={floors}
@@ -23,7 +23,7 @@ export function FloorSegmented() {
         onChange={(v) => patch({ floors: v })}
         render={(v) => (v === 0 ? t('ground') : t('plus', { n: v }))}
       />
-      <p className="text-muted-foreground text-xs">{t('hint')}</p>
+      <p className='text-muted-foreground text-xs'>{t('hint')}</p>
     </div>
   )
 }

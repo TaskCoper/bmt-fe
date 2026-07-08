@@ -1,14 +1,7 @@
 import { mockDelay, paginate } from '@/shared/lib'
 import type { PaginatedResponse } from '@/shared/types'
-import {
-  DEFAULT_ESTIMATE_PAGE_SIZE,
-  ESTIMATE_STATUS,
-} from '../constants/estimate.constants'
-import type {
-  Estimate,
-  EstimateFilters,
-  EstimateSummary,
-} from '../types/estimate.types'
+import { DEFAULT_ESTIMATE_PAGE_SIZE, ESTIMATE_STATUS } from '../constants/estimate.constants'
+import type { Estimate, EstimateFilters, EstimateSummary } from '../types/estimate.types'
 
 /** Sample estimates for local development without a backend. */
 export const MOCK_ESTIMATES: Estimate[] = [
@@ -20,7 +13,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.APPROVED,
     total: 685_000_000,
     itemsCount: 42,
-    createdAt: '2026-05-05T03:00:00Z',
+    createdAt: '2026-05-05T03:00:00Z'
   },
   {
     id: 'e-02',
@@ -30,7 +23,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.APPROVED,
     total: 412_500_000,
     itemsCount: 28,
-    createdAt: '2026-04-18T03:00:00Z',
+    createdAt: '2026-04-18T03:00:00Z'
   },
   {
     id: 'e-03',
@@ -40,7 +33,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.PENDING,
     total: 1_950_000_000,
     itemsCount: 76,
-    createdAt: '2026-03-22T03:00:00Z',
+    createdAt: '2026-03-22T03:00:00Z'
   },
   {
     id: 'e-04',
@@ -50,7 +43,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.APPROVED,
     total: 540_000_000,
     itemsCount: 35,
-    createdAt: '2026-01-12T03:00:00Z',
+    createdAt: '2026-01-12T03:00:00Z'
   },
   {
     id: 'e-05',
@@ -60,7 +53,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.DRAFT,
     total: 2_300_000_000,
     itemsCount: 0,
-    createdAt: '2026-06-02T03:00:00Z',
+    createdAt: '2026-06-02T03:00:00Z'
   },
   {
     id: 'e-06',
@@ -70,7 +63,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.PENDING,
     total: 875_000_000,
     itemsCount: 51,
-    createdAt: '2026-05-20T03:00:00Z',
+    createdAt: '2026-05-20T03:00:00Z'
   },
   {
     id: 'e-07',
@@ -80,7 +73,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.REJECTED,
     total: 1_120_000_000,
     itemsCount: 63,
-    createdAt: '2026-02-28T03:00:00Z',
+    createdAt: '2026-02-28T03:00:00Z'
   },
   {
     id: 'e-08',
@@ -90,7 +83,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.APPROVED,
     total: 168_000_000,
     itemsCount: 19,
-    createdAt: '2025-12-08T03:00:00Z',
+    createdAt: '2025-12-08T03:00:00Z'
   },
   {
     id: 'e-09',
@@ -100,7 +93,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.APPROVED,
     total: 1_680_000_000,
     itemsCount: 88,
-    createdAt: '2026-05-27T03:00:00Z',
+    createdAt: '2026-05-27T03:00:00Z'
   },
   {
     id: 'e-10',
@@ -110,7 +103,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.PENDING,
     total: 3_450_000_000,
     itemsCount: 45,
-    createdAt: '2026-06-12T03:00:00Z',
+    createdAt: '2026-06-12T03:00:00Z'
   },
   {
     id: 'e-11',
@@ -120,7 +113,7 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.DRAFT,
     total: 5_200_000_000,
     itemsCount: 120,
-    createdAt: '2026-04-30T03:00:00Z',
+    createdAt: '2026-04-30T03:00:00Z'
   },
   {
     id: 'e-12',
@@ -130,8 +123,8 @@ export const MOCK_ESTIMATES: Estimate[] = [
     status: ESTIMATE_STATUS.APPROVED,
     total: 320_000_000,
     itemsCount: 24,
-    createdAt: '2025-11-15T03:00:00Z',
-  },
+    createdAt: '2025-11-15T03:00:00Z'
+  }
 ]
 
 function applyFilters(filters: EstimateFilters): Estimate[] {
@@ -140,9 +133,7 @@ function applyFilters(filters: EstimateFilters): Estimate[] {
     const q = filters.search.toLowerCase()
     items = items.filter(
       (e) =>
-        e.name.toLowerCase().includes(q) ||
-        e.code.toLowerCase().includes(q) ||
-        e.projectName.toLowerCase().includes(q),
+        e.name.toLowerCase().includes(q) || e.code.toLowerCase().includes(q) || e.projectName.toLowerCase().includes(q)
     )
   }
   if (filters.status !== 'all') {
@@ -154,11 +145,7 @@ function applyFilters(filters: EstimateFilters): Estimate[] {
 export const mockEstimateApi = {
   async list(filters: EstimateFilters): Promise<PaginatedResponse<Estimate>> {
     await mockDelay()
-    return paginate(
-      applyFilters(filters),
-      filters.page,
-      DEFAULT_ESTIMATE_PAGE_SIZE,
-    )
+    return paginate(applyFilters(filters), filters.page, DEFAULT_ESTIMATE_PAGE_SIZE)
   },
 
   async getSummary(): Promise<EstimateSummary> {
@@ -167,10 +154,7 @@ export const mockEstimateApi = {
       total: MOCK_ESTIMATES.length,
       approved: MOCK_ESTIMATES.filter((e) => e.status === 'approved').length,
       pending: MOCK_ESTIMATES.filter((e) => e.status === 'pending').length,
-      totalValue: MOCK_ESTIMATES.filter((e) => e.status === 'approved').reduce(
-        (sum, e) => sum + e.total,
-        0,
-      ),
+      totalValue: MOCK_ESTIMATES.filter((e) => e.status === 'approved').reduce((sum, e) => sum + e.total, 0)
     }
-  },
+  }
 }

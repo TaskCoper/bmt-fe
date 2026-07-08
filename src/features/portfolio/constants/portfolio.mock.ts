@@ -4,7 +4,7 @@ import type { PortfolioItem } from '../types/portfolio.types'
 const gallery = (base: number) =>
   Array.from({ length: 4 }, (_, i) => ({
     hue: (base + i * 28) % 360,
-    caption: '',
+    caption: ''
   }))
 
 /**
@@ -21,12 +21,11 @@ const RAW: Omit<PortfolioItem, 'published'>[] = [
     year: 2025,
     location: 'TP. Hồ Chí Minh',
     area: 95,
-    summary:
-      'Cải tạo căn hộ 2 phòng ngủ theo phong cách hiện đại, tối ưu ánh sáng.',
+    summary: 'Cải tạo căn hộ 2 phòng ngủ theo phong cách hiện đại, tối ưu ánh sáng.',
     description:
       'Dự án cải tạo toàn bộ căn hộ 95m² với giải pháp tối ưu công năng, bảng màu trung tính và vật liệu cao cấp. Hệ thống chiếu sáng nhiều lớp tạo chiều sâu cho không gian.',
     coverHue: 20,
-    gallery: gallery(20),
+    gallery: gallery(20)
   },
   {
     id: 'pf-2',
@@ -41,7 +40,7 @@ const RAW: Omit<PortfolioItem, 'published'>[] = [
     description:
       'Thiết kế nhà phố 3 tầng theo hướng tối giản, tận dụng giếng trời để lấy sáng tự nhiên. Vật liệu gỗ và bê tông mài tạo cảm giác ấm áp, gần gũi.',
     coverHue: 140,
-    gallery: gallery(140),
+    gallery: gallery(140)
   },
   {
     id: 'pf-3',
@@ -56,7 +55,7 @@ const RAW: Omit<PortfolioItem, 'published'>[] = [
     description:
       'Biệt thự nghỉ dưỡng 320m² mang phong cách tân cổ điển, kết hợp vật liệu địa phương và tầm nhìn hướng đồi thông. Nội thất sang trọng nhưng vẫn ấm cúng.',
     coverHue: 265,
-    gallery: gallery(265),
+    gallery: gallery(265)
   },
   {
     id: 'pf-4',
@@ -71,7 +70,7 @@ const RAW: Omit<PortfolioItem, 'published'>[] = [
     description:
       'Tối ưu không gian nhỏ với nội thất thông minh, tông màu sáng và gỗ tự nhiên đặc trưng phong cách Scandinavian.',
     coverHue: 200,
-    gallery: gallery(200),
+    gallery: gallery(200)
   },
   {
     id: 'pf-5',
@@ -86,7 +85,7 @@ const RAW: Omit<PortfolioItem, 'published'>[] = [
     description:
       'Kết hợp tinh thần tối giản của Nhật Bản và sự ấm áp Scandinavia, dự án mang đến không gian sống cân bằng và thư thái.',
     coverHue: 35,
-    gallery: gallery(35),
+    gallery: gallery(35)
   },
   {
     id: 'pf-6',
@@ -98,15 +97,14 @@ const RAW: Omit<PortfolioItem, 'published'>[] = [
     location: 'Vũng Tàu',
     area: 280,
     summary: 'Biệt thự biển hiện đại với hồ bơi vô cực.',
-    description:
-      'Thiết kế mở hướng biển, hồ bơi vô cực và hệ cửa kính lớn xóa nhòa ranh giới trong - ngoài.',
+    description: 'Thiết kế mở hướng biển, hồ bơi vô cực và hệ cửa kính lớn xóa nhòa ranh giới trong - ngoài.',
     coverHue: 190,
-    gallery: gallery(190),
-  },
+    gallery: gallery(190)
+  }
 ]
 
 /** Last item left unpublished to exercise the admin view. */
 export const MOCK_PORTFOLIO: readonly PortfolioItem[] = RAW.map((p, i) => ({
   ...p,
-  published: i !== RAW.length - 1,
+  published: i !== RAW.length - 1
 }))

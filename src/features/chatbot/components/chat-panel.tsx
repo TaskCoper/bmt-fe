@@ -13,15 +13,14 @@ import { SUGGESTIONS } from '../api/chatbot.mock'
 
 export function ChatPanel() {
   const t = useTranslations('chatbot')
-  const { messages, send, isReplying, remaining, dailyLimit, limitReached } =
-    useChat()
+  const { messages, send, isReplying, remaining, dailyLimit, limitReached } = useChat()
   const [input, setInput] = useState('')
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     scrollRef.current?.scrollTo({
       top: scrollRef.current.scrollHeight,
-      behavior: 'smooth',
+      behavior: 'smooth'
     })
   }, [messages, isReplying])
 
@@ -33,37 +32,23 @@ export function ChatPanel() {
   const showSuggestions = messages.length <= 1 && !isReplying && !limitReached
 
   return (
-    <Card className="flex h-[calc(100svh-13rem)] flex-col overflow-hidden p-0">
+    <Card className='flex h-[calc(100svh-13rem)] flex-col overflow-hidden p-0'>
       {/* Messages */}
-      <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-4">
+      <div ref={scrollRef} className='flex-1 space-y-4 overflow-y-auto p-4'>
         {messages.map((m) => (
-          <div
-            key={m.id}
-            className={cn(
-              'flex items-start gap-3',
-              m.role === 'user' && 'flex-row-reverse',
-            )}
-          >
+          <div key={m.id} className={cn('flex items-start gap-3', m.role === 'user' && 'flex-row-reverse')}>
             <div
               className={cn(
                 'flex size-8 shrink-0 items-center justify-center rounded-full',
-                m.role === 'assistant'
-                  ? 'bg-primary/10 text-primary'
-                  : 'bg-muted text-muted-foreground',
+                m.role === 'assistant' ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'
               )}
             >
-              {m.role === 'assistant' ? (
-                <Bot className="size-4" />
-              ) : (
-                <User className="size-4" />
-              )}
+              {m.role === 'assistant' ? <Bot className='size-4' /> : <User className='size-4' />}
             </div>
             <div
               className={cn(
                 'max-w-[80%] rounded-lg px-3 py-2 text-sm whitespace-pre-wrap',
-                m.role === 'assistant'
-                  ? 'bg-muted'
-                  : 'bg-primary text-primary-foreground',
+                m.role === 'assistant' ? 'bg-muted' : 'bg-primary text-primary-foreground'
               )}
             >
               {m.content}
@@ -72,14 +57,14 @@ export function ChatPanel() {
         ))}
 
         {isReplying ? (
-          <div className="flex items-start gap-3">
-            <div className="bg-primary/10 text-primary flex size-8 shrink-0 items-center justify-center rounded-full">
-              <Bot className="size-4" />
+          <div className='flex items-start gap-3'>
+            <div className='bg-primary/10 text-primary flex size-8 shrink-0 items-center justify-center rounded-full'>
+              <Bot className='size-4' />
             </div>
-            <div className="bg-muted flex items-center gap-1 rounded-lg px-3 py-3">
-              <span className="bg-muted-foreground/50 size-2 animate-bounce rounded-full [animation-delay:-0.3s]" />
-              <span className="bg-muted-foreground/50 size-2 animate-bounce rounded-full [animation-delay:-0.15s]" />
-              <span className="bg-muted-foreground/50 size-2 animate-bounce rounded-full" />
+            <div className='bg-muted flex items-center gap-1 rounded-lg px-3 py-3'>
+              <span className='bg-muted-foreground/50 size-2 animate-bounce rounded-full [animation-delay:-0.3s]' />
+              <span className='bg-muted-foreground/50 size-2 animate-bounce rounded-full [animation-delay:-0.15s]' />
+              <span className='bg-muted-foreground/50 size-2 animate-bounce rounded-full' />
             </div>
           </div>
         ) : null}
@@ -87,13 +72,13 @@ export function ChatPanel() {
 
       {/* Suggestions */}
       {showSuggestions ? (
-        <div className="flex flex-wrap gap-2 px-4 pb-2">
+        <div className='flex flex-wrap gap-2 px-4 pb-2'>
           {SUGGESTIONS.map((s) => (
             <button
               key={s}
-              type="button"
+              type='button'
               onClick={() => send(s)}
-              className="border-border hover:bg-accent rounded-full border px-3 py-1.5 text-xs transition-colors"
+              className='border-border hover:bg-accent rounded-full border px-3 py-1.5 text-xs transition-colors'
             >
               {s}
             </button>
@@ -103,10 +88,8 @@ export function ChatPanel() {
 
       {/* Limit-reached notice */}
       {limitReached ? (
-        <div className="border-t px-4 py-3">
-          <p className="text-destructive text-sm font-medium">
-            {t('limitReached', { limit: dailyLimit })}
-          </p>
+        <div className='border-t px-4 py-3'>
+          <p className='text-destructive text-sm font-medium'>{t('limitReached', { limit: dailyLimit })}</p>
         </div>
       ) : null}
 
@@ -116,26 +99,22 @@ export function ChatPanel() {
           e.preventDefault()
           handleSend()
         }}
-        className="border-t p-3"
+        className='border-t p-3'
       >
-        <div className="flex items-center gap-2">
+        <div className='flex items-center gap-2'>
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={t('placeholder')}
             disabled={isReplying || limitReached}
-            autoComplete="off"
+            autoComplete='off'
           />
-          <Button
-            type="submit"
-            size="icon"
-            disabled={isReplying || limitReached || !input.trim()}
-          >
-            <SendHorizonal className="size-4" />
-            <span className="sr-only">{t('send')}</span>
+          <Button type='submit' size='icon' disabled={isReplying || limitReached || !input.trim()}>
+            <SendHorizonal className='size-4' />
+            <span className='sr-only'>{t('send')}</span>
           </Button>
         </div>
-        <p className="text-muted-foreground mt-2 text-right text-xs">
+        <p className='text-muted-foreground mt-2 text-right text-xs'>
           {t('remaining', { remaining, limit: dailyLimit })}
         </p>
       </form>

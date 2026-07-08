@@ -12,7 +12,7 @@ export const MOCK_USERS: readonly UserRecord[] = [
     email: 'an.nguyen@bmt.local',
     role: ROLES.ADMIN,
     status: 'active',
-    createdAt: '2025-08-12T03:00:00Z',
+    createdAt: '2025-08-12T03:00:00Z'
   },
   {
     id: 'u-2',
@@ -20,7 +20,7 @@ export const MOCK_USERS: readonly UserRecord[] = [
     email: 'binh.tran@bmt.local',
     role: ROLES.CUSTOMER,
     status: 'active',
-    createdAt: '2025-09-03T03:00:00Z',
+    createdAt: '2025-09-03T03:00:00Z'
   },
   {
     id: 'u-3',
@@ -28,7 +28,7 @@ export const MOCK_USERS: readonly UserRecord[] = [
     email: 'cuong.le@bmt.local',
     role: ROLES.CUSTOMER,
     status: 'inactive',
-    createdAt: '2025-10-21T03:00:00Z',
+    createdAt: '2025-10-21T03:00:00Z'
   },
   {
     id: 'u-4',
@@ -36,7 +36,7 @@ export const MOCK_USERS: readonly UserRecord[] = [
     email: 'dung.pham@bmt.local',
     role: ROLES.CUSTOMER,
     status: 'active',
-    createdAt: '2026-01-15T03:00:00Z',
+    createdAt: '2026-01-15T03:00:00Z'
   },
   {
     id: 'u-5',
@@ -44,7 +44,7 @@ export const MOCK_USERS: readonly UserRecord[] = [
     email: 'em.vo@bmt.local',
     role: ROLES.CUSTOMER,
     status: 'active',
-    createdAt: '2026-02-08T03:00:00Z',
+    createdAt: '2026-02-08T03:00:00Z'
   },
   {
     id: 'u-6',
@@ -52,7 +52,7 @@ export const MOCK_USERS: readonly UserRecord[] = [
     email: 'phong.dang@bmt.local',
     role: ROLES.CUSTOMER,
     status: 'active',
-    createdAt: '2026-03-19T03:00:00Z',
+    createdAt: '2026-03-19T03:00:00Z'
   },
   {
     id: 'u-7',
@@ -60,7 +60,7 @@ export const MOCK_USERS: readonly UserRecord[] = [
     email: 'giang.bui@bmt.local',
     role: ROLES.CUSTOMER,
     status: 'inactive',
-    createdAt: '2026-04-02T03:00:00Z',
+    createdAt: '2026-04-02T03:00:00Z'
   },
   {
     id: 'u-8',
@@ -68,6 +68,6 @@ export const MOCK_USERS: readonly UserRecord[] = [
     email: 'hai.hoang@bmt.local',
     role: ROLES.ADMIN,
     status: 'active',
-    createdAt: '2026-05-11T03:00:00Z',
-  },
+    createdAt: '2026-05-11T03:00:00Z'
+  }
 ]

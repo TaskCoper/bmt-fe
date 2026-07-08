@@ -5,16 +5,8 @@ import { Check, Lock } from 'lucide-react'
 
 import { useRouter } from '@/i18n/navigation'
 import { cn } from '@/shared/lib/utils'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/shared/components/ui/tooltip'
-import {
-  WIZARD_STEPS,
-  projectStepPath,
-  type WizardStepId,
-} from '../constants/studio.constants'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/components/ui/tooltip'
+import { WIZARD_STEPS, projectStepPath, type WizardStepId } from '../constants/studio.constants'
 import { computeStepStatuses } from '../services/studio.service'
 import { useCurrentProject, useWizardStore } from '../store/wizard.store'
 
@@ -27,13 +19,7 @@ const RESULT_INDEX = WIZARD_STEPS.indexOf('result')
  * carry a check, locked steps are dimmed with a tooltip. Navigation is
  * route-based and guarded once an AI result exists.
  */
-export function StepRail({
-  projectId,
-  currentStep,
-}: {
-  projectId: string
-  currentStep: WizardStepId
-}) {
+export function StepRail({ projectId, currentStep }: { projectId: string; currentStep: WizardStepId }) {
   const t = useTranslations('studio.steps')
   const tg = useTranslations('studio.guard')
   const tn = useTranslations('studio.nav')
@@ -41,11 +27,8 @@ export function StepRail({
   const project = useCurrentProject()
   const setPendingNav = useWizardStore((s) => s.setPendingNav)
 
-  const statuses = project
-    ? computeStepStatuses(project)
-    : ({} as Record<WizardStepId, 'locked' | 'active' | 'done'>)
-  const blockingStepNo =
-    WIZARD_STEPS.findIndex((s) => statuses[s] !== 'done') + 1
+  const statuses = project ? computeStepStatuses(project) : ({} as Record<WizardStepId, 'locked' | 'active' | 'done'>)
+  const blockingStepNo = WIZARD_STEPS.findIndex((s) => statuses[s] !== 'done') + 1
 
   const go = (step: WizardStepId, index: number) => {
     const path = projectStepPath(projectId, step)
@@ -57,10 +40,7 @@ export function StepRail({
   }
 
   return (
-    <nav
-      aria-label={tn('progressLabel')}
-      className="flex scrollbar-none gap-2 overflow-x-auto"
-    >
+    <nav aria-label={tn('progressLabel')} className='flex scrollbar-none gap-2 overflow-x-auto'>
       {WIZARD_STEPS.map((step, index) => {
         const status = statuses[step] ?? 'locked'
         const isCurrent = step === currentStep
@@ -70,7 +50,7 @@ export function StepRail({
 
         const pill = (
           <button
-            type="button"
+            type='button'
             disabled={locked}
             onClick={() => !locked && go(step, index)}
             aria-current={isCurrent ? 'step' : undefined}
@@ -80,7 +60,7 @@ export function StepRail({
                 ? 'glass-panel-strong'
                 : locked
                   ? 'glass-inset cursor-not-allowed opacity-45'
-                  : 'glass-inset hover:-translate-y-0.5',
+                  : 'glass-inset hover:-translate-y-0.5'
             )}
           >
             <span
@@ -88,23 +68,17 @@ export function StepRail({
                 'flex size-7 shrink-0 items-center justify-center rounded-xl text-[0.8rem] font-bold tabular-nums',
                 isCurrent || isDone
                   ? 'from-primary/90 to-primary text-primary-foreground bg-gradient-to-br shadow-[0_4px_12px_-4px_oklch(0.77_0.155_65_/_0.7)]'
-                  : 'text-muted-foreground bg-background/40 border-glass-border border',
+                  : 'text-muted-foreground bg-background/40 border-glass-border border'
               )}
             >
-              {isDone ? (
-                <Check className="size-4" />
-              ) : locked ? (
-                <Lock className="size-3" />
-              ) : (
-                stepNo
-              )}
+              {isDone ? <Check className='size-4' /> : locked ? <Lock className='size-3' /> : stepNo}
             </span>
             {isCurrent ? (
-              <span className="min-w-0 pr-1">
-                <span className="block text-[0.8rem] leading-tight font-semibold whitespace-nowrap">
+              <span className='min-w-0 pr-1'>
+                <span className='block text-[0.8rem] leading-tight font-semibold whitespace-nowrap'>
                   {t(`${step}.title`)}
                 </span>
-                <span className="text-muted-foreground block truncate text-[0.68rem] leading-tight">
+                <span className='text-muted-foreground block truncate text-[0.68rem] leading-tight'>
                   {t(`${step}.subtitle`)}
                 </span>
               </span>
@@ -115,14 +89,12 @@ export function StepRail({
         return locked ? (
           <Tooltip key={step}>
             <TooltipTrigger asChild>
-              <span className="shrink-0">{pill}</span>
+              <span className='shrink-0'>{pill}</span>
             </TooltipTrigger>
-            <TooltipContent side="bottom">
-              {tg('lockedTooltip', { step: blockingStepNo })}
-            </TooltipContent>
+            <TooltipContent side='bottom'>{tg('lockedTooltip', { step: blockingStepNo })}</TooltipContent>
           </Tooltip>
         ) : (
-          <span key={step} className="shrink-0">
+          <span key={step} className='shrink-0'>
             {pill}
           </span>
         )

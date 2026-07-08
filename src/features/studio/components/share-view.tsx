@@ -20,16 +20,12 @@ export function ShareView({ token }: { token: string }) {
 
   if (!project) {
     return (
-      <div className="relative min-h-screen">
+      <div className='relative min-h-screen'>
         <AmbientAura />
-        <div className="relative mx-auto flex min-h-screen max-w-lg items-center px-4 py-24">
-          <div className="glass-panel w-full p-10 text-center">
-            <p className="text-lg font-semibold tracking-tight">
-              {tg('missing')}
-            </p>
-            <p className="text-muted-foreground mt-1 text-sm">
-              {tg('missingHint')}
-            </p>
+        <div className='relative mx-auto flex min-h-screen max-w-lg items-center px-4 py-24'>
+          <div className='glass-panel w-full p-10 text-center'>
+            <p className='text-lg font-semibold tracking-tight'>{tg('missing')}</p>
+            <p className='text-muted-foreground mt-1 text-sm'>{tg('missingHint')}</p>
           </div>
         </div>
       </div>
@@ -37,26 +33,24 @@ export function ShareView({ token }: { token: string }) {
   }
 
   return (
-    <div className="relative min-h-screen">
+    <div className='relative min-h-screen'>
       <AmbientAura />
-      <div className="relative mx-auto max-w-2xl px-4 py-10">
-        <div className="glass-panel-strong space-y-6 p-6 sm:p-8">
-          <header className="border-glass-border flex items-center gap-3 border-b pb-6">
-            <div className="border-primary/25 from-primary/25 to-primary/5 text-primary flex size-12 items-center justify-center rounded-xl border bg-gradient-to-br text-lg font-bold shadow-sm">
+      <div className='relative mx-auto max-w-2xl px-4 py-10'>
+        <div className='glass-panel-strong space-y-6 p-6 sm:p-8'>
+          <header className='border-glass-border flex items-center gap-3 border-b pb-6'>
+            <div className='border-primary/25 from-primary/25 to-primary/5 text-primary flex size-12 items-center justify-center rounded-xl border bg-gradient-to-br text-lg font-bold shadow-sm'>
               BMT
             </div>
             <div>
-              <h1 className="text-xl font-semibold tracking-tight">
-                {t('heading', { name: project.data.name })}
-              </h1>
-              <p className="text-muted-foreground text-sm">{t('subtitle')}</p>
+              <h1 className='text-xl font-semibold tracking-tight'>{t('heading', { name: project.data.name })}</h1>
+              <p className='text-muted-foreground text-sm'>{t('subtitle')}</p>
             </div>
           </header>
 
           <PdfPreview project={project} />
 
-          <footer className="text-muted-foreground border-glass-border border-t pt-6 text-center text-sm">
-            <p className="font-medium">{t('madeBy')}</p>
+          <footer className='text-muted-foreground border-glass-border border-t pt-6 text-center text-sm'>
+            <p className='font-medium'>{t('madeBy')}</p>
             <p>{t('contact')}</p>
           </footer>
         </div>

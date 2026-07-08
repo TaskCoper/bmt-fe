@@ -20,7 +20,7 @@ const MOCK_USER: AuthUser = {
   id: 'mock-user-1',
   email: 'dev@bmt.local',
   name: 'Dev User',
-  roles: [ROLES.CUSTOMER],
+  roles: [ROLES.CUSTOMER]
 }
 
 /**
@@ -28,9 +28,7 @@ const MOCK_USER: AuthUser = {
  * backend: an email containing "admin" → admin, otherwise → customer.
  */
 function rolesForEmail(email: string): AuthUser['roles'] {
-  return email.toLowerCase().includes('admin')
-    ? [ROLES.ADMIN]
-    : [ROLES.CUSTOMER]
+  return email.toLowerCase().includes('admin') ? [ROLES.ADMIN] : [ROLES.CUSTOMER]
 }
 
 /** Simulate network latency so loading states are exercised. */
@@ -39,7 +37,7 @@ const delay = (ms = 400) => new Promise((resolve) => setTimeout(resolve, ms))
 /** Build a value matching the normalized {@link ApiError} shape to throw. */
 const apiError = (message: string, status: number): ApiError => ({
   status,
-  message,
+  message
 })
 
 function setSessionCookie(): void {
@@ -56,9 +54,7 @@ function clearSessionCookie(): void {
 function hasSessionCookie(): boolean {
   return (
     typeof document !== 'undefined' &&
-    document.cookie
-      .split(';')
-      .some((c) => c.trim().startsWith(`${AUTH_COOKIE_NAME}=`))
+    document.cookie.split(';').some((c) => c.trim().startsWith(`${AUTH_COOKIE_NAME}=`))
   )
 }
 
@@ -73,7 +69,7 @@ export const mockAuthApi = {
     const user: AuthUser = {
       ...MOCK_USER,
       email: payload.email,
-      roles: rolesForEmail(payload.email),
+      roles: rolesForEmail(payload.email)
     }
     localStorage.setItem(MOCK_USER_KEY, JSON.stringify(user))
     setSessionCookie()
@@ -88,8 +84,7 @@ export const mockAuthApi = {
 
   async getCurrentUser(): Promise<AuthUser> {
     await delay(150)
-    const raw =
-      typeof window !== 'undefined' ? localStorage.getItem(MOCK_USER_KEY) : null
+    const raw = typeof window !== 'undefined' ? localStorage.getItem(MOCK_USER_KEY) : null
     // The session is only valid if BOTH the profile and the cookie exist.
     // Once the cookie expires, drop the stale profile so the client store
     // agrees with the middleware (otherwise login ↔ dashboard redirect loop).
@@ -98,5 +93,5 @@ export const mockAuthApi = {
       throw apiError('No active session (mock).', 401)
     }
     return JSON.parse(raw) as AuthUser
-  },
+  }
 }

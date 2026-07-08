@@ -34,7 +34,7 @@ const CELLS: {
   { left: 832, top: 364, color: SAGE, delay: '2.9s', dur: '4.6s' },
   { left: 572, top: 572, color: AMBER, delay: '1.9s', dur: '5.6s' },
   { left: 936, top: 260, color: TERRA, delay: '3.3s', dur: '5.0s' },
-  { left: 780, top: 624, color: AMBER, delay: '0.6s', dur: '4.3s' },
+  { left: 780, top: 624, color: AMBER, delay: '0.6s', dur: '4.3s' }
 ]
 
 /**
@@ -70,32 +70,29 @@ export function AmbientAura({ className }: { className?: string }) {
     <div
       ref={ref}
       aria-hidden
-      className={cn(
-        'ambient-aura pointer-events-none absolute inset-0 -z-10 overflow-hidden',
-        className,
-      )}
+      className={cn('ambient-aura pointer-events-none absolute inset-0 -z-10 overflow-hidden', className)}
     >
-      <span className="ambient-warm" />
-      <span className="ambient-grid" />
-      <span className="ambient-grid-cursor" />
-      <span className="ambient-cells">
+      <span className='ambient-warm' />
+      <span className='ambient-grid' />
+      <span className='ambient-grid-cursor' />
+      <span className='ambient-cells'>
         {CELLS.map((c) => (
           <span
             key={`${c.left}-${c.top}`}
-            className="ambient-cell"
+            className='ambient-cell'
             style={
               {
                 left: `${c.left}px`,
                 top: `${c.top}px`,
                 '--cell-color': c.color,
                 '--delay': c.delay,
-                '--dur': c.dur,
+                '--dur': c.dur
               } as CSSProperties
             }
           />
         ))}
       </span>
-      <span className="ambient-grain" />
+      <span className='ambient-grain' />
     </div>
   )
 }

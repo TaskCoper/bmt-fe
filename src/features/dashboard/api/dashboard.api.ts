@@ -4,9 +4,7 @@ import type { DashboardData } from '../types/dashboard.types'
 import { mockDashboardApi } from './dashboard.mock'
 
 const realDashboardApi = {
-  getOverview: () => http.get<DashboardData>('/dashboard/overview'),
+  getOverview: () => http.get<DashboardData>('/dashboard/overview')
 }
 
-export const dashboardApi = env.NEXT_PUBLIC_USE_MOCK_API
-  ? mockDashboardApi
-  : realDashboardApi
+export const dashboardApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockDashboardApi : realDashboardApi

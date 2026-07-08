@@ -13,7 +13,7 @@ import {
   WIZARD_STEPS,
   type EstimateCategoryId,
   type PackageTier,
-  type WizardStepId,
+  type WizardStepId
 } from '../constants/studio.constants'
 import type {
   AreaSummary,
@@ -24,7 +24,7 @@ import type {
   GenerateResult,
   ProjectSnapshot,
   RenderImage,
-  WizardData,
+  WizardData
 } from '../types/studio.types'
 
 function packageOf(id: PackageTier) {
@@ -42,7 +42,7 @@ export function deriveArea(area: number, floors: number): AreaSummary {
     totalFloorArea,
     usableArea: Math.round(totalFloorArea * 0.85),
     floors: storeys,
-    estimatedHeight: Math.round((storeys * 3.4 + 1.5) * 10) / 10,
+    estimatedHeight: Math.round((storeys * 3.4 + 1.5) * 10) / 10
   }
 }
 
@@ -51,41 +51,31 @@ export function deriveArea(area: number, floors: number): AreaSummary {
  * generated estimate roughly reconciles with the tier total. Names/units are
  * translation keys resolved by the UI (kept stable & deterministic).
  */
-const ITEM_TEMPLATES: Record<
-  EstimateCategoryId,
-  ReadonlyArray<{ key: string; unit: string; share: number }>
-> = {
+const ITEM_TEMPLATES: Record<EstimateCategoryId, ReadonlyArray<{ key: string; unit: string; share: number }>> = {
   rough: [
     { key: 'foundation', unit: 'm3', share: 0.35 },
     { key: 'frame', unit: 'm2', share: 0.4 },
-    { key: 'masonry', unit: 'm2', share: 0.25 },
+    { key: 'masonry', unit: 'm2', share: 0.25 }
   ],
   finishing: [
     { key: 'flooring', unit: 'm2', share: 0.3 },
     { key: 'painting', unit: 'm2', share: 0.25 },
     { key: 'ceiling', unit: 'm2', share: 0.2 },
-    { key: 'doors', unit: 'set', share: 0.25 },
+    { key: 'doors', unit: 'set', share: 0.25 }
   ],
   interior: [
     { key: 'living', unit: 'set', share: 0.3 },
     { key: 'kitchen', unit: 'set', share: 0.3 },
     { key: 'bedroom', unit: 'set', share: 0.25 },
-    { key: 'lighting', unit: 'set', share: 0.15 },
-  ],
+    { key: 'lighting', unit: 'set', share: 0.15 }
+  ]
 }
 
-function buildTier(
-  id: EstimateCategoryId,
-  tierTotal: number,
-  area: number,
-): EstimateTierData {
+function buildTier(id: EstimateCategoryId, tierTotal: number, area: number): EstimateTierData {
   const templates = ITEM_TEMPLATES[id]
   const items: EstimateItem[] = templates.map((tpl) => {
     const amount = Math.round(tierTotal * tpl.share)
-    const quantity =
-      tpl.unit === 'set'
-        ? Math.max(1, Math.round(area / 40))
-        : Math.max(1, Math.round(area * tpl.share))
+    const quantity = tpl.unit === 'set' ? Math.max(1, Math.round(area / 40)) : Math.max(1, Math.round(area * tpl.share))
     const unitPrice = quantity > 0 ? Math.round(amount / quantity) : amount
     return {
       name: `${id}.${tpl.key}.name`,
@@ -96,7 +86,7 @@ function buildTier(
       unit: tpl.unit,
       unitPrice,
       amount,
-      note: `${id}.${tpl.key}.note`,
+      note: `${id}.${tpl.key}.note`
     }
   })
   const total = items.reduce((sum, it) => sum + it.amount, 0)
@@ -140,7 +130,7 @@ export function generateResult(data: WizardData, now: string): GenerateResult {
           kind,
           floor,
           caption: '',
-          favorite: false,
+          favorite: false
         })
       }
     }
@@ -150,10 +140,7 @@ export function generateResult(data: WizardData, now: string): GenerateResult {
 }
 
 /** Total for one section given the selected tier (rough always uses `single`). */
-export function sectionTotal(
-  section: EstimateSection,
-  tier: PackageTier,
-): number {
+export function sectionTotal(section: EstimateSection, tier: PackageTier): number {
   if (section.key === 'rough') return section.tiers.single?.total ?? 0
   return section.tiers[tier]?.total ?? 0
 }
@@ -161,37 +148,30 @@ export function sectionTotal(
 /** Cost breakdown for the currently-selected tiers. */
 export function breakdownFor(
   result: GenerateResult,
-  selection: { finishing: PackageTier; interior: PackageTier },
+  selection: { finishing: PackageTier; interior: PackageTier }
 ): BudgetBreakdown {
-  const find = (k: EstimateCategoryId) =>
-    result.sections.find((s) => s.key === k)
+  const find = (k: EstimateCategoryId) => result.sections.find((s) => s.key === k)
   const rough = find('rough')
   const finishing = find('finishing')
   const interior = find('interior')
   const roughTotal = rough?.tiers.single?.total ?? 0
-  const finishingTotal = finishing
-    ? sectionTotal(finishing, selection.finishing)
-    : 0
-  const interiorTotal = interior
-    ? sectionTotal(interior, selection.interior)
-    : 0
+  const finishingTotal = finishing ? sectionTotal(finishing, selection.finishing) : 0
+  const interiorTotal = interior ? sectionTotal(interior, selection.interior) : 0
   return {
     rough: roughTotal,
     finishing: finishingTotal,
     interior: interiorTotal,
-    total: roughTotal + finishingTotal + interiorTotal,
+    total: roughTotal + finishingTotal + interiorTotal
   }
 }
 
 /** Cost-structure shares (for the donut chart), normalised to 0–1. */
-export function budgetShares(
-  b: BudgetBreakdown,
-): Record<EstimateCategoryId, number> {
+export function budgetShares(b: BudgetBreakdown): Record<EstimateCategoryId, number> {
   const total = b.total || 1
   return {
     rough: b.rough / total,
     finishing: b.finishing / total,
-    interior: b.interior / total,
+    interior: b.interior / total
   }
 }
 
@@ -200,18 +180,13 @@ export function budgetShares(
  * route guard, and the dashboard StepDots. A step is `done` when its inputs are
  * satisfied, `active`/`locked` otherwise (caller marks the current step).
  */
-export function computeStepStatuses(
-  snapshot: ProjectSnapshot,
-): Record<WizardStepId, StepStatus> {
+export function computeStepStatuses(snapshot: ProjectSnapshot): Record<WizardStepId, StepStatus> {
   const { data, result } = snapshot
   const requirementsDone = data.area > 0 && data.budget > 0
   const floorsNeeded = Math.floor(data.floors) + 1
-  const uploadedFloors = new Set(
-    data.images.filter((i) => i.floor >= 0).map((i) => i.floor),
-  )
+  const uploadedFloors = new Set(data.images.filter((i) => i.floor >= 0).map((i) => i.floor))
   const layoutsDone =
-    uploadedFloors.size >= floorsNeeded &&
-    Array.from({ length: floorsNeeded }).every((_, f) => uploadedFloors.has(f))
+    uploadedFloors.size >= floorsNeeded && Array.from({ length: floorsNeeded }).every((_, f) => uploadedFloors.has(f))
   const resultDone = result !== null
 
   const done: Record<WizardStepId, boolean> = {
@@ -220,7 +195,7 @@ export function computeStepStatuses(
     layouts: layoutsDone,
     result: resultDone,
     render: resultDone,
-    export: resultDone,
+    export: resultDone
   }
 
   // A step is unlocked once every prior step is done.
@@ -241,5 +216,5 @@ export const studioService = {
   sectionTotal,
   breakdownFor,
   budgetShares,
-  computeStepStatuses,
+  computeStepStatuses
 }

@@ -12,9 +12,5 @@ const getServerSnapshot = () => false
  * mismatches.
  */
 export function useMounted(): boolean {
-  return useSyncExternalStore(
-    emptySubscribe,
-    getClientSnapshot,
-    getServerSnapshot,
-  )
+  return useSyncExternalStore(emptySubscribe, getClientSnapshot, getServerSnapshot)
 }

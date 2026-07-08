@@ -4,11 +4,10 @@ export const ESTIMATE_STATUS = {
   DRAFT: 'draft',
   PENDING: 'pending',
   APPROVED: 'approved',
-  REJECTED: 'rejected',
+  REJECTED: 'rejected'
 } as const
 
-export type EstimateStatus =
-  (typeof ESTIMATE_STATUS)[keyof typeof ESTIMATE_STATUS]
+export type EstimateStatus = (typeof ESTIMATE_STATUS)[keyof typeof ESTIMATE_STATUS]
 
 export const DEFAULT_ESTIMATE_PAGE_SIZE = 8
 
@@ -25,7 +24,7 @@ export const ROUGH_COST_PER_SQM = 3_500_000
 export const ESTIMATE_PACKAGES = [
   { id: 'basic', finishingPerSqm: 1_800_000, interiorPerSqm: 2_000_000 },
   { id: 'standard', finishingPerSqm: 2_800_000, interiorPerSqm: 3_500_000 },
-  { id: 'premium', finishingPerSqm: 4_500_000, interiorPerSqm: 6_000_000 },
+  { id: 'premium', finishingPerSqm: 4_500_000, interiorPerSqm: 6_000_000 }
 ] as const
 
 export type EstimatePackageId = (typeof ESTIMATE_PACKAGES)[number]['id']

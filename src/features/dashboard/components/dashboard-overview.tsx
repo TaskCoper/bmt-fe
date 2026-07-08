@@ -1,14 +1,7 @@
 'use client'
 
 import { useTranslations, useLocale } from 'next-intl'
-import {
-  Users,
-  FolderKanban,
-  Calculator,
-  Inbox,
-  Mail,
-  Sparkles,
-} from 'lucide-react'
+import { Users, FolderKanban, Calculator, Inbox, Mail, Sparkles } from 'lucide-react'
 
 import type { Locale } from '@/i18n/routing'
 import { formatNumber } from '@/shared/utils'
@@ -28,9 +21,9 @@ export function DashboardOverview() {
 
   if (isLoading || !data) {
     return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3'>
         {Array.from({ length: 6 }).map((_, i) => (
-          <Skeleton key={i} className="h-28 w-full" />
+          <Skeleton key={i} className='h-28 w-full' />
         ))}
       </div>
     )
@@ -42,52 +35,45 @@ export function DashboardOverview() {
       label: t('stats.customers'),
       value: formatNumber(stats.totalCustomers, locale),
       hint: t('stats.customersHint'),
-      icon: Users,
+      icon: Users
     },
     {
       label: tn('projects'),
       value: formatNumber(stats.totalProjects, locale),
       hint: t('stats.activeHint', { count: stats.activeProjects }),
-      icon: FolderKanban,
+      icon: FolderKanban
     },
     {
       label: tn('estimates'),
       value: formatNumber(stats.totalEstimates, locale),
       hint: t('stats.pendingHint', { count: stats.pendingEstimates }),
-      icon: Calculator,
+      icon: Calculator
     },
     {
       label: t('stats.leads'),
       value: formatNumber(stats.unhandledLeads, locale),
       hint: t('stats.leadsHint'),
       icon: Inbox,
-      accent: 'destructive' as const,
+      accent: 'destructive' as const
     },
     {
       label: t('stats.newsletter'),
       value: formatNumber(stats.newsletterSignups, locale),
       hint: t('stats.newsletterHint'),
-      icon: Mail,
+      icon: Mail
     },
     {
       label: t('stats.aiUsage'),
       value: formatNumber(stats.aiUsage, locale),
       hint: t('stats.aiUsageHint'),
-      icon: Sparkles,
-    },
+      icon: Sparkles
+    }
   ]
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+    <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3'>
       {cards.map((c) => (
-        <StatCard
-          key={c.label}
-          label={c.label}
-          value={c.value}
-          hint={c.hint}
-          icon={c.icon}
-          accent={c.accent}
-        />
+        <StatCard key={c.label} label={c.label} value={c.value} hint={c.hint} icon={c.icon} accent={c.accent} />
       ))}
     </div>
   )

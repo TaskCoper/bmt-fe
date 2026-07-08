@@ -12,14 +12,10 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
+  DialogTitle
 } from '@/shared/components/ui/dialog'
 import { ROUTES } from '@/shared/constants/routes'
-import {
-  WIZARD_STEPS,
-  projectStepPath,
-  type WizardStepId,
-} from '../constants/studio.constants'
+import { WIZARD_STEPS, projectStepPath, type WizardStepId } from '../constants/studio.constants'
 import { computeStepStatuses } from '../services/studio.service'
 import { useCurrentProject, useWizardStore } from '../store/wizard.store'
 import { StepRail } from './step-rail'
@@ -29,7 +25,7 @@ const SEGMENT_TO_STEP: Record<string, WizardStepId> = {
   layouts: 'layouts',
   results: 'result',
   renders: 'render',
-  export: 'export',
+  export: 'export'
 }
 
 /** Steps that lay out their own bento of glass cards (no console wrapper). */
@@ -49,13 +45,7 @@ function stepFromPath(pathname: string): WizardStepId {
  * horizontal step rail + a per-step hero + the active step. The estimate-detail
  * route renders bare (it opens in a new tab).
  */
-export function StudioShell({
-  projectId,
-  children,
-}: {
-  projectId: string
-  children: React.ReactNode
-}) {
+export function StudioShell({ projectId, children }: { projectId: string; children: React.ReactNode }) {
   const t = useTranslations('studio')
   const tType = useTranslations('studio.constructionType')
   const tg = useTranslations('studio.guard')
@@ -97,12 +87,12 @@ export function StudioShell({
   // Project missing (unknown id / cleared storage).
   if (project === null) {
     return (
-      <div className="relative">
+      <div className='relative'>
         <AmbientAura />
-        <div className="glass-panel mx-auto flex max-w-md flex-col items-center gap-4 px-8 py-16 text-center">
-          <div className="space-y-1">
-            <p className="text-lg font-semibold">{tg('missing')}</p>
-            <p className="text-muted-foreground text-sm">{tg('missingHint')}</p>
+        <div className='glass-panel mx-auto flex max-w-md flex-col items-center gap-4 px-8 py-16 text-center'>
+          <div className='space-y-1'>
+            <p className='text-lg font-semibold'>{tg('missing')}</p>
+            <p className='text-muted-foreground text-sm'>{tg('missingHint')}</p>
           </div>
           <Button asChild>
             <Link href={ROUTES.PROJECTS}>{tg('backToProjects')}</Link>
@@ -122,87 +112,73 @@ export function StudioShell({
   const isBento = BENTO_STEPS.has(currentStep)
 
   return (
-    <div className="relative">
+    <div className='relative'>
       <AmbientAura />
-      <div className="mx-auto max-w-6xl">
+      <div className='mx-auto max-w-6xl'>
         {/* Floating glass nav */}
-        <header className="glass-panel sticky top-4 z-20 mb-8 flex flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-5">
-          <div className="flex min-w-0 items-center gap-3">
+        <header className='glass-panel sticky top-4 z-20 mb-8 flex flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-5'>
+          <div className='flex min-w-0 items-center gap-3'>
             <span
               aria-hidden
-              className="from-primary/90 to-primary flex size-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-lg font-extrabold tracking-tighter text-[#241705] shadow-[0_6px_16px_-6px_oklch(0.77_0.155_65_/_0.8)]"
+              className='from-primary/90 to-primary flex size-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br text-lg font-extrabold tracking-tighter text-[#241705] shadow-[0_6px_16px_-6px_oklch(0.77_0.155_65_/_0.8)]'
             >
               B
             </span>
-            <div className="min-w-0">
-              <p className="text-primary/80 text-[0.62rem] font-semibold tracking-[0.18em] uppercase">
+            <div className='min-w-0'>
+              <p className='text-primary/80 text-[0.62rem] font-semibold tracking-[0.18em] uppercase'>
                 {tn('studioEyebrow')}
               </p>
-              <h1 className="truncate text-sm font-semibold tracking-tight sm:text-[0.95rem]">
+              <h1 className='truncate text-sm font-semibold tracking-tight sm:text-[0.95rem]'>
                 {project.data.name || t('export.untitled')}
               </h1>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="glass-inset text-muted-foreground hidden rounded-xl px-3 py-1.5 text-xs font-medium sm:inline">
+          <div className='flex items-center gap-2'>
+            <span className='glass-inset text-muted-foreground hidden rounded-xl px-3 py-1.5 text-xs font-medium sm:inline'>
               {tType(`${project.data.constructionType}.label`)}
             </span>
-            <Button
-              variant="ghost"
-              size="sm"
-              asChild
-              className="hover:bg-background/50 rounded-xl backdrop-blur"
-            >
+            <Button variant='ghost' size='sm' asChild className='hover:bg-background/50 rounded-xl backdrop-blur'>
               <Link href={ROUTES.PROJECTS}>{t('nav.saveExit')}</Link>
             </Button>
           </div>
         </header>
 
         {/* Horizontal step rail */}
-        <div className="mb-8">
+        <div className='mb-8'>
           <StepRail projectId={projectId} currentStep={currentStep} />
         </div>
 
         {/* Per-step hero */}
-        <div className="mb-7 max-w-3xl px-1">
-          <span className="text-primary/80 inline-flex items-center gap-2 text-xs font-bold tracking-[0.16em] uppercase">
-            <span className="bg-primary size-1.5 rounded-full shadow-[0_0_10px_1px_oklch(0.77_0.155_65)]" />
+        <div className='mb-7 max-w-3xl px-1'>
+          <span className='text-primary/80 inline-flex items-center gap-2 text-xs font-bold tracking-[0.16em] uppercase'>
+            <span className='bg-primary size-1.5 rounded-full shadow-[0_0_10px_1px_oklch(0.77_0.155_65)]' />
             {tn('stepOf', { current: stepNo, total: WIZARD_STEPS.length })}
           </span>
-          <h2 className="font-display mt-3 text-3xl leading-[1.05] font-bold tracking-[-0.03em] text-balance sm:text-4xl">
+          <h2 className='font-display mt-3 text-3xl leading-[1.05] font-bold tracking-[-0.03em] text-balance sm:text-4xl'>
             {th(`${currentStep}.title`)}
           </h2>
-          <p className="text-muted-foreground mt-3 max-w-2xl text-[0.95rem]">
-            {th(`${currentStep}.lede`)}
-          </p>
+          <p className='text-muted-foreground mt-3 max-w-2xl text-[0.95rem]'>{th(`${currentStep}.lede`)}</p>
         </div>
 
         {/* Active step */}
         {isBento ? (
-          <div className="min-w-0">{children}</div>
+          <div className='min-w-0'>{children}</div>
         ) : (
-          <div className="glass-panel min-w-0 p-5 sm:p-7 lg:p-8">
-            {children}
-          </div>
+          <div className='glass-panel min-w-0 p-5 sm:p-7 lg:p-8'>{children}</div>
         )}
 
         {/* Edit-after-result confirmation */}
-        <Dialog
-          open={pendingNav !== null}
-          onOpenChange={(o) => !o && setPendingNav(null)}
-        >
+        <Dialog open={pendingNav !== null} onOpenChange={(o) => !o && setPendingNav(null)}>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>{t('editWarning.title')}</DialogTitle>
-              <DialogDescription>
-                {t('editWarning.description')}
-              </DialogDescription>
+              <DialogDescription>{t('editWarning.description')}</DialogDescription>
             </DialogHeader>
             <DialogFooter>
-              <Button variant="outline" onClick={() => setPendingNav(null)}>
+              <Button variant='outline' onClick={() => setPendingNav(null)}>
                 {t('editWarning.cancel')}
               </Button>
-              <Button variant="destructive" onClick={confirmNav}>
+              <Button variant='destructive' onClick={confirmNav}>
                 {t('editWarning.confirm')}
               </Button>
             </DialogFooter>

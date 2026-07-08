@@ -9,20 +9,18 @@ const params = (filters: GalleryFilters) => ({
   style: filters.style === 'all' ? undefined : filters.style,
   building: filters.building === 'all' ? undefined : filters.building,
   sort: filters.sort,
-  page: filters.page,
+  page: filters.page
 })
 
 const realGalleryApi = {
   list: (filters: GalleryFilters) =>
     http.get<PaginatedResponse<GalleryItem>>('/gallery', {
-      params: params(filters),
+      params: params(filters)
     }),
   listAll: (filters: GalleryFilters) =>
     http.get<PaginatedResponse<GalleryItem>>('/admin/gallery', {
-      params: params(filters),
-    }),
+      params: params(filters)
+    })
 }
 
-export const galleryApi = env.NEXT_PUBLIC_USE_MOCK_API
-  ? mockGalleryApi
-  : realGalleryApi
+export const galleryApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockGalleryApi : realGalleryApi

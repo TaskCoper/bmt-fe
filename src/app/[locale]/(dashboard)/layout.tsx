@@ -8,11 +8,7 @@ import { DashboardChrome } from './dashboard-chrome'
  * layout; here `ProtectedRoute` enforces access on the client and
  * `DashboardChrome` wires the logout flow into the shared dashboard shell.
  */
-export default function DashboardGroupLayout({
-  children,
-}: {
-  children: ReactNode
-}) {
+export default function DashboardGroupLayout({ children }: { children: ReactNode }) {
   return (
     <ProtectedRoute>
       <DashboardChrome>{children}</DashboardChrome>

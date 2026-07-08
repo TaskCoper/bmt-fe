@@ -12,7 +12,7 @@ export function createProfileSchema(m: ProfileSchemaMessages) {
     name: z.string().min(1, { message: m.required }),
     phone: z.string().optional(),
     company: z.string().optional(),
-    bio: z.string().max(500, { message: m.maxBio }).optional(),
+    bio: z.string().max(500, { message: m.maxBio }).optional()
   })
 }
 

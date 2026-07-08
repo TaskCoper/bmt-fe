@@ -11,7 +11,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/shared/components/ui/dropdown-menu'
 
 /** Switches the active locale while preserving the current route. */
@@ -32,23 +32,18 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={t('label')}
-          disabled={isPending}
-        >
-          <Globe className="size-4" />
-          <span className="sr-only">{t('label')}</span>
+        <Button variant='ghost' size='icon' aria-label={t('label')} disabled={isPending}>
+          <Globe className='size-4' />
+          <span className='sr-only'>{t('label')}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align='end'>
         {LOCALES.map((locale) => (
           <DropdownMenuItem
             key={locale}
             onClick={() => onSelect(locale)}
             data-active={locale === activeLocale}
-            className="data-[active=true]:font-semibold"
+            className='data-[active=true]:font-semibold'
           >
             {t(locale)}
           </DropdownMenuItem>

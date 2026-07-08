@@ -11,7 +11,7 @@ export default async function SharePage({ params }: PageProps) {
   const { locale, token } = await params
   setRequestLocale(locale)
   return (
-    <main className="bg-background min-h-screen">
+    <main className='bg-background min-h-screen'>
       <ShareView token={token} />
     </main>
   )

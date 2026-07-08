@@ -9,6 +9,6 @@ import { dashboardKeys } from '../api/dashboard.keys'
 export function useDashboard() {
   return useQuery({
     queryKey: dashboardKeys.overview(),
-    queryFn: dashboardApi.getOverview,
+    queryFn: dashboardApi.getOverview
   })
 }

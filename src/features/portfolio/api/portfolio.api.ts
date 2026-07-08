@@ -9,20 +9,17 @@ const realPortfolioApi = {
     http.get<PaginatedResponse<PortfolioItem>>('/portfolio', {
       params: {
         category: filters.category === 'all' ? undefined : filters.category,
-        page: filters.page,
-      },
+        page: filters.page
+      }
     }),
   listAll: (filters: PortfolioFilters) =>
     http.get<PaginatedResponse<PortfolioItem>>('/admin/portfolio', {
       params: {
         category: filters.category === 'all' ? undefined : filters.category,
-        page: filters.page,
-      },
+        page: filters.page
+      }
     }),
-  getBySlug: (slug: string) =>
-    http.get<PortfolioItem | null>(`/portfolio/${slug}`),
+  getBySlug: (slug: string) => http.get<PortfolioItem | null>(`/portfolio/${slug}`)
 }
 
-export const portfolioApi = env.NEXT_PUBLIC_USE_MOCK_API
-  ? mockPortfolioApi
-  : realPortfolioApi
+export const portfolioApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockPortfolioApi : realPortfolioApi

@@ -13,12 +13,10 @@ interface LogoProps {
 export function Logo({ className, iconOnly = false }: LogoProps) {
   return (
     <span className={cn('flex items-center gap-2 font-semibold', className)}>
-      <span className="bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-md">
-        <Building2 className="size-4" />
+      <span className='bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-md'>
+        <Building2 className='size-4' />
       </span>
-      {!iconOnly ? (
-        <span className="text-sm tracking-tight">{siteConfig.name}</span>
-      ) : null}
+      {!iconOnly ? <span className='text-sm tracking-tight'>{siteConfig.name}</span> : null}
     </span>
   )
 }

@@ -18,12 +18,12 @@ interface DashboardLayoutProps {
  */
 export function DashboardLayout({ children, onLogout }: DashboardLayoutProps) {
   return (
-    <div className="bg-background flex min-h-svh">
+    <div className='bg-background flex min-h-svh'>
       <DashboardSidebar />
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className='flex min-w-0 flex-1 flex-col'>
         <DashboardHeader onLogout={onLogout} />
-        <main className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
-          <div className="mx-auto w-full max-w-7xl">{children}</div>
+        <main className='flex-1 px-4 py-6 lg:px-8 lg:py-8'>
+          <div className='mx-auto w-full max-w-7xl'>{children}</div>
         </main>
       </div>
     </div>

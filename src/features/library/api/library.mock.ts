@@ -1,10 +1,6 @@
 import type { PaginatedResponse } from '@/shared/types'
 import { mockDelay, paginate } from '@/shared/lib'
-import {
-  LIBRARY_CATEGORY,
-  PRICE_REGION,
-  DEFAULT_LIBRARY_PAGE_SIZE,
-} from '../constants/library.constants'
+import { LIBRARY_CATEGORY, PRICE_REGION, DEFAULT_LIBRARY_PAGE_SIZE } from '../constants/library.constants'
 import type { LibraryItem, LibraryFilters } from '../types/library.types'
 
 const M = LIBRARY_CATEGORY
@@ -20,7 +16,7 @@ const RAW: RawItem[] = [
     unit: 'bao',
     category: M.MATERIAL,
     unitPrice: 92_000,
-    updatedAt: '2026-06-20T03:00:00Z',
+    updatedAt: '2026-06-20T03:00:00Z'
   },
   {
     id: 'l-02',
@@ -29,7 +25,7 @@ const RAW: RawItem[] = [
     unit: 'kg',
     category: M.MATERIAL,
     unitPrice: 18_500,
-    updatedAt: '2026-06-20T03:00:00Z',
+    updatedAt: '2026-06-20T03:00:00Z'
   },
   {
     id: 'l-03',
@@ -38,7 +34,7 @@ const RAW: RawItem[] = [
     unit: 'viên',
     category: M.MATERIAL,
     unitPrice: 1_350,
-    updatedAt: '2026-06-18T03:00:00Z',
+    updatedAt: '2026-06-18T03:00:00Z'
   },
   {
     id: 'l-04',
@@ -47,7 +43,7 @@ const RAW: RawItem[] = [
     unit: 'm³',
     category: M.MATERIAL,
     unitPrice: 420_000,
-    updatedAt: '2026-06-15T03:00:00Z',
+    updatedAt: '2026-06-15T03:00:00Z'
   },
   {
     id: 'l-05',
@@ -56,7 +52,7 @@ const RAW: RawItem[] = [
     unit: 'm³',
     category: M.MATERIAL,
     unitPrice: 480_000,
-    updatedAt: '2026-06-15T03:00:00Z',
+    updatedAt: '2026-06-15T03:00:00Z'
   },
   {
     id: 'l-06',
@@ -65,7 +61,7 @@ const RAW: RawItem[] = [
     unit: 'thùng',
     category: M.MATERIAL,
     unitPrice: 1_280_000,
-    updatedAt: '2026-06-12T03:00:00Z',
+    updatedAt: '2026-06-12T03:00:00Z'
   },
   {
     id: 'l-07',
@@ -74,7 +70,7 @@ const RAW: RawItem[] = [
     unit: 'm²',
     category: M.MATERIAL,
     unitPrice: 235_000,
-    updatedAt: '2026-06-10T03:00:00Z',
+    updatedAt: '2026-06-10T03:00:00Z'
   },
   {
     id: 'l-08',
@@ -83,7 +79,7 @@ const RAW: RawItem[] = [
     unit: 'công',
     category: M.LABOR,
     unitPrice: 450_000,
-    updatedAt: '2026-06-19T03:00:00Z',
+    updatedAt: '2026-06-19T03:00:00Z'
   },
   {
     id: 'l-09',
@@ -92,7 +88,7 @@ const RAW: RawItem[] = [
     unit: 'công',
     category: M.LABOR,
     unitPrice: 400_000,
-    updatedAt: '2026-06-19T03:00:00Z',
+    updatedAt: '2026-06-19T03:00:00Z'
   },
   {
     id: 'l-10',
@@ -101,7 +97,7 @@ const RAW: RawItem[] = [
     unit: 'm²',
     category: M.LABOR,
     unitPrice: 120_000,
-    updatedAt: '2026-06-17T03:00:00Z',
+    updatedAt: '2026-06-17T03:00:00Z'
   },
   {
     id: 'l-11',
@@ -110,7 +106,7 @@ const RAW: RawItem[] = [
     unit: 'công',
     category: M.LABOR,
     unitPrice: 550_000,
-    updatedAt: '2026-06-17T03:00:00Z',
+    updatedAt: '2026-06-17T03:00:00Z'
   },
   {
     id: 'l-12',
@@ -119,7 +115,7 @@ const RAW: RawItem[] = [
     unit: 'ca',
     category: M.EQUIPMENT,
     unitPrice: 650_000,
-    updatedAt: '2026-06-14T03:00:00Z',
+    updatedAt: '2026-06-14T03:00:00Z'
   },
   {
     id: 'l-13',
@@ -128,7 +124,7 @@ const RAW: RawItem[] = [
     unit: 'bộ/tháng',
     category: M.EQUIPMENT,
     unitPrice: 85_000,
-    updatedAt: '2026-06-14T03:00:00Z',
+    updatedAt: '2026-06-14T03:00:00Z'
   },
   {
     id: 'l-14',
@@ -137,7 +133,7 @@ const RAW: RawItem[] = [
     unit: 'ca',
     category: M.EQUIPMENT,
     unitPrice: 180_000,
-    updatedAt: '2026-06-11T03:00:00Z',
+    updatedAt: '2026-06-11T03:00:00Z'
   },
   {
     id: 'l-15',
@@ -146,15 +142,11 @@ const RAW: RawItem[] = [
     unit: 'ca',
     category: M.EQUIPMENT,
     unitPrice: 1_200_000,
-    updatedAt: '2026-06-09T03:00:00Z',
-  },
+    updatedAt: '2026-06-09T03:00:00Z'
+  }
 ]
 
-const REGION_CYCLE = [
-  PRICE_REGION.NORTH,
-  PRICE_REGION.CENTRAL,
-  PRICE_REGION.SOUTH,
-] as const
+const REGION_CYCLE = [PRICE_REGION.NORTH, PRICE_REGION.CENTRAL, PRICE_REGION.SOUTH] as const
 
 /**
  * Enrich raw rows with a region (cycled) and a 3-point price history so the
@@ -166,18 +158,15 @@ export const MOCK_LIBRARY: LibraryItem[] = RAW.map((item, i) => ({
   priceHistory: [
     { date: '2026-03-01T00:00:00Z', price: Math.round(item.unitPrice * 0.92) },
     { date: '2026-05-01T00:00:00Z', price: Math.round(item.unitPrice * 0.97) },
-    { date: item.updatedAt, price: item.unitPrice },
-  ],
+    { date: item.updatedAt, price: item.unitPrice }
+  ]
 }))
 
 function applyFilters(filters: LibraryFilters): LibraryItem[] {
   let items = [...MOCK_LIBRARY]
   if (filters.search) {
     const q = filters.search.toLowerCase()
-    items = items.filter(
-      (i) =>
-        i.name.toLowerCase().includes(q) || i.code.toLowerCase().includes(q),
-    )
+    items = items.filter((i) => i.name.toLowerCase().includes(q) || i.code.toLowerCase().includes(q))
   }
   if (filters.category !== 'all') {
     items = items.filter((i) => i.category === filters.category)
@@ -191,10 +180,6 @@ function applyFilters(filters: LibraryFilters): LibraryItem[] {
 export const mockLibraryApi = {
   async list(filters: LibraryFilters): Promise<PaginatedResponse<LibraryItem>> {
     await mockDelay()
-    return paginate(
-      applyFilters(filters),
-      filters.page,
-      DEFAULT_LIBRARY_PAGE_SIZE,
-    )
-  },
+    return paginate(applyFilters(filters), filters.page, DEFAULT_LIBRARY_PAGE_SIZE)
+  }
 }

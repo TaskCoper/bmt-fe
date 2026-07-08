@@ -5,5 +5,5 @@ import type { UserFilters } from '../types/user.types'
 export const usersKeys = {
   all: [QUERY_KEY_ROOTS.users] as const,
   lists: () => [...usersKeys.all, 'list'] as const,
-  list: (filters: UserFilters) => [...usersKeys.lists(), filters] as const,
+  list: (filters: UserFilters) => [...usersKeys.lists(), filters] as const
 }

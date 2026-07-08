@@ -16,41 +16,35 @@ export function PaletteSwatches() {
   const colors = project?.data.primaryColors ?? []
 
   const toggle = (hex: string) => {
-    const next = colors.includes(hex)
-      ? colors.filter((c) => c !== hex)
-      : [...colors, hex]
+    const next = colors.includes(hex) ? colors.filter((c) => c !== hex) : [...colors, hex]
     patch({ primaryColors: next })
   }
 
   return (
-    <div className="space-y-2">
+    <div className='space-y-2'>
       <Label>{t('colorLabel')}</Label>
-      <div className="flex flex-wrap gap-2">
+      <div className='flex flex-wrap gap-2'>
         {PALETTE_SWATCHES.map((hex) => {
           const active = colors.includes(hex)
           return (
             <button
               key={hex}
-              type="button"
+              type='button'
               onClick={() => toggle(hex)}
               aria-pressed={active}
               title={hex}
               style={{ backgroundColor: hex }}
               className={cn(
                 'border-glass-border flex size-8 items-center justify-center rounded-full border transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]',
-                active
-                  ? 'ring-primary/70 ring-offset-background scale-110 ring-2 ring-offset-2'
-                  : 'hover:scale-105',
+                active ? 'ring-primary/70 ring-offset-background scale-110 ring-2 ring-offset-2' : 'hover:scale-105'
               )}
             >
-              {active ? (
-                <Check className="size-4 text-white drop-shadow" />
-              ) : null}
+              {active ? <Check className='size-4 text-white drop-shadow' /> : null}
             </button>
           )
         })}
       </div>
-      <p className="text-muted-foreground text-xs">{t('colorHint')}</p>
+      <p className='text-muted-foreground text-xs'>{t('colorHint')}</p>
     </div>
   )
 }

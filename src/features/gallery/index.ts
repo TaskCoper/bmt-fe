@@ -14,6 +14,6 @@ export {
   type GalleryStyle,
   type GalleryBuilding,
   type GalleryKind,
-  type GallerySort,
+  type GallerySort
 } from './constants/gallery.constants'
 export type { GalleryItem, GalleryFilters } from './types/gallery.types'

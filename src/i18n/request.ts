@@ -11,19 +11,17 @@ import { FALLBACK_LOCALE, routing, type Locale } from './routing'
  */
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale
-  const locale: Locale = hasLocale(routing.locales, requested)
-    ? requested
-    : routing.defaultLocale
+  const locale: Locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale
 
   const [localeMessages, fallbackMessages] = await Promise.all([
     import(`../../messages/${locale}.json`).then((m) => m.default),
     locale === FALLBACK_LOCALE
       ? Promise.resolve({})
-      : import(`../../messages/${FALLBACK_LOCALE}.json`).then((m) => m.default),
+      : import(`../../messages/${FALLBACK_LOCALE}.json`).then((m) => m.default)
   ])
 
   return {
     locale,
-    messages: { ...fallbackMessages, ...localeMessages },
+    messages: { ...fallbackMessages, ...localeMessages }
   }
 })

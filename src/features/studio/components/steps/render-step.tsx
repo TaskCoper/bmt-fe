@@ -31,7 +31,7 @@ export function RenderStep({ projectId }: { projectId: string }) {
   const renders = project?.result?.renders
   const visible = useMemo(
     () => (renders ?? []).filter((r) => (filter === 'fav' ? r.favorite : true)),
-    [renders, filter],
+    [renders, filter]
   )
 
   if (!project?.result) {
@@ -42,12 +42,10 @@ export function RenderStep({ projectId }: { projectId: string }) {
 
   return (
     <StepSection title={t('title')} description={t('hint')}>
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <Badge variant="secondary">
-            {t('count', { count: renders?.length ?? 0 })}
-          </Badge>
-          <Badge variant="success">{t('favCount', { count: favCount })}</Badge>
+      <div className='flex flex-wrap items-center justify-between gap-3'>
+        <div className='flex items-center gap-2'>
+          <Badge variant='secondary'>{t('count', { count: renders?.length ?? 0 })}</Badge>
+          <Badge variant='success'>{t('favCount', { count: favCount })}</Badge>
         </div>
         <Segmented
           value={filter}
@@ -57,49 +55,36 @@ export function RenderStep({ projectId }: { projectId: string }) {
         />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {visible.map((render) => (
-          <figure
-            key={render.id}
-            className={cn(
-              'glass-card overflow-hidden p-0',
-              render.favorite && 'glass-selected',
-            )}
-          >
+          <figure key={render.id} className={cn('glass-card overflow-hidden p-0', render.favorite && 'glass-selected')}>
             <button
-              type="button"
-              onClick={() =>
-                setLightbox(
-                  (renders ?? []).findIndex((r) => r.id === render.id),
-                )
-              }
-              className="relative block aspect-[4/3] w-full"
+              type='button'
+              onClick={() => setLightbox((renders ?? []).findIndex((r) => r.id === render.id))}
+              className='relative block aspect-[4/3] w-full'
             >
               <span
-                className="block size-full"
+                className='block size-full'
                 style={{
-                  background: `linear-gradient(135deg, hsl(${render.hue} 70% 55%), hsl(${(render.hue + 40) % 360} 65% 35%))`,
+                  background: `linear-gradient(135deg, hsl(${render.hue} 70% 55%), hsl(${(render.hue + 40) % 360} 65% 35%))`
                 }}
               />
-              <span className="absolute top-2 left-2 rounded-lg bg-black/35 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm">
-                {t(`kind.${render.kind}`)} ·{' '}
-                {t('floorLabel', { floor: render.floor })}
+              <span className='absolute top-2 left-2 rounded-lg bg-black/35 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm'>
+                {t(`kind.${render.kind}`)} · {t('floorLabel', { floor: render.floor })}
               </span>
             </button>
-            <figcaption className="flex items-center gap-1 p-2">
+            <figcaption className='flex items-center gap-1 p-2'>
               <button
-                type="button"
+                type='button'
                 onClick={() => toggleFavorite(render.id)}
                 aria-label={t('favorite')}
                 aria-pressed={render.favorite}
-                className="hover:bg-primary/10 rounded-full p-1.5 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]"
+                className='hover:bg-primary/10 rounded-full p-1.5 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]'
               >
                 <Heart
                   className={cn(
                     'size-4 transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]',
-                    render.favorite
-                      ? 'fill-primary text-primary'
-                      : 'text-muted-foreground',
+                    render.favorite ? 'fill-primary text-primary' : 'text-muted-foreground'
                   )}
                 />
               </button>
@@ -107,7 +92,7 @@ export function RenderStep({ projectId }: { projectId: string }) {
                 value={render.caption}
                 onChange={(e) => setCaption(render.id, e.target.value)}
                 placeholder={t('captionPlaceholder')}
-                className="h-8 border-0 bg-transparent px-1 text-sm shadow-none focus-visible:ring-0"
+                className='h-8 border-0 bg-transparent px-1 text-sm shadow-none focus-visible:ring-0'
               />
             </figcaption>
           </figure>
@@ -123,7 +108,7 @@ export function RenderStep({ projectId }: { projectId: string }) {
 
       <StepFooter
         projectId={projectId}
-        step="render"
+        step='render'
         onNext={() => router.push(projectStepPath(projectId, 'export'))}
       />
     </StepSection>

@@ -6,14 +6,7 @@
  */
 
 /** The 6 sequential steps of the design flow (order = flow order). */
-export const WIZARD_STEPS = [
-  'create',
-  'requirements',
-  'layouts',
-  'result',
-  'render',
-  'export',
-] as const
+export const WIZARD_STEPS = ['create', 'requirements', 'layouts', 'result', 'render', 'export'] as const
 
 export type WizardStepId = (typeof WIZARD_STEPS)[number]
 
@@ -24,7 +17,7 @@ export const STEP_SEGMENTS: Record<WizardStepId, string> = {
   layouts: 'layouts',
   result: 'results',
   render: 'renders',
-  export: 'export',
+  export: 'export'
 }
 
 /** Locale-agnostic path for a project step (create → the shared `new` page). */
@@ -40,11 +33,10 @@ export const CONSTRUCTION_TYPES = {
   VILLA: 'villa',
   OFFICE: 'office',
   COMMERCIAL: 'commercial',
-  HOTEL: 'hotel',
+  HOTEL: 'hotel'
 } as const
 
-export type ConstructionType =
-  (typeof CONSTRUCTION_TYPES)[keyof typeof CONSTRUCTION_TYPES]
+export type ConstructionType = (typeof CONSTRUCTION_TYPES)[keyof typeof CONSTRUCTION_TYPES]
 
 /** Construction-type options with their MVP availability. */
 export const CONSTRUCTION_TYPE_OPTIONS: ReadonlyArray<{
@@ -57,7 +49,7 @@ export const CONSTRUCTION_TYPE_OPTIONS: ReadonlyArray<{
   { value: CONSTRUCTION_TYPES.VILLA, group: 'residential', mvp: true },
   { value: CONSTRUCTION_TYPES.OFFICE, group: 'commercial', mvp: false },
   { value: CONSTRUCTION_TYPES.COMMERCIAL, group: 'commercial', mvp: false },
-  { value: CONSTRUCTION_TYPES.HOTEL, group: 'commercial', mvp: false },
+  { value: CONSTRUCTION_TYPES.HOTEL, group: 'commercial', mvp: false }
 ]
 
 /** Vietnam macro-regions (derived from the selected province). */
@@ -80,12 +72,7 @@ export const MAX_FLOORS = 3
 export const FLOOR_OPTIONS = [0, 1, 2, 3] as const
 
 /** Accepted image MIME types + extensions for the file input / validation. */
-export const ACCEPTED_IMAGE_MIME = [
-  'image/jpeg',
-  'image/png',
-  'image/heic',
-  'image/heif',
-] as const
+export const ACCEPTED_IMAGE_MIME = ['image/jpeg', 'image/png', 'image/heic', 'image/heif'] as const
 export const IMAGE_ACCEPT_ATTR = '.jpg,.jpeg,.png,.heic,.heif,image/*'
 
 /** Max AI re-generations allowed per project (the first run is automatic). */
@@ -98,11 +85,10 @@ export const ROUGH_COST_PER_SQM = 3_500_000
 export const BUDGET_PACKAGES = {
   BASIC: 'basic',
   STANDARD: 'standard',
-  PREMIUM: 'premium',
+  PREMIUM: 'premium'
 } as const
 
-export type BudgetPackageId =
-  (typeof BUDGET_PACKAGES)[keyof typeof BUDGET_PACKAGES]
+export type BudgetPackageId = (typeof BUDGET_PACKAGES)[keyof typeof BUDGET_PACKAGES]
 
 /** Alias — a package selected per estimate section (finishing / interior). */
 export type PackageTier = BudgetPackageId
@@ -119,25 +105,25 @@ export const BUDGET_PACKAGE_LIST: readonly BudgetPackage[] = [
   {
     id: BUDGET_PACKAGES.BASIC,
     finishingPerSqm: 1_800_000,
-    interiorPerSqm: 2_000_000,
+    interiorPerSqm: 2_000_000
   },
   {
     id: BUDGET_PACKAGES.STANDARD,
     finishingPerSqm: 2_800_000,
-    interiorPerSqm: 3_500_000,
+    interiorPerSqm: 3_500_000
   },
   {
     id: BUDGET_PACKAGES.PREMIUM,
     finishingPerSqm: 4_500_000,
-    interiorPerSqm: 6_000_000,
-  },
+    interiorPerSqm: 6_000_000
+  }
 ]
 
 /** Order used for tier radio-rows in the estimate table. */
 export const PACKAGE_TIERS: readonly PackageTier[] = [
   BUDGET_PACKAGES.BASIC,
   BUDGET_PACKAGES.STANDARD,
-  BUDGET_PACKAGES.PREMIUM,
+  BUDGET_PACKAGES.PREMIUM
 ]
 
 /**
@@ -149,7 +135,7 @@ export const HOUSE_STYLES = {
   ROOF_JAPANESE: 'roof_japanese',
   ROOF_TRADITIONAL: 'roof_traditional',
   MODERN_TOWNHOUSE: 'modern_townhouse',
-  NEOCLASSICAL: 'neoclassical',
+  NEOCLASSICAL: 'neoclassical'
 } as const
 
 export type HouseStyle = (typeof HOUSE_STYLES)[keyof typeof HOUSE_STYLES]
@@ -166,7 +152,7 @@ export const HOUSE_STYLE_LIST: readonly HouseStyleOption[] = [
   { id: HOUSE_STYLES.ROOF_JAPANESE, group: 'roof', hasTumOption: false },
   { id: HOUSE_STYLES.ROOF_TRADITIONAL, group: 'roof', hasTumOption: false },
   { id: HOUSE_STYLES.MODERN_TOWNHOUSE, group: 'modern', hasTumOption: true },
-  { id: HOUSE_STYLES.NEOCLASSICAL, group: 'modern', hasTumOption: true },
+  { id: HOUSE_STYLES.NEOCLASSICAL, group: 'modern', hasTumOption: true }
 ]
 
 /** Lighting preference. */
@@ -191,13 +177,13 @@ export const PALETTE_SWATCHES: readonly string[] = [
   '#4E6E58', // sage
   '#B23A48', // terracotta
   '#1F2933', // charcoal
-  '#F2A413', // amber (brand)
+  '#F2A413' // amber (brand)
 ]
 
 /** Default per-section tier selection when a result is first generated. */
 export const DEFAULT_SELECTION = {
   finishing: BUDGET_PACKAGES.STANDARD,
-  interior: BUDGET_PACKAGES.STANDARD,
+  interior: BUDGET_PACKAGES.STANDARD
 } as const
 
 /** Export language options for step 6. Pricing is VND-only. */

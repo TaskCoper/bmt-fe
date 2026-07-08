@@ -1,9 +1,4 @@
-import type {
-  GalleryBuilding,
-  GalleryKind,
-  GalleryStyle,
-  GallerySort,
-} from '../constants/gallery.constants'
+import type { GalleryBuilding, GalleryKind, GalleryStyle, GallerySort } from '../constants/gallery.constants'
 
 /** A single design-reference item. */
 export interface GalleryItem {

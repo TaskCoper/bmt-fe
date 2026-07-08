@@ -20,8 +20,7 @@ export const useAuthStore = create<AuthStore>()(
 
       setUser: (user) => set({ user, isAuthenticated: Boolean(user) }),
       setInitialized: (value) => set({ isInitialized: value }),
-      reset: () =>
-        set({ user: null, isAuthenticated: false, isInitialized: true }),
+      reset: () => set({ user: null, isAuthenticated: false, isInitialized: true })
     }),
     {
       name: AUTH_STORAGE_KEY,
@@ -29,8 +28,8 @@ export const useAuthStore = create<AuthStore>()(
       // Never persist the `isInitialized` flag — it must re-derive per session.
       partialize: (state) => ({
         user: state.user,
-        isAuthenticated: state.isAuthenticated,
-      }),
-    },
-  ),
+        isAuthenticated: state.isAuthenticated
+      })
+    }
+  )
 )

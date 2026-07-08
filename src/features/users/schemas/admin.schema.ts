@@ -10,10 +10,7 @@ export interface AdminSchemaMessages {
 export function createAdminSchema(m: AdminSchemaMessages) {
   return z.object({
     name: z.string().min(1, { message: m.required }),
-    email: z
-      .string()
-      .min(1, { message: m.required })
-      .email({ message: m.email }),
+    email: z.string().min(1, { message: m.required }).email({ message: m.email })
   })
 }
 

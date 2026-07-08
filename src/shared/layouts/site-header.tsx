@@ -12,15 +12,15 @@ export function SiteHeader() {
   const t = useTranslations('auth.login')
 
   return (
-    <header className="bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-30 border-b backdrop-blur">
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-4 px-4 lg:px-8">
-        <Link href={ROUTES.HOME} aria-label="Home">
+    <header className='bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-30 border-b backdrop-blur'>
+      <div className='mx-auto flex h-16 w-full max-w-7xl items-center gap-4 px-4 lg:px-8'>
+        <Link href={ROUTES.HOME} aria-label='Home'>
           <Logo />
         </Link>
-        <div className="ml-auto flex items-center gap-1">
+        <div className='ml-auto flex items-center gap-1'>
           <LanguageSwitcher />
           <ThemeToggle />
-          <Button asChild size="sm">
+          <Button asChild size='sm'>
             <Link href={ROUTES.LOGIN}>{t('submit')}</Link>
           </Button>
         </div>

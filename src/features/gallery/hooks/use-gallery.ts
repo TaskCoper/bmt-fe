@@ -15,7 +15,7 @@ export function useGallery(filters: GalleryFilters) {
   return useQuery({
     queryKey: galleryKeys.list(effectiveFilters),
     queryFn: () => galleryApi.list(effectiveFilters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }
 
@@ -27,6 +27,6 @@ export function useGalleryAdmin(filters: GalleryFilters) {
   return useQuery({
     queryKey: [...galleryKeys.list(effectiveFilters), 'admin'],
     queryFn: () => galleryApi.listAll(effectiveFilters),
-    placeholderData: keepPreviousData,
+    placeholderData: keepPreviousData
   })
 }

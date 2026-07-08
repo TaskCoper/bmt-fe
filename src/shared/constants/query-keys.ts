@@ -19,7 +19,7 @@ export const QUERY_KEY_ROOTS = {
   dashboard: 'dashboard',
   profile: 'profile',
   settings: 'settings',
+  location: 'location'
 } as const
 
-export type QueryKeyRoot =
-  (typeof QUERY_KEY_ROOTS)[keyof typeof QUERY_KEY_ROOTS]
+export type QueryKeyRoot = (typeof QUERY_KEY_ROOTS)[keyof typeof QUERY_KEY_ROOTS]

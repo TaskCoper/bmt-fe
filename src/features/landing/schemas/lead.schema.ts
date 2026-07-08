@@ -22,7 +22,7 @@ export function createLeadSchema(m: LeadSchemaMessages) {
       .regex(/^[0-9+\s().-]{8,15}$/, { message: m.phone }),
     email: z.string().email({ message: m.email }).optional().or(z.literal('')),
     needType: z.enum(LEAD_NEED_TYPES),
-    message: z.string().max(2000).optional().or(z.literal('')),
+    message: z.string().max(2000).optional().or(z.literal(''))
   })
 }
 

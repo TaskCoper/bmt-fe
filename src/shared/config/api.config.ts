@@ -11,6 +11,6 @@ export const API_CONFIG = {
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },
+    Accept: 'application/json'
+  }
 } as const

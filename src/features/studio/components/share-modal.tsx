@@ -14,7 +14,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from '@/shared/components/ui/dialog'
 import { Input } from '@/shared/components/ui/input'
 import { Label } from '@/shared/components/ui/label'
@@ -50,58 +50,47 @@ export function ShareModal({ token }: { token: string }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">
-          <Share2 className="size-4" />
+        <Button variant='outline'>
+          <Share2 className='size-4' />
           {t('openButton')}
         </Button>
       </DialogTrigger>
-      <DialogContent className="glass-panel-strong border-0">
+      <DialogContent className='glass-panel-strong border-0'>
         <DialogHeader>
-          <DialogTitle className="tracking-tight">
-            {t('modalTitle')}
-          </DialogTitle>
+          <DialogTitle className='tracking-tight'>{t('modalTitle')}</DialogTitle>
           <DialogDescription>{t('modalHint')}</DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-5">
+        <div className='space-y-5'>
           {/* Public link */}
-          <div className="space-y-2">
+          <div className='space-y-2'>
             <Label>{t('linkLabel')}</Label>
-            <div className="flex gap-2">
+            <div className='flex gap-2'>
               <Input
                 readOnly
                 value={revoked ? '' : url}
-                className="border-glass-border bg-background/40 text-xs backdrop-blur-sm"
+                className='border-glass-border bg-background/40 text-xs backdrop-blur-sm'
               />
               <Button
-                variant="outline"
-                size="icon"
+                variant='outline'
+                size='icon'
                 onClick={copy}
                 disabled={revoked}
-                className="border-glass-border bg-background/50 shrink-0 backdrop-blur transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]"
+                className='border-glass-border bg-background/50 shrink-0 backdrop-blur transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-soft)]'
               >
-                <Copy className="size-4" />
+                <Copy className='size-4' />
               </Button>
             </div>
-            <div className="flex items-center gap-2">
+            <div className='flex items-center gap-2'>
               {revoked ? (
                 <>
-                  <Badge variant="secondary">{t('revoked')}</Badge>
-                  <Button
-                    variant="link"
-                    size="sm"
-                    onClick={() => setRevoked(false)}
-                  >
+                  <Badge variant='secondary'>{t('revoked')}</Badge>
+                  <Button variant='link' size='sm' onClick={() => setRevoked(false)}>
                     {t('recreate')}
                   </Button>
                 </>
               ) : (
-                <Button
-                  variant="link"
-                  size="sm"
-                  className="text-destructive px-0"
-                  onClick={() => setRevoked(true)}
-                >
+                <Button variant='link' size='sm' className='text-destructive px-0' onClick={() => setRevoked(true)}>
                   {t('revoke')}
                 </Button>
               )}
@@ -109,11 +98,11 @@ export function ShareModal({ token }: { token: string }) {
           </div>
 
           {/* Emails */}
-          <div className="space-y-2">
+          <div className='space-y-2'>
             <Label>{t('emailLabel')}</Label>
-            <div className="flex gap-2">
+            <div className='flex gap-2'>
               <Input
-                type="email"
+                type='email'
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
                 onKeyDown={(e) => {
@@ -124,43 +113,37 @@ export function ShareModal({ token }: { token: string }) {
                 }}
                 placeholder={t('emailPlaceholder')}
               />
-              <Button variant="outline" onClick={addEmail}>
+              <Button variant='outline' onClick={addEmail}>
                 {t('emailAdd')}
               </Button>
             </div>
             {emails.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
+              <div className='flex flex-wrap gap-2'>
                 {emails.map((e) => (
-                  <Badge key={e} variant="secondary" className="gap-1">
+                  <Badge key={e} variant='secondary' className='gap-1'>
                     {e}
                     <button
-                      type="button"
-                      onClick={() =>
-                        setEmails((prev) => prev.filter((x) => x !== e))
-                      }
+                      type='button'
+                      onClick={() => setEmails((prev) => prev.filter((x) => x !== e))}
                       aria-label={tCommon('close')}
                     >
-                      <X className="size-3" />
+                      <X className='size-3' />
                     </button>
                   </Badge>
                 ))}
               </div>
             ) : null}
-            <Button
-              size="sm"
-              disabled={emails.length === 0}
-              onClick={() => toast.success(t('emailSent'))}
-            >
-              <Check className="size-4" />
+            <Button size='sm' disabled={emails.length === 0} onClick={() => toast.success(t('emailSent'))}>
+              <Check className='size-4' />
               {t('emailSend')}
             </Button>
           </div>
 
           {/* QR */}
           {!revoked ? (
-            <div className="space-y-2">
+            <div className='space-y-2'>
               <Label>{t('qrLabel')}</Label>
-              <div className="border-glass-border w-fit rounded-xl border bg-white p-3 shadow-[0_1px_2px_oklch(0.3_0.03_60_/_0.06),0_10px_30px_-12px_oklch(0.3_0.03_60_/_0.2)]">
+              <div className='border-glass-border w-fit rounded-xl border bg-white p-3 shadow-[0_1px_2px_oklch(0.3_0.03_60_/_0.06),0_10px_30px_-12px_oklch(0.3_0.03_60_/_0.2)]'>
                 <QRCodeSVG value={url} size={128} />
               </div>
             </div>

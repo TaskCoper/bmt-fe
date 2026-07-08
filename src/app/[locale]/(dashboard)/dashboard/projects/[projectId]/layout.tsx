@@ -5,7 +5,7 @@ import { StudioShell } from '@/features/studio'
 
 export default async function ProjectLayout({
   children,
-  params,
+  params
 }: LayoutProps<'/[locale]/dashboard/projects/[projectId]'>) {
   const { locale, projectId } = await params
   setRequestLocale(locale as Locale)

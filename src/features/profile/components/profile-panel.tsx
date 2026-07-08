@@ -9,34 +9,14 @@ import { Camera, Loader2 } from 'lucide-react'
 
 import { getInitials } from '@/shared/utils'
 import { useAuth, useAuthStore } from '@/shared/auth'
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/shared/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/shared/components/ui/avatar'
 import { Badge } from '@/shared/components/ui/badge'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Textarea } from '@/shared/components/ui/textarea'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/shared/components/ui/card'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/shared/components/ui/form'
-import {
-  createProfileSchema,
-  type ProfileFormValues,
-} from '../schemas/profile.schema'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/components/ui/form'
+import { createProfileSchema, type ProfileFormValues } from '../schemas/profile.schema'
 
 /** Profile page: identity summary card + editable details form (mock save). */
 export function ProfilePanel() {
@@ -49,9 +29,9 @@ export function ProfilePanel() {
     () =>
       createProfileSchema({
         required: tv('required'),
-        maxBio: tv('maxLength', { max: 500 }),
+        maxBio: tv('maxLength', { max: 500 })
       }),
-    [tv],
+    [tv]
   )
 
   const form = useForm<ProfileFormValues>({
@@ -60,8 +40,8 @@ export function ProfilePanel() {
       name: user?.name ?? '',
       phone: '',
       company: '',
-      bio: '',
-    },
+      bio: ''
+    }
   })
 
   function onSubmit(values: ProfileFormValues) {
@@ -75,33 +55,31 @@ export function ProfilePanel() {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
+    <div className='grid gap-6 lg:grid-cols-[320px_1fr]'>
       {/* Identity card */}
-      <Card className="h-fit">
-        <CardHeader className="items-center text-center">
-          <div className="relative">
-            <Avatar className="size-24">
+      <Card className='h-fit'>
+        <CardHeader className='items-center text-center'>
+          <div className='relative'>
+            <Avatar className='size-24'>
               <AvatarImage src={user?.avatarUrl} alt={user?.name ?? ''} />
-              <AvatarFallback className="text-2xl">
-                {user?.name ? getInitials(user.name) : 'U'}
-              </AvatarFallback>
+              <AvatarFallback className='text-2xl'>{user?.name ? getInitials(user.name) : 'U'}</AvatarFallback>
             </Avatar>
             <Button
-              type="button"
-              size="icon"
-              variant="outline"
-              className="absolute right-0 bottom-0 size-8 rounded-full"
+              type='button'
+              size='icon'
+              variant='outline'
+              className='absolute right-0 bottom-0 size-8 rounded-full'
               onClick={() => toast.info(t('avatarSoon'))}
               aria-label={t('changeAvatar')}
             >
-              <Camera className="size-4" />
+              <Camera className='size-4' />
             </Button>
           </div>
-          <CardTitle className="mt-3">{user?.name}</CardTitle>
+          <CardTitle className='mt-3'>{user?.name}</CardTitle>
           <CardDescription>{user?.email}</CardDescription>
-          <div className="mt-2 flex flex-wrap justify-center gap-1">
+          <div className='mt-2 flex flex-wrap justify-center gap-1'>
             {user?.roles.map((role) => (
-              <Badge key={role} variant="secondary">
+              <Badge key={role} variant='secondary'>
                 {t(`role.${role}`)}
               </Badge>
             ))}
@@ -117,11 +95,11 @@ export function ProfilePanel() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
+            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+              <div className='grid gap-4 sm:grid-cols-2'>
                 <FormField
                   control={form.control}
-                  name="name"
+                  name='name'
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t('nameLabel')}</FormLabel>
@@ -140,7 +118,7 @@ export function ProfilePanel() {
                 </FormItem>
                 <FormField
                   control={form.control}
-                  name="phone"
+                  name='phone'
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t('phoneLabel')}</FormLabel>
@@ -153,15 +131,12 @@ export function ProfilePanel() {
                 />
                 <FormField
                   control={form.control}
-                  name="company"
+                  name='company'
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t('companyLabel')}</FormLabel>
                       <FormControl>
-                        <Input
-                          placeholder={t('companyPlaceholder')}
-                          {...field}
-                        />
+                        <Input placeholder={t('companyPlaceholder')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -171,25 +146,21 @@ export function ProfilePanel() {
 
               <FormField
                 control={form.control}
-                name="bio"
+                name='bio'
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t('bioLabel')}</FormLabel>
                     <FormControl>
-                      <Textarea
-                        rows={4}
-                        placeholder={t('bioPlaceholder')}
-                        {...field}
-                      />
+                      <Textarea rows={4} placeholder={t('bioPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <div className="flex justify-end">
-                <Button type="submit" disabled={pending}>
-                  {pending ? <Loader2 className="size-4 animate-spin" /> : null}
+              <div className='flex justify-end'>
+                <Button type='submit' disabled={pending}>
+                  {pending ? <Loader2 className='size-4 animate-spin' /> : null}
                   {t('save')}
                 </Button>
               </div>

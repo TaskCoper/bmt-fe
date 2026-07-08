@@ -2,11 +2,7 @@
  * Pure domain logic for the standalone cost estimator — no React, no HTTP.
  * Mirrors the studio budget rules (shared pricing) so the two flows agree.
  */
-import {
-  ESTIMATE_PACKAGES,
-  ROUGH_COST_PER_SQM,
-  type EstimatePackageId,
-} from '../constants/estimate.constants'
+import { ESTIMATE_PACKAGES, ROUGH_COST_PER_SQM, type EstimatePackageId } from '../constants/estimate.constants'
 import type { EstimateInput, EstimateResult } from '../types/estimate.types'
 
 function packageOf(id: EstimatePackageId) {
@@ -24,13 +20,13 @@ export function calcEstimate(input: EstimateInput): EstimateResult {
   const lines = [
     { portion: 'rough' as const, unitPrice: ROUGH_COST_PER_SQM },
     { portion: 'finishing' as const, unitPrice: pkg.finishingPerSqm },
-    { portion: 'interior' as const, unitPrice: pkg.interiorPerSqm },
+    { portion: 'interior' as const, unitPrice: pkg.interiorPerSqm }
   ].map((row) => ({
     portion: row.portion,
     quantity: area,
     unit: 'm²',
     unitPrice: row.unitPrice,
-    amount: Math.round(row.unitPrice * area),
+    amount: Math.round(row.unitPrice * area)
   }))
 
   const total = lines.reduce((sum, l) => sum + l.amount, 0)

@@ -4,26 +4,18 @@ import { useLocale, useTranslations } from 'next-intl'
 
 import type { Locale } from '@/i18n/routing'
 import { Badge } from '@/shared/components/ui/badge'
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/shared/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card'
 import { Skeleton } from '@/shared/components/ui/skeleton'
 import { formatDate } from '@/shared/utils'
 import { useDashboard } from '../hooks/use-dashboard'
 import type { RecentProjectStatus } from '../types/dashboard.types'
 
-const STATUS_VARIANT: Record<
-  RecentProjectStatus,
-  'default' | 'secondary' | 'success' | 'warning' | 'outline'
-> = {
+const STATUS_VARIANT: Record<RecentProjectStatus, 'default' | 'secondary' | 'success' | 'warning' | 'outline'> = {
   draft: 'secondary',
   active: 'success',
   on_hold: 'warning',
   completed: 'default',
-  archived: 'outline',
+  archived: 'outline'
 }
 
 /** Compact "recently updated projects" card for the dashboard. */
@@ -36,27 +28,18 @@ export function RecentProjects() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-base">{t('recentProjects')}</CardTitle>
+        <CardTitle className='text-base'>{t('recentProjects')}</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-1">
+      <CardContent className='space-y-1'>
         {isLoading || !data
-          ? Array.from({ length: 5 }).map((_, i) => (
-              <Skeleton key={i} className="h-10 w-full" />
-            ))
+          ? Array.from({ length: 5 }).map((_, i) => <Skeleton key={i} className='h-10 w-full' />)
           : data.recentProjects.map((p) => (
-              <div
-                key={p.id}
-                className="flex items-center justify-between gap-3 border-b py-2 last:border-0"
-              >
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium">{p.name}</p>
-                  <p className="text-muted-foreground text-xs">
-                    {formatDate(p.updatedAt, locale)}
-                  </p>
+              <div key={p.id} className='flex items-center justify-between gap-3 border-b py-2 last:border-0'>
+                <div className='min-w-0'>
+                  <p className='truncate text-sm font-medium'>{p.name}</p>
+                  <p className='text-muted-foreground text-xs'>{formatDate(p.updatedAt, locale)}</p>
                 </div>
-                <Badge variant={STATUS_VARIANT[p.status]}>
-                  {tp(`status.${p.status}`)}
-                </Badge>
+                <Badge variant={STATUS_VARIANT[p.status]}>{tp(`status.${p.status}`)}</Badge>
               </div>
             ))}
       </CardContent>

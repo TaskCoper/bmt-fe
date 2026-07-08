@@ -8,13 +8,7 @@ export type StepStatus = 'locked' | 'active' | 'done'
  * dashboard cards to show how far a design project has progressed. Pure
  * presentational — lives in `shared` so any feature can render it.
  */
-export function StepDots({
-  statuses,
-  className,
-}: {
-  statuses: readonly StepStatus[]
-  className?: string
-}) {
+export function StepDots({ statuses, className }: { statuses: readonly StepStatus[]; className?: string }) {
   return (
     <div className={cn('flex items-center gap-1.5', className)}>
       {statuses.map((status, i) => (
@@ -27,7 +21,7 @@ export function StepDots({
               ? 'bg-primary'
               : status === 'active'
                 ? 'ring-primary/60 bg-primary/30 ring-2'
-                : 'bg-border',
+                : 'bg-border'
           )}
         />
       ))}

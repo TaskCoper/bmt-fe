@@ -2,7 +2,7 @@
 export const ROLES = {
   GUEST: 'guest',
   CUSTOMER: 'customer',
-  ADMIN: 'admin',
+  ADMIN: 'admin'
 } as const
 
 export type Role = (typeof ROLES)[keyof typeof ROLES]

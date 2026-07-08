@@ -9,6 +9,6 @@ export {
   CONTENT_TYPE,
   DEFAULT_CMS_PAGE_SIZE,
   type ContentStatus,
-  type ContentType,
+  type ContentType
 } from './constants/cms.constants'
 export type { ContentEntry, ContentFilters } from './types/cms.types'
