@@ -36,7 +36,7 @@ export default function CreateProjectDialog({ children }: CreateProjectDialogPro
     addProject({ ...body, id, slug, createdAt, designRequest: null, spaces: null, ...flow })
     setOpen(false)
     methods.reset()
-    router.push(`/projects/${slug}`)
+    router.push(`/dashboard/projects/${slug}`)
   }
 
   const onClose = () => {

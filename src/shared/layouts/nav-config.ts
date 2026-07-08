@@ -1,9 +1,8 @@
 import {
-  LayoutDashboard,
   FolderKanban,
   Calculator,
-  Library,
-  Bot,
+  FilePlus2,
+  ListChecks,
   FileText,
   Users,
   Inbox,
@@ -19,35 +18,53 @@ import { ROLES, type Role } from '@/shared/auth'
 export type NavLabelKey =
   | 'dashboard'
   | 'projects'
-  | 'estimates'
-  | 'library'
-  | 'chatbot'
+  | 'myEstimates'
+  | 'estimateCreate'
+  | 'estimateList'
   | 'cms'
   | 'users'
   | 'leads'
   | 'adminGallery'
   | 'adminPortfolio'
 
-/** A single primary navigation entry for the dashboard sidebar. */
-export interface NavItem {
+/** A leaf navigation entry (a real, clickable destination). */
+export interface NavLeaf {
   /** Key under the `nav` translation namespace. */
   labelKey: NavLabelKey
   href: string
+}
+
+/**
+ * A single primary navigation entry for the dashboard sidebar. A parent entry
+ * omits `href` and provides `children` — it renders as a collapsible group.
+ */
+export interface NavItem {
+  labelKey: NavLabelKey
   icon: LucideIcon
+  /** Destination for a leaf item. Omitted when the item has `children`. */
+  href?: string
+  /** Sub-items; when present the entry is a collapsible parent. */
+  children?: readonly NavLeaf[]
   /** Roles allowed to see this item. Empty = all authenticated users. */
   roles?: readonly Role[]
 }
 
 /**
  * Primary dashboard navigation. Labels are translation keys (never hardcoded
- * text); icons and routes are colocated for a single source of truth.
+ * text); icons and routes are colocated for a single source of truth. Library
+ * lives in the top header and the AI chatbot is a floating dock — neither
+ * belongs in this list.
  */
 export const DASHBOARD_NAV: readonly NavItem[] = [
-  { labelKey: 'dashboard', href: ROUTES.DASHBOARD, icon: LayoutDashboard },
   { labelKey: 'projects', href: ROUTES.PROJECTS, icon: FolderKanban },
-  { labelKey: 'estimates', href: ROUTES.ESTIMATES, icon: Calculator },
-  { labelKey: 'library', href: ROUTES.LIBRARY, icon: Library },
-  { labelKey: 'chatbot', href: ROUTES.CHATBOT, icon: Bot },
+  {
+    labelKey: 'myEstimates',
+    icon: Calculator,
+    children: [
+      { labelKey: 'estimateCreate', href: ROUTES.ESTIMATE_NEW },
+      { labelKey: 'estimateList', href: ROUTES.ESTIMATES }
+    ]
+  },
   {
     labelKey: 'cms',
     href: ROUTES.CMS,
@@ -79,3 +96,9 @@ export const DASHBOARD_NAV: readonly NavItem[] = [
     roles: [ROLES.ADMIN]
   }
 ]
+
+/** Icons for the estimate sub-items, keyed by their translation label. */
+export const NAV_CHILD_ICON: Partial<Record<NavLabelKey, LucideIcon>> = {
+  estimateCreate: FilePlus2,
+  estimateList: ListChecks
+}

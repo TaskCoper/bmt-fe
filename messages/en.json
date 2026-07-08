@@ -31,6 +31,10 @@
     "dashboard": "Dashboard",
     "projects": "Projects",
     "estimates": "Estimates",
+    "myEstimates": "My estimates",
+    "estimateCreate": "New estimate",
+    "estimateList": "All estimates",
+    "referenceLibrary": "Reference library",
     "library": "Library",
     "chatbot": "Assistant",
     "cms": "Content",
@@ -41,6 +45,13 @@
     "leads": "Leads",
     "adminGallery": "Library (admin)",
     "adminPortfolio": "Portfolio (admin)"
+  },
+  "assistant": {
+    "uiTab": "Interface",
+    "chatTab": "AI Chatbot",
+    "title": "AI Assistant",
+    "subtitle": "Ask anything about your project",
+    "close": "Close"
   },
   "theme": {
     "label": "Theme",

@@ -112,7 +112,7 @@ export function getProjectFlowUrls(
   const idx = PROJECT_FLOW.findIndex(([step]) => step === current)
   const buildUrl = (i: number) => {
     const entry = PROJECT_FLOW[i]
-    return entry ? `/projects/${slug}${entry[1]}` : null
+    return entry ? `/dashboard/projects/${slug}${entry[1]}` : null
   }
   return { prevUrl: buildUrl(idx - 1), nextUrl: buildUrl(idx + 1) }
 }
