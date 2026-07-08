@@ -32,7 +32,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const alt = t(`imageAlt.${project.houseType}`)
 
   return (
-    <Link href={`/projects/${project.slug}`} className='block'>
+    <Link href={`/dashboard/projects/${project.slug}`} className='block'>
       <Card className='relative aspect-video overflow-hidden'>
         <Image
           src={imageSet.light}

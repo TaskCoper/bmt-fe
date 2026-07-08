@@ -24,7 +24,6 @@ export const ROUTES = {
   ESTIMATES: '/dashboard/estimates',
   ESTIMATE_NEW: '/dashboard/estimates/new',
   LIBRARY: '/dashboard/library',
-  CHATBOT: '/dashboard/chatbot',
   CMS: '/dashboard/cms',
   USERS: '/dashboard/users',
   LEADS: '/dashboard/leads',

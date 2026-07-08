@@ -31,6 +31,10 @@
     "dashboard": "Bảng điều khiển",
     "projects": "Dự án",
     "estimates": "Dự toán",
+    "myEstimates": "Dự toán của tôi",
+    "estimateCreate": "Tạo dự toán mới",
+    "estimateList": "Danh sách dự toán",
+    "referenceLibrary": "Thư viện tham khảo",
     "library": "Thư viện",
     "chatbot": "Trợ lý",
     "cms": "Nội dung",
@@ -41,6 +45,13 @@
     "leads": "Khách hàng tiềm năng",
     "adminGallery": "Thư viện (admin)",
     "adminPortfolio": "Dự án (admin)"
+  },
+  "assistant": {
+    "uiTab": "Giao diện",
+    "chatTab": "Chatbot AI",
+    "title": "Trợ lý AI",
+    "subtitle": "Hỏi bất cứ điều gì về dự án của bạn",
+    "close": "Đóng"
   },
   "theme": {
     "label": "Giao diện",

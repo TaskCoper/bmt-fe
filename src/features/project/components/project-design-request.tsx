@@ -83,7 +83,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
 
   const onSubmit: SubmitHandler<DesignRequestFormValues> = (body) => {
     updateProject({ slug, patch: { designRequest: body.designRequest } })
-    router.push(project?.nextUrl ?? `/projects/${slug}/spaces`)
+    router.push(project?.nextUrl ?? `/dashboard/projects/${slug}/spaces`)
   }
 
   useEffect(() => {

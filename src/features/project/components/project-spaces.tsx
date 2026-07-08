@@ -78,7 +78,7 @@ export default function ProjectSpaces({ slug }: ProjectSpacesProps) {
 
   const onSubmit: SubmitHandler<SpacesFormValues> = (body) => {
     updateProject({ slug, patch: { spaces: body.spaces } })
-    router.push(project?.nextUrl ?? `/projects/${slug}/ai-design-result`)
+    router.push(project?.nextUrl ?? `/dashboard/projects/${slug}/ai-design-result`)
   }
 
   const persistSpacesDraft = (spaces: SpacesFormValues['spaces']) => {
