@@ -173,7 +173,7 @@ export const PROJECT_FLOW: readonly (readonly [ProjectFlowStep, string])[] = [
 
 export function getProjectFlowUrl(slug: string, step: ProjectFlowStep): string {
   const entry = PROJECT_FLOW.find(([flowStep]) => flowStep === step)
-  return `/projects/${slug}${entry?.[1] ?? ''}`
+  return `/dashboard/projects/${slug}${entry?.[1] ?? ''}`
 }
 
 export function getProjectFlowIndex(step: ProjectFlowStep): number {

@@ -19,7 +19,7 @@ export const ROUTES = {
 
   // Dashboard (protected)
   DASHBOARD: '/dashboard',
-  PROJECTS: '/projects',
+  PROJECTS: '/dashboard/projects',
   PROJECT_NEW: '/dashboard/projects/new',
   ESTIMATES: '/dashboard/estimates',
   ESTIMATE_NEW: '/dashboard/estimates/new',

@@ -46,7 +46,7 @@ export default function CreateProjectDialog({ children }: CreateProjectDialogPro
     })
     setOpen(false)
     methods.reset()
-    router.push(`/projects/${slug}`)
+    router.push(`/dashboard/projects/${slug}`)
   }
 
   const onClose = () => {

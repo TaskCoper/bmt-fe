@@ -12,7 +12,7 @@ interface ProjectFlowLayoutProps {
 }
 
 function stepFromPath(pathname: string, slug: string): number {
-  const root = `/projects/${slug}`
+  const root = `/dashboard/projects/${slug}`
   if (!pathname.startsWith(root)) return 0
   const suffix = pathname.slice(root.length)
   const idx = PROJECT_FLOW.findIndex(([, path]) =>
