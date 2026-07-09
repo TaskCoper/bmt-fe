@@ -1113,7 +1113,8 @@
       "code": "Mã",
       "name": "Tên dự toán",
       "status": "Trạng thái",
-      "total": "Tổng tiền"
+      "total": "Tổng tiền",
+      "actions": "Thao tác"
     },
     "status": {
       "all": "Tất cả trạng thái",
@@ -1127,6 +1128,29 @@
       "description": "Không tìm thấy dự toán phù hợp bộ lọc."
     },
     "createNew": "Tạo dự toán",
+    "priceRange": {
+      "label": "Khoảng giá",
+      "title": "Lọc theo khoảng giá",
+      "reset": "Đặt lại"
+    },
+    "rowActions": {
+      "view": "Xem chi tiết",
+      "delete": "Xóa"
+    },
+    "deleted": "Đã xóa \"{name}\" (demo).",
+    "detail": {
+      "title": "Chi tiết dự toán",
+      "back": "Danh sách dự toán",
+      "createdAt": "Tạo ngày {date}",
+      "totalLabel": "Tổng dự toán",
+      "descriptionTitle": "Mô tả",
+      "parametersTitle": "Thông số",
+      "breakdownTitle": "Chi tiết dự toán",
+      "notFound": {
+        "title": "Không tìm thấy dự toán",
+        "description": "Dự toán này không tồn tại hoặc đã bị xóa."
+      }
+    },
     "creator": {
       "title": "Tạo dự toán",
       "subtitle": "Tạo dự toán chi phí độc lập, không cần qua luồng thiết kế AI.",
@@ -1158,12 +1182,33 @@
         "finishing": "Hoàn thiện",
         "interior": "Nội thất"
       },
+      "subPortion": {
+        "roughMaterial": "Vật tư phần thô",
+        "roughLabor": "Nhân công phần thô",
+        "roughOther": "Máy móc & chi phí khác",
+        "finishMaterial": "Vật liệu hoàn thiện",
+        "finishLabor": "Nhân công hoàn thiện",
+        "interiorCabinet": "Nội thất gỗ (tủ, kệ)",
+        "interiorAppliance": "Thiết bị & phụ kiện",
+        "interiorDecor": "Đồ rời & trang trí"
+      },
       "total": "Tổng cộng",
       "disclaimer": "Đây là mức dự toán tham khảo; chi phí thực tế có thể thay đổi.",
+      "saveDialog": {
+        "title": "Lưu dự toán",
+        "description": "Đặt tên để dễ tìm lại trong danh sách.",
+        "nameLabel": "Tên dự toán",
+        "namePlaceholder": "VD: Căn hộ 2PN Vinhomes",
+        "descLabel": "Mô tả",
+        "descPlaceholder": "Mô tả ngắn về dự toán",
+        "cancel": "Hủy",
+        "confirm": "Lưu"
+      },
       "save": "Lưu",
       "exportPdf": "Xuất PDF",
       "share": "Chia sẻ link",
       "saved": "Đã lưu dự toán (demo).",
+      "viewList": "Xem danh sách",
       "exported": "Đã xuất PDF (demo).",
       "shared": "Đã sao chép link chia sẻ (demo)."
     }

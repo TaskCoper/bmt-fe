@@ -2,7 +2,8 @@ import type {
   EstimateBuilding,
   EstimatePackageId,
   EstimatePortion,
-  EstimateStatus
+  EstimateStatus,
+  EstimateSubItemKey
 } from '../constants/estimate.constants'
 
 /** A cost estimate as returned by the backend. */
@@ -15,6 +16,10 @@ export interface Estimate {
   total: number
   itemsCount: number
   createdAt: string
+  /** Optional free-text note captured on save. */
+  description?: string
+  /** Inputs used to compute the breakdown (present on the detail record). */
+  input?: EstimateInput
 }
 
 /** Aggregate figures shown above the estimate list. */
@@ -29,6 +34,8 @@ export interface EstimateSummary {
 export interface EstimateFilters {
   search: string
   status: EstimateStatus | 'all'
+  minPrice: number
+  maxPrice: number
   page: number
 }
 
@@ -41,6 +48,15 @@ export interface EstimateInput {
   packageId: EstimatePackageId
 }
 
+/** A sub-item of a portion (materials, labour, …). */
+export interface EstimateSubItem {
+  key: EstimateSubItemKey
+  quantity: number
+  unit: string
+  unitPrice: number
+  amount: number
+}
+
 /** A single breakdown row of a computed estimate. */
 export interface EstimateLine {
   portion: EstimatePortion
@@ -48,6 +64,8 @@ export interface EstimateLine {
   unit: string
   unitPrice: number
   amount: number
+  /** Cost sub-items (materials / labour / …) that make up this portion. */
+  items: EstimateSubItem[]
 }
 
 /** Result of the standalone estimate computation. */

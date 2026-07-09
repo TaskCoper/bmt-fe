@@ -6,5 +6,7 @@ export const estimateKeys = {
   all: [QUERY_KEY_ROOTS.estimates] as const,
   lists: () => [...estimateKeys.all, 'list'] as const,
   list: (filters: EstimateFilters) => [...estimateKeys.lists(), filters] as const,
+  details: () => [...estimateKeys.all, 'detail'] as const,
+  detail: (id: string) => [...estimateKeys.details(), id] as const,
   summary: () => [...estimateKeys.all, 'summary'] as const
 }

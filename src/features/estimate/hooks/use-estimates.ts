@@ -19,6 +19,15 @@ export function useEstimates(filters: EstimateFilters) {
   })
 }
 
+/** A single estimate by id, for the detail page. */
+export function useEstimate(id: string) {
+  return useQuery({
+    queryKey: estimateKeys.detail(id),
+    queryFn: () => estimateApi.getById(id),
+    enabled: Boolean(id)
+  })
+}
+
 /** Headline figures for the estimate summary cards. */
 export function useEstimateSummary() {
   return useQuery({
