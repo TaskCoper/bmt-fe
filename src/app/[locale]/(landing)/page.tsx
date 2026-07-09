@@ -9,7 +9,7 @@ import {
   ServicesSection,
   StatsSection
 } from '@/features/landing'
-import { AmbientAura } from '@/shared/components/common'
+import { AmbientAura, Reveal } from '@/shared/components/common'
 import type { Locale } from '@/i18n/routing'
 
 interface PageProps {
@@ -29,7 +29,9 @@ export default async function HomePage({ params }: PageProps) {
       <ServicesSection />
       <FeaturedProjects />
       <StatsSection />
-      <ContactSection />
+      <Reveal>
+        <ContactSection />
+      </Reveal>
     </div>
   )
 }

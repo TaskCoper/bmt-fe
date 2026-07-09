@@ -1,36 +1,51 @@
 'use client'
 
-import { type ReactNode, useSyncExternalStore } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
-import { ArrowLeft, Download, Image as ImageIcon, Lock, PencilRuler } from 'lucide-react'
+import { ArrowLeft, Download } from 'lucide-react'
 
 import { Link } from '@/i18n/navigation'
 import { useAuth, useAuthDialogStore } from '@/shared/auth'
+import { cn } from '@/shared/lib/utils'
 import { Badge } from '@/shared/components/ui/badge'
 import { Button } from '@/shared/components/ui/button'
+import {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from '@/shared/components/ui/carousel'
 import { Skeleton } from '@/shared/components/ui/skeleton'
-import { EmptyState } from '@/shared/components/common'
+import { BeforeAfterSlider, EmptyState, Reveal, StockImage } from '@/shared/components/common'
 import { ROUTES } from '@/shared/constants/routes'
-import { useGalleryItem } from '../hooks/use-gallery'
-import type { GalleryDrawing, GalleryPhoto } from '../types/gallery.types'
+import { useGallery, useGalleryItem } from '../hooks/use-gallery'
+import type { GalleryItem } from '../types/gallery.types'
 
-/** Stable no-op subscribe so `useSyncExternalStore` only distinguishes SSR vs client. */
-const emptySubscribe = () => () => {}
+/** A gallery slide — a drawing or an interior photo. */
+interface Media {
+  id: string
+  label: string
+}
 
-/** Public project detail: floor-plan drawings + finished-interior photos. */
+/** Public project detail — ecommerce layout: gallery (left) + info (right). */
 export function GalleryDetail({ id }: { id: string }) {
   const t = useTranslations('gallery')
   const { isAuthenticated } = useAuth()
   const openAuth = useAuthDialogStore((s) => s.open)
   const { data: item, isLoading, isError } = useGalleryItem(id)
 
-  // Auth state is client-only; gate on hydration so SSR and first paint match.
-  const mounted = useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false
-  )
+  // Related references — same building type, excluding the current item.
+  const { data: relatedData } = useGallery({
+    search: '',
+    style: 'all',
+    building: item?.building ?? 'all',
+    sort: 'newest',
+    page: 1
+  })
+  const related = (relatedData?.items ?? []).filter((r) => r.id !== id).slice(0, 4)
 
   const back = (
     <Button asChild variant='ghost' size='sm' className='text-muted-foreground -ml-2'>
@@ -41,34 +56,16 @@ export function GalleryDetail({ id }: { id: string }) {
     </Button>
   )
 
-  const skeleton = (
-    <div className='space-y-8'>
-      {back}
-      <Skeleton className='h-8 w-2/3' />
-      <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-        {Array.from({ length: 6 }).map((_, i) => (
-          <Skeleton key={i} className='aspect-[4/3] w-full rounded-2xl' />
-        ))}
-      </div>
-    </div>
-  )
-
-  if (!mounted || (isAuthenticated && isLoading)) return skeleton
-
-  // Members-only: guests never see the drawings/photos.
-  if (!isAuthenticated) {
+  if (isLoading) {
     return (
       <div className='space-y-8'>
         {back}
-        <div className='glass-card mx-auto flex max-w-md flex-col items-center gap-4 p-10 text-center'>
-          <span className='bg-primary/10 text-primary flex size-12 items-center justify-center rounded-full'>
-            <Lock className='size-6' />
-          </span>
-          <div className='space-y-1'>
-            <h1 className='text-xl font-semibold'>{t('detail.lockedTitle')}</h1>
-            <p className='text-muted-foreground text-sm'>{t('detail.lockedDesc')}</p>
+        <div className='grid gap-8 lg:grid-cols-2'>
+          <Skeleton className='aspect-square w-full rounded-2xl' />
+          <div className='space-y-4'>
+            <Skeleton className='h-8 w-3/4' />
+            <Skeleton className='h-20 w-full' />
           </div>
-          <Button onClick={() => openAuth('login')}>{t('detail.loginCta')}</Button>
         </div>
       </div>
     )
@@ -83,162 +80,182 @@ export function GalleryDetail({ id }: { id: string }) {
     )
   }
 
-  const downloadPdf = () => toast.success(t('downloadStarted', { title: item.title }))
+  const downloadPdf = () => {
+    if (!isAuthenticated) {
+      // Viewing is open; downloading the PDF still requires an account.
+      toast.info(t('loginToDownload'))
+      openAuth('login', () => toast.success(t('downloadStarted', { title: item.title })))
+      return
+    }
+    toast.success(t('downloadStarted', { title: item.title }))
+  }
+
+  const media: Media[] = [
+    ...item.drawings.map((d, i) => ({ id: d.id, label: t('detail.drawingLabel', { index: i + 1 }) })),
+    ...item.photos.map((p) => ({ id: p.id, label: t(`detail.${p.variant}`) }))
+  ]
 
   return (
-    <div className='space-y-10'>
+    <div className='space-y-8'>
       {back}
 
-      {/* Header */}
-      <header className='space-y-4'>
-        <div className='flex flex-wrap items-start justify-between gap-4'>
-          <div className='space-y-2'>
-            <h1 className='text-3xl font-bold tracking-tight'>{item.title}</h1>
-            <p className='text-muted-foreground max-w-2xl'>{item.description}</p>
+      <div className='grid items-start gap-8 md:grid-cols-2 md:gap-10 lg:gap-12'>
+        {/* Left — media gallery (sticky on desktop) */}
+        <div className='min-w-0 md:sticky md:top-20'>
+          <MediaGallery items={media} />
+        </div>
+
+        {/* Right — product-style info */}
+        <Reveal direction='right' className='min-w-0 space-y-6'>
+          <div className='space-y-3'>
+            <div className='flex items-start justify-between gap-3'>
+              <h1 className='min-w-0 text-2xl font-bold tracking-tight sm:text-3xl'>{item.title}</h1>
+              <Button size='sm' className='shrink-0' onClick={downloadPdf}>
+                <Download className='size-4' />
+                {t('download')}
+              </Button>
+            </div>
+            <p className='text-muted-foreground text-pretty'>{item.description}</p>
           </div>
-          <Button size='sm' className='shrink-0' onClick={downloadPdf}>
-            <Download className='size-4' />
-            {t('download')}
-          </Button>
-        </div>
-        <div className='flex flex-wrap gap-1.5'>
-          <Badge variant='outline'>{t(`style.${item.style}`)}</Badge>
-          <Badge variant='outline'>{t(`building.${item.building}`)}</Badge>
-          {item.tags.map((tag) => (
-            <Badge key={tag} variant='secondary'>
-              {tag}
-            </Badge>
-          ))}
-        </div>
-      </header>
 
-      {/* Group 1 — floor-plan drawings */}
-      <AssetGroup
-        icon={<PencilRuler className='size-5' />}
-        title={t('detail.drawingsTitle')}
-        description={t('detail.drawingsDesc')}
-        count={item.drawings.length}
-      >
-        {item.drawings.map((drawing, i) => (
-          <DrawingTile key={drawing.id} drawing={drawing} label={t('detail.drawingLabel', { index: i + 1 })} />
-        ))}
-      </AssetGroup>
+          <div className='flex flex-wrap gap-1.5'>
+            <Badge variant='outline'>{t(`style.${item.style}`)}</Badge>
+            <Badge variant='outline'>{t(`building.${item.building}`)}</Badge>
+            {item.tags.map((tag) => (
+              <Badge key={tag} variant='secondary'>
+                {tag}
+              </Badge>
+            ))}
+          </div>
 
-      {/* Group 2 — finished-interior photos */}
-      <AssetGroup
-        icon={<ImageIcon className='size-5' />}
-        title={t('detail.photosTitle')}
-        description={t('detail.photosDesc')}
-        count={item.photos.length}
-      >
-        {item.photos.map((photo) => (
-          <PhotoTile key={photo.id} photo={photo} variantLabel={t(`detail.${photo.variant}`)} />
-        ))}
-      </AssetGroup>
+          {/* Rich-text write-up (CMS) — flows down the right column */}
+          <div className='prose-content' dangerouslySetInnerHTML={{ __html: item.body }} />
+        </Reveal>
+      </div>
+
+      {/* Before / After comparison */}
+      <Reveal>
+        <section className='space-y-4'>
+          <div className='space-y-1'>
+            <h2 className='text-2xl font-bold tracking-tight'>{t('detail.beforeAfter')}</h2>
+            <p className='text-muted-foreground text-sm'>{t('detail.beforeAfterHint')}</p>
+          </div>
+          <BeforeAfterSlider
+            seed={`${item.id}-ba`}
+            alt={item.title}
+            count={item.photos.length + item.drawings.length}
+            beforeLabel={t('detail.before')}
+            afterLabel={t('detail.after')}
+          />
+        </section>
+      </Reveal>
+
+      {/* Related references */}
+      {related.length > 0 ? (
+        <Reveal>
+          <section className='border-t pt-8'>
+            <h2 className='mb-5 text-2xl font-bold tracking-tight'>{t('detail.relatedTitle')}</h2>
+            <div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-4'>
+              {related.map((r) => (
+                <RelatedCard key={r.id} item={r} style={t(`style.${r.style}`)} building={t(`building.${r.building}`)} />
+              ))}
+            </div>
+          </section>
+        </Reveal>
+      ) : null}
     </div>
   )
 }
 
-/** Section wrapper: title row + a tile grid. */
-function AssetGroup({
-  icon,
-  title,
-  description,
-  count,
-  children
-}: {
-  icon: ReactNode
-  title: string
-  description: string
-  count: number
-  children: ReactNode
-}) {
+/** Compact related-reference card. */
+function RelatedCard({ item, style, building }: { item: GalleryItem; style: string; building: string }) {
   return (
-    <section className='space-y-4'>
-      <div className='flex items-center gap-3'>
-        <span className='bg-primary/10 text-primary flex size-9 items-center justify-center rounded-xl'>{icon}</span>
-        <div>
-          <h2 className='flex items-center gap-2 text-lg font-semibold tracking-tight'>
-            {title}
-            <span className='text-muted-foreground text-sm font-normal'>({count})</span>
-          </h2>
-          <p className='text-muted-foreground text-sm'>{description}</p>
+    <Link href={`${ROUTES.GALLERY}/${item.id}`} className='glass-card group flex flex-col overflow-hidden'>
+      <StockImage seed={item.id} alt={item.title} width={600} className='aspect-[4/3] w-full' />
+      <div className='flex flex-1 flex-col gap-2 p-3'>
+        <h3 className='group-hover:text-primary line-clamp-1 font-medium tracking-tight transition-colors'>
+          {item.title}
+        </h3>
+        <div className='mt-auto flex flex-wrap gap-1'>
+          <Badge variant='outline'>{style}</Badge>
+          <Badge variant='outline'>{building}</Badge>
         </div>
       </div>
-      <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>{children}</div>
-    </section>
+    </Link>
   )
 }
 
-/** Blueprint-style placeholder for a floor-plan drawing. */
-function DrawingTile({ drawing, label }: { drawing: GalleryDrawing; label: string }) {
-  return (
-    <figure className='glass-card group overflow-hidden'>
-      <div
-        className='relative aspect-[4/3]'
-        style={{
-          background: `linear-gradient(135deg, hsl(${drawing.hue} 45% 92%), hsl(${(drawing.hue + 30) % 360} 40% 84%))`
-        }}
-      >
-        <svg
-          viewBox='0 0 320 240'
-          preserveAspectRatio='xMidYMid meet'
-          className='text-foreground/45 absolute inset-0 size-full p-6'
-          fill='none'
-          stroke='currentColor'
-          strokeWidth='2'
-          aria-hidden
-        >
-          <rect x='10' y='10' width='300' height='220' />
-          <line x1='170' y1='10' x2='170' y2='140' />
-          <line x1='10' y1='140' x2='170' y2='140' />
-          <line x1='170' y1='96' x2='310' y2='96' />
-          <rect x='30' y='30' width='48' height='30' strokeWidth='1.5' />
-          <circle cx='240' cy='55' r='16' strokeWidth='1.5' />
-          <path d='M110 140 a30 30 0 0 0 30 -30' strokeWidth='1.5' />
-          <path d='M170 190 a26 26 0 0 1 26 -26' strokeWidth='1.5' />
-        </svg>
-        <figcaption className='absolute bottom-2.5 left-2.5'>
-          <Badge className='border-white/25 bg-black/35 text-white backdrop-blur-md'>{label}</Badge>
-        </figcaption>
-      </div>
-    </figure>
-  )
-}
+/** Main carousel + synced thumbnail carousel (shadcn/embla). */
+function MediaGallery({ items }: { items: Media[] }) {
+  const [mainApi, setMainApi] = useState<CarouselApi>()
+  const [thumbApi, setThumbApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
 
-/** Gradient placeholder for a finished-interior photo (render / real). */
-function PhotoTile({ photo, variantLabel }: { photo: GalleryPhoto; variantLabel: string }) {
+  useEffect(() => {
+    if (!mainApi) return
+    const onSelect = () => {
+      const i = mainApi.selectedScrollSnap()
+      setCurrent(i)
+      thumbApi?.scrollTo(i)
+    }
+    mainApi.on('select', onSelect)
+    return () => {
+      mainApi.off('select', onSelect)
+    }
+  }, [mainApi, thumbApi])
+
+  const multiple = items.length > 1
+
   return (
-    <figure className='glass-card group overflow-hidden'>
-      <div className='relative aspect-[4/3] overflow-hidden'>
-        <div
-          className='size-full transition-transform duration-500 ease-out group-hover:scale-[1.06]'
-          style={{
-            background: `linear-gradient(135deg, hsl(${photo.hue} 70% 62%), hsl(${(photo.hue + 45) % 360} 62% 42%))`
-          }}
-        />
-        <svg
-          viewBox='0 0 320 240'
-          preserveAspectRatio='xMidYMid slice'
-          className='absolute inset-0 size-full text-white/25'
-          fill='none'
-          stroke='currentColor'
-          strokeWidth='2'
-          aria-hidden
-        >
-          <circle cx='250' cy='46' r='18' className='text-white/20' />
-          <line x1='0' y1='196' x2='320' y2='196' />
-          <rect x='60' y='140' width='96' height='56' />
-          <rect x='150' y='96' width='120' height='100' />
-          <line x1='150' y1='88' x2='270' y2='88' strokeWidth='3' />
-          <rect x='176' y='120' width='30' height='30' />
-          <rect x='222' y='120' width='30' height='30' />
-        </svg>
-        <div className='absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/25 to-transparent' aria-hidden />
-        <figcaption className='absolute top-2.5 left-2.5'>
-          <Badge className='border-white/25 bg-black/35 text-white backdrop-blur-md'>{variantLabel}</Badge>
-        </figcaption>
-      </div>
-    </figure>
+    <div className='space-y-3'>
+      {/* Main */}
+      <Carousel setApi={setMainApi} opts={{ loop: true }} className='w-full'>
+        <CarouselContent>
+          {items.map((m) => (
+            <CarouselItem key={m.id}>
+              <div className='relative aspect-square w-full overflow-hidden rounded-2xl border'>
+                <StockImage seed={m.id} alt={m.label} width={1000} className='size-full' />
+                <div
+                  className='absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/25 to-transparent'
+                  aria-hidden
+                />
+                <Badge className='absolute top-3 left-3 border-white/25 bg-black/40 text-white backdrop-blur-md'>
+                  {m.label}
+                </Badge>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        {multiple ? (
+          <>
+            <CarouselPrevious className='left-3' />
+            <CarouselNext className='right-3' />
+          </>
+        ) : null}
+      </Carousel>
+
+      {/* Thumbnails */}
+      {multiple ? (
+        <Carousel setApi={setThumbApi} opts={{ dragFree: true, containScroll: 'keepSnaps' }} className='w-full'>
+          <CarouselContent className='-ml-2'>
+            {items.map((m, i) => (
+              <CarouselItem key={m.id} className='basis-1/4 pl-2 sm:basis-1/5'>
+                <button
+                  type='button'
+                  aria-label={m.label}
+                  onClick={() => mainApi?.scrollTo(i)}
+                  className={cn(
+                    'aspect-square w-full overflow-hidden rounded-lg border transition',
+                    i === current ? '' : 'opacity-55 hover:opacity-100'
+                  )}
+                >
+                  <StockImage seed={m.id} alt={m.label} width={200} className='size-full' />
+                </button>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      ) : null}
+    </div>
   )
 }

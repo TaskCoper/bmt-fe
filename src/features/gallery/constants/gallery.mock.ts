@@ -7,6 +7,38 @@ const KINDS = Object.values(GALLERY_KIND)
 
 const TAGS = ['phòng khách', 'phòng ngủ', 'bếp', 'mặt tiền', 'ban công']
 
+const STYLE_VI: Record<string, string> = {
+  modern: 'hiện đại',
+  neoclassical: 'tân cổ điển',
+  scandinavian: 'Scandinavian',
+  japandi: 'Japandi',
+  indochine: 'Đông Dương',
+  minimalist: 'tối giản'
+}
+
+const BUILDING_VI: Record<string, string> = {
+  apartment: 'căn hộ',
+  townhouse: 'nhà phố',
+  villa: 'biệt thự'
+}
+
+/** Rich-text (HTML) write-up for a reference design — reads like a blog post. */
+function makeBody(style: string, building: string): string {
+  const s = STYLE_VI[style] ?? style
+  const b = BUILDING_VI[building] ?? building
+  return [
+    `<p><strong>Mẫu thiết kế ${b} phong cách ${s}, được đội ngũ BMT Decor tuyển chọn làm tài liệu tham khảo cho khách hàng.</strong></p>`,
+    `<p>Phương án đề cao sự cân bằng giữa công năng và thẩm mỹ, tối ưu ánh sáng tự nhiên cùng luồng di chuyển hợp lý cho từng khu vực sinh hoạt.</p>`,
+    `<h2>Ý tưởng thiết kế</h2>`,
+    `<p>Bảng màu và vật liệu bám theo tinh thần ${s}: tiết chế chi tiết thừa, đề cao chất liệu thật và cảm giác ấm áp, gần gũi. Không gian mở giúp các khu vực liên kết mạch lạc nhưng vẫn giữ được sự riêng tư cần thiết.</p>`,
+    `<h2>Vật liệu &amp; hoàn thiện</h2>`,
+    `<ul><li>Sàn gỗ kỹ thuật kết hợp đá tự nhiên cho khu vực chính.</li><li>Hệ tủ bếp và tủ áo kịch trần, tối ưu khả năng lưu trữ.</li><li>Chiếu sáng nhiều lớp: đèn hắt, đèn rọi và đèn trang trí điểm nhấn.</li></ul>`,
+    `<h2>Hồ sơ đi kèm</h2>`,
+    `<p>Bộ mẫu gồm bản vẽ mặt bằng bố trí và hình ảnh không gian đã hoàn thiện (ảnh 3D render và ảnh thực tế), có thể tải về ở dạng PDF.</p>`,
+    `<blockquote>“Một thiết kế tốt không chỉ đẹp mà còn phải phục vụ đúng nhịp sống của gia chủ.”</blockquote>`
+  ].join('')
+}
+
 /** Group 1 — 1..3 floor-plan drawings, deterministic hues around the cover. */
 function makeDrawings(i: number, baseHue: number): GalleryDrawing[] {
   const count = 1 + (i % 3)
@@ -50,6 +82,7 @@ export const MOCK_GALLERY: readonly GalleryItem[] = Array.from({ length: 18 }, (
     published: i % 7 !== 0,
     createdAt: new Date(2026, 5, 28 - i).toISOString(),
     drawings: makeDrawings(i, hue),
-    photos: makePhotos(i, hue)
+    photos: makePhotos(i, hue),
+    body: makeBody(style, building)
   }
 })

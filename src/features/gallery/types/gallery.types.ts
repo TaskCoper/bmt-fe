@@ -44,6 +44,8 @@ export interface GalleryItem {
   drawings: GalleryDrawing[]
   /** Group 2 — finished-interior photos: 3D renders + real photos (at least one). */
   photos: GalleryPhoto[]
+  /** Rich-text write-up (HTML from the CMS) shown on the detail page. */
+  body: string
 }
 
 /** Client-side list filters. */

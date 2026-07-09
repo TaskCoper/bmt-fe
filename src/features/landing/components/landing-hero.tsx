@@ -1,7 +1,12 @@
-import { Button } from '@/shared/components/ui/button'
-import { AuthCta } from '@/shared/components/auth-cta'
+'use client'
+
+import { motion } from 'motion/react'
 import { ArrowRight, Box, Check, Sparkles } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+
+import { Button } from '@/shared/components/ui/button'
+import { AuthCta } from '@/shared/components/auth-cta'
+import { StockImage, revealContainerVariants, revealEase, revealItemVariants } from '@/shared/components/common'
 import { LANDING_SECTIONS } from '../constants/landing.constants'
 
 /**
@@ -16,20 +21,28 @@ export function LandingHero() {
   return (
     <section id={LANDING_SECTIONS.home} className='relative'>
       <div className='relative mx-auto grid w-full max-w-7xl items-center gap-12 px-4 py-20 lg:grid-cols-[1fr_1.15fr] lg:gap-14 lg:px-8 lg:py-28'>
-        {/* Value proposition — left */}
-        <div>
-          <span className='text-primary/85 border-primary/25 bg-primary/5 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold tracking-wide backdrop-blur'>
+        {/* Value proposition — left (staggered entrance) */}
+        <motion.div variants={revealContainerVariants} initial='hidden' animate='show'>
+          <motion.span
+            variants={revealItemVariants}
+            className='text-primary/85 border-primary/25 bg-primary/5 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold tracking-wide backdrop-blur'
+          >
             <Sparkles className='size-3.5' />
             {t('badge')}
-          </span>
+          </motion.span>
 
-          <h1 className='font-display mt-6 text-4xl leading-[1.04] font-bold tracking-[-0.03em] text-balance sm:text-5xl lg:text-[3.4rem]'>
+          <motion.h1
+            variants={revealItemVariants}
+            className='font-display mt-6 text-4xl leading-[1.04] font-bold tracking-[-0.03em] text-balance sm:text-5xl lg:text-[3.4rem]'
+          >
             {t('title')}
-          </h1>
+          </motion.h1>
 
-          <p className='text-muted-foreground mt-6 max-w-xl text-lg text-pretty'>{t('subtitle')}</p>
+          <motion.p variants={revealItemVariants} className='text-muted-foreground mt-6 max-w-xl text-lg text-pretty'>
+            {t('subtitle')}
+          </motion.p>
 
-          <div className='mt-9 flex flex-col gap-3 sm:flex-row'>
+          <motion.div variants={revealItemVariants} className='mt-9 flex flex-col gap-3 sm:flex-row'>
             <AuthCta size='lg' className='shadow-[0_14px_30px_-10px_oklch(0.77_0.155_65_/_0.75)]'>
               {t('primaryCta')}
               <ArrowRight className='size-4' />
@@ -37,9 +50,9 @@ export function LandingHero() {
             <Button asChild size='lg' variant='ghost' className='glass-inset rounded-xl'>
               <a href={`#${LANDING_SECTIONS.projects}`}>{t('secondaryCta')}</a>
             </Button>
-          </div>
+          </motion.div>
 
-          <ul className='mt-9 flex flex-wrap gap-x-6 gap-y-3'>
+          <motion.ul variants={revealItemVariants} className='mt-9 flex flex-wrap gap-x-6 gap-y-3'>
             {chips.map((chip) => (
               <li key={chip} className='text-muted-foreground flex items-center gap-2 text-sm font-medium'>
                 <span className='bg-primary/15 text-primary flex size-5 items-center justify-center rounded-full'>
@@ -48,13 +61,18 @@ export function LandingHero() {
                 {chip}
               </li>
             ))}
-          </ul>
-        </div>
+          </motion.ul>
+        </motion.div>
 
-        {/* Product window — a glass "app shot" of the Studio, on the right */}
-        <div className='w-full'>
+        {/* Product window — a glass "app shot" of the Studio, sliding in on the right */}
+        <motion.div
+          className='w-full'
+          initial={{ opacity: 0, x: 40, scale: 0.96 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.9, ease: revealEase, delay: 0.15 }}
+        >
           <HeroPreview />
-        </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -103,48 +121,8 @@ function RenderCanvas() {
 
   return (
     <div className='border-glass-border relative min-h-[240px] overflow-hidden rounded-2xl border'>
-      <div className='from-primary/25 to-chart-2/25 absolute inset-0 bg-gradient-to-br via-transparent' aria-hidden />
-      <div
-        className='from-foreground/12 absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t to-transparent'
-        aria-hidden
-      />
-
-      <svg
-        viewBox='0 0 320 200'
-        className='absolute inset-0 h-full w-full'
-        preserveAspectRatio='xMidYMax slice'
-        aria-hidden
-      >
-        <circle cx='264' cy='44' r='20' className='fill-primary/30' />
-        <line x1='0' y1='168' x2='320' y2='168' className='stroke-foreground/25' strokeWidth='1.5' />
-        {/* lower wing */}
-        <rect
-          x='40'
-          y='120'
-          width='96'
-          height='48'
-          className='fill-background/50 stroke-foreground/40'
-          strokeWidth='1.5'
-        />
-        <rect x='58' y='134' width='24' height='34' className='fill-primary/30' />
-        <rect x='96' y='132' width='28' height='24' className='fill-foreground/10' />
-        {/* main block */}
-        <rect
-          x='128'
-          y='78'
-          width='120'
-          height='90'
-          className='fill-background/60 stroke-foreground/45'
-          strokeWidth='1.5'
-        />
-        <rect x='128' y='72' width='120' height='8' className='fill-primary/40' />
-        <rect x='150' y='96' width='30' height='30' className='fill-primary/45' />
-        <rect x='196' y='96' width='30' height='30' className='fill-primary/45' />
-        <rect x='150' y='134' width='76' height='30' className='fill-primary/20' />
-        {/* tree */}
-        <rect x='284' y='150' width='4' height='18' className='fill-foreground/30' />
-        <circle cx='286' cy='150' r='14' className='fill-chart-2/40' />
-      </svg>
+      <StockImage seed='hero-render' alt={t('previewRender')} width={800} className='absolute inset-0 size-full' />
+      <div className='absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent' aria-hidden />
 
       <span className='glass-inset absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold'>
         <Box className='size-3.5' />
@@ -166,7 +144,7 @@ function EstimatePanel() {
       <div>
         <p className='text-muted-foreground text-xs font-medium'>{t('previewTotalLabel')}</p>
         <p className='mt-1 text-2xl font-bold tracking-[-0.03em] tabular-nums sm:text-3xl'>{t('previewTotal')}</p>
-        <span className='text-success bg-success/12 mt-2 inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold'>
+        <span className='text-primary bg-primary/12 mt-2 inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-semibold'>
           <Check className='size-3.5' />
           {t('previewFit')}
         </span>
