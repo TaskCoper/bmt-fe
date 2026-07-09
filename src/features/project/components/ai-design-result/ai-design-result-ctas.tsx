@@ -2,9 +2,8 @@
 
 import { Link } from '@/i18n/navigation'
 import { Button, Tooltip, TooltipContent, TooltipTrigger } from '@/shared/components/ui'
-import { ArrowRight, FileDown, RefreshCcw } from 'lucide-react'
+import { ArrowRight, RefreshCcw } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { toast } from 'sonner'
 
 interface AIDesignResultCtasProps {
   prevUrl: string | null
@@ -30,10 +29,7 @@ export function AIDesignResultCtas({ prevUrl, onRegenerate }: AIDesignResultCtas
           <RefreshCcw className='size-4' />
           {t('ctas.regenerate')}
         </Button>
-        <Button type='button' variant='outline' onClick={() => toast.info(t('ctas.pdfComingSoon'))} className='gap-1.5'>
-          <FileDown className='size-4' />
-          {t('ctas.exportPdf')}
-        </Button>
+
         <Tooltip>
           <TooltipTrigger asChild>
             <span tabIndex={0}>

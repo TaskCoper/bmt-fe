@@ -8,9 +8,5 @@ interface PageProps {
 export default async function ProjectDesignRequestPage({ params }: PageProps) {
   const { slug } = await params
 
-  return (
-    <div className='mx-auto w-full max-w-7xl p-4'>
-      <ProjectDesignRequest slug={slug} />
-    </div>
-  )
+  return <ProjectDesignRequest slug={slug} />
 }

@@ -20,7 +20,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
   }
 
   return (
-    <div>
+    <>
       <p className='font-semibold text-2xl'>{project.name}</p>
       <p className='text-muted-foreground text-sm'>{project.description}</p>
 
@@ -29,6 +29,6 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
           <Link href={project.nextUrl}>Tiếp tục</Link>
         </Button>
       )}
-    </div>
+    </>
   )
 }

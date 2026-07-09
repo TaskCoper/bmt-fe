@@ -486,13 +486,76 @@
       "descriptionHint": "Sẽ hiện thị công khai trên dự án của bạn",
       "charCount": "{count}/{max} ký tự",
       "projectNotFound": "Không tìm thấy dự án",
+      "steps": {
+        "progress": "{completed}/{total} bước đã sẵn sàng",
+        "viewResult": "Xem kết quả",
+        "status": {
+          "completed": "Đã hoàn tất",
+          "ready": "Sẵn sàng",
+          "locked": "Đang khóa"
+        },
+        "summary": {
+          "houseType": "Loại nhà",
+          "createdAt": "Ngày tạo",
+          "budget": "Ngân sách",
+          "floors": "Số tầng",
+          "layoutImages": "Ảnh layout",
+          "description": "Mô tả"
+        },
+        "detail": {
+          "label": "Tổng quan",
+          "description": "Kiểm tra tên, loại nhà và mô tả trước khi bắt đầu.",
+          "summary": "Thông tin dự án đã được tạo.",
+          "empty": "Dự án đã sẵn sàng để nhập yêu cầu thiết kế."
+        },
+        "design-request": {
+          "label": "Yêu cầu thiết kế",
+          "description": "Chọn ngân sách, địa chỉ, phong cách, hướng nhà và cấu hình tầng.",
+          "summary": "Yêu cầu thiết kế dùng để dựng phương án và dự toán.",
+          "empty": "Chưa có yêu cầu thiết kế. Bắt đầu bước này để mô tả công trình."
+        },
+        "spaces": {
+          "label": "Không gian",
+          "description": "Mô tả hiện trạng và tải ảnh layout cho từng tầng.",
+          "summary": "Thông tin không gian giúp AI hiểu bố trí thực tế.",
+          "empty": "Hoàn tất yêu cầu thiết kế trước khi nhập thông tin không gian."
+        },
+        "ai-design-result": {
+          "label": "Kết quả AI",
+          "description": "Xem phương án mặt bằng, tư vấn và dự toán tham khảo.",
+          "summary": "Kết quả AI được tạo từ yêu cầu thiết kế và thông tin không gian.",
+          "empty": "Cần đủ yêu cầu thiết kế và thông tin không gian để tạo kết quả."
+        },
+        "galleries": {
+          "label": "Thư viện ảnh",
+          "description": "Duyệt các phương án hình ảnh được AI tạo cho công trình của bạn.",
+          "summary": "Thư viện ảnh giúp bạn hình dung không gian trước khi quyết định.",
+          "empty": "Chưa có ảnh trong thư viện. Tạo kết quả AI để bắt đầu."
+        },
+        "review": {
+          "label": "Đánh giá",
+          "description": "Rà soát toàn bộ phương án và xác nhận trước khi hoàn tất.",
+          "summary": "Bước đánh giá giúp bạn xác nhận phương án cuối cùng.",
+          "empty": "Hoàn tất các bước trước để tiến hành đánh giá."
+        }
+      },
+      "stepper": {
+        "measure": "Đo",
+        "ariaLabel": "Luồng dự án, bước {current} trên {total}"
+      },
       "designRequestTitle": "Yêu cầu thiết kế",
       "designRequestSubtitle": "Chọn phong cách, hướng nhà và cấu hình từng tầng cho ngôi nhà của bạn.",
+      "recommended": "Được đề xuất",
       "styleLabel": "Phong cách nhà",
       "style": {
         "roof": "Nhà mái",
         "modern": "Nhà phố hiện đại",
         "neoclassical": "Nhà tân cổ điển"
+      },
+      "styleDescription": {
+        "roof": "Nhà mái ngói truyền thống mang lại vẻ đẹp cổ điển.",
+        "modern": "Đường nét tối giản, khối vuông vắn, tận dụng tối đa mặt tiền hẹp.",
+        "neoclassical": "Chi tiết cột, phào và hoa văn tinh xảo, tạo không gian sang trọng."
       },
       "roofStyleLabel": "Kiểu mái",
       "roofStyle": {
@@ -501,10 +564,20 @@
         "traditional": "Ngói truyền thống",
         "other": "Khác"
       },
+      "roofStyleDescription": {
+        "thai": "Mái dốc lớn, chống nắng mưa tốt, đường nét mềm mại.",
+        "japanese": "Mái ngói phẳng theo phong cách zen, ít trang trí.",
+        "traditional": "Ngói truyền thống Việt Nam, phù hợp nhà ba gian.",
+        "other": "Kiểu mái khác theo yêu cầu của bạn."
+      },
       "tumLabel": "Có tum hay không?",
       "tum": {
         "yes": "Có tum",
         "no": "Không tum"
+      },
+      "tumDescription": {
+        "yes": "Có tum giúp che cầu thang, thêm không gian thư giãn trên mái.",
+        "no": "Không có tum, tiết kiệm chi phí và giữ nét đường mái sạch sẽ."
       },
       "directionLabel": "Hướng nhà ưu tiên",
       "direction": {
@@ -512,6 +585,12 @@
         "west": "Tây",
         "south": "Nam",
         "north": "Bắc"
+      },
+      "directionDescription": {
+        "east": "Đón ánh nắng sớm, mát mẻ vào chiều.",
+        "west": "Đón nắng chiều mạnh, cần chú ý chống nóng.",
+        "south": "Hướng lý tưởng, đón gió mát và ánh sáng cân bằng cả ngày.",
+        "north": "Mát mẻ mùa hè nhưng lạnh mùa đông, ít nắng trực tiếp."
       },
       "addressLabel": "Địa chỉ",
       "addressPlaceholder": "Số nhà, tên đường…",
@@ -521,7 +600,8 @@
       "wardLabel": "Phường / Xã",
       "wardPlaceholder": "Chọn phường / xã",
       "wardSearchPlaceholder": "Tìm phường / xã…",
-      "floorsLabel": "Các tầng",
+      "floorsLabel": "Tầng",
+      "floorsDescription": "Thêm từng tầng và điều chỉnh diện tích, bố cục, ánh sáng, màu chủ đạo.",
       "floorTitle": "Tầng {index}",
       "addFloor": "Thêm tầng",
       "removeFloor": "Xoá tầng",
@@ -532,10 +612,18 @@
         "open": "Không gian mở",
         "separated": "Phòng riêng biệt"
       },
+      "layoutDescription": {
+        "open": "Không gian liền mạch, tối ưu đối lưu và ánh sáng.",
+        "separated": "Chia phòng riêng biệt, đảm bảo riêng tư cho từng thành viên."
+      },
       "lightingLabel": "Ưu tiên ánh sáng",
       "lighting": {
         "natural": "Tự nhiên",
         "artificial": "Nhân tạo"
+      },
+      "lightingDescription": {
+        "natural": "Ưu tiên giếng trời, cửa lớn và cửa sổ để đón sáng tự nhiên.",
+        "artificial": "Bố trí đèn kỹ càng cho các không gian ít ánh sáng tự nhiên."
       },
       "colorLabel": "Tông màu chủ đạo",
       "spaces": {
@@ -548,8 +636,8 @@
         "groundFloor": "Tầng trệt",
         "upperFloor": "Tầng {index}",
         "dropTitle": "Kéo-thả ảnh layout vào đây",
-        "dropHint": "JPG, PNG hoặc HEIC. Mỗi tầng cần 1 ảnh layout.",
-        "replaceImage": "Bấm hoặc kéo-thả ảnh mới để thay thế",
+        "dropHint": "JPG, PNG hoặc HEIC. Có thể tải nhiều ảnh cho mỗi tầng.",
+        "addMore": "Thêm ảnh",
         "removeImage": "Xoá ảnh",
         "missingDesignRequest": "Vui lòng hoàn tất bước yêu cầu thiết kế trước khi nhập thông tin không gian.",
         "unsupportedImage": "\"{name}\" không phải định dạng ảnh được hỗ trợ.",
@@ -818,7 +906,7 @@
           "regenerate": "Tạo lại thiết kế",
           "exportPdf": "Xuất PDF",
           "pdfComingSoon": "Xuất PDF sẽ có ở bản kế tiếp.",
-          "nextStep": "Sang bước 5 · Render",
+          "nextStep": "Render",
           "nextStepDisabled": "Bước 5 (Render) sắp ra mắt."
         },
         "tooltips": {

@@ -486,13 +486,76 @@
       "descriptionHint": "Will be shown publicly on your project",
       "charCount": "{count}/{max} characters",
       "projectNotFound": "Project not found",
+      "steps": {
+        "progress": "{completed}/{total} steps ready",
+        "viewResult": "View result",
+        "status": {
+          "completed": "Complete",
+          "ready": "Ready",
+          "locked": "Locked"
+        },
+        "summary": {
+          "houseType": "House type",
+          "createdAt": "Created",
+          "budget": "Budget",
+          "floors": "Floors",
+          "layoutImages": "Layout images",
+          "description": "Description"
+        },
+        "detail": {
+          "label": "Overview",
+          "description": "Review the name, house type and description before starting.",
+          "summary": "Project information has been created.",
+          "empty": "The project is ready for design requirements."
+        },
+        "design-request": {
+          "label": "Design request",
+          "description": "Choose budget, address, style, orientation and floor setup.",
+          "summary": "The design request powers the proposal and estimate.",
+          "empty": "No design request yet. Start this step to describe the build."
+        },
+        "spaces": {
+          "label": "Spaces",
+          "description": "Describe the real space and upload a layout image for each floor.",
+          "summary": "Space information helps AI understand the actual layout.",
+          "empty": "Complete the design request before entering space information."
+        },
+        "ai-design-result": {
+          "label": "AI result",
+          "description": "Review floor plans, consultation and a reference estimate.",
+          "summary": "AI results are generated from the request and space information.",
+          "empty": "Design request and space information are required before generating results."
+        },
+        "galleries": {
+          "label": "Galleries",
+          "description": "Browse AI-generated visual variations for your project.",
+          "summary": "Galleries help you picture the space before deciding.",
+          "empty": "No images yet. Generate an AI result to populate the gallery."
+        },
+        "review": {
+          "label": "Review",
+          "description": "Review the full proposal and confirm before finishing.",
+          "summary": "The review step lets you confirm the final proposal.",
+          "empty": "Complete the previous steps before you can review."
+        }
+      },
+      "stepper": {
+        "measure": "Measure",
+        "ariaLabel": "Project flow, step {current} of {total}"
+      },
       "designRequestTitle": "Design request",
       "designRequestSubtitle": "Choose a style, orientation and floor configuration for your home.",
+      "recommended": "Recommended",
       "styleLabel": "House style",
       "style": {
         "roof": "Roofed house",
         "modern": "Modern townhouse",
         "neoclassical": "Neoclassical"
+      },
+      "styleDescription": {
+        "roof": "A pitched-roof home with timeless charm.",
+        "modern": "Minimalist lines and blocky forms, optimized for narrow street-facing lots.",
+        "neoclassical": "Elegant columns, mouldings and ornate details for a luxurious feel."
       },
       "roofStyleLabel": "Roof style",
       "roofStyle": {
@@ -501,10 +564,20 @@
         "traditional": "Traditional tile",
         "other": "Other"
       },
+      "roofStyleDescription": {
+        "thai": "Steep pitched roof with soft lines, excellent sun and rain protection.",
+        "japanese": "Flat zen-inspired tile roof with minimal ornamentation.",
+        "traditional": "Classic Vietnamese ceramic tiles, ideal for three-bay homes.",
+        "other": "Another roof style to match your specific request."
+      },
       "tumLabel": "Rooftop room (tum)?",
       "tum": {
         "yes": "With tum",
         "no": "No tum"
+      },
+      "tumDescription": {
+        "yes": "Adds a rooftop cabin to enclose the stairwell and gain extra terrace space.",
+        "no": "Skip the rooftop cabin to save cost and keep the roofline clean."
       },
       "directionLabel": "Preferred orientation",
       "direction": {
@@ -512,6 +585,12 @@
         "west": "West",
         "south": "South",
         "north": "North"
+      },
+      "directionDescription": {
+        "east": "Catches early morning sun with a cool afternoon.",
+        "west": "Faces strong afternoon sun; plan for heat mitigation.",
+        "south": "Ideal orientation with steady breeze and balanced light all day.",
+        "north": "Cool in summer but chilly in winter, with minimal direct sunlight."
       },
       "addressLabel": "Address",
       "addressPlaceholder": "Street number, street name…",
@@ -521,7 +600,8 @@
       "wardLabel": "Ward",
       "wardPlaceholder": "Select a ward",
       "wardSearchPlaceholder": "Search ward…",
-      "floorsLabel": "Floors",
+      "floorsLabel": "Floor",
+      "floorsDescription": "Add each floor and tune its area, layout, lighting, and primary color.",
       "floorTitle": "Floor {index}",
       "addFloor": "Add floor",
       "removeFloor": "Remove floor",
@@ -532,10 +612,18 @@
         "open": "Open plan",
         "separated": "Separated rooms"
       },
+      "layoutDescription": {
+        "open": "Continuous flow that maximizes airflow and natural light.",
+        "separated": "Distinct rooms that give every family member privacy."
+      },
       "lightingLabel": "Preferred lighting",
       "lighting": {
         "natural": "Natural",
         "artificial": "Artificial"
+      },
+      "lightingDescription": {
+        "natural": "Prioritize skylights and large windows to bring in daylight.",
+        "artificial": "Careful lighting design for spaces with limited natural light."
       },
       "colorLabel": "Primary color",
       "spaces": {
@@ -547,9 +635,9 @@
         "uploadHint": "Uploaded images are only floor layout images showing each level's floor plan.",
         "groundFloor": "Ground floor",
         "upperFloor": "Floor {index}",
-        "dropTitle": "Drag-and-drop a layout image here",
-        "dropHint": "JPG, PNG or HEIC. Each floor needs 1 layout image.",
-        "replaceImage": "Click or drag a new image to replace it",
+        "dropTitle": "Drag-and-drop layout images here",
+        "dropHint": "JPG, PNG or HEIC. Multiple images per floor are supported.",
+        "addMore": "Add images",
         "removeImage": "Remove image",
         "missingDesignRequest": "Complete the design request step before entering space information.",
         "unsupportedImage": "\"{name}\" is not a supported image format.",
@@ -818,7 +906,7 @@
           "regenerate": "Regenerate design",
           "exportPdf": "Export PDF",
           "pdfComingSoon": "PDF export is coming in the next release.",
-          "nextStep": "Go to step 5 · Render",
+          "nextStep": "Render",
           "nextStepDisabled": "Step 5 (Render) is coming soon."
         },
         "tooltips": {

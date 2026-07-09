@@ -28,7 +28,6 @@ import { AIDesignResultConsultation } from './ai-design-result/ai-design-result-
 import { AIDesignResultCtas } from './ai-design-result/ai-design-result-ctas'
 import { AIDesignResultEstimate } from './ai-design-result/ai-design-result-estimate'
 import { AIDesignResultFloorPlans } from './ai-design-result/ai-design-result-floor-plans'
-import { AIDesignResultHeader } from './ai-design-result/ai-design-result-header'
 import { AIDesignResultInputSummary } from './ai-design-result/ai-design-result-input-summary'
 import { AIDesignResultPackageSelector } from './ai-design-result/ai-design-result-package-selector'
 import { AIDesignResultSkeleton } from './ai-design-result/ai-design-result-skeleton'
@@ -174,11 +173,11 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
 
   return (
     <div className='space-y-8'>
-      <AIDesignResultHeader
+      {/* <AIDesignResultHeader
         houseType={derived.areaMetrics.houseType}
         floorCount={derived.areaMetrics.floorCount}
         hasTum={derived.hasTum}
-      />
+      /> */}
       <AIDesignResultConsultation consultation={derived.consultation} />
       <AIDesignResultInputSummary
         designRequest={project.designRequest}

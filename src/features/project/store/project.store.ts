@@ -56,7 +56,7 @@ export const useProjectStore = create<ProjectStore>()(
               spaces: project.spaces
                 ? {
                     ...project.spaces,
-                    floors: project.spaces.floors.map((floor) => ({ ...floor, layoutImage: null }))
+                    floors: project.spaces.floors.map((floor) => ({ ...floor, layoutImages: [] }))
                   }
                 : null
             }
@@ -95,25 +95,36 @@ export function buildProjectId(name: string): { id: string; slug: string; create
  * Linear flow of routes a project moves through. The order here is the source
  * of truth — prev/next URLs are always derived from it via `getProjectFlowUrls`.
  */
-export type ProjectFlowStep = 'detail' | 'design-request' | 'spaces' | 'ai-design-result'
+export type ProjectFlowStep = 'detail' | 'design-request' | 'spaces' | 'ai-design-result' | 'galleries' | 'review'
 
-const PROJECT_FLOW: readonly (readonly [ProjectFlowStep, string])[] = [
+export const PROJECT_FLOW: readonly (readonly [ProjectFlowStep, string])[] = [
   ['detail', ''],
   ['design-request', '/design-request'],
   ['spaces', '/spaces'],
-  ['ai-design-result', '/ai-design-result']
+  ['ai-design-result', '/ai-design-result'],
+  ['galleries', '/galleries'],
+  ['review', '/review']
 ] as const
+
+export function getProjectFlowUrl(slug: string, step: ProjectFlowStep): string {
+  const entry = PROJECT_FLOW.find(([flowStep]) => flowStep === step)
+  return `/projects/${slug}${entry?.[1] ?? ''}`
+}
+
+export function getProjectFlowIndex(step: ProjectFlowStep): number {
+  return Math.max(
+    PROJECT_FLOW.findIndex(([flowStep]) => flowStep === step),
+    0
+  )
+}
 
 /** Prev/next URLs for a given flow position. `null` at either end of the flow. */
 export function getProjectFlowUrls(
   slug: string,
   current: ProjectFlowStep
 ): { prevUrl: string | null; nextUrl: string | null } {
-  const idx = PROJECT_FLOW.findIndex(([step]) => step === current)
-  const buildUrl = (i: number) => {
-    const entry = PROJECT_FLOW[i]
-    return entry ? `/dashboard/projects/${slug}${entry[1]}` : null
-  }
+  const idx = getProjectFlowIndex(current)
+  const buildUrl = (i: number) => (PROJECT_FLOW[i] ? getProjectFlowUrl(slug, PROJECT_FLOW[i][0]) : null)
   return { prevUrl: buildUrl(idx - 1), nextUrl: buildUrl(idx + 1) }
 }
 
