@@ -3,7 +3,7 @@
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/shared/components/ui'
 import { useTranslations } from 'next-intl'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   AI_LOADING_MS,
   DEFAULT_PACKAGE_TIER,
@@ -56,10 +56,11 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
   const t = useTranslations('project.form')
   const tc = useTranslations('common')
   const project = useProjectStore((s) => s.projects[slug])
+  const updateProject = useProjectStore((s) => s.updateProject)
 
   useSetProjectFlow(slug, 'ai-design-result')
 
-  const [tier, setTier] = useState<PackageTier>(DEFAULT_PACKAGE_TIER)
+  const [tier, setTier] = useState<PackageTier>(project?.aiDesignResult?.tier ?? DEFAULT_PACKAGE_TIER)
   const [regenKey, setRegenKey] = useState(0)
   const [readyRegenKey, setReadyRegenKey] = useState<number | null>(null)
   const [generatedAt, setGeneratedAt] = useState<Date | null>(null)
@@ -130,6 +131,27 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
 
     return { consultation, areaMetrics, hasTum, visibleFloors, budget, city, userBudget }
   }, [project, tier, hasRoof])
+
+  const derivedRef = useRef(derived)
+  useEffect(() => {
+    derivedRef.current = derived
+  }, [derived])
+
+  useEffect(() => {
+    if (!generatedAt) return
+    const d = derivedRef.current
+    updateProject({
+      slug,
+      patch: {
+        aiDesignResult: {
+          tier,
+          budget: d.budget,
+          metrics: d.areaMetrics,
+          generatedAt: generatedAt.toISOString()
+        }
+      }
+    })
+  }, [slug, tier, generatedAt, updateProject])
 
   if (!project) {
     return <p>{t('projectNotFound')}</p>

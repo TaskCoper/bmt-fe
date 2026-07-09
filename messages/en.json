@@ -489,6 +489,12 @@
       "steps": {
         "progress": "{completed}/{total} steps ready",
         "viewResult": "View result",
+        "resume": "Continue · Step {step}",
+        "start": "Start step 1",
+        "openStep": "Open this step",
+        "editStep": "Edit",
+        "insightsTitle": "6-step progress",
+        "insightsSubtitle": "A quick look at what's already captured at each step.",
         "status": {
           "completed": "Complete",
           "ready": "Ready",
@@ -500,7 +506,16 @@
           "budget": "Budget",
           "floors": "Floors",
           "layoutImages": "Layout images",
-          "description": "Description"
+          "description": "Description",
+          "style": "Style",
+          "direction": "Direction",
+          "city": "Province / City",
+          "address": "Address",
+          "totalArea": "Total area",
+          "favorites": "Favorites",
+          "captions": "Captions",
+          "sections": "Proposal sections",
+          "package": "Package"
         },
         "detail": {
           "label": "Overview",

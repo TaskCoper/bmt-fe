@@ -38,6 +38,7 @@ export {
   useImageMeta,
   useProjectStore,
   useSetProjectFlow,
+  type AIDesignResultSelection,
   type ImageMeta,
   type ProjectDraft,
   type ProjectFlowStep

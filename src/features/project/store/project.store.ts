@@ -4,14 +4,23 @@ import { useEffect } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import type { CreateProjectFormValues, DesignRequestPayload, SpacesPayload } from '../schemas/project.schema'
+import type { AreaMetrics, Budget, PackageTier } from '../types/ai-design-result.types'
 
 const STORAGE_KEY = 'bmt.projects'
+
+export interface AIDesignResultSelection {
+  tier: PackageTier
+  budget: Budget
+  metrics: AreaMetrics
+  generatedAt: string
+}
 
 export interface ProjectDraft extends CreateProjectFormValues {
   id: string
   slug: string
   designRequest: DesignRequestPayload | null
   spaces: SpacesPayload | null
+  aiDesignResult: AIDesignResultSelection | null
   galleries: Record<string, ImageMeta>
   prevUrl: string | null
   nextUrl: string | null

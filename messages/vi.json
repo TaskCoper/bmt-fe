@@ -489,6 +489,12 @@
       "steps": {
         "progress": "{completed}/{total} bước đã sẵn sàng",
         "viewResult": "Xem kết quả",
+        "resume": "Tiếp tục · Bước {step}",
+        "start": "Bắt đầu bước 1",
+        "openStep": "Mở bước này",
+        "editStep": "Chỉnh sửa",
+        "insightsTitle": "Tiến độ 6 bước",
+        "insightsSubtitle": "Xem nhanh dữ liệu đã có ở từng bước.",
         "status": {
           "completed": "Đã hoàn tất",
           "ready": "Sẵn sàng",
@@ -500,7 +506,16 @@
           "budget": "Ngân sách",
           "floors": "Số tầng",
           "layoutImages": "Ảnh layout",
-          "description": "Mô tả"
+          "description": "Mô tả",
+          "style": "Phong cách",
+          "direction": "Hướng nhà",
+          "city": "Tỉnh / TP",
+          "address": "Địa chỉ",
+          "totalArea": "Tổng diện tích",
+          "favorites": "Ảnh yêu thích",
+          "captions": "Ghi chú ảnh",
+          "sections": "Mục trong đề xuất",
+          "package": "Gói vật liệu"
         },
         "detail": {
           "label": "Tổng quan",
