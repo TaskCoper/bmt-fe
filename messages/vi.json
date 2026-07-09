@@ -985,6 +985,116 @@
         "ctas": {
           "nextStep": "Tiếp tục đánh giá"
         }
+      },
+      "review": {
+        "badge": "Bước 6 · Xuất PDF",
+        "title": "Xuất hồ sơ dự án",
+        "subtitle": "Chọn các phần muốn đưa vào PDF, xem trước và chia sẻ với khách hàng hoặc nhà thầu.",
+        "sections": {
+          "cover": {
+            "title": "Trang bìa",
+            "description": "Logo BMT, thông tin liên hệ, ngày xuất, tên dự án và chủ đầu tư.",
+            "clientNameLabel": "Tên chủ đầu tư",
+            "clientNamePlaceholder": "Ví dụ: Anh Minh & Chị Lan",
+            "exportedAt": "Ngày xuất: {date}",
+            "houseTypeLabel": "Loại công trình",
+            "projectNameLabel": "Dự án",
+            "contactPhone": "Hotline: 1900 6868",
+            "contactWebsite": "bmt.vn",
+            "brand": "BMT Construction"
+          },
+          "projectInfo": {
+            "title": "Thông tin dự án",
+            "description": "Tóm tắt thông tin loại nhà, địa chỉ, ngân sách và cấu hình tầng.",
+            "landArea": "Diện tích đất",
+            "floorCount": "Số tầng",
+            "totalFloorArea": "Tổng sàn",
+            "city": "Địa điểm",
+            "budget": "Ngân sách khách đặt",
+            "package": "Gói vật liệu",
+            "createdAt": "Ngày khởi tạo"
+          },
+          "floorPlans": {
+            "title": "Bản vẽ bố trí nội thất",
+            "description": "Bản vẽ 2D từng tầng theo thứ tự tầng trệt → lầu 1 → …",
+            "count": "{count, plural, other {# tầng}}"
+          },
+          "estimate": {
+            "title": "Bảng dự toán chi tiết",
+            "description": "Ba tab: phần thô, hoàn thiện, nội thất — kèm tổng hợp dự toán theo gói.",
+            "tabs": {
+              "rough": "Phần thô",
+              "finishing": "Hoàn thiện",
+              "interior": "Nội thất"
+            },
+            "totalRow": "Tổng dự toán"
+          },
+          "renders": {
+            "title": "Hình ảnh render 3D",
+            "description": "Chỉ đưa những ảnh bạn đã đánh dấu yêu thích vào PDF.",
+            "favoriteCount": "{count, plural, =0 {Chưa chọn ảnh yêu thích} other {# ảnh yêu thích}}",
+            "empty": "Bạn chưa chọn ảnh yêu thích ở bước trước. Hồ sơ sẽ không có phần render nếu tiếp tục xuất.",
+            "backToGalleries": "Quay lại thư viện để chọn ảnh"
+          },
+          "footer": {
+            "title": "Footer mỗi trang",
+            "description": "Logo BMT nhỏ, thông tin liên hệ ngắn và số trang hiển thị ở chân mỗi trang.",
+            "preview": "BMT Construction · Hotline: 1900 6868 · bmt.vn",
+            "pageNumber": "Trang {current}/{total}"
+          }
+        },
+        "options": {
+          "title": "Tùy chọn xuất",
+          "description": "Điều chỉnh nội dung và ngôn ngữ trước khi tạo file PDF.",
+          "selectSections": "Nội dung đưa vào PDF",
+          "selectAll": "Chọn tất cả",
+          "deselectAll": "Bỏ chọn tất cả",
+          "languageLabel": "Ngôn ngữ",
+          "language": {
+            "vi": "Tiếng Việt",
+            "en": "Tiếng Anh"
+          },
+          "languageHint": "Bản chính thức xuất ra tiếng Việt. Tiếng Anh sẽ có ở bản kế tiếp.",
+          "currencyLabel": "Đơn vị tiền tệ",
+          "currency": {
+            "vnd": "VNĐ",
+            "usd": "USD"
+          },
+          "currencyHint": "Hiện chỉ hỗ trợ đơn vị VNĐ."
+        },
+        "actions": {
+          "exportPdf": "Xuất PDF",
+          "exporting": "Đang tạo PDF…",
+          "exported": "Đã tạo file PDF hồ sơ dự án.",
+          "exportFailed": "Xuất PDF không thành công. Kiểm tra kết nối và thử lại.",
+          "shareLink": "Tạo link chia sẻ",
+          "sendEmail": "Gửi qua email",
+          "showQr": "Xem mã QR",
+          "finish": "Hoàn tất"
+        },
+        "share": {
+          "title": "Chia sẻ hồ sơ dự án",
+          "description": "Bất kỳ ai có link đều có thể xem PDF online — không cần đăng nhập.",
+          "linkLabel": "Link chia sẻ",
+          "copy": "Sao chép",
+          "copied": "Đã sao chép",
+          "qrTitle": "Mã QR dẫn đến dự án",
+          "qrCaption": "Quét mã bằng điện thoại để mở link nhanh."
+        },
+        "email": {
+          "title": "Gửi hồ sơ qua email",
+          "description": "Nhập email khách hàng hoặc nhà thầu để hệ thống gửi kèm link PDF.",
+          "recipientLabel": "Người nhận",
+          "recipientPlaceholder": "khach.hang@email.com",
+          "messageLabel": "Lời nhắn (tuỳ chọn)",
+          "messagePlaceholder": "Gửi anh/chị hồ sơ dự án để tham khảo…",
+          "send": "Gửi email",
+          "sent": "Đã gửi email đến {email} (demo)."
+        },
+        "empty": {
+          "title": "Chưa đủ dữ liệu để xuất PDF",
+          "description": "Hoàn tất các bước trước để tạo hồ sơ đầy đủ."
+        }
       }
     },
     "card": {

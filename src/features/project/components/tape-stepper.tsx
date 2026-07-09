@@ -29,6 +29,7 @@ export function TapeStepper({ steps, current, onStepChange, className, ariaLabel
 
   const frac = (i: number) => (count <= 1 ? 0 : i / (count - 1))
   const currentFraction = frac(clampedCurrent)
+  const isLastStep = count > 0 && clampedCurrent === count - 1
 
   const minors = useMemo(() => {
     const marks: { f: number; mid: boolean }[] = []
@@ -81,7 +82,9 @@ export function TapeStepper({ steps, current, onStepChange, className, ariaLabel
       >
         <div
           className='from-primary/15 to-primary/35 absolute inset-y-0 left-0 bg-linear-to-b transition-[width] duration-[380ms] ease-out'
-          style={{ width: `calc(var(--tape-pad) + (100% - 2 * var(--tape-pad)) * ${currentFraction})` }}
+          style={{
+            width: isLastStep ? '100%' : `calc(var(--tape-pad) + (100% - 2 * var(--tape-pad)) * ${currentFraction})`
+          }}
           aria-hidden
         />
 

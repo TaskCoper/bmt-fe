@@ -985,6 +985,116 @@
         "ctas": {
           "nextStep": "Continue to review"
         }
+      },
+      "review": {
+        "badge": "Step 6 · Export PDF",
+        "title": "Export project proposal",
+        "subtitle": "Pick which sections land in the PDF, preview them, then share with clients or contractors.",
+        "sections": {
+          "cover": {
+            "title": "Cover page",
+            "description": "BMT logo, contact info, export date, project name and client name.",
+            "clientNameLabel": "Client name",
+            "clientNamePlaceholder": "e.g. Mr. Minh & Ms. Lan",
+            "exportedAt": "Exported: {date}",
+            "houseTypeLabel": "House type",
+            "projectNameLabel": "Project",
+            "contactPhone": "Hotline: 1900 6868",
+            "contactWebsite": "bmt.vn",
+            "brand": "BMT Construction"
+          },
+          "projectInfo": {
+            "title": "Project information",
+            "description": "House type, address, budget and floor configuration summary.",
+            "landArea": "Land area",
+            "floorCount": "Floors",
+            "totalFloorArea": "Total floor",
+            "city": "Location",
+            "budget": "Client budget",
+            "package": "Material package",
+            "createdAt": "Created"
+          },
+          "floorPlans": {
+            "title": "Interior floor plans",
+            "description": "2D drawings for every floor, ordered ground → upper 1 → …",
+            "count": "{count, plural, one {# floor} other {# floors}}"
+          },
+          "estimate": {
+            "title": "Detailed estimate",
+            "description": "Three tabs — rough, finishing, interior — plus the per-package total summary.",
+            "tabs": {
+              "rough": "Rough",
+              "finishing": "Finishing",
+              "interior": "Interior"
+            },
+            "totalRow": "Estimated total"
+          },
+          "renders": {
+            "title": "3D renders",
+            "description": "Only the images you favourited will be embedded in the PDF.",
+            "favoriteCount": "{count, plural, =0 {No favourites yet} one {# favourite} other {# favourites}}",
+            "empty": "You haven't favourited any renders yet. The PDF will skip this section unless you go back.",
+            "backToGalleries": "Back to gallery to favourite images"
+          },
+          "footer": {
+            "title": "Per-page footer",
+            "description": "Small BMT logo, short contact line and the page number on every page.",
+            "preview": "BMT Construction · Hotline: 1900 6868 · bmt.vn",
+            "pageNumber": "Page {current}/{total}"
+          }
+        },
+        "options": {
+          "title": "Export options",
+          "description": "Adjust which sections and language to use before generating the PDF.",
+          "selectSections": "Sections to include",
+          "selectAll": "Select all",
+          "deselectAll": "Clear all",
+          "languageLabel": "Language",
+          "language": {
+            "vi": "Vietnamese",
+            "en": "English"
+          },
+          "languageHint": "The official export is Vietnamese. English is coming in the next release.",
+          "currencyLabel": "Currency",
+          "currency": {
+            "vnd": "VND",
+            "usd": "USD"
+          },
+          "currencyHint": "Only VND is supported for now."
+        },
+        "actions": {
+          "exportPdf": "Export PDF",
+          "exporting": "Generating PDF…",
+          "exported": "Project proposal PDF ready.",
+          "exportFailed": "PDF export failed. Check your connection and try again.",
+          "shareLink": "Create share link",
+          "sendEmail": "Send via email",
+          "showQr": "Show QR code",
+          "finish": "Finish"
+        },
+        "share": {
+          "title": "Share project proposal",
+          "description": "Anyone with the link can view the PDF online — no login required.",
+          "linkLabel": "Share link",
+          "copy": "Copy",
+          "copied": "Copied",
+          "qrTitle": "QR code to the project",
+          "qrCaption": "Scan on a phone to open the link quickly."
+        },
+        "email": {
+          "title": "Send proposal via email",
+          "description": "Enter the client or contractor email — we'll send the PDF link for you.",
+          "recipientLabel": "Recipient",
+          "recipientPlaceholder": "client@email.com",
+          "messageLabel": "Message (optional)",
+          "messagePlaceholder": "Sharing the project proposal for your review…",
+          "send": "Send email",
+          "sent": "Email sent to {email} (demo)."
+        },
+        "empty": {
+          "title": "Not enough data to export PDF",
+          "description": "Finish the previous steps to build a complete proposal."
+        }
       }
     },
     "card": {
