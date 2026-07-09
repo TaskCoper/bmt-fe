@@ -33,10 +33,20 @@ export default function CreateProjectDialog({ children }: CreateProjectDialogPro
   const onSubmit: SubmitHandler<CreateProjectFormValues> = (body) => {
     const { id, slug, createdAt } = buildProjectId(body.name)
     const flow = getProjectFlowUrls(slug, 'detail')
-    addProject({ ...body, id, slug, createdAt, designRequest: null, spaces: null, ...flow })
+    addProject({
+      ...body,
+      id,
+      slug,
+      createdAt,
+      designRequest: null,
+      spaces: null,
+      aiDesignResult: null,
+      galleries: {},
+      ...flow
+    })
     setOpen(false)
     methods.reset()
-    router.push(`/dashboard/projects/${slug}`)
+    router.push(`/projects/${slug}`)
   }
 
   const onClose = () => {

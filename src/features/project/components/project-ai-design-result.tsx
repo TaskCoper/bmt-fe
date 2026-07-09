@@ -3,7 +3,7 @@
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/shared/components/ui'
 import { useTranslations } from 'next-intl'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   AI_LOADING_MS,
   DEFAULT_PACKAGE_TIER,
@@ -28,7 +28,6 @@ import { AIDesignResultConsultation } from './ai-design-result/ai-design-result-
 import { AIDesignResultCtas } from './ai-design-result/ai-design-result-ctas'
 import { AIDesignResultEstimate } from './ai-design-result/ai-design-result-estimate'
 import { AIDesignResultFloorPlans } from './ai-design-result/ai-design-result-floor-plans'
-import { AIDesignResultHeader } from './ai-design-result/ai-design-result-header'
 import { AIDesignResultInputSummary } from './ai-design-result/ai-design-result-input-summary'
 import { AIDesignResultPackageSelector } from './ai-design-result/ai-design-result-package-selector'
 import { AIDesignResultSkeleton } from './ai-design-result/ai-design-result-skeleton'
@@ -57,10 +56,11 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
   const t = useTranslations('project.form')
   const tc = useTranslations('common')
   const project = useProjectStore((s) => s.projects[slug])
+  const updateProject = useProjectStore((s) => s.updateProject)
 
   useSetProjectFlow(slug, 'ai-design-result')
 
-  const [tier, setTier] = useState<PackageTier>(DEFAULT_PACKAGE_TIER)
+  const [tier, setTier] = useState<PackageTier>(project?.aiDesignResult?.tier ?? DEFAULT_PACKAGE_TIER)
   const [regenKey, setRegenKey] = useState(0)
   const [readyRegenKey, setReadyRegenKey] = useState<number | null>(null)
   const [generatedAt, setGeneratedAt] = useState<Date | null>(null)
@@ -132,6 +132,27 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
     return { consultation, areaMetrics, hasTum, visibleFloors, budget, city, userBudget }
   }, [project, tier, hasRoof])
 
+  const derivedRef = useRef(derived)
+  useEffect(() => {
+    derivedRef.current = derived
+  }, [derived])
+
+  useEffect(() => {
+    if (!generatedAt) return
+    const d = derivedRef.current
+    updateProject({
+      slug,
+      patch: {
+        aiDesignResult: {
+          tier,
+          budget: d.budget,
+          metrics: d.areaMetrics,
+          generatedAt: generatedAt.toISOString()
+        }
+      }
+    })
+  }, [slug, tier, generatedAt, updateProject])
+
   if (!project) {
     return <p>{t('projectNotFound')}</p>
   }
@@ -174,11 +195,11 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
 
   return (
     <div className='space-y-8'>
-      <AIDesignResultHeader
+      {/* <AIDesignResultHeader
         houseType={derived.areaMetrics.houseType}
         floorCount={derived.areaMetrics.floorCount}
         hasTum={derived.hasTum}
-      />
+      /> */}
       <AIDesignResultConsultation consultation={derived.consultation} />
       <AIDesignResultInputSummary
         designRequest={project.designRequest}
@@ -196,7 +217,11 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
         userBudget={derived.userBudget}
       />
       <AIDesignResultTotalSummary budget={derived.budget} generatedAt={generatedAt} />
-      <AIDesignResultCtas prevUrl={project.prevUrl} onRegenerate={() => setRegenKey((k) => k + 1)} />
+      <AIDesignResultCtas
+        prevUrl={project.prevUrl}
+        nextUrl={project.nextUrl}
+        onRegenerate={() => setRegenKey((k) => k + 1)}
+      />
     </div>
   )
 }

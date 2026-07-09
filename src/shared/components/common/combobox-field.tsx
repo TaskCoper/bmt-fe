@@ -45,6 +45,7 @@ interface ComboboxFieldProps<T extends FieldValues> {
   modal?: boolean
   isRequired?: boolean
   onChange?: (value: string) => void
+  displayError?: boolean
 }
 
 export function ComboboxField<T extends FieldValues>({
@@ -60,7 +61,8 @@ export function ComboboxField<T extends FieldValues>({
   className,
   modal = false,
   isRequired = false,
-  onChange
+  onChange,
+  displayError = false
 }: ComboboxFieldProps<T>) {
   const t = useTranslations('common.combobox')
   const [open, setOpen] = React.useState(false)
@@ -173,9 +175,11 @@ export function ComboboxField<T extends FieldValues>({
               </Drawer>
             )}
 
-            <div className='min-h-4'>
-              {fieldState.invalid && <FieldError className='text-xs' errors={[fieldState.error]} />}
-            </div>
+            {displayError ? (
+              <div className='min-h-4'>
+                {fieldState.invalid && <FieldError className='text-xs' errors={[fieldState.error]} />}
+              </div>
+            ) : null}
           </Field>
         )
       }}

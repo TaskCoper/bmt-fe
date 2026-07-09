@@ -1,20 +1,10 @@
 'use client'
 
 import { Link, useRouter } from '@/i18n/navigation'
-import {
-  Button,
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  Separator,
-  Textarea
-} from '@/shared/components/ui'
+import { Button, Card, Textarea } from '@/shared/components/ui'
 import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field'
 import { cn } from '@/shared/lib/utils'
-import { ImagePlus, Trash2, UploadCloud } from 'lucide-react'
+import { ImagePlus, Trash2Icon, UploadCloud } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
@@ -70,7 +60,7 @@ export default function ProjectSpaces({ slug }: ProjectSpacesProps) {
         description: project.spaces?.description ?? '',
         floors: Array.from({ length: floorCount }, (_, index) => ({
           floorIndex: index,
-          layoutImage: project.spaces?.floors.find((floor) => floor.floorIndex === index)?.layoutImage ?? null
+          layoutImages: project.spaces?.floors.find((floor) => floor.floorIndex === index)?.layoutImages ?? []
         }))
       }
     })
@@ -89,127 +79,99 @@ export default function ProjectSpaces({ slug }: ProjectSpacesProps) {
     return <p>{t('projectNotFound')}</p>
   }
 
-  if (!project.designRequest) {
-    return (
-      <div className='space-y-6'>
-        <div>
-          <p className='font-semibold text-2xl'>{t('spaces.title')}</p>
-          <p className='text-sm text-muted-foreground'>{t('spaces.missingDesignRequest')}</p>
+  return (
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-8'>
+        <Controller
+          name='spaces.description'
+          control={control}
+          render={({ field, fieldState }) => (
+            <Field data-invalid={fieldState.invalid} className='gap-3'>
+              <div className='-space-y-0.5'>
+                <FieldLabel className='text-base font-semibold'> {t('spaces.descriptionLabel')}</FieldLabel>
+                <p className='text-sm text-muted-foreground'>Hãy chọn phong cách nhà của bạn, điều này sẽ quyết định</p>
+              </div>
+
+              <Textarea
+                {...field}
+                id={field.name}
+                rows={5}
+                placeholder={t('spaces.descriptionPlaceholder')}
+                aria-invalid={fieldState.invalid}
+                className='min-h-32 resize-y'
+                onChange={(e) => {
+                  field.onChange(e)
+                  persistSpacesDraft({
+                    ...getValues('spaces'),
+                    description: e.target.value
+                  })
+                }}
+              />
+              <div className='min-h-4'>
+                {fieldState.invalid && <FieldError className='text-xs' errors={[fieldState.error]} />}
+              </div>
+            </Field>
+          )}
+        />
+
+        <div className='space-y-3'>
+          <div className='-space-y-0.5'>
+            <FieldLabel className='text-base font-semibold'> {t('spaces.uploadTitle')}</FieldLabel>
+            <p className='text-sm text-muted-foreground'>{t('spaces.uploadHint')}</p>
+          </div>
+
+          <div className='space-y-4'>
+            {fields.map((floor, index) => (
+              <Controller
+                key={floor.id}
+                name={`spaces.floors.${index}.layoutImages`}
+                control={control}
+                render={({ field, fieldState }) => (
+                  <LayoutImageCard
+                    label={getFloorLabel(t, index)}
+                    value={field.value}
+                    invalid={fieldState.invalid}
+                    error={fieldState.error}
+                    onChange={(images) => {
+                      const nextFloors = getValues('spaces.floors').map((item, itemIndex) =>
+                        itemIndex === index ? { ...item, layoutImages: images } : item
+                      )
+
+                      setValue(`spaces.floors.${index}.layoutImages`, images, {
+                        shouldDirty: true,
+                        shouldValidate: true
+                      })
+                      persistSpacesDraft({
+                        description: getValues('spaces.description'),
+                        floors: nextFloors
+                      })
+                    }}
+                  />
+                )}
+              />
+            ))}
+          </div>
         </div>
 
-        {project.prevUrl && (
-          <Button type='button' variant='outline' asChild>
-            <Link href={project.prevUrl}>{tc('back')}</Link>
-          </Button>
-        )}
-      </div>
-    )
-  }
-
-  return (
-    <div className='space-y-8'>
-      <div>
-        <p className='font-semibold text-2xl'>{t('spaces.title')}</p>
-        <p className='text-sm text-muted-foreground'>{t('spaces.subtitle')}</p>
-      </div>
-
-      <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
-          <Controller
-            name='spaces.description'
-            control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid} className='gap-1'>
-                <FieldLabel htmlFor={field.name} className='gap-0.5'>
-                  {t('spaces.descriptionLabel')}
-                  <span className='text-destructive font-semibold'>*</span>
-                </FieldLabel>
-                <Textarea
-                  {...field}
-                  id={field.name}
-                  rows={5}
-                  placeholder={t('spaces.descriptionPlaceholder')}
-                  aria-invalid={fieldState.invalid}
-                  className='min-h-32 resize-y'
-                  onChange={(e) => {
-                    field.onChange(e)
-                    persistSpacesDraft({
-                      ...getValues('spaces'),
-                      description: e.target.value
-                    })
-                  }}
-                />
-                <div className='min-h-4'>
-                  {fieldState.invalid && <FieldError className='text-xs' errors={[fieldState.error]} />}
-                </div>
-              </Field>
-            )}
-          />
-
-          <Separator />
-
-          <div className='space-y-3'>
-            <div>
-              <FieldLabel className='gap-0.5'>
-                {t('spaces.uploadTitle')}
-                <span className='text-destructive font-semibold'>*</span>
-              </FieldLabel>
-              <p className='text-sm text-muted-foreground'>{t('spaces.uploadHint')}</p>
-            </div>
-
-            <div className='space-y-4'>
-              {fields.map((floor, index) => (
-                <Controller
-                  key={floor.id}
-                  name={`spaces.floors.${index}.layoutImage`}
-                  control={control}
-                  render={({ field, fieldState }) => (
-                    <LayoutImageCard
-                      label={getFloorLabel(t, index)}
-                      value={field.value}
-                      invalid={fieldState.invalid}
-                      error={fieldState.error}
-                      onChange={(image) => {
-                        const nextFloors = getValues('spaces.floors').map((item, itemIndex) =>
-                          itemIndex === index ? { ...item, layoutImage: image } : item
-                        )
-
-                        setValue(`spaces.floors.${index}.layoutImage`, image, {
-                          shouldDirty: true,
-                          shouldValidate: true
-                        })
-                        persistSpacesDraft({
-                          description: getValues('spaces.description'),
-                          floors: nextFloors
-                        })
-                      }}
-                    />
-                  )}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className='flex items-center justify-end gap-2'>
-            {project.prevUrl && (
-              <Button type='button' variant='outline' asChild>
-                <Link href={project.prevUrl}>{tc('back')}</Link>
-              </Button>
-            )}
-            <Button type='submit'>{tc('next')}</Button>
-          </div>
-        </form>
-      </FormProvider>
-    </div>
+        <div className='flex items-center justify-end gap-2'>
+          {project.prevUrl && (
+            <Button type='button' variant='outline' asChild>
+              <Link href={project.prevUrl}>{tc('back')}</Link>
+            </Button>
+          )}
+          <Button type='submit'>{tc('next')}</Button>
+        </div>
+      </form>
+    </FormProvider>
   )
 }
 
 interface LayoutImageCardProps {
   label: string
-  value: SpaceImagePayload | null
+  value: SpaceImagePayload[]
   invalid: boolean
   error?: { message?: string }
-  onChange: (image: SpaceImagePayload | null) => void
+  onChange: (images: SpaceImagePayload[]) => void
 }
 
 function LayoutImageCard({ label, value, invalid, error, onChange }: LayoutImageCardProps) {
@@ -218,105 +180,117 @@ function LayoutImageCard({ label, value, invalid, error, onChange }: LayoutImage
   const [dragging, setDragging] = useState(false)
 
   const handleFiles = (files: FileList | null) => {
-    const file = files?.[0]
-    if (!file) return
+    if (!files || files.length === 0) return
 
-    if (!isLayoutImage(file)) {
-      toast.error(t('spaces.unsupportedImage', { name: file.name }))
-      return
-    }
+    const validFiles: File[] = []
+    Array.from(files).forEach((file) => {
+      if (!isLayoutImage(file)) {
+        toast.error(t('spaces.unsupportedImage', { name: file.name }))
+      } else {
+        validFiles.push(file)
+      }
+    })
 
-    const reader = new FileReader()
-    reader.onload = () => {
-      const previewUrl = typeof reader.result === 'string' ? reader.result : ''
-      if (!previewUrl) return
+    if (validFiles.length === 0) return
 
-      onChange({
-        name: file.name,
-        type: file.type || 'image/*',
-        size: file.size,
-        previewUrl
-      })
-    }
-    reader.readAsDataURL(file)
+    const readers = validFiles.map(
+      (file) =>
+        new Promise<SpaceImagePayload>((resolve) => {
+          const reader = new FileReader()
+          reader.onload = () => {
+            const previewUrl = typeof reader.result === 'string' ? reader.result : ''
+            if (!previewUrl) return
+            resolve({ name: file.name, type: file.type || 'image/*', size: file.size, previewUrl })
+          }
+          reader.readAsDataURL(file)
+        })
+    )
+
+    void Promise.all(readers).then((newImages) => onChange([...value, ...newImages]))
+  }
+
+  const removeImage = (index: number) => {
+    onChange(value.filter((_, i) => i !== index))
   }
 
   return (
-    <Card data-invalid={invalid} className={cn('overflow-hidden', invalid && 'border-destructive')}>
-      <CardHeader>
-        <CardTitle className='text-sm'>{label}</CardTitle>
-        <CardDescription>{value ? t('spaces.replaceImage') : t('spaces.dropHint')}</CardDescription>
-        {value && (
-          <CardAction>
-            <Button
-              type='button'
-              variant='ghost'
-              size='icon'
-              onClick={() => {
-                onChange(null)
-              }}
-              aria-label={t('spaces.removeImage')}
-            >
-              <Trash2 className='h-4 w-4' />
-            </Button>
-          </CardAction>
+    <Card data-invalid={invalid} className={cn('overflow-hidden p-4 gap-3', invalid && 'border-destructive')}>
+      <div className='-space-y-0.5'>
+        <p className='font-semibold'>{label}</p>
+        <p className='text-xs text-muted-foreground'>{t('spaces.dropHint')}</p>
+      </div>
+
+      {value.length > 0 && (
+        <div className='grid grid-cols-2 gap-2 sm:grid-cols-3'>
+          {value.map((img, i) => (
+            <div key={i} className='relative aspect-[4/3] overflow-hidden rounded-md border bg-muted'>
+              <Image src={img.previewUrl} alt={img.name} fill className='object-contain' unoptimized />
+              <Button
+                type='button'
+                variant='destructive'
+                size='icon'
+                className='absolute right-1 top-1 size-6'
+                onClick={() => removeImage(i)}
+                aria-label={t('spaces.removeImage')}
+              >
+                <Trash2Icon className='size-3' />
+              </Button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div
+        role='button'
+        tabIndex={0}
+        onClick={() => inputRef.current?.click()}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') inputRef.current?.click()
+        }}
+        onDragOver={(e) => {
+          e.preventDefault()
+          setDragging(true)
+        }}
+        onDragLeave={() => setDragging(false)}
+        onDrop={(e) => {
+          e.preventDefault()
+          setDragging(false)
+          handleFiles(e.dataTransfer.files)
+        }}
+        className={cn(
+          'grid cursor-pointer place-items-center rounded-md border border-dashed p-4 text-center transition-colors',
+          value.length === 0 ? 'min-h-56' : 'min-h-20',
+          dragging ? 'border-primary bg-primary/5' : 'hover:border-primary/50 hover:bg-muted/40',
+          invalid && value.length === 0 && 'border-destructive'
         )}
-      </CardHeader>
-      <CardContent className='space-y-3'>
-        <div
-          role='button'
-          tabIndex={0}
-          onClick={() => inputRef.current?.click()}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') inputRef.current?.click()
-          }}
-          onDragOver={(e) => {
-            e.preventDefault()
-            setDragging(true)
-          }}
-          onDragLeave={() => setDragging(false)}
-          onDrop={(e) => {
-            e.preventDefault()
-            setDragging(false)
-            handleFiles(e.dataTransfer.files)
-          }}
-          className={cn(
-            'grid min-h-56 cursor-pointer place-items-center rounded-md border border-dashed p-4 text-center transition-colors',
-            dragging ? 'border-primary bg-primary/5' : 'hover:border-primary/50 hover:bg-muted/40',
-            invalid && 'border-destructive'
-          )}
-        >
-          {value ? (
-            <div className='w-full space-y-3'>
-              <div className='relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-md border bg-muted'>
-                <Image src={value.previewUrl} alt={value.name} fill className='object-contain' unoptimized />
-              </div>
-              <p className='text-sm font-medium break-all'>{value.name}</p>
-            </div>
-          ) : (
-            <div className='flex flex-col items-center gap-2'>
-              <ImagePlus className='size-7 text-muted-foreground' />
-              <p className='text-sm font-medium'>{t('spaces.dropTitle')}</p>
-              <p className='text-xs text-muted-foreground'>{t('spaces.dropHint')}</p>
-            </div>
-          )}
-          <input
-            ref={inputRef}
-            type='file'
-            accept={IMAGE_ACCEPT_ATTR}
-            className='sr-only'
-            onChange={(e) => {
-              handleFiles(e.target.files)
-              e.target.value = ''
-            }}
-          />
+      >
+        <div className='flex flex-col items-center gap-2'>
+          <ImagePlus className={cn('text-muted-foreground', value.length === 0 ? 'size-7' : 'size-5')} />
+          <p className={cn('font-medium', value.length === 0 ? 'text-sm' : 'text-xs')}>
+            {value.length === 0 ? t('spaces.dropTitle') : t('spaces.addMore')}
+          </p>
+          {value.length === 0 && <p className='text-xs text-muted-foreground'>{t('spaces.dropHint')}</p>}
         </div>
-        <div className='flex min-h-4 items-center gap-2'>
-          <UploadCloud className='size-3.5 text-muted-foreground' />
-          <span className='text-xs text-muted-foreground'>{t('spaces.uploadHint')}</span>
-        </div>
-        <div className='min-h-4'>{invalid && <FieldError className='text-xs' errors={[error]} />}</div>
-      </CardContent>
+
+        <input
+          ref={inputRef}
+          type='file'
+          accept={IMAGE_ACCEPT_ATTR}
+          multiple
+          className='sr-only'
+          onChange={(e) => {
+            handleFiles(e.target.files)
+            e.target.value = ''
+          }}
+        />
+      </div>
+
+      <div className='min-h-4'>{invalid && error?.message && <FieldError className='text-xs' errors={[error]} />}</div>
+
+      <div className='flex items-center gap-2'>
+        <UploadCloud className='size-3.5 text-muted-foreground' />
+        <span className='text-xs text-muted-foreground'>{t('spaces.uploadHint')}</span>
+      </div>
     </Card>
   )
 }

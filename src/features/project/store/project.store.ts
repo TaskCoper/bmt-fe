@@ -4,14 +4,24 @@ import { useEffect } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import type { CreateProjectFormValues, DesignRequestPayload, SpacesPayload } from '../schemas/project.schema'
+import type { AreaMetrics, Budget, PackageTier } from '../types/ai-design-result.types'
 
 const STORAGE_KEY = 'bmt.projects'
+
+export interface AIDesignResultSelection {
+  tier: PackageTier
+  budget: Budget
+  metrics: AreaMetrics
+  generatedAt: string
+}
 
 export interface ProjectDraft extends CreateProjectFormValues {
   id: string
   slug: string
   designRequest: DesignRequestPayload | null
   spaces: SpacesPayload | null
+  aiDesignResult: AIDesignResultSelection | null
+  galleries: Record<string, ImageMeta>
   prevUrl: string | null
   nextUrl: string | null
   createdAt: string
@@ -19,11 +29,28 @@ export interface ProjectDraft extends CreateProjectFormValues {
 
 type ProjectUpdate = Partial<Omit<ProjectDraft, 'id' | 'slug' | 'createdAt'>>
 
+// ---------------------------------------------------------------------------
+// Galleries
+// ---------------------------------------------------------------------------
+
+export interface ImageMeta {
+  favorite: boolean
+  caption: string
+}
+
+const emptyImageMeta: ImageMeta = { favorite: false, caption: '' }
+
+// ---------------------------------------------------------------------------
+// Store
+// ---------------------------------------------------------------------------
+
 interface ProjectStore {
   projects: Record<string, ProjectDraft>
   addProject: (project: ProjectDraft) => void
   updateProject: ({ slug, patch }: { slug: string; patch: ProjectUpdate }) => void
   removeProject: (slug: string) => void
+  toggleFavorite: (slug: string, imageId: string) => void
+  setCaption: (slug: string, imageId: string, caption: string) => void
 }
 
 export const useProjectStore = create<ProjectStore>()(
@@ -35,13 +62,39 @@ export const useProjectStore = create<ProjectStore>()(
         set((s) => {
           const current = s.projects[slug]
           if (!current) return s
-
           return { projects: { ...s.projects, [slug]: { ...current, ...patch } } }
         }),
       removeProject: (slug) =>
         set((s) => {
           const { [slug]: _removed, ...rest } = s.projects
           return { projects: rest }
+        }),
+      toggleFavorite: (slug, imageId) =>
+        set((s) => {
+          const project = s.projects[slug]
+          if (!project) return s
+          const current = project.galleries[imageId] ?? emptyImageMeta
+          return {
+            projects: {
+              ...s.projects,
+              [slug]: {
+                ...project,
+                galleries: { ...project.galleries, [imageId]: { ...current, favorite: !current.favorite } }
+              }
+            }
+          }
+        }),
+      setCaption: (slug, imageId, caption) =>
+        set((s) => {
+          const project = s.projects[slug]
+          if (!project) return s
+          const current = project.galleries[imageId] ?? emptyImageMeta
+          return {
+            projects: {
+              ...s.projects,
+              [slug]: { ...project, galleries: { ...project.galleries, [imageId]: { ...current, caption } } }
+            }
+          }
         })
     }),
     {
@@ -56,7 +109,7 @@ export const useProjectStore = create<ProjectStore>()(
               spaces: project.spaces
                 ? {
                     ...project.spaces,
-                    floors: project.spaces.floors.map((floor) => ({ ...floor, layoutImage: null }))
+                    floors: project.spaces.floors.map((floor) => ({ ...floor, layoutImages: [] }))
                   }
                 : null
             }
@@ -66,6 +119,14 @@ export const useProjectStore = create<ProjectStore>()(
     }
   )
 )
+
+export function useImageMeta(slug: string, imageId: string): ImageMeta {
+  return useProjectStore((s) => s.projects[slug]?.galleries[imageId] ?? emptyImageMeta)
+}
+
+// ---------------------------------------------------------------------------
+// Slug / ID helpers
+// ---------------------------------------------------------------------------
 
 const DIACRITICS = /[̀-ͯ]/g
 
@@ -91,29 +152,44 @@ export function buildProjectId(name: string): { id: string; slug: string; create
   return { id: slug, slug, createdAt: now.toISOString() }
 }
 
+// ---------------------------------------------------------------------------
+// Flow helpers
+// ---------------------------------------------------------------------------
+
 /**
  * Linear flow of routes a project moves through. The order here is the source
  * of truth — prev/next URLs are always derived from it via `getProjectFlowUrls`.
  */
-export type ProjectFlowStep = 'detail' | 'design-request' | 'spaces' | 'ai-design-result'
+export type ProjectFlowStep = 'detail' | 'design-request' | 'spaces' | 'ai-design-result' | 'galleries' | 'review'
 
-const PROJECT_FLOW: readonly (readonly [ProjectFlowStep, string])[] = [
+export const PROJECT_FLOW: readonly (readonly [ProjectFlowStep, string])[] = [
   ['detail', ''],
   ['design-request', '/design-request'],
   ['spaces', '/spaces'],
-  ['ai-design-result', '/ai-design-result']
+  ['ai-design-result', '/ai-design-result'],
+  ['galleries', '/galleries'],
+  ['review', '/review']
 ] as const
+
+export function getProjectFlowUrl(slug: string, step: ProjectFlowStep): string {
+  const entry = PROJECT_FLOW.find(([flowStep]) => flowStep === step)
+  return `/projects/${slug}${entry?.[1] ?? ''}`
+}
+
+export function getProjectFlowIndex(step: ProjectFlowStep): number {
+  return Math.max(
+    PROJECT_FLOW.findIndex(([flowStep]) => flowStep === step),
+    0
+  )
+}
 
 /** Prev/next URLs for a given flow position. `null` at either end of the flow. */
 export function getProjectFlowUrls(
   slug: string,
   current: ProjectFlowStep
 ): { prevUrl: string | null; nextUrl: string | null } {
-  const idx = PROJECT_FLOW.findIndex(([step]) => step === current)
-  const buildUrl = (i: number) => {
-    const entry = PROJECT_FLOW[i]
-    return entry ? `/dashboard/projects/${slug}${entry[1]}` : null
-  }
+  const idx = getProjectFlowIndex(current)
+  const buildUrl = (i: number) => (PROJECT_FLOW[i] ? getProjectFlowUrl(slug, PROJECT_FLOW[i][0]) : null)
   return { prevUrl: buildUrl(idx - 1), nextUrl: buildUrl(idx + 1) }
 }
 

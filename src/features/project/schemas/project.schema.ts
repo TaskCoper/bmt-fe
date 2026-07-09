@@ -20,6 +20,11 @@ export interface DesignRequestSchemaMessages {
   invalidArea: string
 }
 
+export const DESIGN_REQUEST_BUDGET_MIN = 300_000_000
+export const DESIGN_REQUEST_BUDGET_MAX = 15_000_000_000
+export const DESIGN_REQUEST_BUDGET_STEP = 50_000_000
+export const DESIGN_REQUEST_BUDGET_DEFAULT = 2_000_000_000
+
 export const designRequestSchema = (m: DesignRequestSchemaMessages) => {
   const floorSchema = z.object({
     area: z.number({ message: m.invalidArea }).positive({ message: m.invalidArea }),
@@ -33,7 +38,10 @@ export const designRequestSchema = (m: DesignRequestSchemaMessages) => {
       style: z.enum(HouseStyle),
       roofStyle: z.enum(RoofStyle).optional(),
       hasTum: z.boolean().optional(),
-      budgetAmount: z.number().positive({ message: m.invalidArea }).optional(),
+      budgetAmount: z
+        .number({ message: m.invalidArea })
+        .min(DESIGN_REQUEST_BUDGET_MIN, { message: m.invalidArea })
+        .max(DESIGN_REQUEST_BUDGET_MAX, { message: m.invalidArea }),
       direction: z.enum(Direction),
       address: z.string().min(1, { message: m.required }),
       city: z.string().min(1, { message: m.required }),
@@ -69,7 +77,7 @@ export const spacesSchema = (m: SpacesSchemaMessages) => {
         .array(
           z.object({
             floorIndex: z.number().int().nonnegative(),
-            layoutImage: spaceImageSchema.nullable().refine((image) => Boolean(image), { message: m.required })
+            layoutImages: z.array(spaceImageSchema).min(1, { message: m.required })
           })
         )
         .min(1, { message: m.required })
@@ -79,4 +87,4 @@ export const spacesSchema = (m: SpacesSchemaMessages) => {
 
 export type SpacesFormValues = z.infer<ReturnType<typeof spacesSchema>>
 export type SpacesPayload = SpacesFormValues['spaces']
-export type SpaceImagePayload = NonNullable<SpacesPayload['floors'][number]['layoutImage']>
+export type SpaceImagePayload = z.infer<typeof spaceImageSchema>

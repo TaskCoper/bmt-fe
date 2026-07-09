@@ -462,13 +462,91 @@
       "descriptionHint": "Sẽ hiện thị công khai trên dự án của bạn",
       "charCount": "{count}/{max} ký tự",
       "projectNotFound": "Không tìm thấy dự án",
+      "steps": {
+        "progress": "{completed}/{total} bước đã sẵn sàng",
+        "viewResult": "Xem kết quả",
+        "resume": "Tiếp tục · Bước {step}",
+        "start": "Bắt đầu bước 1",
+        "openStep": "Mở bước này",
+        "editStep": "Chỉnh sửa",
+        "insightsTitle": "Tiến độ 6 bước",
+        "insightsSubtitle": "Xem nhanh dữ liệu đã có ở từng bước.",
+        "status": {
+          "completed": "Đã hoàn tất",
+          "ready": "Sẵn sàng",
+          "locked": "Đang khóa"
+        },
+        "summary": {
+          "houseType": "Loại nhà",
+          "createdAt": "Ngày tạo",
+          "budget": "Ngân sách",
+          "floors": "Số tầng",
+          "layoutImages": "Ảnh layout",
+          "description": "Mô tả",
+          "style": "Phong cách",
+          "direction": "Hướng nhà",
+          "city": "Tỉnh / TP",
+          "address": "Địa chỉ",
+          "totalArea": "Tổng diện tích",
+          "favorites": "Ảnh yêu thích",
+          "captions": "Ghi chú ảnh",
+          "sections": "Mục trong đề xuất",
+          "package": "Gói vật liệu"
+        },
+        "detail": {
+          "label": "Tổng quan",
+          "description": "Kiểm tra tên, loại nhà và mô tả trước khi bắt đầu.",
+          "summary": "Thông tin dự án đã được tạo.",
+          "empty": "Dự án đã sẵn sàng để nhập yêu cầu thiết kế."
+        },
+        "design-request": {
+          "label": "Yêu cầu thiết kế",
+          "description": "Chọn ngân sách, địa chỉ, phong cách, hướng nhà và cấu hình tầng.",
+          "summary": "Yêu cầu thiết kế dùng để dựng phương án và dự toán.",
+          "empty": "Chưa có yêu cầu thiết kế. Bắt đầu bước này để mô tả công trình."
+        },
+        "spaces": {
+          "label": "Không gian",
+          "description": "Mô tả hiện trạng và tải ảnh layout cho từng tầng.",
+          "summary": "Thông tin không gian giúp AI hiểu bố trí thực tế.",
+          "empty": "Hoàn tất yêu cầu thiết kế trước khi nhập thông tin không gian."
+        },
+        "ai-design-result": {
+          "label": "Kết quả AI",
+          "description": "Xem phương án mặt bằng, tư vấn và dự toán tham khảo.",
+          "summary": "Kết quả AI được tạo từ yêu cầu thiết kế và thông tin không gian.",
+          "empty": "Cần đủ yêu cầu thiết kế và thông tin không gian để tạo kết quả."
+        },
+        "galleries": {
+          "label": "Thư viện ảnh",
+          "description": "Duyệt các phương án hình ảnh được AI tạo cho công trình của bạn.",
+          "summary": "Thư viện ảnh giúp bạn hình dung không gian trước khi quyết định.",
+          "empty": "Chưa có ảnh trong thư viện. Tạo kết quả AI để bắt đầu."
+        },
+        "review": {
+          "label": "Đánh giá",
+          "description": "Rà soát toàn bộ phương án và xác nhận trước khi hoàn tất.",
+          "summary": "Bước đánh giá giúp bạn xác nhận phương án cuối cùng.",
+          "empty": "Hoàn tất các bước trước để tiến hành đánh giá."
+        }
+      },
+      "stepper": {
+        "measure": "Đo",
+        "ariaLabel": "Luồng dự án, bước {current} trên {total}"
+      },
       "designRequestTitle": "Yêu cầu thiết kế",
       "designRequestSubtitle": "Chọn phong cách, hướng nhà và cấu hình từng tầng cho ngôi nhà của bạn.",
+      "recommended": "Được đề xuất",
       "styleLabel": "Phong cách nhà",
       "style": {
         "roof": "Nhà mái",
         "modern": "Nhà phố hiện đại",
         "neoclassical": "Nhà tân cổ điển"
+      },
+      "styleDescription": {
+        "roof": "Nhà mái ngói truyền thống mang lại vẻ đẹp cổ điển.",
+        "modern": "Đường nét tối giản, khối vuông vắn, tận dụng tối đa mặt tiền hẹp.",
+        "neoclassical": "Chi tiết cột, phào và hoa văn tinh xảo, tạo không gian sang trọng."
       },
       "roofStyleLabel": "Kiểu mái",
       "roofStyle": {
@@ -477,10 +555,20 @@
         "traditional": "Ngói truyền thống",
         "other": "Khác"
       },
+      "roofStyleDescription": {
+        "thai": "Mái dốc lớn, chống nắng mưa tốt, đường nét mềm mại.",
+        "japanese": "Mái ngói phẳng theo phong cách zen, ít trang trí.",
+        "traditional": "Ngói truyền thống Việt Nam, phù hợp nhà ba gian.",
+        "other": "Kiểu mái khác theo yêu cầu của bạn."
+      },
       "tumLabel": "Có tum hay không?",
       "tum": {
         "yes": "Có tum",
         "no": "Không tum"
+      },
+      "tumDescription": {
+        "yes": "Có tum giúp che cầu thang, thêm không gian thư giãn trên mái.",
+        "no": "Không có tum, tiết kiệm chi phí và giữ nét đường mái sạch sẽ."
       },
       "directionLabel": "Hướng nhà ưu tiên",
       "direction": {
@@ -488,6 +576,12 @@
         "west": "Tây",
         "south": "Nam",
         "north": "Bắc"
+      },
+      "directionDescription": {
+        "east": "Đón ánh nắng sớm, mát mẻ vào chiều.",
+        "west": "Đón nắng chiều mạnh, cần chú ý chống nóng.",
+        "south": "Hướng lý tưởng, đón gió mát và ánh sáng cân bằng cả ngày.",
+        "north": "Mát mẻ mùa hè nhưng lạnh mùa đông, ít nắng trực tiếp."
       },
       "addressLabel": "Địa chỉ",
       "addressPlaceholder": "Số nhà, tên đường…",
@@ -497,7 +591,8 @@
       "wardLabel": "Phường / Xã",
       "wardPlaceholder": "Chọn phường / xã",
       "wardSearchPlaceholder": "Tìm phường / xã…",
-      "floorsLabel": "Các tầng",
+      "floorsLabel": "Tầng",
+      "floorsDescription": "Thêm từng tầng và điều chỉnh diện tích, bố cục, ánh sáng, màu chủ đạo.",
       "floorTitle": "Tầng {index}",
       "addFloor": "Thêm tầng",
       "removeFloor": "Xoá tầng",
@@ -508,10 +603,18 @@
         "open": "Không gian mở",
         "separated": "Phòng riêng biệt"
       },
+      "layoutDescription": {
+        "open": "Không gian liền mạch, tối ưu đối lưu và ánh sáng.",
+        "separated": "Chia phòng riêng biệt, đảm bảo riêng tư cho từng thành viên."
+      },
       "lightingLabel": "Ưu tiên ánh sáng",
       "lighting": {
         "natural": "Tự nhiên",
         "artificial": "Nhân tạo"
+      },
+      "lightingDescription": {
+        "natural": "Ưu tiên giếng trời, cửa lớn và cửa sổ để đón sáng tự nhiên.",
+        "artificial": "Bố trí đèn kỹ càng cho các không gian ít ánh sáng tự nhiên."
       },
       "colorLabel": "Tông màu chủ đạo",
       "spaces": {
@@ -524,8 +627,8 @@
         "groundFloor": "Tầng trệt",
         "upperFloor": "Tầng {index}",
         "dropTitle": "Kéo-thả ảnh layout vào đây",
-        "dropHint": "JPG, PNG hoặc HEIC. Mỗi tầng cần 1 ảnh layout.",
-        "replaceImage": "Bấm hoặc kéo-thả ảnh mới để thay thế",
+        "dropHint": "JPG, PNG hoặc HEIC. Có thể tải nhiều ảnh cho mỗi tầng.",
+        "addMore": "Thêm ảnh",
         "removeImage": "Xoá ảnh",
         "missingDesignRequest": "Vui lòng hoàn tất bước yêu cầu thiết kế trước khi nhập thông tin không gian.",
         "unsupportedImage": "\"{name}\" không phải định dạng ảnh được hỗ trợ.",
@@ -794,7 +897,7 @@
           "regenerate": "Tạo lại thiết kế",
           "exportPdf": "Xuất PDF",
           "pdfComingSoon": "Xuất PDF sẽ có ở bản kế tiếp.",
-          "nextStep": "Sang bước 5 · Render",
+          "nextStep": "Render",
           "nextStepDisabled": "Bước 5 (Render) sắp ra mắt."
         },
         "tooltips": {
@@ -817,6 +920,171 @@
           "dk": "ĐK = hạng mục điều kiện: chỉ hiện khi dự án có bật tum / sân thượng ở bước tạo dự án.",
           "progressTarget": "Ngân sách mục tiêu là mức chi dự kiến cho riêng phần này. Thanh cho biết đang dùng bao nhiêu % — vượt 100% đổi đỏ để cảnh báo.",
           "donut": "Tỷ lệ tính từ số tiền thật của 3 phần trong bảng, phản ánh đúng dự án — khác với dải % tham khảo ở văn mẫu."
+        }
+      },
+      "galleries": {
+        "badge": "Bước 5 · Render hình ảnh",
+        "title": "Thư viện render không gian",
+        "subtitle": "AI đã dựng loạt ảnh render mô phỏng không gian thực tế của bạn. Đánh dấu yêu thích và thêm chú thích để đưa vào hồ sơ.",
+        "summary": {
+          "count": "{count, plural, other {# ảnh render}}",
+          "favorites": "{count, plural, =0 {Chưa chọn ảnh yêu thích} other {# ảnh yêu thích}}",
+          "hint": "Bấm vào ảnh để mở xem lớn, thêm chú thích và đánh dấu yêu thích."
+        },
+        "filters": {
+          "favorites": "Yêu thích"
+        },
+        "rooms": {
+          "all": "Tất cả",
+          "living": "Phòng khách",
+          "kitchen": "Bếp",
+          "dining": "Phòng ăn",
+          "bedroom": "Phòng ngủ",
+          "bathroom": "Phòng tắm",
+          "exterior": "Ngoại thất"
+        },
+        "floors": {
+          "ground": "Tầng trệt",
+          "upper1": "Lầu 1",
+          "upper2": "Lầu 2",
+          "exterior": "Ngoại thất"
+        },
+        "actions": {
+          "favorite": "Đánh dấu yêu thích",
+          "unfavorite": "Bỏ yêu thích",
+          "preview": "Xem lớn",
+          "editCaption": "Sửa chú thích",
+          "captionLabel": "Chú thích của bạn",
+          "captionHint": "Chú thích sẽ đi cùng ảnh khi bạn xuất hồ sơ.",
+          "save": "Lưu",
+          "cancel": "Hủy"
+        },
+        "captionPlaceholder": "VD: Phòng khách tông trầm, ánh sáng tự nhiên từ giếng trời…",
+        "captionEmpty": "Thêm chú thích cho ảnh này",
+        "empty": {
+          "title": "Không có ảnh nào",
+          "description": "Chưa có ảnh nào khớp bộ lọc. Thử chọn phòng khác hoặc bỏ lọc yêu thích."
+        },
+        "lightbox": {
+          "title": "Chú thích và đánh dấu",
+          "description": "Thêm chú thích cho ảnh này, đánh dấu yêu thích để dùng ở bước xuất hồ sơ PDF.",
+          "counter": "{current} / {total}",
+          "previous": "Ảnh trước",
+          "next": "Ảnh sau",
+          "done": "Xong"
+        },
+        "ctas": {
+          "nextStep": "Tiếp tục đánh giá"
+        }
+      },
+      "review": {
+        "badge": "Bước 6 · Xuất PDF",
+        "title": "Xuất hồ sơ dự án",
+        "subtitle": "Chọn các phần muốn đưa vào PDF, xem trước và chia sẻ với khách hàng hoặc nhà thầu.",
+        "sections": {
+          "cover": {
+            "title": "Trang bìa",
+            "description": "Logo BMT, thông tin liên hệ, ngày xuất, tên dự án và chủ đầu tư.",
+            "clientNameLabel": "Tên chủ đầu tư",
+            "clientNamePlaceholder": "Ví dụ: Anh Minh & Chị Lan",
+            "exportedAt": "Ngày xuất: {date}",
+            "houseTypeLabel": "Loại công trình",
+            "projectNameLabel": "Dự án",
+            "contactPhone": "Hotline: 1900 6868",
+            "contactWebsite": "bmt.vn",
+            "brand": "BMT Construction"
+          },
+          "projectInfo": {
+            "title": "Thông tin dự án",
+            "description": "Tóm tắt thông tin loại nhà, địa chỉ, ngân sách và cấu hình tầng.",
+            "landArea": "Diện tích đất",
+            "floorCount": "Số tầng",
+            "totalFloorArea": "Tổng sàn",
+            "city": "Địa điểm",
+            "budget": "Ngân sách khách đặt",
+            "package": "Gói vật liệu",
+            "createdAt": "Ngày khởi tạo"
+          },
+          "floorPlans": {
+            "title": "Bản vẽ bố trí nội thất",
+            "description": "Bản vẽ 2D từng tầng theo thứ tự tầng trệt → lầu 1 → …",
+            "count": "{count, plural, other {# tầng}}"
+          },
+          "estimate": {
+            "title": "Bảng dự toán chi tiết",
+            "description": "Ba tab: phần thô, hoàn thiện, nội thất — kèm tổng hợp dự toán theo gói.",
+            "tabs": {
+              "rough": "Phần thô",
+              "finishing": "Hoàn thiện",
+              "interior": "Nội thất"
+            },
+            "totalRow": "Tổng dự toán"
+          },
+          "renders": {
+            "title": "Hình ảnh render 3D",
+            "description": "Chỉ đưa những ảnh bạn đã đánh dấu yêu thích vào PDF.",
+            "favoriteCount": "{count, plural, =0 {Chưa chọn ảnh yêu thích} other {# ảnh yêu thích}}",
+            "empty": "Bạn chưa chọn ảnh yêu thích ở bước trước. Hồ sơ sẽ không có phần render nếu tiếp tục xuất.",
+            "backToGalleries": "Quay lại thư viện để chọn ảnh"
+          },
+          "footer": {
+            "title": "Footer mỗi trang",
+            "description": "Logo BMT nhỏ, thông tin liên hệ ngắn và số trang hiển thị ở chân mỗi trang.",
+            "preview": "BMT Construction · Hotline: 1900 6868 · bmt.vn",
+            "pageNumber": "Trang {current}/{total}"
+          }
+        },
+        "options": {
+          "title": "Tùy chọn xuất",
+          "description": "Điều chỉnh nội dung và ngôn ngữ trước khi tạo file PDF.",
+          "selectSections": "Nội dung đưa vào PDF",
+          "selectAll": "Chọn tất cả",
+          "deselectAll": "Bỏ chọn tất cả",
+          "languageLabel": "Ngôn ngữ",
+          "language": {
+            "vi": "Tiếng Việt",
+            "en": "Tiếng Anh"
+          },
+          "languageHint": "Bản chính thức xuất ra tiếng Việt. Tiếng Anh sẽ có ở bản kế tiếp.",
+          "currencyLabel": "Đơn vị tiền tệ",
+          "currency": {
+            "vnd": "VNĐ",
+            "usd": "USD"
+          },
+          "currencyHint": "Hiện chỉ hỗ trợ đơn vị VNĐ."
+        },
+        "actions": {
+          "exportPdf": "Xuất PDF",
+          "exporting": "Đang tạo PDF…",
+          "exported": "Đã tạo file PDF hồ sơ dự án.",
+          "exportFailed": "Xuất PDF không thành công. Kiểm tra kết nối và thử lại.",
+          "shareLink": "Tạo link chia sẻ",
+          "sendEmail": "Gửi qua email",
+          "showQr": "Xem mã QR",
+          "finish": "Hoàn tất"
+        },
+        "share": {
+          "title": "Chia sẻ hồ sơ dự án",
+          "description": "Bất kỳ ai có link đều có thể xem PDF online — không cần đăng nhập.",
+          "linkLabel": "Link chia sẻ",
+          "copy": "Sao chép",
+          "copied": "Đã sao chép",
+          "qrTitle": "Mã QR dẫn đến dự án",
+          "qrCaption": "Quét mã bằng điện thoại để mở link nhanh."
+        },
+        "email": {
+          "title": "Gửi hồ sơ qua email",
+          "description": "Nhập email khách hàng hoặc nhà thầu để hệ thống gửi kèm link PDF.",
+          "recipientLabel": "Người nhận",
+          "recipientPlaceholder": "khach.hang@email.com",
+          "messageLabel": "Lời nhắn (tuỳ chọn)",
+          "messagePlaceholder": "Gửi anh/chị hồ sơ dự án để tham khảo…",
+          "send": "Gửi email",
+          "sent": "Đã gửi email đến {email} (demo)."
+        },
+        "empty": {
+          "title": "Chưa đủ dữ liệu để xuất PDF",
+          "description": "Hoàn tất các bước trước để tạo hồ sơ đầy đủ."
         }
       }
     },

@@ -10,9 +10,5 @@ export default async function SpacesPage({ params }: PageProps) {
   const { locale, slug } = await params
   setRequestLocale(locale)
 
-  return (
-    <div className='mx-auto w-full max-w-7xl p-4'>
-      <ProjectSpaces slug={slug} />
-    </div>
-  )
+  return <ProjectSpaces slug={slug} />
 }

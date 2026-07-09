@@ -462,13 +462,91 @@
       "descriptionHint": "Will be shown publicly on your project",
       "charCount": "{count}/{max} characters",
       "projectNotFound": "Project not found",
+      "steps": {
+        "progress": "{completed}/{total} steps ready",
+        "viewResult": "View result",
+        "resume": "Continue · Step {step}",
+        "start": "Start step 1",
+        "openStep": "Open this step",
+        "editStep": "Edit",
+        "insightsTitle": "6-step progress",
+        "insightsSubtitle": "A quick look at what's already captured at each step.",
+        "status": {
+          "completed": "Complete",
+          "ready": "Ready",
+          "locked": "Locked"
+        },
+        "summary": {
+          "houseType": "House type",
+          "createdAt": "Created",
+          "budget": "Budget",
+          "floors": "Floors",
+          "layoutImages": "Layout images",
+          "description": "Description",
+          "style": "Style",
+          "direction": "Direction",
+          "city": "Province / City",
+          "address": "Address",
+          "totalArea": "Total area",
+          "favorites": "Favorites",
+          "captions": "Captions",
+          "sections": "Proposal sections",
+          "package": "Package"
+        },
+        "detail": {
+          "label": "Overview",
+          "description": "Review the name, house type and description before starting.",
+          "summary": "Project information has been created.",
+          "empty": "The project is ready for design requirements."
+        },
+        "design-request": {
+          "label": "Design request",
+          "description": "Choose budget, address, style, orientation and floor setup.",
+          "summary": "The design request powers the proposal and estimate.",
+          "empty": "No design request yet. Start this step to describe the build."
+        },
+        "spaces": {
+          "label": "Spaces",
+          "description": "Describe the real space and upload a layout image for each floor.",
+          "summary": "Space information helps AI understand the actual layout.",
+          "empty": "Complete the design request before entering space information."
+        },
+        "ai-design-result": {
+          "label": "AI result",
+          "description": "Review floor plans, consultation and a reference estimate.",
+          "summary": "AI results are generated from the request and space information.",
+          "empty": "Design request and space information are required before generating results."
+        },
+        "galleries": {
+          "label": "Galleries",
+          "description": "Browse AI-generated visual variations for your project.",
+          "summary": "Galleries help you picture the space before deciding.",
+          "empty": "No images yet. Generate an AI result to populate the gallery."
+        },
+        "review": {
+          "label": "Review",
+          "description": "Review the full proposal and confirm before finishing.",
+          "summary": "The review step lets you confirm the final proposal.",
+          "empty": "Complete the previous steps before you can review."
+        }
+      },
+      "stepper": {
+        "measure": "Measure",
+        "ariaLabel": "Project flow, step {current} of {total}"
+      },
       "designRequestTitle": "Design request",
       "designRequestSubtitle": "Choose a style, orientation and floor configuration for your home.",
+      "recommended": "Recommended",
       "styleLabel": "House style",
       "style": {
         "roof": "Roofed house",
         "modern": "Modern townhouse",
         "neoclassical": "Neoclassical"
+      },
+      "styleDescription": {
+        "roof": "A pitched-roof home with timeless charm.",
+        "modern": "Minimalist lines and blocky forms, optimized for narrow street-facing lots.",
+        "neoclassical": "Elegant columns, mouldings and ornate details for a luxurious feel."
       },
       "roofStyleLabel": "Roof style",
       "roofStyle": {
@@ -477,10 +555,20 @@
         "traditional": "Traditional tile",
         "other": "Other"
       },
+      "roofStyleDescription": {
+        "thai": "Steep pitched roof with soft lines, excellent sun and rain protection.",
+        "japanese": "Flat zen-inspired tile roof with minimal ornamentation.",
+        "traditional": "Classic Vietnamese ceramic tiles, ideal for three-bay homes.",
+        "other": "Another roof style to match your specific request."
+      },
       "tumLabel": "Rooftop room (tum)?",
       "tum": {
         "yes": "With tum",
         "no": "No tum"
+      },
+      "tumDescription": {
+        "yes": "Adds a rooftop cabin to enclose the stairwell and gain extra terrace space.",
+        "no": "Skip the rooftop cabin to save cost and keep the roofline clean."
       },
       "directionLabel": "Preferred orientation",
       "direction": {
@@ -488,6 +576,12 @@
         "west": "West",
         "south": "South",
         "north": "North"
+      },
+      "directionDescription": {
+        "east": "Catches early morning sun with a cool afternoon.",
+        "west": "Faces strong afternoon sun; plan for heat mitigation.",
+        "south": "Ideal orientation with steady breeze and balanced light all day.",
+        "north": "Cool in summer but chilly in winter, with minimal direct sunlight."
       },
       "addressLabel": "Address",
       "addressPlaceholder": "Street number, street name…",
@@ -497,7 +591,8 @@
       "wardLabel": "Ward",
       "wardPlaceholder": "Select a ward",
       "wardSearchPlaceholder": "Search ward…",
-      "floorsLabel": "Floors",
+      "floorsLabel": "Floor",
+      "floorsDescription": "Add each floor and tune its area, layout, lighting, and primary color.",
       "floorTitle": "Floor {index}",
       "addFloor": "Add floor",
       "removeFloor": "Remove floor",
@@ -508,10 +603,18 @@
         "open": "Open plan",
         "separated": "Separated rooms"
       },
+      "layoutDescription": {
+        "open": "Continuous flow that maximizes airflow and natural light.",
+        "separated": "Distinct rooms that give every family member privacy."
+      },
       "lightingLabel": "Preferred lighting",
       "lighting": {
         "natural": "Natural",
         "artificial": "Artificial"
+      },
+      "lightingDescription": {
+        "natural": "Prioritize skylights and large windows to bring in daylight.",
+        "artificial": "Careful lighting design for spaces with limited natural light."
       },
       "colorLabel": "Primary color",
       "spaces": {
@@ -523,9 +626,9 @@
         "uploadHint": "Uploaded images are only floor layout images showing each level's floor plan.",
         "groundFloor": "Ground floor",
         "upperFloor": "Floor {index}",
-        "dropTitle": "Drag-and-drop a layout image here",
-        "dropHint": "JPG, PNG or HEIC. Each floor needs 1 layout image.",
-        "replaceImage": "Click or drag a new image to replace it",
+        "dropTitle": "Drag-and-drop layout images here",
+        "dropHint": "JPG, PNG or HEIC. Multiple images per floor are supported.",
+        "addMore": "Add images",
         "removeImage": "Remove image",
         "missingDesignRequest": "Complete the design request step before entering space information.",
         "unsupportedImage": "\"{name}\" is not a supported image format.",
@@ -794,7 +897,7 @@
           "regenerate": "Regenerate design",
           "exportPdf": "Export PDF",
           "pdfComingSoon": "PDF export is coming in the next release.",
-          "nextStep": "Go to step 5 · Render",
+          "nextStep": "Render",
           "nextStepDisabled": "Step 5 (Render) is coming soon."
         },
         "tooltips": {
@@ -817,6 +920,171 @@
           "dk": "Cond = conditional line item: it only appears when the project has tum / terrace enabled in the creation step.",
           "progressTarget": "The target is the expected spend for this portion alone. The bar shows how much of it is used — over 100% turns red as a warning.",
           "donut": "The percentages come from the real numbers for the three portions in the table — this reflects your project directly, unlike the market averages in the consultation copy at the top."
+        }
+      },
+      "galleries": {
+        "badge": "Step 5 · Render gallery",
+        "title": "Render library",
+        "subtitle": "AI has produced a series of renders simulating your real space. Favourite the ones you love and add captions to keep them in your proposal.",
+        "summary": {
+          "count": "{count, plural, one {# render} other {# renders}}",
+          "favorites": "{count, plural, =0 {No favourites yet} one {# favourite} other {# favourites}}",
+          "hint": "Click any image to open it larger, add a caption and favourite it."
+        },
+        "filters": {
+          "favorites": "Favourites"
+        },
+        "rooms": {
+          "all": "All",
+          "living": "Living",
+          "kitchen": "Kitchen",
+          "dining": "Dining",
+          "bedroom": "Bedroom",
+          "bathroom": "Bathroom",
+          "exterior": "Exterior"
+        },
+        "floors": {
+          "ground": "Ground floor",
+          "upper1": "Floor 1",
+          "upper2": "Floor 2",
+          "exterior": "Exterior"
+        },
+        "actions": {
+          "favorite": "Favourite",
+          "unfavorite": "Unfavourite",
+          "preview": "Open",
+          "editCaption": "Edit caption",
+          "captionLabel": "Your caption",
+          "captionHint": "Captions travel with the image when you export the proposal.",
+          "save": "Save",
+          "cancel": "Cancel"
+        },
+        "captionPlaceholder": "e.g. Warm-tone living room with natural light from the skylight…",
+        "captionEmpty": "Add a caption for this render",
+        "empty": {
+          "title": "No images",
+          "description": "Nothing matches this filter yet. Try another room or clear the favourites filter."
+        },
+        "lightbox": {
+          "title": "Caption and favourite",
+          "description": "Add a caption for this render and favourite it so it lands in the exported PDF proposal.",
+          "counter": "{current} / {total}",
+          "previous": "Previous image",
+          "next": "Next image",
+          "done": "Done"
+        },
+        "ctas": {
+          "nextStep": "Continue to review"
+        }
+      },
+      "review": {
+        "badge": "Step 6 · Export PDF",
+        "title": "Export project proposal",
+        "subtitle": "Pick which sections land in the PDF, preview them, then share with clients or contractors.",
+        "sections": {
+          "cover": {
+            "title": "Cover page",
+            "description": "BMT logo, contact info, export date, project name and client name.",
+            "clientNameLabel": "Client name",
+            "clientNamePlaceholder": "e.g. Mr. Minh & Ms. Lan",
+            "exportedAt": "Exported: {date}",
+            "houseTypeLabel": "House type",
+            "projectNameLabel": "Project",
+            "contactPhone": "Hotline: 1900 6868",
+            "contactWebsite": "bmt.vn",
+            "brand": "BMT Construction"
+          },
+          "projectInfo": {
+            "title": "Project information",
+            "description": "House type, address, budget and floor configuration summary.",
+            "landArea": "Land area",
+            "floorCount": "Floors",
+            "totalFloorArea": "Total floor",
+            "city": "Location",
+            "budget": "Client budget",
+            "package": "Material package",
+            "createdAt": "Created"
+          },
+          "floorPlans": {
+            "title": "Interior floor plans",
+            "description": "2D drawings for every floor, ordered ground → upper 1 → …",
+            "count": "{count, plural, one {# floor} other {# floors}}"
+          },
+          "estimate": {
+            "title": "Detailed estimate",
+            "description": "Three tabs — rough, finishing, interior — plus the per-package total summary.",
+            "tabs": {
+              "rough": "Rough",
+              "finishing": "Finishing",
+              "interior": "Interior"
+            },
+            "totalRow": "Estimated total"
+          },
+          "renders": {
+            "title": "3D renders",
+            "description": "Only the images you favourited will be embedded in the PDF.",
+            "favoriteCount": "{count, plural, =0 {No favourites yet} one {# favourite} other {# favourites}}",
+            "empty": "You haven't favourited any renders yet. The PDF will skip this section unless you go back.",
+            "backToGalleries": "Back to gallery to favourite images"
+          },
+          "footer": {
+            "title": "Per-page footer",
+            "description": "Small BMT logo, short contact line and the page number on every page.",
+            "preview": "BMT Construction · Hotline: 1900 6868 · bmt.vn",
+            "pageNumber": "Page {current}/{total}"
+          }
+        },
+        "options": {
+          "title": "Export options",
+          "description": "Adjust which sections and language to use before generating the PDF.",
+          "selectSections": "Sections to include",
+          "selectAll": "Select all",
+          "deselectAll": "Clear all",
+          "languageLabel": "Language",
+          "language": {
+            "vi": "Vietnamese",
+            "en": "English"
+          },
+          "languageHint": "The official export is Vietnamese. English is coming in the next release.",
+          "currencyLabel": "Currency",
+          "currency": {
+            "vnd": "VND",
+            "usd": "USD"
+          },
+          "currencyHint": "Only VND is supported for now."
+        },
+        "actions": {
+          "exportPdf": "Export PDF",
+          "exporting": "Generating PDF…",
+          "exported": "Project proposal PDF ready.",
+          "exportFailed": "PDF export failed. Check your connection and try again.",
+          "shareLink": "Create share link",
+          "sendEmail": "Send via email",
+          "showQr": "Show QR code",
+          "finish": "Finish"
+        },
+        "share": {
+          "title": "Share project proposal",
+          "description": "Anyone with the link can view the PDF online — no login required.",
+          "linkLabel": "Share link",
+          "copy": "Copy",
+          "copied": "Copied",
+          "qrTitle": "QR code to the project",
+          "qrCaption": "Scan on a phone to open the link quickly."
+        },
+        "email": {
+          "title": "Send proposal via email",
+          "description": "Enter the client or contractor email — we'll send the PDF link for you.",
+          "recipientLabel": "Recipient",
+          "recipientPlaceholder": "client@email.com",
+          "messageLabel": "Message (optional)",
+          "messagePlaceholder": "Sharing the project proposal for your review…",
+          "send": "Send email",
+          "sent": "Email sent to {email} (demo)."
+        },
+        "empty": {
+          "title": "Not enough data to export PDF",
+          "description": "Finish the previous steps to build a complete proposal."
         }
       }
     },
