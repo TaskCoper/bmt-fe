@@ -1,36 +1,25 @@
 import { cn } from '@/shared/lib/utils'
-import {
-  Bot,
-  Building2,
-  Calculator,
-  Images,
-  LayoutDashboard,
-  LayoutTemplate,
-  Library,
-  type LucideIcon
-} from 'lucide-react'
+import { Bot, Building2, Calculator, Images, LayoutTemplate, type LucideIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { LANDING_SECTIONS } from '../constants/landing.constants'
 import { SectionHeading } from './section-heading'
 
-type FeatureKey = 'studio' | 'estimate' | 'gallery' | 'portfolio' | 'library' | 'chatbot' | 'dashboard'
+type FeatureKey = 'studio' | 'estimate' | 'gallery' | 'portfolio' | 'chatbot'
 
-/** Order fills a clean 3×3 bento: two featured (span-2) cards on opposite rows. */
+/** The flagship studio card spans two columns; the rest fill a clean 3×2 bento. */
 const FEATURES: { key: FeatureKey; icon: LucideIcon; featured?: boolean }[] = [
   { key: 'studio', icon: LayoutTemplate, featured: true },
   { key: 'estimate', icon: Calculator },
   { key: 'gallery', icon: Images },
   { key: 'portfolio', icon: Building2 },
-  { key: 'library', icon: Library },
-  { key: 'chatbot', icon: Bot, featured: true },
-  { key: 'dashboard', icon: LayoutDashboard }
+  { key: 'chatbot', icon: Bot }
 ]
 
 /**
- * "What the platform does" — a 3×3 bento of the full platform's capabilities
- * (design studio, quick estimate, design gallery, portfolio, price library, AI
- * assistant, project dashboard). Two flagship cards are featured with a small
- * visual so the value is shown, not just told.
+ * "What the platform does" — a bento of the platform's capabilities (design
+ * studio, quick estimate, design gallery, portfolio, AI assistant). The flagship
+ * studio card is featured with a small cost-split visual so the value is shown,
+ * not just told.
  */
 export function ServicesSection() {
   const t = useTranslations('landing.features')
@@ -60,7 +49,7 @@ export function ServicesSection() {
 
               {featured ? (
                 <div className='mt-6 flex flex-1 items-end'>
-                  {key === 'studio' ? <CostBar /> : <ChatPreview q={t('chatbot.q')} a={t('chatbot.a')} />}
+                  <CostBar />
                 </div>
               ) : null}
             </article>
@@ -94,20 +83,6 @@ function CostBar() {
           </span>
         ))}
       </div>
-    </div>
-  )
-}
-
-/** Mini chat bubbles for the AI assistant card. */
-function ChatPreview({ q, a }: { q: string; a: string }) {
-  return (
-    <div className='flex w-full flex-col gap-2'>
-      <span className='glass-inset text-muted-foreground max-w-[70%] self-start rounded-2xl rounded-bl-md px-3.5 py-2 text-xs'>
-        {q}
-      </span>
-      <span className='bg-primary/15 text-foreground max-w-[75%] self-end rounded-2xl rounded-br-md px-3.5 py-2 text-xs font-medium'>
-        {a}
-      </span>
     </div>
   )
 }

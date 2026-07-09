@@ -19,6 +19,15 @@ export function useGallery(filters: GalleryFilters) {
   })
 }
 
+/** Single project by id for the detail page. */
+export function useGalleryItem(id: string) {
+  return useQuery({
+    queryKey: galleryKeys.detail(id),
+    queryFn: () => galleryApi.detail(id),
+    enabled: Boolean(id)
+  })
+}
+
 /** Admin list — includes unpublished items. */
 export function useGalleryAdmin(filters: GalleryFilters) {
   const debouncedSearch = useDebouncedValue(filters.search, 300)

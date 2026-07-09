@@ -55,7 +55,7 @@ export function ForgotPasswordForm() {
         </CardHeader>
         <CardContent>
           <Button asChild variant='outline' className='w-full'>
-            <Link href={ROUTES.LOGIN}>
+            <Link href={`${ROUTES.HOME}?auth=login`}>
               <ArrowLeft className='size-4' />
               {t('backToLogin')}
             </Link>

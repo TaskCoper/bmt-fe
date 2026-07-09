@@ -19,6 +19,8 @@
     "pageOf": "Trang {page}/{total}",
     "comingSoon": "Sắp ra mắt",
     "optional": "tuỳ chọn",
+    "showPassword": "Hiện mật khẩu",
+    "hidePassword": "Ẩn mật khẩu",
     "combobox": {
       "placeholder": "Chọn một mục",
       "searchPlaceholder": "Tìm kiếm…",
@@ -72,17 +74,20 @@
       "process": "Quy trình",
       "projects": "Dự án",
       "about": "Giới thiệu",
-      "contact": "Liên hệ"
+      "contact": "Liên hệ",
+      "library": "Thư viện tham khảo"
     },
     "hero": {
       "badge": "Nền tảng thiết kế tích hợp AI",
-      "title": "Biến ý tưởng ngôi nhà thành hồ sơ thiết kế & dự toán — trong vài phút",
-      "subtitle": "Studio thiết kế AI, thư viện mẫu và đơn giá theo vùng, trợ lý AI — tất cả trên một nền tảng đưa bạn từ ý tưởng đến dự toán, bản vẽ, render và hồ sơ PDF chia sẻ được.",
+      "title": "Từ ý tưởng đến dự toán trong vài phút",
+      "subtitle": "Studio AI đưa bạn từ ý tưởng đến dự toán, bản vẽ 2D, render 3D và hồ sơ PDF chia sẻ được.",
       "primaryCta": "Tạo dự toán miễn phí",
       "secondaryCta": "Xem dự án mẫu",
       "chip1": "Dự toán trong vài phút",
       "chip2": "Bản vẽ 2D + Render 3D",
       "chip3": "Xuất PDF · chia sẻ QR",
+      "previewApp": "Studio thiết kế AI",
+      "previewRender": "Render 3D · Ngoại thất",
       "previewProject": "Nhà phố hiện đại · Đắk Lắk",
       "previewTotalLabel": "Tổng dự toán dự kiến",
       "previewTotal": "2,18 tỷ ₫",
@@ -116,37 +121,14 @@
         "title": "Dự án tham khảo",
         "description": "Khám phá công trình đã hoàn thành với phạm vi và ngân sách minh bạch."
       },
-      "library": {
-        "tag": "Theo vùng miền",
-        "title": "Thư viện đơn giá VLXD",
-        "description": "Đơn giá vật tư và nhân công luôn được cập nhật theo khu vực của bạn."
-      },
       "chatbot": {
         "tag": "24/7",
         "title": "Trợ lý AI",
-        "description": "Hỏi–đáp và hướng dẫn tức thì ngay trong ứng dụng, bất cứ lúc nào.",
-        "q": "Chi phí phần thô cho 80m²?",
-        "a": "Khoảng 280 triệu — mình gợi ý gói phù hợp nhé."
-      },
-      "dashboard": {
-        "tag": "Một nơi",
-        "title": "Quản lý dự án",
-        "description": "Theo dõi mọi dự án, dự toán và phiên bản chỉnh sửa trên một bảng điều khiển."
+        "description": "Hỏi–đáp và hướng dẫn tức thì ngay trong ứng dụng, bất cứ lúc nào."
       }
     },
     "spotlight": {
       "cta": "Dùng thử ngay",
-      "pkgBasic": "Cơ bản",
-      "pkgStandard": "Tiêu chuẩn",
-      "pkgVip": "VIP",
-      "estimate": {
-        "eyebrow": "Dự toán bằng AI",
-        "title": "Bảng dự toán chi tiết, chia theo gói — khớp ngân sách của bạn",
-        "description": "Hệ thống bóc tách chi phí 3 hạng mục và gợi ý gói vật liệu phù hợp, so sánh trực tiếp với ngân sách bạn đặt ra.",
-        "bullet1": "3 hạng mục: phần thô · hoàn thiện · nội thất",
-        "bullet2": "3 gói Cơ bản / Tiêu chuẩn / VIP, có badge phù hợp ngân sách",
-        "bullet3": "Đơn giá theo vùng miền, cập nhật định kỳ"
-      },
       "visuals": {
         "eyebrow": "Bản vẽ & Render",
         "title": "Từ layout mặt bằng đến bản vẽ 2D và ảnh render 3D",
@@ -241,12 +223,6 @@
         "value": "98%",
         "label": "Độ chính xác dự toán"
       }
-    },
-    "cta": {
-      "title": "Sẵn sàng dự toán cho dự án tiếp theo?",
-      "subtitle": "Bắt đầu miễn phí — tạo bản dự toán chi phí bằng AI đầu tiên hôm nay.",
-      "primary": "Bắt đầu",
-      "secondary": "Liên hệ tư vấn"
     },
     "contact": {
       "badge": "Liên hệ",
@@ -1798,7 +1774,7 @@
     "subtitle": "Mẫu thiết kế, bản vẽ và catalog vật liệu được BMT Decor tuyển chọn.",
     "searchPlaceholder": "Tìm mẫu tham khảo…",
     "count": "{count} mục",
-    "download": "Tải về",
+    "download": "Tải PDF",
     "loginToDownload": "Đăng nhập để tải file gốc.",
     "downloadStarted": "Đang tải \"{title}\" (demo).",
     "style": {
@@ -1824,6 +1800,26 @@
     "sort": {
       "newest": "Mới nhất",
       "popular": "Phổ biến nhất"
+    },
+    "card": {
+      "viewDetail": "Xem chi tiết",
+      "drawings": "{count} bản vẽ",
+      "photos": "{count} ảnh"
+    },
+    "detail": {
+      "back": "Quay lại thư viện",
+      "drawingsTitle": "Bản vẽ",
+      "drawingsDesc": "Mặt bằng bố trí của dự án.",
+      "photosTitle": "Ảnh mẫu thiết kế nội thất",
+      "photosDesc": "Không gian đã hoàn thiện — ảnh 3D render và ảnh thực tế.",
+      "drawingLabel": "Bản vẽ {index}",
+      "render": "3D render",
+      "real": "Thực tế",
+      "notFoundTitle": "Không tìm thấy dự án",
+      "notFoundDesc": "Dự án này không tồn tại hoặc chưa được công bố.",
+      "lockedTitle": "Đăng nhập để xem chi tiết",
+      "lockedDesc": "Bản vẽ và ảnh thiết kế nội thất chỉ dành cho thành viên đã đăng nhập.",
+      "loginCta": "Đăng nhập"
     },
     "empty": {
       "title": "Chưa có mẫu",
@@ -1876,8 +1872,21 @@
     "facts": {
       "year": "Năm",
       "location": "Vị trí",
-      "area": "Diện tích",
-      "style": "Phong cách"
+      "area": "Quy mô",
+      "style": "Phong cách",
+      "category": "Hạng mục",
+      "workType": "Loại hình",
+      "client": "Khách hàng"
+    },
+    "article": {
+      "introTitle": "Giới thiệu",
+      "imagesTitle": "Hình ảnh",
+      "detailTitle": "Nội dung chi tiết",
+      "beforeAfter": "Trước / Sau",
+      "transformation": "Sự thay đổi.",
+      "before": "Trước",
+      "after": "Sau",
+      "related": "Khám phá thêm — Dự án cùng hạng mục"
     },
     "empty": {
       "title": "Chưa có dự án",

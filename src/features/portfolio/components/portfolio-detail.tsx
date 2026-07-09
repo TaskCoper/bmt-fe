@@ -1,27 +1,28 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { ArrowLeft, MapPin, Ruler, Calendar, Palette } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 
 import { Link } from '@/i18n/navigation'
 import { ROUTES } from '@/shared/constants/routes'
 import { Badge } from '@/shared/components/ui/badge'
 import { Button } from '@/shared/components/ui/button'
 import { Skeleton } from '@/shared/components/ui/skeleton'
-import { EmptyState } from '@/shared/components/common'
+import { EmptyState, ImagePlaceholder } from '@/shared/components/common'
 import { usePortfolioItem } from '../hooks/use-portfolio'
 
-/** Public portfolio detail page for a single showcased project. */
+/** Public portfolio detail — a blog-style project article (CMS rich text). */
 export function PortfolioDetail({ slug }: { slug: string }) {
   const t = useTranslations('portfolio')
   const { data, isLoading } = usePortfolioItem(slug)
 
   if (isLoading) {
     return (
-      <div className='space-y-6'>
-        <Skeleton className='h-8 w-64' />
-        <Skeleton className='aspect-[16/7] w-full' />
-        <Skeleton className='h-24 w-full' />
+      <div className='mx-auto max-w-4xl space-y-6'>
+        <Skeleton className='h-8 w-40' />
+        <Skeleton className='h-12 w-3/4' />
+        <Skeleton className='aspect-video w-full rounded-2xl' />
+        <Skeleton className='h-40 w-full' />
       </div>
     )
   }
@@ -30,82 +31,49 @@ export function PortfolioDetail({ slug }: { slug: string }) {
     return <EmptyState title={t('notFound.title')} description={t('notFound.description')} />
   }
 
-  const facts = [
-    { icon: Calendar, label: t('facts.year'), value: String(data.year) },
-    { icon: MapPin, label: t('facts.location'), value: data.location },
-    { icon: Ruler, label: t('facts.area'), value: `${data.area} m²` },
-    { icon: Palette, label: t('facts.style'), value: data.style }
+  const meta = [
+    { label: t('facts.location'), value: data.location },
+    { label: t('facts.year'), value: String(data.year) },
+    { label: t('facts.area'), value: `${data.area} m²` },
+    { label: t('facts.workType'), value: data.workType }
   ]
 
   return (
-    <article className='space-y-8'>
-      <Button asChild variant='ghost' size='sm' className='-ml-2'>
+    <article className='mx-auto max-w-4xl space-y-10'>
+      {/* Breadcrumb / back */}
+      <Button asChild variant='ghost' size='sm' className='text-muted-foreground -ml-2'>
         <Link href={ROUTES.PORTFOLIO}>
           <ArrowLeft className='size-4' />
           {t('backToList')}
         </Link>
       </Button>
 
-      <header className='space-y-3'>
-        <div className='flex flex-wrap gap-1.5'>
-          <Badge variant='outline'>{t(`category.${data.category}`)}</Badge>
-          <Badge variant='secondary'>{data.style}</Badge>
-        </div>
-        <h1 className='text-3xl font-bold tracking-tight'>{data.title}</h1>
-        <p className='text-muted-foreground max-w-2xl'>{data.summary}</p>
+      {/* Category tag + title */}
+      <header className='space-y-4'>
+        <Badge variant='outline' className='border-primary/30 text-primary'>
+          {t(`category.${data.category}`)}
+        </Badge>
+        <h1 className='font-display text-3xl leading-tight font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl'>
+          {data.title}
+        </h1>
+        <p className='text-muted-foreground text-lg text-pretty'>{data.subtitle}</p>
       </header>
 
-      {/* Cover */}
-      <div
-        className='aspect-[16/7] w-full rounded-xl'
-        style={{
-          background: `linear-gradient(135deg, hsl(${data.coverHue} 65% 55%), hsl(${(data.coverHue + 45) % 360} 60% 38%))`
-        }}
-      />
-
-      {/* Facts */}
-      <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
-        {facts.map((f) => (
-          <div key={f.label} className='rounded-lg border p-4'>
-            <f.icon className='text-muted-foreground size-4' />
-            <p className='text-muted-foreground mt-2 text-xs'>{f.label}</p>
-            <p className='font-medium'>{f.value}</p>
+      {/* Meta — horizontal table-style row */}
+      <dl className='grid grid-cols-2 gap-x-6 gap-y-5 border-y py-6 sm:grid-cols-4'>
+        {meta.map((m) => (
+          <div key={m.label}>
+            <dt className='text-muted-foreground text-xs font-medium tracking-wide uppercase'>{m.label}</dt>
+            <dd className='mt-1 font-semibold'>{m.value}</dd>
           </div>
         ))}
-      </div>
+      </dl>
 
-      {/* Description */}
-      <div className='max-w-3xl'>
-        <h2 className='text-lg font-semibold'>{t('about')}</h2>
-        <p className='text-muted-foreground mt-2 leading-relaxed'>{data.description}</p>
-      </div>
+      {/* Lead image */}
+      <ImagePlaceholder className='aspect-[16/9] w-full rounded-2xl border' iconClassName='size-10' />
 
-      {/* Gallery */}
-      <div>
-        <h2 className='mb-3 text-lg font-semibold'>{t('gallery')}</h2>
-        <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
-          {data.gallery.map((img, i) => (
-            <div
-              key={i}
-              className='aspect-square rounded-lg'
-              style={{
-                background: `linear-gradient(135deg, hsl(${img.hue} 65% 55%), hsl(${(img.hue + 40) % 360} 60% 38%))`
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* CTA */}
-      <div className='bg-muted/40 flex flex-col items-start gap-4 rounded-xl border p-6 sm:flex-row sm:items-center sm:justify-between'>
-        <div>
-          <p className='font-medium'>{t('cta.title')}</p>
-          <p className='text-muted-foreground text-sm'>{t('cta.subtitle')}</p>
-        </div>
-        <Button asChild>
-          <Link href={ROUTES.PROJECT_NEW}>{t('cta.button')}</Link>
-        </Button>
-      </div>
+      {/* Article body (rich text from the CMS) */}
+      <div className='prose-content' dangerouslySetInnerHTML={{ __html: data.body }} />
     </article>
   )
 }

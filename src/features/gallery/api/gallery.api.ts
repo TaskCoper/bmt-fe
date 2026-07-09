@@ -20,7 +20,8 @@ const realGalleryApi = {
   listAll: (filters: GalleryFilters) =>
     http.get<PaginatedResponse<GalleryItem>>('/admin/gallery', {
       params: params(filters)
-    })
+    }),
+  detail: (id: string) => http.get<GalleryItem>(`/gallery/${id}`)
 }
 
 export const galleryApi = env.NEXT_PUBLIC_USE_MOCK_API ? mockGalleryApi : realGalleryApi

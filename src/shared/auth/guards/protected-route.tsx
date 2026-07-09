@@ -24,7 +24,9 @@ export function ProtectedRoute({ children, fallback }: ProtectedRouteProps) {
 
   useEffect(() => {
     if (isInitialized && !isAuthenticated) {
-      router.replace(`${ROUTES.LOGIN}?redirect=${encodeURIComponent(pathname)}`)
+      // Login is a popup on the public home, not a page — bounce there and let
+      // `?auth=login` auto-open it, preserving the intended target.
+      router.replace(`${ROUTES.HOME}?auth=login&redirect=${encodeURIComponent(pathname)}`)
     }
   }, [isInitialized, isAuthenticated, router, pathname])
 

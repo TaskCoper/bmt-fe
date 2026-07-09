@@ -47,10 +47,14 @@ export default function proxy(request: NextRequest) {
   const path = stripLocale(pathname)
   const isAuthenticated = request.cookies.has(AUTH_COOKIE_NAME)
 
-  // Block protected routes for unauthenticated users.
+  // Block protected routes for unauthenticated users. Login/register are a
+  // popup, not pages — bounce to the public home and let `?auth=login` auto-open
+  // the dialog (see features/auth `AuthDialog`), preserving the intended target.
   if (matchesPrefix(path, PROTECTED_ROUTE_PREFIXES) && !isAuthenticated) {
     const url = request.nextUrl.clone()
-    url.pathname = `/${locale}/login`
+    url.pathname = `/${locale}`
+    url.search = ''
+    url.searchParams.set('auth', 'login')
     url.searchParams.set('redirect', path)
     return NextResponse.redirect(url)
   }

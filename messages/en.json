@@ -19,6 +19,8 @@
     "pageOf": "Page {page} of {total}",
     "comingSoon": "Coming soon",
     "optional": "optional",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
     "combobox": {
       "placeholder": "Select an item",
       "searchPlaceholder": "Search…",
@@ -72,17 +74,20 @@
       "process": "Process",
       "projects": "Projects",
       "about": "About",
-      "contact": "Contact"
+      "contact": "Contact",
+      "library": "Reference library"
     },
     "hero": {
       "badge": "AI-integrated design platform",
-      "title": "Turn your home idea into a design & cost dossier — in minutes",
-      "subtitle": "An AI design studio, a style & regional price library, and an AI assistant — one platform that takes you from idea to estimate, drawings, renders and a share-ready PDF.",
+      "title": "From idea to estimate in minutes",
+      "subtitle": "An AI studio that takes you from idea to estimate, 2D drawings, 3D renders and a share-ready PDF.",
       "primaryCta": "Create a free estimate",
       "secondaryCta": "See sample projects",
       "chip1": "Estimate in minutes",
       "chip2": "2D drawings + 3D renders",
       "chip3": "Export PDF · share via QR",
+      "previewApp": "AI Design Studio",
+      "previewRender": "3D render · Exterior",
       "previewProject": "Modern townhouse · Đắk Lắk",
       "previewTotalLabel": "Estimated total",
       "previewTotal": "₫2.18B",
@@ -116,37 +121,14 @@
         "title": "Reference projects",
         "description": "Explore completed builds with transparent scope and budgets."
       },
-      "library": {
-        "tag": "Region-aware",
-        "title": "Material price library",
-        "description": "Material and labour unit prices kept up to date for your region."
-      },
       "chatbot": {
         "tag": "24/7",
         "title": "AI assistant",
-        "description": "Instant answers and guidance right inside the app, any time.",
-        "q": "Rough-build cost for 80m²?",
-        "a": "Around ₫280M — let me suggest a fitting package."
-      },
-      "dashboard": {
-        "tag": "One place",
-        "title": "Project management",
-        "description": "Track every project, estimate and revision on a single dashboard."
+        "description": "Instant answers and guidance right inside the app, any time."
       }
     },
     "spotlight": {
       "cta": "Try it now",
-      "pkgBasic": "Basic",
-      "pkgStandard": "Standard",
-      "pkgVip": "VIP",
-      "estimate": {
-        "eyebrow": "AI estimate",
-        "title": "A detailed, package-based estimate — matched to your budget",
-        "description": "The system breaks costs into three categories and suggests the right material package, compared directly against the budget you set.",
-        "bullet1": "Three categories: structure · finishing · interior",
-        "bullet2": "Basic / Standard / VIP packages with a budget-fit badge",
-        "bullet3": "Region-based unit prices, updated regularly"
-      },
       "visuals": {
         "eyebrow": "Drawings & renders",
         "title": "From floor layouts to 2D drawings and 3D renders",
@@ -241,12 +223,6 @@
         "value": "98%",
         "label": "Estimate accuracy"
       }
-    },
-    "cta": {
-      "title": "Ready to estimate your next project?",
-      "subtitle": "Start free — create your first AI-powered cost estimate today.",
-      "primary": "Get started",
-      "secondary": "Talk to us"
     },
     "contact": {
       "badge": "Contact",
@@ -1798,7 +1774,7 @@
     "subtitle": "Curated design references, drawings and material catalogs by BMT Decor.",
     "searchPlaceholder": "Search references…",
     "count": "{count} items",
-    "download": "Download",
+    "download": "Download PDF",
     "loginToDownload": "Sign in to download the original file.",
     "downloadStarted": "Downloading \"{title}\" (demo).",
     "style": {
@@ -1824,6 +1800,26 @@
     "sort": {
       "newest": "Newest",
       "popular": "Most popular"
+    },
+    "card": {
+      "viewDetail": "View details",
+      "drawings": "{count} drawings",
+      "photos": "{count} photos"
+    },
+    "detail": {
+      "back": "Back to library",
+      "drawingsTitle": "Drawings",
+      "drawingsDesc": "Floor-plan layouts for this project.",
+      "photosTitle": "Interior design photos",
+      "photosDesc": "Finished spaces — 3D renders and real photos.",
+      "drawingLabel": "Drawing {index}",
+      "render": "3D render",
+      "real": "Real photo",
+      "notFoundTitle": "Project not found",
+      "notFoundDesc": "This project doesn't exist or isn't published.",
+      "lockedTitle": "Sign in to view details",
+      "lockedDesc": "Drawings and interior photos are available to signed-in members only.",
+      "loginCta": "Sign in"
     },
     "empty": {
       "title": "No references",
@@ -1876,8 +1872,21 @@
     "facts": {
       "year": "Year",
       "location": "Location",
-      "area": "Area",
-      "style": "Style"
+      "area": "Scale",
+      "style": "Style",
+      "category": "Category",
+      "workType": "Work type",
+      "client": "Client"
+    },
+    "article": {
+      "introTitle": "Introduction",
+      "imagesTitle": "Images",
+      "detailTitle": "Detailed content",
+      "beforeAfter": "Before / After",
+      "transformation": "The transformation.",
+      "before": "Before",
+      "after": "After",
+      "related": "Explore more — Projects in the same category"
     },
     "empty": {
       "title": "No projects",

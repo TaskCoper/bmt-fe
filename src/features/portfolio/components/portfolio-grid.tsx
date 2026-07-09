@@ -9,7 +9,7 @@ import { ROUTES } from '@/shared/constants/routes'
 import { cn } from '@/shared/lib/utils'
 import { Badge } from '@/shared/components/ui/badge'
 import { Skeleton } from '@/shared/components/ui/skeleton'
-import { EmptyState } from '@/shared/components/common'
+import { EmptyState, ImagePlaceholder } from '@/shared/components/common'
 import { usePortfolio } from '../hooks/use-portfolio'
 import { PORTFOLIO_CATEGORY } from '../constants/portfolio.constants'
 import type { PortfolioFilters } from '../types/portfolio.types'
@@ -60,12 +60,7 @@ export function PortfolioGrid() {
               href={`${ROUTES.PORTFOLIO}/${item.slug}`}
               className='group overflow-hidden rounded-xl border transition-shadow hover:shadow-lg'
             >
-              <div
-                className='aspect-[4/3] w-full'
-                style={{
-                  background: `linear-gradient(135deg, hsl(${item.coverHue} 65% 55%), hsl(${(item.coverHue + 45) % 360} 60% 38%))`
-                }}
-              />
+              <ImagePlaceholder className='aspect-[4/3] w-full' />
               <div className='space-y-2 p-4'>
                 <div className='flex flex-wrap gap-1.5'>
                   <Badge variant='outline'>{t(`category.${item.category}`)}</Badge>

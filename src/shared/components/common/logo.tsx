@@ -1,5 +1,3 @@
-import { Building2 } from 'lucide-react'
-
 import { siteConfig } from '@/shared/config/site'
 import { cn } from '@/shared/lib/utils'
 
@@ -13,9 +11,9 @@ interface LogoProps {
 export function Logo({ className, iconOnly = false }: LogoProps) {
   return (
     <span className={cn('flex items-center gap-2 font-semibold', className)}>
-      <span className='bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-md'>
+      {/* <span className='bg-primary text-primary-foreground flex size-7 items-center justify-center rounded-md'>
         <Building2 className='size-4' />
-      </span>
+      </span> */}
       {!iconOnly ? <span className='text-sm tracking-tight'>{siteConfig.name}</span> : null}
     </span>
   )
