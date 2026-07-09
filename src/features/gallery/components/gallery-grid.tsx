@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Search, PencilRuler, Image as ImageIcon, Download, Lock } from 'lucide-react'
@@ -13,7 +14,14 @@ import { Input } from '@/shared/components/ui/input'
 import { Skeleton } from '@/shared/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui/select'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/components/ui/tooltip'
-import { EmptyState, ErrorState } from '@/shared/components/common'
+import {
+  EmptyState,
+  ErrorState,
+  RevealStagger,
+  StockImage,
+  revealItemVariants,
+  revealSpring
+} from '@/shared/components/common'
 import { ROUTES } from '@/shared/constants/routes'
 import { useGallery } from '../hooks/use-gallery'
 import { GALLERY_BUILDING, GALLERY_STYLE } from '../constants/gallery.constants'
@@ -45,14 +53,8 @@ export function GalleryGrid() {
   const goToDetail = (item: GalleryItem) => router.push(`${ROUTES.GALLERY}/${item.id}`)
   const startDownload = (item: GalleryItem) => toast.success(t('downloadStarted', { title: item.title }))
 
-  // Detail is members-only: guests get the auth popup, then resume on success.
-  const openDetail = (item: GalleryItem) => {
-    if (!isAuthenticated) {
-      openAuth('login', () => goToDetail(item))
-      return
-    }
-    goToDetail(item)
-  }
+  // Detail is open to everyone; only downloading is gated.
+  const openDetail = (item: GalleryItem) => goToDetail(item)
 
   // Download = the project's PDF. Gated for guests (nudge + auth popup + resume).
   const download = (item: GalleryItem) => {
@@ -129,9 +131,15 @@ export function GalleryGrid() {
         <>
           <p className='text-muted-foreground text-sm'>{t('count', { count: data.meta.totalItems })}</p>
 
-          <div className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+          <RevealStagger className='grid gap-5 sm:grid-cols-2 lg:grid-cols-3' amount={0.1}>
             {data.items.map((item) => (
-              <article key={item.id} className='glass-card group flex flex-col overflow-hidden'>
+              <motion.article
+                key={item.id}
+                variants={revealItemVariants}
+                whileHover={{ y: -6 }}
+                transition={revealSpring}
+                className='glass-card group flex flex-col overflow-hidden'
+              >
                 {/* Cover — click opens detail (members only) */}
                 <button
                   type='button'
@@ -140,29 +148,12 @@ export function GalleryGrid() {
                   className='block cursor-pointer text-left'
                 >
                   <div className='relative aspect-[4/3] overflow-hidden'>
-                    <div
+                    <StockImage
+                      seed={item.id}
+                      alt={item.title}
+                      width={600}
                       className='size-full transition-transform duration-500 ease-out group-hover:scale-[1.06]'
-                      style={{
-                        background: `linear-gradient(135deg, hsl(${item.hue} 70% 62%), hsl(${(item.hue + 45) % 360} 62% 42%))`
-                      }}
                     />
-                    <svg
-                      viewBox='0 0 320 240'
-                      preserveAspectRatio='xMidYMid slice'
-                      className='absolute inset-0 size-full text-white/25'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      aria-hidden
-                    >
-                      <circle cx='250' cy='46' r='18' className='text-white/20' />
-                      <line x1='0' y1='196' x2='320' y2='196' />
-                      <rect x='60' y='140' width='96' height='56' />
-                      <rect x='150' y='96' width='120' height='100' />
-                      <line x1='150' y1='88' x2='270' y2='88' strokeWidth='3' />
-                      <rect x='176' y='120' width='30' height='30' />
-                      <rect x='222' y='120' width='30' height='30' />
-                    </svg>
 
                     {/* Top scrim keeps the badges legible over any hue */}
                     <div
@@ -226,9 +217,9 @@ export function GalleryGrid() {
                     )}
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </RevealStagger>
 
           {data.meta.totalPages > 1 ? (
             <div className='flex items-center justify-center gap-2'>

@@ -38,16 +38,13 @@ function makeProcess(p: RawPortfolio): PortfolioItem['process'] {
   ]
 }
 
-/** Rich-text (HTML) article body — reads like a blog post (headings + figures). */
+/** Rich-text (HTML) article body — text only; images live in the carousel. */
 function makeBody(p: RawPortfolio, process: PortfolioItem['process']): string {
-  const fig = '<figure class="img-ph"></figure>'
   const parts = [
     `<p><strong>${p.summary}</strong></p>`,
     `<p>${p.description}</p>`,
-    fig,
-    ...process.map((s, i) => `<h2>${s.title}</h2><p>${s.body}</p>${i === 1 ? fig : ''}`),
-    `<blockquote>“BMT Decor không chỉ xây dựng không gian — chúng tôi kiến tạo trải nghiệm sống.”</blockquote>`,
-    fig
+    ...process.map((s) => `<h2>${s.title}</h2><p>${s.body}</p>`),
+    `<blockquote>“BMT Decor không chỉ xây dựng không gian — chúng tôi kiến tạo trải nghiệm sống.”</blockquote>`
   ]
   return parts.join('')
 }
@@ -141,6 +138,111 @@ const RAW: RawPortfolio[] = [
     description: 'Thiết kế mở hướng biển, hồ bơi vô cực và hệ cửa kính lớn xóa nhòa ranh giới trong - ngoài.',
     coverHue: 190,
     gallery: gallery(190)
+  },
+  {
+    id: 'pf-7',
+    slug: 'can-ho-masteri-thao-dien',
+    title: 'Căn hộ Masteri Thảo Điền',
+    category: PORTFOLIO_CATEGORY.APARTMENT,
+    style: 'Japandi',
+    year: 2025,
+    location: 'TP. Thủ Đức',
+    area: 72,
+    summary: 'Căn hộ 2 phòng ngủ Japandi ấm áp, tối ưu lưu trữ.',
+    description:
+      'Cải tạo căn hộ 72m² theo phong cách Japandi, chú trọng vật liệu gỗ tự nhiên và giải pháp lưu trữ thông minh cho gia đình trẻ.',
+    coverHue: 50,
+    gallery: gallery(50)
+  },
+  {
+    id: 'pf-8',
+    slug: 'nha-pho-binh-thanh',
+    title: 'Nhà phố Bình Thạnh',
+    category: PORTFOLIO_CATEGORY.TOWNHOUSE,
+    style: 'Hiện đại',
+    year: 2024,
+    location: 'TP. Hồ Chí Minh',
+    area: 120,
+    summary: 'Nhà phố hiện đại 4 tầng nhiều ánh sáng.',
+    description:
+      'Thiết kế nhà phố 4 tầng phong cách hiện đại, mặt tiền tối giản và giếng trời trung tâm giúp lấy sáng cho toàn bộ không gian.',
+    coverHue: 100,
+    gallery: gallery(100)
+  },
+  {
+    id: 'pf-9',
+    slug: 'biet-thu-ecopark',
+    title: 'Biệt thự Ecopark',
+    category: PORTFOLIO_CATEGORY.VILLA,
+    style: 'Tối giản',
+    year: 2025,
+    location: 'Hưng Yên',
+    area: 260,
+    summary: 'Biệt thự tối giản hòa cùng cây xanh.',
+    description:
+      'Biệt thự 260m² phong cách tối giản, kết nối chặt chẽ với sân vườn và mặt nước, đề cao sự tĩnh lặng và gần gũi thiên nhiên.',
+    coverHue: 160,
+    gallery: gallery(160)
+  },
+  {
+    id: 'pf-10',
+    slug: 'can-ho-the-marq',
+    title: 'Căn hộ The Marq',
+    category: PORTFOLIO_CATEGORY.APARTMENT,
+    style: 'Tân cổ điển',
+    year: 2024,
+    location: 'TP. Hồ Chí Minh',
+    area: 110,
+    summary: 'Căn hộ 3 phòng ngủ tân cổ điển sang trọng.',
+    description:
+      'Căn hộ cao cấp 110m² phong cách tân cổ điển, phào chỉ tinh tế kết hợp nội thất bọc da và đá tự nhiên tạo nên không gian đẳng cấp.',
+    coverHue: 300,
+    gallery: gallery(300)
+  },
+  {
+    id: 'pf-11',
+    slug: 'nha-pho-long-an',
+    title: 'Nhà phố Long An',
+    category: PORTFOLIO_CATEGORY.TOWNHOUSE,
+    style: 'Scandinavian',
+    year: 2025,
+    location: 'Long An',
+    area: 140,
+    summary: 'Nhà phố Scandinavian sáng và mộc.',
+    description:
+      'Nhà phố 140m² phong cách Scandinavian với tông màu sáng, gỗ sồi và cây xanh, mang lại cảm giác ấm cúng, thư thái.',
+    coverHue: 210,
+    gallery: gallery(210)
+  },
+  {
+    id: 'pf-12',
+    slug: 'biet-thu-phu-quoc',
+    title: 'Biệt thự Phú Quốc',
+    category: PORTFOLIO_CATEGORY.VILLA,
+    style: 'Nhiệt đới',
+    year: 2024,
+    location: 'Phú Quốc',
+    area: 340,
+    summary: 'Biệt thự nghỉ dưỡng nhiệt đới ven biển.',
+    description:
+      'Biệt thự nghỉ dưỡng 340m² phong cách nhiệt đới, hồ bơi hướng biển và hệ hiên rộng đón gió, tối ưu cho kỳ nghỉ của gia đình.',
+    coverHue: 15,
+    gallery: gallery(15)
+  },
+  {
+    id: 'pf-13',
+    slug: 'biet-thu-bao-loc',
+    title: 'Biệt thự Bảo Lộc',
+    category: PORTFOLIO_CATEGORY.VILLA,
+    style: 'Hiện đại',
+    year: 2025,
+    location: 'Bảo Lộc',
+    area: 300,
+    summary: 'Biệt thự đồi hiện đại giữa rừng trà.',
+    description:
+      'Biệt thự 300m² trên đồi, phong cách hiện đại với hệ kính lớn đón trọn khung cảnh đồi trà và thung lũng.',
+    coverHue: 130,
+    gallery: gallery(130)
   }
 ]
 

@@ -1,6 +1,11 @@
-import { cn } from '@/shared/lib/utils'
+'use client'
+
+import { motion } from 'motion/react'
 import { Bot, Building2, Calculator, Images, LayoutTemplate, type LucideIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+
+import { cn } from '@/shared/lib/utils'
+import { RevealStagger, revealItemScale, revealSpring } from '@/shared/components/common'
 import { LANDING_SECTIONS } from '../constants/landing.constants'
 import { SectionHeading } from './section-heading'
 
@@ -16,10 +21,8 @@ const FEATURES: { key: FeatureKey; icon: LucideIcon; featured?: boolean }[] = [
 ]
 
 /**
- * "What the platform does" — a bento of the platform's capabilities (design
- * studio, quick estimate, design gallery, portfolio, AI assistant). The flagship
- * studio card is featured with a small cost-split visual so the value is shown,
- * not just told.
+ * "What the platform does" — a bento of the platform's capabilities, with a
+ * staggered reveal and springy hover on each card.
  */
 export function ServicesSection() {
   const t = useTranslations('landing.features')
@@ -29,14 +32,17 @@ export function ServicesSection() {
       <div className='mx-auto w-full max-w-7xl px-4 lg:px-8'>
         <SectionHeading badge={t('badge')} title={t('title')} subtitle={t('subtitle')} />
 
-        <div className='mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3'>
+        <RevealStagger className='mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3'>
           {FEATURES.map(({ key, icon: Icon, featured }) => (
-            <article
+            <motion.article
               key={key}
-              className={cn('glass-card flex flex-col p-6 sm:p-7', featured && 'sm:col-span-2 lg:col-span-2')}
+              variants={revealItemScale}
+              whileHover={{ y: -6 }}
+              transition={revealSpring}
+              className={cn('glass-card group flex flex-col p-6 sm:p-7', featured && 'sm:col-span-2 lg:col-span-2')}
             >
               <div className='flex items-center gap-3'>
-                <span className='border-primary/25 from-primary/20 to-primary/5 text-primary flex size-11 shrink-0 items-center justify-center rounded-2xl border bg-gradient-to-br'>
+                <span className='border-primary/25 from-primary/20 to-primary/5 text-primary flex size-11 shrink-0 items-center justify-center rounded-2xl border bg-gradient-to-br transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6'>
                   <Icon className='size-5' />
                 </span>
                 <span className='glass-inset text-muted-foreground rounded-full px-2.5 py-1 text-[0.7rem] font-semibold tracking-wide'>
@@ -52,9 +58,9 @@ export function ServicesSection() {
                   <CostBar />
                 </div>
               ) : null}
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </RevealStagger>
       </div>
     </section>
   )

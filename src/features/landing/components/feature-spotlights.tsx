@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 
 import { cn } from '@/shared/lib/utils'
 import { AuthCta } from '@/shared/components/auth-cta'
+import { Reveal, StockImage } from '@/shared/components/common'
 
 /**
  * Alternating full-width feature spotlights (tamagui-style rhythm): a big
@@ -48,7 +49,7 @@ function Spotlight({
   return (
     <section className='relative py-16 lg:py-24'>
       <div className='mx-auto grid w-full max-w-7xl items-center gap-10 px-4 lg:grid-cols-2 lg:gap-16 lg:px-8'>
-        <div className={cn(reverse && 'lg:order-2')}>
+        <Reveal direction={reverse ? 'right' : 'left'} className={cn(reverse && 'lg:order-2')}>
           <span className='text-primary/85 border-primary/25 bg-primary/5 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-semibold tracking-wide backdrop-blur'>
             <Sparkles className='size-3.5' />
             {eyebrow}
@@ -71,8 +72,10 @@ function Spotlight({
             {cta}
             <ArrowRight className='size-4' />
           </AuthCta>
-        </div>
-        <div className={cn(reverse && 'lg:order-1')}>{visual}</div>
+        </Reveal>
+        <Reveal direction={reverse ? 'left' : 'right'} delay={0.1} className={cn(reverse && 'lg:order-1')}>
+          {visual}
+        </Reveal>
       </div>
     </section>
   )
@@ -81,7 +84,6 @@ function Spotlight({
 /** Drawings + renders visual — a 2D plan over a small render gallery. */
 function RenderVisual() {
   const t = useTranslations('landing.hero')
-  const renders = [24, 190, 320]
 
   return (
     <div className='glass-panel p-6 lg:p-7'>
@@ -124,13 +126,13 @@ function RenderVisual() {
       </div>
 
       <div className='mt-4 grid grid-cols-3 gap-3'>
-        {renders.map((hue, i) => (
-          <div key={hue} className='border-glass-border relative aspect-[4/3] overflow-hidden rounded-xl border'>
-            <span
-              className='block size-full'
-              style={{
-                background: `linear-gradient(135deg, hsl(${hue} 65% 58%), hsl(${(hue + 40) % 360} 55% 38%))`
-              }}
+        {[0, 1, 2].map((i) => (
+          <div key={i} className='border-glass-border relative aspect-[4/3] overflow-hidden rounded-xl border'>
+            <StockImage
+              seed={`spotlight-render-${i}`}
+              alt={t('previewRender')}
+              width={320}
+              className='size-full transition-transform duration-500 ease-out hover:scale-110'
             />
             {i === 1 ? (
               <span className='absolute right-1.5 bottom-1.5 flex size-6 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm'>

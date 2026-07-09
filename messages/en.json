@@ -2087,7 +2087,12 @@
       "notFoundDesc": "This project doesn't exist or isn't published.",
       "lockedTitle": "Sign in to view details",
       "lockedDesc": "Drawings and interior photos are available to signed-in members only.",
-      "loginCta": "Sign in"
+      "loginCta": "Sign in",
+      "beforeAfter": "Before / After",
+      "beforeAfterHint": "Drag the slider to compare the original and the finished space.",
+      "before": "Before",
+      "after": "After",
+      "relatedTitle": "Related references"
     },
     "empty": {
       "title": "No references",

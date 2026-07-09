@@ -2087,7 +2087,12 @@
       "notFoundDesc": "Dự án này không tồn tại hoặc chưa được công bố.",
       "lockedTitle": "Đăng nhập để xem chi tiết",
       "lockedDesc": "Bản vẽ và ảnh thiết kế nội thất chỉ dành cho thành viên đã đăng nhập.",
-      "loginCta": "Đăng nhập"
+      "loginCta": "Đăng nhập",
+      "beforeAfter": "Trước / Sau",
+      "beforeAfterHint": "Kéo thanh trượt để so sánh hiện trạng và sau khi hoàn thiện.",
+      "before": "Trước",
+      "after": "Sau",
+      "relatedTitle": "Mẫu tham khảo liên quan"
     },
     "empty": {
       "title": "Chưa có mẫu",
