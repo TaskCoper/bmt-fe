@@ -34,8 +34,10 @@ export {
   buildProjectId,
   getProjectFlowUrls,
   slugifyProjectName,
+  useImageMeta,
   useProjectStore,
   useSetProjectFlow,
+  type ImageMeta,
   type ProjectDraft,
   type ProjectFlowStep
 } from './store/project.store'

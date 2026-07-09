@@ -6,7 +6,7 @@ import { Heart, PencilLine } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { galleryImageUrl, type GalleryImage } from '../../constants/galleries.constants'
-import { useGalleriesStore, useImageMeta } from '../../store/galleries.store'
+import { useImageMeta, useProjectStore } from '../../store/project.store'
 
 /** Aspect ratio used to bias masonry — makes cards feel Pinterest-y. */
 const ASPECT_RATIO: Record<GalleryImage['aspect'], number> = {
@@ -24,8 +24,8 @@ interface GalleryCardProps {
 export function GalleryCard({ slug, image, onOpen }: GalleryCardProps) {
   const t = useTranslations('project.form.galleries')
   const meta = useImageMeta(slug, image.id)
-  const toggleFavorite = useGalleriesStore((s) => s.toggleFavorite)
-  const setCaption = useGalleriesStore((s) => s.setCaption)
+  const toggleFavorite = useProjectStore((s) => s.toggleFavorite)
+  const setCaption = useProjectStore((s) => s.setCaption)
 
   const [captionOpen, setCaptionOpen] = useState(false)
   const [draft, setDraft] = useState(meta.caption)

@@ -12,6 +12,7 @@ export interface ProjectDraft extends CreateProjectFormValues {
   slug: string
   designRequest: DesignRequestPayload | null
   spaces: SpacesPayload | null
+  galleries: Record<string, ImageMeta>
   prevUrl: string | null
   nextUrl: string | null
   createdAt: string
@@ -19,11 +20,28 @@ export interface ProjectDraft extends CreateProjectFormValues {
 
 type ProjectUpdate = Partial<Omit<ProjectDraft, 'id' | 'slug' | 'createdAt'>>
 
+// ---------------------------------------------------------------------------
+// Galleries
+// ---------------------------------------------------------------------------
+
+export interface ImageMeta {
+  favorite: boolean
+  caption: string
+}
+
+const emptyImageMeta: ImageMeta = { favorite: false, caption: '' }
+
+// ---------------------------------------------------------------------------
+// Store
+// ---------------------------------------------------------------------------
+
 interface ProjectStore {
   projects: Record<string, ProjectDraft>
   addProject: (project: ProjectDraft) => void
   updateProject: ({ slug, patch }: { slug: string; patch: ProjectUpdate }) => void
   removeProject: (slug: string) => void
+  toggleFavorite: (slug: string, imageId: string) => void
+  setCaption: (slug: string, imageId: string, caption: string) => void
 }
 
 export const useProjectStore = create<ProjectStore>()(
@@ -35,13 +53,39 @@ export const useProjectStore = create<ProjectStore>()(
         set((s) => {
           const current = s.projects[slug]
           if (!current) return s
-
           return { projects: { ...s.projects, [slug]: { ...current, ...patch } } }
         }),
       removeProject: (slug) =>
         set((s) => {
           const { [slug]: _removed, ...rest } = s.projects
           return { projects: rest }
+        }),
+      toggleFavorite: (slug, imageId) =>
+        set((s) => {
+          const project = s.projects[slug]
+          if (!project) return s
+          const current = project.galleries[imageId] ?? emptyImageMeta
+          return {
+            projects: {
+              ...s.projects,
+              [slug]: {
+                ...project,
+                galleries: { ...project.galleries, [imageId]: { ...current, favorite: !current.favorite } }
+              }
+            }
+          }
+        }),
+      setCaption: (slug, imageId, caption) =>
+        set((s) => {
+          const project = s.projects[slug]
+          if (!project) return s
+          const current = project.galleries[imageId] ?? emptyImageMeta
+          return {
+            projects: {
+              ...s.projects,
+              [slug]: { ...project, galleries: { ...project.galleries, [imageId]: { ...current, caption } } }
+            }
+          }
         })
     }),
     {
@@ -67,6 +111,14 @@ export const useProjectStore = create<ProjectStore>()(
   )
 )
 
+export function useImageMeta(slug: string, imageId: string): ImageMeta {
+  return useProjectStore((s) => s.projects[slug]?.galleries[imageId] ?? emptyImageMeta)
+}
+
+// ---------------------------------------------------------------------------
+// Slug / ID helpers
+// ---------------------------------------------------------------------------
+
 const DIACRITICS = /[̀-ͯ]/g
 
 /** Slugify a project name into a URL-safe segment. */
@@ -90,6 +142,10 @@ export function buildProjectId(name: string): { id: string; slug: string; create
   const slug = `${base}-${now.getTime()}`
   return { id: slug, slug, createdAt: now.toISOString() }
 }
+
+// ---------------------------------------------------------------------------
+// Flow helpers
+// ---------------------------------------------------------------------------
 
 /**
  * Linear flow of routes a project moves through. The order here is the source

@@ -14,7 +14,6 @@ import 'yet-another-react-lightbox/plugins/counter.css'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import 'yet-another-react-lightbox/styles.css'
 import { GALLERY_IMAGES, GALLERY_ROOMS, galleryImageUrl, type GalleryRoom } from '../constants/galleries.constants'
-import { useGalleriesStore } from '../store/galleries.store'
 import { useProjectStore, useSetProjectFlow } from '../store/project.store'
 import { GalleryCard } from './galleries/gallery-card'
 
@@ -30,8 +29,8 @@ export default function ProjectGalleries({ slug }: ProjectGalleriesProps) {
   const tc = useTranslations('common')
 
   const project = useProjectStore((s) => s.projects[slug])
-  const projectMeta = useGalleriesStore((s) => s.meta[slug])
-  const toggleFavorite = useGalleriesStore((s) => s.toggleFavorite)
+  const projectMeta = useProjectStore((s) => s.projects[slug]?.galleries)
+  const toggleFavorite = useProjectStore((s) => s.toggleFavorite)
 
   useSetProjectFlow(slug, 'galleries')
 
