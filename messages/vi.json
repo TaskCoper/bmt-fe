@@ -930,6 +930,61 @@
           "progressTarget": "Ngân sách mục tiêu là mức chi dự kiến cho riêng phần này. Thanh cho biết đang dùng bao nhiêu % — vượt 100% đổi đỏ để cảnh báo.",
           "donut": "Tỷ lệ tính từ số tiền thật của 3 phần trong bảng, phản ánh đúng dự án — khác với dải % tham khảo ở văn mẫu."
         }
+      },
+      "galleries": {
+        "badge": "Bước 5 · Render hình ảnh",
+        "title": "Thư viện render không gian",
+        "subtitle": "AI đã dựng loạt ảnh render mô phỏng không gian thực tế của bạn. Đánh dấu yêu thích và thêm chú thích để đưa vào hồ sơ.",
+        "summary": {
+          "count": "{count, plural, other {# ảnh render}}",
+          "favorites": "{count, plural, =0 {Chưa chọn ảnh yêu thích} other {# ảnh yêu thích}}",
+          "hint": "Bấm vào ảnh để mở xem lớn, thêm chú thích và đánh dấu yêu thích."
+        },
+        "filters": {
+          "favorites": "Yêu thích"
+        },
+        "rooms": {
+          "all": "Tất cả",
+          "living": "Phòng khách",
+          "kitchen": "Bếp",
+          "dining": "Phòng ăn",
+          "bedroom": "Phòng ngủ",
+          "bathroom": "Phòng tắm",
+          "exterior": "Ngoại thất"
+        },
+        "floors": {
+          "ground": "Tầng trệt",
+          "upper1": "Lầu 1",
+          "upper2": "Lầu 2",
+          "exterior": "Ngoại thất"
+        },
+        "actions": {
+          "favorite": "Đánh dấu yêu thích",
+          "unfavorite": "Bỏ yêu thích",
+          "preview": "Xem lớn",
+          "editCaption": "Sửa chú thích",
+          "captionLabel": "Chú thích của bạn",
+          "captionHint": "Chú thích sẽ đi cùng ảnh khi bạn xuất hồ sơ.",
+          "save": "Lưu",
+          "cancel": "Hủy"
+        },
+        "captionPlaceholder": "VD: Phòng khách tông trầm, ánh sáng tự nhiên từ giếng trời…",
+        "captionEmpty": "Thêm chú thích cho ảnh này",
+        "empty": {
+          "title": "Không có ảnh nào",
+          "description": "Chưa có ảnh nào khớp bộ lọc. Thử chọn phòng khác hoặc bỏ lọc yêu thích."
+        },
+        "lightbox": {
+          "title": "Chú thích và đánh dấu",
+          "description": "Thêm chú thích cho ảnh này, đánh dấu yêu thích để dùng ở bước xuất hồ sơ PDF.",
+          "counter": "{current} / {total}",
+          "previous": "Ảnh trước",
+          "next": "Ảnh sau",
+          "done": "Xong"
+        },
+        "ctas": {
+          "nextStep": "Tiếp tục đánh giá"
+        }
       }
     },
     "card": {

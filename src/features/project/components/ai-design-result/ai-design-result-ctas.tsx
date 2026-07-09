@@ -1,16 +1,17 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import { Button, Tooltip, TooltipContent, TooltipTrigger } from '@/shared/components/ui'
-import { ArrowRight, RefreshCcw } from 'lucide-react'
+import { Button } from '@/shared/components/ui'
+import { RefreshCcw } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 interface AIDesignResultCtasProps {
   prevUrl: string | null
+  nextUrl: string | null
   onRegenerate: () => void
 }
 
-export function AIDesignResultCtas({ prevUrl, onRegenerate }: AIDesignResultCtasProps) {
+export function AIDesignResultCtas({ prevUrl, nextUrl, onRegenerate }: AIDesignResultCtasProps) {
   const t = useTranslations('project.form.aiDesignResult')
   const tc = useTranslations('common')
 
@@ -25,22 +26,16 @@ export function AIDesignResultCtas({ prevUrl, onRegenerate }: AIDesignResultCtas
       </div>
 
       <div className='flex flex-wrap items-center gap-2'>
-        <Button type='button' variant='ghost' onClick={onRegenerate} className='gap-1.5'>
-          <RefreshCcw className='size-4' />
+        <Button type='button' variant='outline' onClick={onRegenerate}>
+          <RefreshCcw />
           {t('ctas.regenerate')}
         </Button>
 
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span tabIndex={0}>
-              <Button type='button' disabled className='gap-1.5'>
-                {t('ctas.nextStep')}
-                <ArrowRight className='size-4' />
-              </Button>
-            </span>
-          </TooltipTrigger>
-          <TooltipContent side='top'>{t('ctas.nextStepDisabled')}</TooltipContent>
-        </Tooltip>
+        {nextUrl && (
+          <Button type='button'>
+            <Link href={nextUrl}>{t('ctas.nextStep')}</Link>
+          </Button>
+        )}
       </div>
     </div>
   )

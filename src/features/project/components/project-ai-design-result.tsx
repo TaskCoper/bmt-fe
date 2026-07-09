@@ -195,7 +195,11 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
         userBudget={derived.userBudget}
       />
       <AIDesignResultTotalSummary budget={derived.budget} generatedAt={generatedAt} />
-      <AIDesignResultCtas prevUrl={project.prevUrl} onRegenerate={() => setRegenKey((k) => k + 1)} />
+      <AIDesignResultCtas
+        prevUrl={project.prevUrl}
+        nextUrl={project.nextUrl}
+        onRegenerate={() => setRegenKey((k) => k + 1)}
+      />
     </div>
   )
 }

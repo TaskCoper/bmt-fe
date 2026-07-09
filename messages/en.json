@@ -930,6 +930,61 @@
           "progressTarget": "The target is the expected spend for this portion alone. The bar shows how much of it is used — over 100% turns red as a warning.",
           "donut": "The percentages come from the real numbers for the three portions in the table — this reflects your project directly, unlike the market averages in the consultation copy at the top."
         }
+      },
+      "galleries": {
+        "badge": "Step 5 · Render gallery",
+        "title": "Render library",
+        "subtitle": "AI has produced a series of renders simulating your real space. Favourite the ones you love and add captions to keep them in your proposal.",
+        "summary": {
+          "count": "{count, plural, one {# render} other {# renders}}",
+          "favorites": "{count, plural, =0 {No favourites yet} one {# favourite} other {# favourites}}",
+          "hint": "Click any image to open it larger, add a caption and favourite it."
+        },
+        "filters": {
+          "favorites": "Favourites"
+        },
+        "rooms": {
+          "all": "All",
+          "living": "Living",
+          "kitchen": "Kitchen",
+          "dining": "Dining",
+          "bedroom": "Bedroom",
+          "bathroom": "Bathroom",
+          "exterior": "Exterior"
+        },
+        "floors": {
+          "ground": "Ground floor",
+          "upper1": "Floor 1",
+          "upper2": "Floor 2",
+          "exterior": "Exterior"
+        },
+        "actions": {
+          "favorite": "Favourite",
+          "unfavorite": "Unfavourite",
+          "preview": "Open",
+          "editCaption": "Edit caption",
+          "captionLabel": "Your caption",
+          "captionHint": "Captions travel with the image when you export the proposal.",
+          "save": "Save",
+          "cancel": "Cancel"
+        },
+        "captionPlaceholder": "e.g. Warm-tone living room with natural light from the skylight…",
+        "captionEmpty": "Add a caption for this render",
+        "empty": {
+          "title": "No images",
+          "description": "Nothing matches this filter yet. Try another room or clear the favourites filter."
+        },
+        "lightbox": {
+          "title": "Caption and favourite",
+          "description": "Add a caption for this render and favourite it so it lands in the exported PDF proposal.",
+          "counter": "{current} / {total}",
+          "previous": "Previous image",
+          "next": "Next image",
+          "done": "Done"
+        },
+        "ctas": {
+          "nextStep": "Continue to review"
+        }
       }
     },
     "card": {
