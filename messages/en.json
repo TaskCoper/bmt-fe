@@ -1113,7 +1113,8 @@
       "code": "Code",
       "name": "Estimate",
       "status": "Status",
-      "total": "Total"
+      "total": "Total",
+      "actions": "Actions"
     },
     "status": {
       "all": "All statuses",
@@ -1127,6 +1128,29 @@
       "description": "No estimates match your filters."
     },
     "createNew": "New estimate",
+    "priceRange": {
+      "label": "Price range",
+      "title": "Filter by price",
+      "reset": "Reset"
+    },
+    "rowActions": {
+      "view": "View details",
+      "delete": "Delete"
+    },
+    "deleted": "Deleted \"{name}\" (demo).",
+    "detail": {
+      "title": "Estimate details",
+      "back": "Estimate list",
+      "createdAt": "Created {date}",
+      "totalLabel": "Total estimate",
+      "descriptionTitle": "Description",
+      "parametersTitle": "Parameters",
+      "breakdownTitle": "Cost breakdown",
+      "notFound": {
+        "title": "Estimate not found",
+        "description": "This estimate does not exist or has been deleted."
+      }
+    },
     "creator": {
       "title": "New estimate",
       "subtitle": "Create a standalone cost estimate without the AI design flow.",
@@ -1158,12 +1182,33 @@
         "finishing": "Finishing",
         "interior": "Interior"
       },
+      "subPortion": {
+        "roughMaterial": "Rough materials",
+        "roughLabor": "Rough labour",
+        "roughOther": "Equipment & other",
+        "finishMaterial": "Finishing materials",
+        "finishLabor": "Finishing labour",
+        "interiorCabinet": "Cabinetry & shelving",
+        "interiorAppliance": "Appliances & fixtures",
+        "interiorDecor": "Loose furniture & decor"
+      },
       "total": "Total",
+      "saveDialog": {
+        "title": "Save estimate",
+        "description": "Give it a name so you can find it in the list.",
+        "nameLabel": "Estimate name",
+        "namePlaceholder": "e.g. 2BR apartment at Vinhomes",
+        "descLabel": "Description",
+        "descPlaceholder": "Short description of the estimate",
+        "cancel": "Cancel",
+        "confirm": "Save"
+      },
       "disclaimer": "This is a reference estimate; actual costs may vary.",
       "save": "Save",
       "exportPdf": "Export PDF",
       "share": "Share link",
       "saved": "Estimate saved (demo).",
+      "viewList": "View list",
       "exported": "PDF exported (demo).",
       "shared": "Share link copied (demo)."
     }

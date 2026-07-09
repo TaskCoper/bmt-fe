@@ -739,3 +739,19 @@
     display: none;
   }
 }
+
+/* Sonner toast action button — solid primary pill (overrides sonner defaults). */
+[data-sonner-toast] [data-button] {
+  border: 0 !important;
+  border-radius: var(--radius-md) !important;
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  height: auto !important;
+  padding: 0.35rem 0.75rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.12) !important;
+  transition: opacity 0.15s ease !important;
+}
+[data-sonner-toast] [data-button]:hover {
+  opacity: 0.9 !important;
+}

@@ -2,85 +2,61 @@
 
 import { useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
-import { Search, FileCheck2, Clock, FileStack, Wallet, Plus } from 'lucide-react'
+import { toast } from 'sonner'
+import { Search, Plus, Eye, Trash2, SlidersHorizontal } from 'lucide-react'
 
-import { Link } from '@/i18n/navigation'
+import { Link, useRouter } from '@/i18n/navigation'
 import { ROUTES } from '@/shared/constants/routes'
 import type { Locale } from '@/i18n/routing'
-import { formatCurrency, formatNumber } from '@/shared/utils'
+import { formatCurrency } from '@/shared/utils'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/shared/components/ui/table'
-import { Badge } from '@/shared/components/ui/badge'
 import { Button } from '@/shared/components/ui/button'
 import { Input } from '@/shared/components/ui/input'
 import { Skeleton } from '@/shared/components/ui/skeleton'
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui/select'
+import { Label } from '@/shared/components/ui/label'
+import { Slider } from '@/shared/components/ui/slider'
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/components/ui/popover'
 import { EmptyState, ErrorState } from '@/shared/components/common'
-import { useEstimates, useEstimateSummary } from '../hooks/use-estimates'
-import { ESTIMATE_STATUS, type EstimateStatus } from '../constants/estimate.constants'
-import type { EstimateFilters } from '../types/estimate.types'
+import { useEstimates } from '../hooks/use-estimates'
+import { ESTIMATE_PRICE_MAX, ESTIMATE_PRICE_MIN, ESTIMATE_PRICE_STEP } from '../constants/estimate.constants'
+import type { Estimate, EstimateFilters } from '../types/estimate.types'
 
-const STATUS_VARIANT: Record<EstimateStatus, 'default' | 'secondary' | 'success' | 'warning' | 'outline'> = {
-  draft: 'secondary',
-  pending: 'warning',
-  approved: 'success',
-  rejected: 'outline'
+const INITIAL: EstimateFilters = {
+  search: '',
+  status: 'all',
+  minPrice: ESTIMATE_PRICE_MIN,
+  maxPrice: ESTIMATE_PRICE_MAX,
+  page: 1
 }
-
-const STATUS_OPTIONS = ['all', ...Object.values(ESTIMATE_STATUS)] as const
-
-const INITIAL: EstimateFilters = { search: '', status: 'all', page: 1 }
 
 export function EstimateList() {
   const t = useTranslations('estimate')
   const tc = useTranslations('common')
   const te = useTranslations('errors')
   const locale = useLocale() as Locale
+  const router = useRouter()
 
   const [filters, setFilters] = useState<EstimateFilters>(INITIAL)
+  const [priceDraft, setPriceDraft] = useState<[number, number]>([ESTIMATE_PRICE_MIN, ESTIMATE_PRICE_MAX])
   const { data, isLoading, isError, refetch } = useEstimates(filters)
-  const { data: summary } = useEstimateSummary()
 
-  const summaryCards = [
-    {
-      label: t('summary.total'),
-      value: summary ? formatNumber(summary.total, locale) : '—',
-      icon: FileStack
-    },
-    {
-      label: t('summary.approved'),
-      value: summary ? formatNumber(summary.approved, locale) : '—',
-      icon: FileCheck2
-    },
-    {
-      label: t('summary.pending'),
-      value: summary ? formatNumber(summary.pending, locale) : '—',
-      icon: Clock
-    },
-    {
-      label: t('summary.totalValue'),
-      value: summary ? formatCurrency(summary.totalValue, locale) : '—',
-      icon: Wallet
-    }
-  ]
+  const priceActive = filters.minPrice > ESTIMATE_PRICE_MIN || filters.maxPrice < ESTIMATE_PRICE_MAX
+  const money = (v: number) => formatCurrency(v, locale)
+  const maxLabel = priceDraft[1] >= ESTIMATE_PRICE_MAX ? `${money(ESTIMATE_PRICE_MAX)}+` : money(priceDraft[1])
+
+  const commitPrice = ([min, max]: number[]) =>
+    setFilters((f) => ({ ...f, minPrice: min ?? ESTIMATE_PRICE_MIN, maxPrice: max ?? ESTIMATE_PRICE_MAX, page: 1 }))
+
+  const resetPrice = () => {
+    setPriceDraft([ESTIMATE_PRICE_MIN, ESTIMATE_PRICE_MAX])
+    setFilters((f) => ({ ...f, minPrice: ESTIMATE_PRICE_MIN, maxPrice: ESTIMATE_PRICE_MAX, page: 1 }))
+  }
+
+  const view = (e: Estimate) => router.push(`${ROUTES.ESTIMATES}/${e.id}`)
+  const remove = (e: Estimate) => toast.success(t('deleted', { name: e.name }))
 
   return (
     <div className='space-y-6'>
-      {/* Summary cards */}
-      <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4'>
-        {summaryCards.map((c) => (
-          <Card key={c.label}>
-            <CardHeader className='flex-row items-center justify-between space-y-0 pb-2'>
-              <CardTitle className='text-muted-foreground text-sm font-medium'>{c.label}</CardTitle>
-              <c.icon className='text-muted-foreground size-4' />
-            </CardHeader>
-            <CardContent>
-              <div className='text-2xl font-semibold tracking-tight'>{c.value}</div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
       {/* Toolbar */}
       <div className='flex flex-col gap-3 sm:flex-row sm:items-center'>
         <div className='relative flex-1'>
@@ -92,27 +68,38 @@ export function EstimateList() {
             className='pl-9'
           />
         </div>
-        <Select
-          value={filters.status}
-          onValueChange={(v) =>
-            setFilters((f) => ({
-              ...f,
-              status: v as EstimateFilters['status'],
-              page: 1
-            }))
-          }
-        >
-          <SelectTrigger className='sm:w-48'>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {STATUS_OPTIONS.map((s) => (
-              <SelectItem key={s} value={s}>
-                {t(`status.${s}`)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant='outline' className='w-full justify-start sm:w-auto'>
+              <SlidersHorizontal className='size-4' />
+              {t('priceRange.label')}
+              {priceActive ? <span className='bg-primary ml-1 size-2 rounded-full' /> : null}
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent align='end' className='w-80 space-y-4'>
+            <div className='flex items-center justify-between'>
+              <Label>{t('priceRange.title')}</Label>
+              {priceActive ? (
+                <Button variant='ghost' size='sm' className='h-auto px-2 py-1 text-xs' onClick={resetPrice}>
+                  {t('priceRange.reset')}
+                </Button>
+              ) : null}
+            </div>
+            <div className='flex items-center justify-between text-sm font-medium tabular-nums'>
+              <span>{money(priceDraft[0])}</span>
+              <span className='text-muted-foreground'>–</span>
+              <span>{maxLabel}</span>
+            </div>
+            <Slider
+              min={ESTIMATE_PRICE_MIN}
+              max={ESTIMATE_PRICE_MAX}
+              step={ESTIMATE_PRICE_STEP}
+              value={priceDraft}
+              onValueChange={(v) => setPriceDraft([v[0] ?? ESTIMATE_PRICE_MIN, v[1] ?? ESTIMATE_PRICE_MAX])}
+              onValueCommit={commitPrice}
+            />
+          </PopoverContent>
+        </Popover>
         <Button asChild>
           <Link href={ROUTES.ESTIMATE_NEW}>
             <Plus className='size-4' />
@@ -145,23 +132,56 @@ export function EstimateList() {
                 <TableRow>
                   <TableHead className='w-32'>{t('columns.code')}</TableHead>
                   <TableHead>{t('columns.name')}</TableHead>
-                  <TableHead className='w-28'>{t('columns.status')}</TableHead>
                   <TableHead className='text-right'>{t('columns.total')}</TableHead>
+                  <TableHead className='w-24 text-right'>{t('columns.actions')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data.items.map((e) => (
-                  <TableRow key={e.id}>
-                    <TableCell className='text-muted-foreground font-mono text-xs'>{e.code}</TableCell>
-                    <TableCell>
-                      <div className='font-medium'>{e.name}</div>
-                      <div className='text-muted-foreground truncate text-sm'>{e.projectName}</div>
+                {data.items.map((e, i) => (
+                  <TableRow key={e.id} className={i % 2 === 1 ? 'bg-muted/30' : undefined}>
+                    <TableCell className='font-mono text-xs'>
+                      <button
+                        type='button'
+                        onClick={() => view(e)}
+                        className='text-muted-foreground hover:text-foreground cursor-pointer'
+                      >
+                        {e.code}
+                      </button>
                     </TableCell>
                     <TableCell>
-                      <Badge variant={STATUS_VARIANT[e.status]}>{t(`status.${e.status}`)}</Badge>
+                      <button type='button' onClick={() => view(e)} className='block cursor-pointer text-left'>
+                        <div className='group-hover:text-primary font-medium transition-colors hover:text-primary'>
+                          {e.name}
+                        </div>
+                        <div className='text-muted-foreground truncate text-sm'>{e.projectName}</div>
+                      </button>
                     </TableCell>
                     <TableCell className='text-right font-medium tabular-nums'>
                       {formatCurrency(e.total, locale)}
+                    </TableCell>
+                    <TableCell className='text-right'>
+                      <div className='flex items-center justify-end gap-1'>
+                        <Button
+                          variant='ghost'
+                          size='icon'
+                          className='size-8'
+                          aria-label={t('rowActions.view')}
+                          title={t('rowActions.view')}
+                          onClick={() => view(e)}
+                        >
+                          <Eye className='size-4' />
+                        </Button>
+                        <Button
+                          variant='ghost'
+                          size='icon'
+                          className='text-muted-foreground hover:text-destructive size-8'
+                          aria-label={t('rowActions.delete')}
+                          title={t('rowActions.delete')}
+                          onClick={() => remove(e)}
+                        >
+                          <Trash2 className='size-4' />
+                        </Button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 ))}
