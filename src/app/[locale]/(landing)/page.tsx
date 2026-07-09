@@ -2,7 +2,6 @@ import { setRequestLocale } from 'next-intl/server'
 
 import {
   ContactSection,
-  CtaSection,
   FeatureSpotlights,
   FeaturedProjects,
   LandingHero,
@@ -31,7 +30,6 @@ export default async function HomePage({ params }: PageProps) {
       <FeaturedProjects />
       <StatsSection />
       <ContactSection />
-      <CtaSection />
     </div>
   )
 }

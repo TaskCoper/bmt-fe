@@ -3,6 +3,7 @@
  * Auth INFRASTRUCTURE (store, guards, roles) lives in `@/shared/auth`; this
  * feature owns the auth FLOWS (forms, API calls, session hooks).
  */
+export { AuthDialog } from './components/auth-dialog'
 export { LoginForm } from './components/login-form'
 export { RegisterForm } from './components/register-form'
 export { ForgotPasswordForm } from './components/forgot-password-form'

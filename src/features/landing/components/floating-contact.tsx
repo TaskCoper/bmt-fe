@@ -1,5 +1,6 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import { useTranslations } from 'next-intl'
 import { MessageCircle, Phone } from 'lucide-react'
 
@@ -26,39 +27,81 @@ export function FloatingContact() {
   const t = useTranslations('landing.floating')
   const { messengerUrl, zaloUrl, hotline } = siteConfig.contact
 
-  const base =
-    'flex size-12 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2'
-
   return (
-    <div className='fixed right-4 bottom-4 z-50 flex flex-col gap-3'>
-      <a
+    <div className='fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3.5'>
+      <FloatingButton
         href={messengerUrl}
-        target='_blank'
-        rel='noopener noreferrer'
-        aria-label={t('messenger')}
-        title={t('messenger')}
-        className={cn(base, 'bg-[#0084FF]')}
+        label={t('messenger')}
+        external
+        className='bg-[#0084FF]'
+        glow='shadow-[0_10px_26px_-8px_#0084ffcc]'
       >
         <MessageCircle className='size-6' />
-      </a>
-      <a
+      </FloatingButton>
+
+      <FloatingButton
         href={zaloUrl}
-        target='_blank'
-        rel='noopener noreferrer'
-        aria-label={t('zalo')}
-        title={t('zalo')}
-        className={cn(base, 'bg-[#0068FF]')}
+        label={t('zalo')}
+        external
+        className='bg-[#0068FF]'
+        glow='shadow-[0_10px_26px_-8px_#0068ffcc]'
       >
         <ZaloIcon className='size-7' />
-      </a>
-      <a
+      </FloatingButton>
+
+      <FloatingButton
         href={`tel:${hotline.replace(/\s/g, '')}`}
-        aria-label={t('call')}
-        title={t('call')}
-        className={cn(base, 'bg-primary')}
+        label={t('call')}
+        className='bg-primary'
+        glow='shadow-[0_10px_26px_-8px_oklch(0.77_0.155_65_/_0.7)]'
+        pulse
       >
         <Phone className='size-5' />
-      </a>
+      </FloatingButton>
     </div>
+  )
+}
+
+interface FloatingButtonProps {
+  href: string
+  label: string
+  /** Brand background utility (e.g. `bg-[#0084FF]`). */
+  className: string
+  /** Coloured drop-shadow utility. */
+  glow: string
+  external?: boolean
+  /** Emit an attention-grabbing pulse ring (hotline). */
+  pulse?: boolean
+  children: ReactNode
+}
+
+/** A single floating action button with a hover label + coloured glow. */
+function FloatingButton({ href, label, className, glow, external, pulse, children }: FloatingButtonProps) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className='group/fab flex items-center justify-end gap-3 focus-visible:outline-none'
+    >
+      {/* Hover-reveal label pill */}
+      <span className='bg-foreground text-background pointer-events-none origin-right translate-x-1 scale-95 rounded-lg px-3 py-1.5 text-sm font-medium whitespace-nowrap opacity-0 shadow-md transition-all duration-200 group-hover/fab:translate-x-0 group-hover/fab:scale-100 group-hover/fab:opacity-100'>
+        {label}
+      </span>
+
+      {/* Button */}
+      <span
+        className={cn(
+          'relative flex size-12 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-200 group-hover/fab:scale-110',
+          className,
+          glow
+        )}
+      >
+        {pulse ? (
+          <span className={cn('absolute inset-0 -z-10 animate-ping rounded-full opacity-70', className)} />
+        ) : null}
+        {children}
+      </span>
+    </a>
   )
 }

@@ -1,5 +1,6 @@
 export { ALL_ROLES, AUTH_COOKIE_NAME, AUTH_STORAGE_KEY, ROLES, type Role } from './auth.constants'
 export { useAuthStore } from './auth.store'
+export { useAuthDialogStore, type AuthDialogMode } from './auth-dialog.store'
 export type { AuthActions, AuthState, AuthStore, AuthUser } from './auth.types'
 export { AdminGuard } from './guards/admin-guard'
 export { GuestRoute } from './guards/guest-route'

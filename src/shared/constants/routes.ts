@@ -37,8 +37,12 @@ export const ROUTES = {
 
 export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES]
 
-/** Routes a guest may NOT access once authenticated (redirect to dashboard). */
-export const GUEST_ONLY_ROUTES: readonly string[] = [ROUTES.LOGIN, ROUTES.REGISTER, ROUTES.FORGOT_PASSWORD]
+/**
+ * Routes a guest may NOT access once authenticated (redirect to dashboard).
+ * Login/register are a popup rather than pages, so only the standalone
+ * password-reset screen remains guest-only.
+ */
+export const GUEST_ONLY_ROUTES: readonly string[] = [ROUTES.FORGOT_PASSWORD]
 
 /** Route prefixes that require authentication. */
 export const PROTECTED_ROUTE_PREFIXES: readonly string[] = [ROUTES.DASHBOARD, ROUTES.PROFILE, ROUTES.SETTINGS]

@@ -2,10 +2,8 @@ import { ArrowRight, Check, Heart, Sparkles } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import type { ReactNode } from 'react'
 
-import { Link } from '@/i18n/navigation'
 import { cn } from '@/shared/lib/utils'
-import { Button } from '@/shared/components/ui/button'
-import { ROUTES } from '@/shared/constants/routes'
+import { AuthCta } from '@/shared/components/auth-cta'
 
 /**
  * Alternating full-width feature spotlights (tamagui-style rhythm): a big
@@ -17,14 +15,6 @@ export function FeatureSpotlights() {
 
   return (
     <div className='relative'>
-      <Spotlight
-        eyebrow={t('estimate.eyebrow')}
-        title={t('estimate.title')}
-        description={t('estimate.description')}
-        bullets={[t('estimate.bullet1'), t('estimate.bullet2'), t('estimate.bullet3')]}
-        cta={t('cta')}
-        visual={<EstimateVisual />}
-      />
       <Spotlight
         reverse
         eyebrow={t('visuals.eyebrow')}
@@ -77,81 +67,14 @@ function Spotlight({
               </li>
             ))}
           </ul>
-          <Button asChild size='lg' className='mt-9'>
-            <Link href={ROUTES.LOGIN}>
-              {cta}
-              <ArrowRight className='size-4' />
-            </Link>
-          </Button>
+          <AuthCta size='lg' className='mt-9'>
+            {cta}
+            <ArrowRight className='size-4' />
+          </AuthCta>
         </div>
         <div className={cn(reverse && 'lg:order-1')}>{visual}</div>
       </div>
     </section>
-  )
-}
-
-/** Estimate dossier visual — total, 3-category split, package selection. */
-function EstimateVisual() {
-  const t = useTranslations('landing.hero')
-  const ts = useTranslations('landing.spotlight')
-  const packages = [
-    { name: ts('pkgBasic'), price: '1,44 tỷ', on: false },
-    { name: ts('pkgStandard'), price: '2,18 tỷ', on: true },
-    { name: ts('pkgVip'), price: '3,05 tỷ', on: false }
-  ]
-
-  return (
-    <div className='glass-panel p-6 lg:p-7'>
-      <div className='flex items-baseline justify-between'>
-        <p className='text-muted-foreground text-xs font-medium'>{t('previewTotalLabel')}</p>
-        <span className='text-success bg-success/12 inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[0.7rem] font-semibold'>
-          <Check className='size-3' />
-          {t('previewFit')}
-        </span>
-      </div>
-      <p className='mt-1 text-4xl font-bold tracking-[-0.03em] tabular-nums'>{t('previewTotal')}</p>
-
-      <div className='glass-inset mt-5 flex h-3 overflow-hidden rounded-full'>
-        <span className='bg-primary' style={{ width: '52%' }} />
-        <span className='bg-chart-2' style={{ width: '30%' }} />
-        <span className='bg-chart-3' style={{ width: '18%' }} />
-      </div>
-      <div className='mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs'>
-        {(
-          [
-            ['bg-primary', t('previewRough'), '52%'],
-            ['bg-chart-2', t('previewFinishing'), '30%'],
-            ['bg-chart-3', t('previewInterior'), '18%']
-          ] as const
-        ).map(([color, label, pct]) => (
-          <span key={label} className='text-muted-foreground flex items-center gap-1.5'>
-            <span className={cn('size-2.5 rounded-[4px]', color)} />
-            {label}
-            <b className='text-foreground tabular-nums'>{pct}</b>
-          </span>
-        ))}
-      </div>
-
-      <div className='mt-6 space-y-2.5'>
-        {packages.map((p) => (
-          <div
-            key={p.name}
-            className={cn('flex items-center gap-3 rounded-2xl p-3.5', p.on ? 'glass-selected' : 'glass-inset')}
-          >
-            <span
-              className={cn(
-                'flex size-5 items-center justify-center rounded-full',
-                p.on ? 'bg-primary text-primary-foreground' : 'border-glass-border border'
-              )}
-            >
-              {p.on ? <Check className='size-3' /> : null}
-            </span>
-            <span className='flex-1 text-sm font-medium'>{p.name}</span>
-            <span className='text-sm font-bold tabular-nums'>{p.price}</span>
-          </div>
-        ))}
-      </div>
-    </div>
   )
 }
 

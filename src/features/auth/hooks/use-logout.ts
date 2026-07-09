@@ -9,8 +9,8 @@ import { authApi } from '../api/auth.api'
 
 /**
  * Logout mutation: tells the backend to clear the session cookie, then resets
- * client auth state + the query cache and redirects to login. Always clears
- * locally even if the network call fails.
+ * client auth state + the query cache and redirects to the public home. Always
+ * clears locally even if the network call fails.
  */
 export function useLogout() {
   const router = useRouter()
@@ -22,7 +22,7 @@ export function useLogout() {
     onSettled: () => {
       reset()
       queryClient.clear()
-      router.replace(ROUTES.LOGIN)
+      router.replace(ROUTES.HOME)
     }
   })
 }

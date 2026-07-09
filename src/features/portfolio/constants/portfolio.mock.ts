@@ -2,8 +2,8 @@ import { PORTFOLIO_CATEGORY } from './portfolio.constants'
 import type { PortfolioItem } from '../types/portfolio.types'
 
 const gallery = (base: number) =>
-  Array.from({ length: 4 }, (_, i) => ({
-    hue: (base + i * 28) % 360,
+  Array.from({ length: 6 }, (_, i) => ({
+    hue: (base + i * 24) % 360,
     caption: ''
   }))
 
@@ -11,7 +11,48 @@ const gallery = (base: number) =>
  * Sample showcase projects for local dev. Real portfolio content (text VI+EN,
  * photos) is curated by BMT Decor via the CMS.
  */
-const RAW: Omit<PortfolioItem, 'published'>[] = [
+type RawPortfolio = Omit<
+  PortfolioItem,
+  'published' | 'subtitle' | 'workType' | 'client' | 'beforeHue' | 'afterHue' | 'process' | 'body'
+>
+
+/** Standard BMT Decor design-&-build workflow, lightly tailored per project. */
+function makeProcess(p: RawPortfolio): PortfolioItem['process'] {
+  return [
+    {
+      title: 'Khảo sát & Tư vấn',
+      body: `BMT Decor khảo sát hiện trạng ${p.area}m² tại ${p.location}, trao đổi nhu cầu và ngân sách để đưa ra định hướng phù hợp.`
+    },
+    {
+      title: 'Phát triển ý tưởng thiết kế',
+      body: `Phương án phong cách ${p.style} được xây dựng với bảng màu, vật liệu và bố cục công năng tối ưu cho từng khu vực.`
+    },
+    {
+      title: 'Thi công & Giám sát',
+      body: 'Đội thi công triển khai theo bản vẽ, giám sát chặt chẽ tiến độ và chất lượng vật tư trong suốt quá trình.'
+    },
+    {
+      title: 'Nghiệm thu & Bàn giao',
+      body: 'Hoàn thiện, vệ sinh tổng thể và nghiệm thu cùng khách hàng, bàn giao công trình đúng cam kết.'
+    }
+  ]
+}
+
+/** Rich-text (HTML) article body — reads like a blog post (headings + figures). */
+function makeBody(p: RawPortfolio, process: PortfolioItem['process']): string {
+  const fig = '<figure class="img-ph"></figure>'
+  const parts = [
+    `<p><strong>${p.summary}</strong></p>`,
+    `<p>${p.description}</p>`,
+    fig,
+    ...process.map((s, i) => `<h2>${s.title}</h2><p>${s.body}</p>${i === 1 ? fig : ''}`),
+    `<blockquote>“BMT Decor không chỉ xây dựng không gian — chúng tôi kiến tạo trải nghiệm sống.”</blockquote>`,
+    fig
+  ]
+  return parts.join('')
+}
+
+const RAW: RawPortfolio[] = [
   {
     id: 'pf-1',
     slug: 'can-ho-vinhomes-central-park',
@@ -104,7 +145,17 @@ const RAW: Omit<PortfolioItem, 'published'>[] = [
 ]
 
 /** Last item left unpublished to exercise the admin view. */
-export const MOCK_PORTFOLIO: readonly PortfolioItem[] = RAW.map((p, i) => ({
-  ...p,
-  published: i !== RAW.length - 1
-}))
+export const MOCK_PORTFOLIO: readonly PortfolioItem[] = RAW.map((p, i) => {
+  const process = makeProcess(p)
+  return {
+    ...p,
+    subtitle: 'Gói thiết kế & thi công trọn gói',
+    workType: 'Thiết kế & Thi công',
+    client: `Khách hàng tại ${p.location}`,
+    beforeHue: (p.coverHue + 180) % 360,
+    afterHue: p.coverHue,
+    process,
+    body: makeBody(p, process),
+    published: i !== RAW.length - 1
+  }
+})

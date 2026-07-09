@@ -42,5 +42,12 @@ export const mockGalleryApi = {
   async listAll(filters: GalleryFilters): Promise<PaginatedResponse<GalleryItem>> {
     await mockDelay()
     return paginate(applyFilters(filters, true), filters.page, DEFAULT_GALLERY_PAGE_SIZE)
+  },
+  /** Single published project by id. Rejects when missing/unpublished. */
+  async detail(id: string): Promise<GalleryItem> {
+    await mockDelay()
+    const item = MOCK_GALLERY.find((g) => g.id === id && g.published)
+    if (!item) throw new Error(`Gallery item not found: ${id}`)
+    return item
   }
 }
