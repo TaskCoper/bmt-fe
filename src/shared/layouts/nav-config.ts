@@ -63,10 +63,11 @@ export interface NavItem {
 }
 
 /**
- * Primary dashboard navigation. Labels are translation keys (never hardcoded
- * text); icons and routes are colocated for a single source of truth. Library
- * lives in the top header and the AI chatbot is a floating dock — neither
- * belongs in this list.
+ * Primary dashboard navigation for the CUSTOMER area. Admin lives in its own
+ * isolated `(admin)` route group with a dedicated sidebar, so admin entries no
+ * longer belong here. Labels are translation keys (never hardcoded text); icons
+ * and routes are colocated for a single source of truth. Library lives in the
+ * top header and the AI chatbot is a floating dock — neither belongs in this list.
  */
 export const DASHBOARD_NAV: readonly NavItem[] = [
   {
@@ -102,36 +103,6 @@ export const DASHBOARD_NAV: readonly NavItem[] = [
         activeExcludePatterns: ['/dashboard/estimates/new']
       }
     ]
-  },
-  {
-    labelKey: 'cms',
-    href: ROUTES.CMS,
-    icon: FileText,
-    roles: [ROLES.ADMIN]
-  },
-  {
-    labelKey: 'adminGallery',
-    href: ROUTES.ADMIN_GALLERY,
-    icon: Images,
-    roles: [ROLES.ADMIN]
-  },
-  {
-    labelKey: 'adminPortfolio',
-    href: ROUTES.ADMIN_PORTFOLIO,
-    icon: Building2,
-    roles: [ROLES.ADMIN]
-  },
-  {
-    labelKey: 'leads',
-    href: ROUTES.LEADS,
-    icon: Inbox,
-    roles: [ROLES.ADMIN]
-  },
-  {
-    labelKey: 'users',
-    href: ROUTES.USERS,
-    icon: Users,
-    roles: [ROLES.ADMIN]
   }
 ]
 
