@@ -21,13 +21,13 @@ import {
   type DesignRequestFormValues
 } from '../schemas/project.schema'
 import { useProjectStore, useSetProjectFlow } from '../store/project.store'
-import { useFlowNavigation } from './project-flow-layout'
 import { COLOR_PRESETS, Direction, FloorLayout, FloorLighting, HouseStyle, RoofStyle } from '../types/project.types'
 import FloorCardsForm from './floor-cards-form'
 import DirectionCompassIcon from './icons/direction-compass-icon'
 import ThaiRoofIcon from './icons/thai-roof-icon'
 import TraditionalRoofHouseIcon from './icons/traditional-roof-house-icon'
 import TumPartIcon from './icons/tum-part-icon'
+import { useFlowNavigation } from './project-flow-layout'
 
 const HOUSE_STYLE_OPTIONS = [HouseStyle.Roof, HouseStyle.Modern, HouseStyle.Neoclassical] as const
 const ROOF_STYLE_OPTIONS = [RoofStyle.Thai, RoofStyle.Japanese, RoofStyle.Traditional, RoofStyle.Other] as const
@@ -177,7 +177,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
                     id={field.name}
                     type='text'
                     inputMode='numeric'
-                    placeholder='2.000.000.000'
+                    placeholder={formatBudgetInput(DESIGN_REQUEST_BUDGET_DEFAULT)}
                     pattern='[0-9.]*'
                     value={inputValue}
                     onChange={(e) => field.onChange(parseBudgetInput(e.target.value))}

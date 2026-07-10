@@ -81,7 +81,8 @@
       "contact": "Contact",
       "library": "Reference library",
       "openMenu": "Open menu",
-      "mobileMenu": "Menu"
+      "mobileMenu": "Menu",
+      "logoAriaLabel": "BMT AI Construction - go to homepage"
     },
     "hero": {
       "badge": "AI-integrated design platform",

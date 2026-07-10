@@ -69,7 +69,7 @@ export function LandingNavbar({ AuthTrigger, UserMenu }: LandingNavbarProps = {}
             : 'border-transparent bg-transparent'
         )}
       >
-        <Link href={ROUTES.HOME} aria-label='BMT AI Construction' className='shrink-0'>
+        <Link href={ROUTES.HOME} aria-label={t('logoAriaLabel')} className='shrink-0'>
           <Logo />
         </Link>
 

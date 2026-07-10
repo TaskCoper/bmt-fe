@@ -81,7 +81,8 @@
       "contact": "Liên hệ",
       "library": "Thư viện tham khảo",
       "openMenu": "Mở menu",
-      "mobileMenu": "Menu"
+      "mobileMenu": "Menu",
+      "logoAriaLabel": "BMT AI Construction - về trang chủ"
     },
     "hero": {
       "badge": "Nền tảng thiết kế tích hợp AI",
