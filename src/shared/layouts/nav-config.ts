@@ -1,18 +1,6 @@
-import {
-  Building2,
-  Calculator,
-  FilePlus2,
-  FileText,
-  FolderKanban,
-  Images,
-  Inbox,
-  ListChecks,
-  Users,
-  type LucideIcon
-} from 'lucide-react'
-
-import { ROLES, type Role } from '@/shared/auth'
+import { type Role } from '@/shared/auth'
 import { ROUTES } from '@/shared/constants/routes'
+import { Calculator, FilePlus2, FolderKanban, ListChecks, type LucideIcon } from 'lucide-react'
 
 /** Translation keys available under the `nav` namespace for sidebar items. */
 export type NavLabelKey =
