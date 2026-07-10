@@ -22,6 +22,8 @@ interface DashboardLayoutProps {
    * Rendered inside the right-side drawer so `shared/` stays feature-agnostic.
    */
   assistant?: ReactNode
+  /** Named sidebar action emitted by the app layer (e.g. 'createProject'). */
+  onAction?: (action: string) => void
 }
 
 /**
@@ -30,14 +32,14 @@ interface DashboardLayoutProps {
  * breadcrumb bar over the scrollable content, a floating assistant dock, and a
  * right-side AI chatbot drawer. Wrap with `ProtectedRoute` at the route group.
  */
-export function DashboardLayout({ children, onLogout, assistant }: DashboardLayoutProps) {
+export function DashboardLayout({ children, onLogout, assistant, onAction }: DashboardLayoutProps) {
   const [assistantOpen, setAssistantOpen] = useState(false)
 
   return (
     <SidebarProvider className='flex-col'>
       <DashboardBrandHeader />
       <div className='flex flex-1'>
-        <AppSidebar className='top-16! h-[calc(100svh-4rem)]!' onLogout={onLogout} />
+        <AppSidebar className='top-16! h-[calc(100svh-4rem)]!' onLogout={onLogout} onAction={onAction} />
         <SidebarInset
           className={cn('min-h-0 transition-[margin] duration-300 ease-out', assistantOpen && 'xl:mr-[380px]')}
         >

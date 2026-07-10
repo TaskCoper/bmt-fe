@@ -1,16 +1,46 @@
-import { FolderKanban, Calculator, FilePlus2, ListChecks, type LucideIcon } from 'lucide-react'
+import {
+  Building2,
+  Calculator,
+  FilePlus2,
+  FileText,
+  FolderKanban,
+  Images,
+  Inbox,
+  ListChecks,
+  Users,
+  type LucideIcon
+} from 'lucide-react'
 
+import { ROLES, type Role } from '@/shared/auth'
 import { ROUTES } from '@/shared/constants/routes'
-import { type Role } from '@/shared/auth'
 
 /** Translation keys available under the `nav` namespace for sidebar items. */
-export type NavLabelKey = 'dashboard' | 'projects' | 'myEstimates' | 'estimateCreate' | 'estimateList'
+export type NavLabelKey =
+  | 'dashboard'
+  | 'projects'
+  | 'myEstimates'
+  | 'estimateCreate'
+  | 'estimateList'
+  | 'cms'
+  | 'users'
+  | 'leads'
+  | 'adminGallery'
+  | 'adminPortfolio'
+  | 'projectCreate'
+  | 'myProjects'
 
 /** A leaf navigation entry (a real, clickable destination). */
 export interface NavLeaf {
   /** Key under the `nav` translation namespace. */
   labelKey: NavLabelKey
-  href: string
+  /** Destination URL. Omit when the leaf triggers an `action` instead. */
+  href?: string
+  /** Named action emitted via `onAction` instead of navigating. */
+  action?: string
+  /** URL patterns (`:param`, `*` wildcards) that mark this item active. Falls back to `href` prefix match. */
+  activePatterns?: readonly string[]
+  /** Patterns that suppress active state even when `activePatterns` matches. */
+  activeExcludePatterns?: readonly string[]
 }
 
 /**
@@ -26,6 +56,10 @@ export interface NavItem {
   children?: readonly NavLeaf[]
   /** Roles allowed to see this item. Empty = all authenticated users. */
   roles?: readonly Role[]
+  /** URL patterns (`:param`, `*` wildcards) that mark this item active. Falls back to `href` prefix match. */
+  activePatterns?: readonly string[]
+  /** Patterns that suppress active state even when `activePatterns` matches. */
+  activeExcludePatterns?: readonly string[]
 }
 
 /**
@@ -36,13 +70,38 @@ export interface NavItem {
  * top header and the AI chatbot is a floating dock — neither belongs in this list.
  */
 export const DASHBOARD_NAV: readonly NavItem[] = [
-  { labelKey: 'projects', href: ROUTES.PROJECTS, icon: FolderKanban },
+  {
+    labelKey: 'myProjects',
+    icon: FolderKanban,
+    children: [
+      {
+        labelKey: 'projectCreate',
+        href: ROUTES.PROJECT_NEW,
+        activePatterns: ['/dashboard/projects/new']
+      },
+      {
+        labelKey: 'projects',
+        href: ROUTES.PROJECTS,
+        activePatterns: ['/dashboard/projects', '/dashboard/projects/:slug', '/dashboard/projects/:slug/*'],
+        activeExcludePatterns: ['/dashboard/projects/new']
+      }
+    ]
+  },
   {
     labelKey: 'myEstimates',
     icon: Calculator,
     children: [
-      { labelKey: 'estimateCreate', href: ROUTES.ESTIMATE_NEW },
-      { labelKey: 'estimateList', href: ROUTES.ESTIMATES }
+      {
+        labelKey: 'estimateCreate',
+        href: ROUTES.ESTIMATE_NEW,
+        activePatterns: ['/dashboard/estimates/new']
+      },
+      {
+        labelKey: 'estimateList',
+        href: ROUTES.ESTIMATES,
+        activePatterns: ['/dashboard/estimates', '/dashboard/estimates/:id'],
+        activeExcludePatterns: ['/dashboard/estimates/new']
+      }
     ]
   }
 ]

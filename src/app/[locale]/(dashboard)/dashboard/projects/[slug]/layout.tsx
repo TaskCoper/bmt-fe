@@ -13,19 +13,7 @@ export default async function ProjectLayout({ children, params }: Props) {
   setRequestLocale(locale as Locale)
 
   return (
-    <div
-      className='bg-secondary min-h-screen'
-      style={{
-        backgroundColor: '#fbfaf7',
-        backgroundImage:
-          'radial-gradient(circle at top right, rgba(245,239,228,0.7), transparent 65%),' +
-          'linear-gradient(rgba(180,168,145,0.08) 1px, transparent 1px),' +
-          'linear-gradient(90deg, rgba(180,168,145,0.08) 1px, transparent 1px),' +
-          'linear-gradient(rgba(180,168,145,0.03) 1px, transparent 1px),' +
-          'linear-gradient(90deg, rgba(180,168,145,0.03) 1px, transparent 1px)',
-        backgroundSize: '100% 100%, 120px 120px, 120px 120px, 24px 24px, 24px 24px'
-      }}
-    >
+    <div className='project-canvas min-h-screen'>
       <div className='mx-auto w-5xl p-8'>
         <ProjectFlowLayout slug={slug}>{children}</ProjectFlowLayout>
       </div>

@@ -15,6 +15,8 @@
 export { projectApi } from './api/project.api'
 export { projectKeys } from './api/project.keys'
 export { default as CreateProjectDialog } from './components/create-project/create-project-dialog'
+export { default as CreateProjectForm } from './components/create-project/create-project-form'
+export { useCreateProject } from './hooks/use-create-project'
 export { default as FloorCard, type FloorCardData, type FloorCardProps, type FloorSpec } from './components/floor-card'
 export { default as ProjectAIDesignResult } from './components/project-ai-design-result'
 export { default as ProjectCard } from './components/project-card'

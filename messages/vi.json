@@ -32,6 +32,7 @@
     "home": "Trang chủ",
     "dashboard": "Bảng điều khiển",
     "projects": "Dự án",
+    "myProjects": "Dự án của tôi",
     "estimates": "Dự toán",
     "myEstimates": "Dự toán của tôi",
     "estimateCreate": "Tạo dự toán mới",
@@ -46,7 +47,8 @@
     "logout": "Đăng xuất",
     "leads": "Khách hàng tiềm năng",
     "adminGallery": "Thư viện (admin)",
-    "adminPortfolio": "Dự án (admin)"
+    "adminPortfolio": "Dự án (admin)",
+    "projectCreate": "Tạo dự án"
   },
   "assistant": {
     "uiTab": "Giao diện",
@@ -466,7 +468,7 @@
         "progress": "{completed}/{total} bước đã sẵn sàng",
         "viewResult": "Xem kết quả",
         "resume": "Tiếp tục · Bước {step}",
-        "start": "Bắt đầu bước 1",
+        "start": "Bắt đầu bước 2",
         "openStep": "Mở bước này",
         "editStep": "Chỉnh sửa",
         "insightsTitle": "Tiến độ 6 bước",
@@ -1096,6 +1098,10 @@
         "Appartment": "Ảnh minh họa căn hộ",
         "Villa": "Ảnh minh họa biệt thự",
         "Townhouse": "Ảnh minh họa nhà phố"
+      },
+      "actions": {
+        "label": "Thao tác dự án",
+        "delete": "Xóa dự án"
       }
     }
   },
