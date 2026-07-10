@@ -6,7 +6,6 @@ import {
   Popover,
   PopoverAnchor,
   PopoverContent,
-  Progress,
   Table,
   TableBody,
   TableCell,
@@ -18,7 +17,6 @@ import {
   TabsList,
   TabsTrigger
 } from '@/shared/components/ui'
-import { cn } from '@/shared/lib/utils'
 import { formatCurrency, formatNumber } from '@/shared/utils'
 import { Lock } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
@@ -232,31 +230,31 @@ function EstimateTable({ items, part, tier, city }: EstimateTableProps) {
   )
 }
 
-interface EstimateProgressProps {
-  actual: number
-  target: number
-}
+// interface EstimateProgressProps {
+//   actual: number
+//   target: number
+// }
 
-function EstimateProgress({ actual, target }: EstimateProgressProps) {
-  const t = useTranslations('project.form.aiDesignResult')
-  const locale = useLocale() as Locale
-  const raw = target === 0 ? 0 : (actual / target) * 100
-  const clamped = Math.min(100, raw)
-  const overshoot = raw > 100
+// function EstimateProgress({ actual, target }: EstimateProgressProps) {
+//   const t = useTranslations('project.form.aiDesignResult')
+//   const locale = useLocale() as Locale
+//   const raw = target === 0 ? 0 : (actual / target) * 100
+//   const clamped = Math.min(100, raw)
+//   const overshoot = raw > 100
 
-  return (
-    <div className='space-y-1.5'>
-      <div className='flex items-center justify-between text-xs'>
-        <span className='text-muted-foreground inline-flex items-center gap-1'>
-          {t('progressTarget', { actual: formatCurrency(actual, locale), target: formatCurrency(target, locale) })}
-          <InfoTooltip labelKey='tooltips.progressTarget' />
-        </span>
-        <span className={cn('font-semibold tabular-nums', overshoot && 'text-destructive')}>{Math.round(raw)}%</span>
-      </div>
-      <Progress
-        value={clamped}
-        className={cn(overshoot && '[&_[data-slot=progress-indicator]]:bg-destructive bg-destructive/20')}
-      />
-    </div>
-  )
-}
+//   return (
+//     <div className='space-y-1.5'>
+//       <div className='flex items-center justify-between text-xs'>
+//         <span className='text-muted-foreground inline-flex items-center gap-1'>
+//           {t('progressTarget', { actual: formatCurrency(actual, locale), target: formatCurrency(target, locale) })}
+//           <InfoTooltip labelKey='tooltips.progressTarget' />
+//         </span>
+//         <span className={cn('font-semibold tabular-nums', overshoot && 'text-destructive')}>{Math.round(raw)}%</span>
+//       </div>
+//       <Progress
+//         value={clamped}
+//         className={cn(overshoot && '[&_[data-slot=progress-indicator]]:bg-destructive bg-destructive/20')}
+//       />
+//     </div>
+//   )
+// }
