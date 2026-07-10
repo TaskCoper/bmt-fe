@@ -1,31 +1,10 @@
-import {
-  FolderKanban,
-  Calculator,
-  FilePlus2,
-  ListChecks,
-  FileText,
-  Users,
-  Inbox,
-  Images,
-  Building2,
-  type LucideIcon
-} from 'lucide-react'
+import { FolderKanban, Calculator, FilePlus2, ListChecks, type LucideIcon } from 'lucide-react'
 
 import { ROUTES } from '@/shared/constants/routes'
-import { ROLES, type Role } from '@/shared/auth'
+import { type Role } from '@/shared/auth'
 
 /** Translation keys available under the `nav` namespace for sidebar items. */
-export type NavLabelKey =
-  | 'dashboard'
-  | 'projects'
-  | 'myEstimates'
-  | 'estimateCreate'
-  | 'estimateList'
-  | 'cms'
-  | 'users'
-  | 'leads'
-  | 'adminGallery'
-  | 'adminPortfolio'
+export type NavLabelKey = 'dashboard' | 'projects' | 'myEstimates' | 'estimateCreate' | 'estimateList'
 
 /** A leaf navigation entry (a real, clickable destination). */
 export interface NavLeaf {
@@ -50,10 +29,11 @@ export interface NavItem {
 }
 
 /**
- * Primary dashboard navigation. Labels are translation keys (never hardcoded
- * text); icons and routes are colocated for a single source of truth. Library
- * lives in the top header and the AI chatbot is a floating dock — neither
- * belongs in this list.
+ * Primary dashboard navigation for the CUSTOMER area. Admin lives in its own
+ * isolated `(admin)` route group with a dedicated sidebar, so admin entries no
+ * longer belong here. Labels are translation keys (never hardcoded text); icons
+ * and routes are colocated for a single source of truth. Library lives in the
+ * top header and the AI chatbot is a floating dock — neither belongs in this list.
  */
 export const DASHBOARD_NAV: readonly NavItem[] = [
   { labelKey: 'projects', href: ROUTES.PROJECTS, icon: FolderKanban },
@@ -64,36 +44,6 @@ export const DASHBOARD_NAV: readonly NavItem[] = [
       { labelKey: 'estimateCreate', href: ROUTES.ESTIMATE_NEW },
       { labelKey: 'estimateList', href: ROUTES.ESTIMATES }
     ]
-  },
-  {
-    labelKey: 'cms',
-    href: ROUTES.CMS,
-    icon: FileText,
-    roles: [ROLES.ADMIN]
-  },
-  {
-    labelKey: 'adminGallery',
-    href: ROUTES.ADMIN_GALLERY,
-    icon: Images,
-    roles: [ROLES.ADMIN]
-  },
-  {
-    labelKey: 'adminPortfolio',
-    href: ROUTES.ADMIN_PORTFOLIO,
-    icon: Building2,
-    roles: [ROLES.ADMIN]
-  },
-  {
-    labelKey: 'leads',
-    href: ROUTES.LEADS,
-    icon: Inbox,
-    roles: [ROLES.ADMIN]
-  },
-  {
-    labelKey: 'users',
-    href: ROUTES.USERS,
-    icon: Users,
-    roles: [ROLES.ADMIN]
   }
 ]
 

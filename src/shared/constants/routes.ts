@@ -17,18 +17,21 @@ export const ROUTES = {
   REGISTER: '/register',
   FORGOT_PASSWORD: '/forgot-password',
 
-  // Dashboard (protected)
+  // Dashboard (protected — customer area)
   DASHBOARD: '/dashboard',
   PROJECTS: '/dashboard/projects',
   PROJECT_NEW: '/dashboard/projects/new',
   ESTIMATES: '/dashboard/estimates',
   ESTIMATE_NEW: '/dashboard/estimates/new',
   LIBRARY: '/dashboard/library',
-  CMS: '/dashboard/cms',
-  USERS: '/dashboard/users',
-  LEADS: '/dashboard/leads',
-  ADMIN_GALLERY: '/dashboard/gallery',
-  ADMIN_PORTFOLIO: '/dashboard/portfolio',
+
+  // Admin (protected — admin-only area, isolated from the customer dashboard)
+  ADMIN: '/admin',
+  CMS: '/admin/cms',
+  USERS: '/admin/users',
+  LEADS: '/admin/leads',
+  ADMIN_GALLERY: '/admin/gallery',
+  ADMIN_PORTFOLIO: '/admin/portfolio',
 
   // Account
   PROFILE: '/profile',
@@ -45,4 +48,9 @@ export type AppRoute = (typeof ROUTES)[keyof typeof ROUTES]
 export const GUEST_ONLY_ROUTES: readonly string[] = [ROUTES.FORGOT_PASSWORD]
 
 /** Route prefixes that require authentication. */
-export const PROTECTED_ROUTE_PREFIXES: readonly string[] = [ROUTES.DASHBOARD, ROUTES.PROFILE, ROUTES.SETTINGS]
+export const PROTECTED_ROUTE_PREFIXES: readonly string[] = [
+  ROUTES.DASHBOARD,
+  ROUTES.ADMIN,
+  ROUTES.PROFILE,
+  ROUTES.SETTINGS
+]
