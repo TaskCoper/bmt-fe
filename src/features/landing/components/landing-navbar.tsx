@@ -36,6 +36,7 @@ interface LandingNavbarProps {
 export function LandingNavbar({ AuthTrigger, UserMenu }: LandingNavbarProps = {}) {
   const t = useTranslations('landing.nav')
   const tAuth = useTranslations('auth.login')
+  const tNav = useTranslations('nav')
   const { isAuthenticated } = useAuth()
 
   // Auth state is client-only; gate on hydration so SSR and first paint match.
@@ -94,7 +95,7 @@ export function LandingNavbar({ AuthTrigger, UserMenu }: LandingNavbarProps = {}
 
           {authed ? (
             <Button size='sm'>
-              <Link href={ROUTES.PROJECTS}>Dự án của tôi</Link>
+              <Link href={ROUTES.PROJECTS}>{tNav('myProjects')}</Link>
             </Button>
           ) : null}
 
@@ -105,12 +106,12 @@ export function LandingNavbar({ AuthTrigger, UserMenu }: LandingNavbarProps = {}
           {/* Mobile menu */}
           <Dialog>
             <DialogTrigger asChild>
-              <Button variant='ghost' size='icon' className='md:hidden' aria-label='Open menu'>
+              <Button variant='ghost' size='icon' className='md:hidden' aria-label={t('openMenu')}>
                 <Menu className='size-5' />
               </Button>
             </DialogTrigger>
             <DialogContent className='data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right top-0 right-0 left-auto h-full max-w-xs translate-x-0 translate-y-0 rounded-none border-l'>
-              <DialogTitle className='sr-only'>Menu</DialogTitle>
+              <DialogTitle className='sr-only'>{t('mobileMenu')}</DialogTitle>
               <Logo className='mb-4' />
               <nav className='flex flex-col gap-1'>
                 <DialogClose asChild>

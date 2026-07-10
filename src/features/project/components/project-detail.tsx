@@ -282,7 +282,7 @@ function buildStepViews(project: ProjectDraft, h: InsightHelpers): DerivedView {
   const galleries = project.galleries ?? {}
 
   const drDone = Boolean(dr)
-  const spDone = Boolean(sp?.description && sp.floors.length > 0)
+  const spDone = Boolean(sp && sp.floors.length > 0 && sp.floors.every((f) => f.description))
   const galleryFavorites = Object.values(galleries).filter((m) => m?.favorite).length
   const galleryCaptions = Object.values(galleries).filter((m) => (m?.caption ?? '').trim().length > 0).length
   const galleriesDone = galleryFavorites > 0
@@ -312,8 +312,7 @@ function buildStepViews(project: ProjectDraft, h: InsightHelpers): DerivedView {
           key: 'layoutImages',
           label: h.summary('layoutImages'),
           value: String(sp!.floors.reduce((n, f) => n + f.layoutImages.length, 0))
-        },
-        ...(sp!.description ? [{ key: 'description', label: h.summary('description'), value: sp!.description }] : [])
+        }
       ]
     : []
 
@@ -322,7 +321,11 @@ function buildStepViews(project: ProjectDraft, h: InsightHelpers): DerivedView {
   const totalArea = dr?.floors.reduce((n, f) => n + (f.area || 0), 0) ?? 0
   const aiInsights: StepInsight[] = aiDone
     ? [
-        { key: 'package', label: h.summary('package'), value: h.packageName(aiResult!.tier) },
+        {
+          key: 'package',
+          label: h.summary('package'),
+          value: `${h.packageName(aiResult!.finishingTier)} / ${h.packageName(aiResult!.interiorTier)}`
+        },
         { key: 'budget', label: h.summary('budget'), value: h.formatCurrency(aiResult!.budget.total) },
         {
           key: 'totalArea',

@@ -8,6 +8,11 @@ export const PackageTier = {
 
 export type PackageTier = (typeof PackageTier)[keyof typeof PackageTier]
 
+export interface PackageSelection {
+  finishing: PackageTier
+  interior: PackageTier
+}
+
 export const EstimatePart = {
   Rough: 'rough',
   Finishing: 'finishing',
@@ -62,6 +67,8 @@ export interface AreaMetrics {
   houseType: HouseType
 }
 
+export type Region = 'north' | 'central' | 'south'
+
 export interface Consultation {
   customerName: string
   landArea: number
@@ -70,6 +77,16 @@ export interface Consultation {
   city: string
   budgetMinBillion: number
   budgetMaxBillion: number
+  userBudgetBillion: number
+  contingencyMinBillion: number
+  contingencyMaxBillion: number
+  constructionMonthsMin: number
+  constructionMonthsMax: number
+  roughMonthsMin: number
+  roughMonthsMax: number
+  finishingMonthsMin: number
+  finishingMonthsMax: number
+  region: Region
   hasTum: boolean
 }
 

@@ -10,13 +10,13 @@ import type { HouseType } from '../../types/project.types'
 interface AIDesignResultInputSummaryProps {
   designRequest: DesignRequestPayload
   houseType: HouseType
-  spacesDescription: string
+  spacesFloors: Array<{ floorIndex: number; description: string }>
 }
 
 export function AIDesignResultInputSummary({
   designRequest,
   houseType,
-  spacesDescription
+  spacesFloors
 }: AIDesignResultInputSummaryProps) {
   const t = useTranslations('project.form')
   const locale = useLocale() as Locale
@@ -46,29 +46,31 @@ export function AIDesignResultInputSummary({
 
       <div className='grid grid-cols-1 gap-2 sm:grid-cols-2'>
         {designRequest.floors.map((floor, i) => {
-          const floorLabel =
-            i === 0 ? t('spaces.groundFloor' as never) : t('spaces.upperFloor' as never, { index: i } as never)
+          const floorLabel = floor.isSpecial
+            ? t('specialFloorTitle' as never)
+            : i === 0
+              ? t('spaces.groundFloor' as never)
+              : t('spaces.upperFloor' as never, { index: i } as never)
+          const description = spacesFloors.find((f) => f.floorIndex === i)?.description.trim() ?? ''
+
           return (
-            <div key={i} className='bg-card flex items-center gap-2 rounded-md border px-3 py-2 text-sm'>
-              <span className='text-muted-foreground w-20 shrink-0 text-xs'>{floorLabel}</span>
-              <span className='font-semibold tabular-nums'>{formatNumber(floor.area, locale)} m²</span>
-              <Badge variant='outline' className='text-xs'>
-                {t(`layout.${floor.layout}` as never)}
-              </Badge>
-              <Badge variant='outline' className='text-xs'>
-                {t(`lighting.${floor.lighting}` as never)}
-              </Badge>
-              <span className='ml-auto h-4 w-4 shrink-0 rounded-sm border' style={{ backgroundColor: floor.color }} />
+            <div key={i} className='bg-card rounded-md border px-3 py-2 text-sm'>
+              <div className='flex items-center gap-2'>
+                <span className='text-muted-foreground w-20 shrink-0 text-xs'>{floorLabel}</span>
+                <span className='font-semibold tabular-nums'>{formatNumber(floor.area, locale)} m²</span>
+                <Badge variant='outline' className='text-xs'>
+                  {t(`layout.${floor.layout}` as never)}
+                </Badge>
+                <Badge variant='outline' className='text-xs'>
+                  {t(`lighting.${floor.lighting}` as never)}
+                </Badge>
+                <span className='ml-auto h-4 w-4 shrink-0 rounded-sm border' style={{ backgroundColor: floor.color }} />
+              </div>
+              {description && <p className='text-muted-foreground mt-1.5 text-xs leading-relaxed'>{description}</p>}
             </div>
           )
         })}
       </div>
-
-      {spacesDescription.trim() && (
-        <p className='text-muted-foreground text-sm'>
-          <span className='font-medium'>{t('spaces.descriptionLabel' as never)}:</span> {spacesDescription}
-        </p>
-      )}
     </section>
   )
 }

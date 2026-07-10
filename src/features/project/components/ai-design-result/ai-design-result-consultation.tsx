@@ -1,7 +1,7 @@
 'use client'
 
-import { Card, CardContent } from '@/shared/components/ui'
 import type { Locale } from '@/i18n/routing'
+import { Card, CardContent } from '@/shared/components/ui'
 import { formatNumber } from '@/shared/utils'
 import { useLocale, useTranslations } from 'next-intl'
 import type { ReactNode } from 'react'
@@ -22,24 +22,37 @@ export function AIDesignResultConsultation({ consultation }: AIDesignResultConsu
   const t = useTranslations('project.form.aiDesignResult.consultation')
   const locale = useLocale() as Locale
 
+  const fmt = (n: number, opts?: Intl.NumberFormatOptions) => formatNumber(n, locale, opts)
+  const fmtB = (n: number) => fmt(n, { maximumFractionDigits: 1 })
+  const pill = (chunks: ReactNode) => <Pill>{chunks}</Pill>
+  const regionName = t(`regionName.${consultation.region}` as 'regionName.north')
+
   return (
     <Card className='bg-accent/70 border-primary/25'>
       <CardContent className='space-y-3 text-sm'>
+        <p className='font-semibold leading-relaxed'>
+          {t.rich('greeting', { customerName: consultation.customerName, pill })}
+        </p>
         <p className='leading-relaxed'>
           {t.rich('body', {
-            customerName: consultation.customerName,
-            landArea: formatNumber(consultation.landArea, locale),
+            landArea: fmt(consultation.landArea),
             floorCount: consultation.floorCount,
-            totalFloorArea: formatNumber(consultation.totalFloorArea, locale),
+            totalFloorArea: fmt(consultation.totalFloorArea),
             city: consultation.city,
-            budgetMin: formatNumber(consultation.budgetMinBillion, locale, { maximumFractionDigits: 1 }),
-            budgetMax: formatNumber(consultation.budgetMaxBillion, locale, { maximumFractionDigits: 1 }),
-            pill: (chunks) => <Pill>{chunks}</Pill>
+            budgetMin: fmtB(consultation.budgetMinBillion),
+            budgetMax: fmtB(consultation.budgetMaxBillion),
+            userBudget: fmtB(consultation.userBudgetBillion),
+            contingencyMin: fmtB(consultation.contingencyMinBillion),
+            contingencyMax: fmtB(consultation.contingencyMaxBillion),
+            constructionMin: consultation.constructionMonthsMin,
+            constructionMax: consultation.constructionMonthsMax,
+            roughMin: consultation.roughMonthsMin,
+            roughMax: consultation.roughMonthsMax,
+            finishingMin: consultation.finishingMonthsMin,
+            finishingMax: consultation.finishingMonthsMax,
+            region: regionName,
+            pill
           })}
-        </p>
-        <p className='text-muted-foreground flex items-start gap-1.5 text-xs'>
-          <span>{t('distribution')}</span>
-          <InfoTooltip labelKey='tooltips.marketShares' />
         </p>
         {consultation.hasTum && (
           <p className='text-muted-foreground flex items-start gap-1.5 text-xs'>

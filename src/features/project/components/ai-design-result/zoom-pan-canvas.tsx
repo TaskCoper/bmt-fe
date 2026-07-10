@@ -27,7 +27,7 @@ export function ZoomPanCanvas({ children }: ZoomPanCanvasProps) {
       wheel={{ step: 0.1 }}
     >
       {({ zoomIn, zoomOut, resetTransform }) => (
-        <div className='bg-muted/30 relative overflow-hidden rounded-md border'>
+        <div className='bg-muted relative overflow-hidden rounded-md border'>
           <TransformComponent
             wrapperClass='!w-full !h-[420px]'
             contentClass='!w-full !h-full flex items-center justify-center'

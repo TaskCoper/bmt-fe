@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
   Button,
+  Checkbox,
   RadioGroup
 } from '@/shared/components/ui'
 import { Field, FieldLabel } from '@/shared/components/ui/field'
@@ -20,9 +21,10 @@ import {
   type Control,
   type FieldArrayWithId,
   type UseFieldArrayAppend,
+  type UseFieldArrayInsert,
   type UseFieldArrayRemove
 } from 'react-hook-form'
-import type { DesignRequestFormValues } from '../schemas/project.schema'
+import { DESIGN_REQUEST_NORMAL_FLOORS_MAX, type DesignRequestFormValues } from '../schemas/project.schema'
 import { COLOR_PRESETS, FloorLayout, FloorLighting } from '../types/project.types'
 import FloorCard, { type FloorCardData } from './floor-card'
 
@@ -45,6 +47,7 @@ interface FloorCardsFormProps {
   control: Control<DesignRequestFormValues>
   floorFields: FloorField[]
   appendFloor: UseFieldArrayAppend<DesignRequestFormValues, 'designRequest.floors'>
+  insertFloor: UseFieldArrayInsert<DesignRequestFormValues, 'designRequest.floors'>
   removeFloor: UseFieldArrayRemove
 }
 
@@ -61,22 +64,57 @@ function getFallbackFloor() {
     area: 0,
     layout: FloorLayout.Open,
     lighting: FloorLighting.Natural,
-    color: COLOR_PRESETS[0]
+    color: COLOR_PRESETS[0],
+    isSpecial: false as boolean | undefined
   }
 }
 
-export default function FloorCardsForm({ control, floorFields, appendFloor, removeFloor }: FloorCardsFormProps) {
+export default function FloorCardsForm({
+  control,
+  floorFields,
+  appendFloor,
+  insertFloor,
+  removeFloor
+}: FloorCardsFormProps) {
   const t = useTranslations('project.form')
   const floors = useWatch({ control, name: 'designRequest.floors' })
-  const totalFloors = Math.max(floorFields.length, 1)
+
+  const hasSpecialFloor = floors?.some((f) => f.isSpecial) ?? false
+  const specialFloorIndex = floors ? floors.findIndex((f) => f.isSpecial) : -1
+
+  const normalFloorCount = floorFields.length - 1 - (hasSpecialFloor ? 1 : 0)
+
+  const handleAddNormalFloor = () => {
+    const floor = getFallbackFloor()
+    if (hasSpecialFloor && specialFloorIndex !== -1) {
+      insertFloor(specialFloorIndex, floor)
+    } else {
+      appendFloor(floor)
+    }
+  }
+
+  const handleSpecialFloorToggle = (checked: boolean | 'indeterminate') => {
+    if (checked === true) {
+      appendFloor({ ...getFallbackFloor(), isSpecial: true })
+    } else if (specialFloorIndex !== -1) {
+      removeFloor(specialFloorIndex)
+    }
+  }
+
+  const getFloorTitle = (index: number, isSpecial?: boolean): string => {
+    if (isSpecial) return t('specialFloorTitle')
+    if (index === 0) return t('groundFloorTitle')
+    return t('floorTitle', { index })
+  }
 
   return (
     <div className='flex flex-col gap-4'>
       <Accordion type='multiple' className='grid gap-3'>
         {floorFields.map((floor, index) => {
           const floorValue = floors?.[index] ?? getFallbackFloor()
+          const isSpecial = floorValue.isSpecial
           const floorCardData: FloorCardData = {
-            title: t('floorTitle', { index: index + 1 }),
+            title: getFloorTitle(index, isSpecial),
             specs: [
               { label: t('areaLabel'), value: floorValue.area || 0, suffix: 'm2' },
               { label: t('layoutLabel'), value: t(`layout.${floorValue.layout}`) },
@@ -88,22 +126,22 @@ export default function FloorCardsForm({ control, floorFields, appendFloor, remo
             },
             plan: {
               label: t('floorsLabel'),
-              index: index + 1,
-              total: totalFloors
+              index,
+              total: floorFields.length
             }
           }
 
           return (
-            <AccordionItem key={floor.id} value={floor.id} className='relative border-b-0'>
+            <AccordionItem key={floor.id} value={floor.id} className='relative border-b-0 shadow-lg rounded-xl'>
               <AccordionTrigger className='group/floor-trigger relative block w-full p-0 text-left hover:no-underline [&>svg]:absolute [&>svg]:top-5 [&>svg]:right-5 [&>svg]:z-20'>
                 <FloorCard
                   data={floorCardData}
-                  className='hover:translate-y-0 group-data-[state=open]/floor-trigger:hover:shadow-none group-data-[state=open]/floor-trigger:shadow-none group-data-[state=open]/floor-trigger:rounded-none group-data-[state=open]/floor-trigger:border-0 '
+                  className='hover:translate-y-0 group-data-[state=open]/floor-trigger:hover:shadow-none group-data-[state=open]/floor-trigger:shadow-none group-data-[state=open]/floor-trigger:rounded-b-none group-data-[state=open]/floor-trigger:border-0 '
                 />
               </AccordionTrigger>
 
               <div className='absolute top-3.5 right-10 z-30'>
-                {floorFields.length > 1 ? (
+                {index > 0 && !isSpecial ? (
                   <Button
                     type='button'
                     variant='ghost'
@@ -116,7 +154,7 @@ export default function FloorCardsForm({ control, floorFields, appendFloor, remo
                 ) : null}
               </div>
 
-              <AccordionContent className='border-t border-border bg-card/80 px-4 pt-4 pb-5 sm:px-5'>
+              <AccordionContent className='border-t border-border rounded-b-xl bg-card px-4 pt-4 pb-5 sm:px-5'>
                 <div className='grid grid-cols-1 gap-6'>
                   <Controller
                     name={`designRequest.floors.${index}.area`}
@@ -231,16 +269,22 @@ export default function FloorCardsForm({ control, floorFields, appendFloor, remo
         })}
       </Accordion>
 
-      <Button
-        type='button'
-        variant='outline'
-        size='sm'
-        onClick={() => appendFloor(getFallbackFloor())}
-        className='ml-auto'
-      >
-        <PlusCircleIcon />
-        {t('addFloor')}
-      </Button>
+      <div className='flex items-center justify-between gap-4'>
+        <label className='flex cursor-pointer select-none items-center gap-3' htmlFor='special-floor-toggle'>
+          <Checkbox checked={hasSpecialFloor} onCheckedChange={handleSpecialFloorToggle} id='special-floor-toggle' />
+          <div>
+            <p className='text-sm font-medium leading-none'>{t('specialFloorTitle')}</p>
+            <p className='text-muted-foreground mt-1 text-xs'>{t('addSpecialFloorDescription')}</p>
+          </div>
+        </label>
+
+        {normalFloorCount < DESIGN_REQUEST_NORMAL_FLOORS_MAX && (
+          <Button type='button' variant='outline' size='sm' onClick={handleAddNormalFloor} className='shrink-0'>
+            <PlusCircleIcon />
+            {t('addFloor')}
+          </Button>
+        )}
+      </div>
     </div>
   )
 }

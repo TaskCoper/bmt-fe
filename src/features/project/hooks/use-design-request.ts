@@ -42,7 +42,8 @@ export const useDesignRequest = () => {
       zodResolver(
         designRequestSchema({
           required: tv('required'),
-          invalidArea: tv('positiveNumber')
+          invalidArea: tv('positiveNumber'),
+          maxFloors: tv('maxFloors')
         })
       ),
     [tv]

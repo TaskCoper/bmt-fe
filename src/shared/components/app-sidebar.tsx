@@ -79,7 +79,7 @@ function CollapsibleNavItem({ item, pathname, onAction }: CollapsibleNavItemProp
         <CollapsibleTrigger asChild>
           <SidebarMenuAction>
             <ChevronRight className='transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
-            <span className='sr-only'>Toggle</span>
+            <span className='sr-only'>{t('toggleSubmenu')}</span>
           </SidebarMenuAction>
         </CollapsibleTrigger>
 
@@ -149,7 +149,7 @@ export function AppSidebar({
       </SidebarContent>
       <SidebarFooter>
         <div className='overflow-hidden group-data-[state=collapsed]:hidden'>
-          <Image src={cities} alt='cities' className='w-full h-auto' />
+          <Image src={cities} alt={t('citiesImageAlt')} className='w-full h-auto' />
         </div>
         {user && <NavUser user={user} onLogout={onLogout} />}
       </SidebarFooter>

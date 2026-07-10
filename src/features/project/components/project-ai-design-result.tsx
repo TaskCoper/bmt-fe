@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   AI_LOADING_MS,
-  DEFAULT_PACKAGE_TIER,
+  DEFAULT_PACKAGE_SELECTION,
   FALLBACK_AREA_METRICS,
   FALLBACK_CONSULTATION,
   FALLBACK_USER_BUDGET,
@@ -20,7 +20,8 @@ import {
   type AreaMetrics,
   type Budget,
   type Consultation,
-  type PackageTier
+  type PackageSelection,
+  type Region
 } from '../types/ai-design-result.types'
 import type { HouseType } from '../types/project.types'
 import { AIDesignResultAreaInfo } from './ai-design-result/ai-design-result-area-info'
@@ -36,6 +37,20 @@ import { AIDesignResultTotalSummary } from './ai-design-result/ai-design-result-
 const M = 1_000_000
 
 const UPPER_FLOOR_IDS = [FloorId.Floor1, FloorId.Floor2, FloorId.Floor3, FloorId.Floor4] as const
+
+function getRegion(cityCode: number): Region {
+  if (cityCode >= 1 && cityCode <= 39) return 'north'
+  if (cityCode >= 40 && cityCode <= 60) return 'central'
+  return 'south'
+}
+
+function getConstructionTimeline(floorCount: number) {
+  const roughMin = Math.max(2, Math.round(floorCount * 1.0))
+  const roughMax = Math.max(3, Math.round(floorCount * 1.5))
+  const finishingMin = Math.max(1, Math.round(floorCount * 0.5))
+  const finishingMax = Math.max(2, Math.round(floorCount * 0.8))
+  return { roughMin, roughMax, finishingMin, finishingMax }
+}
 
 function buildVisibleFloors(floorCount: number, hasTum: boolean, hasRoof: boolean): readonly FloorId[] {
   const floors: FloorId[] = [FloorId.Ground]
@@ -60,7 +75,10 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
 
   useSetProjectFlow(slug, 'ai-design-result')
 
-  const [tier, setTier] = useState<PackageTier>(project?.aiDesignResult?.tier ?? DEFAULT_PACKAGE_TIER)
+  const [selection, setSelection] = useState<PackageSelection>({
+    finishing: project?.aiDesignResult?.finishingTier ?? DEFAULT_PACKAGE_SELECTION.finishing,
+    interior: project?.aiDesignResult?.interiorTier ?? DEFAULT_PACKAGE_SELECTION.interior
+  })
   const [regenKey, setRegenKey] = useState(0)
   const [readyRegenKey, setReadyRegenKey] = useState<number | null>(null)
   const [generatedAt, setGeneratedAt] = useState<Date | null>(null)
@@ -109,6 +127,7 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
       designRequest?.budgetAmount && designRequest.budgetAmount > 0 ? designRequest.budgetAmount : FALLBACK_USER_BUDGET
     const userBudgetBillion = userBudget / 1_000_000_000
 
+    const timeline = getConstructionTimeline(areaMetrics.floorCount)
     const consultation: Consultation = {
       customerName: project?.name?.trim() || FALLBACK_CONSULTATION.customerName,
       landArea: areaMetrics.landArea,
@@ -117,20 +136,30 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
       city,
       budgetMinBillion: Math.max(0.1, Math.round(userBudgetBillion * 10) / 10),
       budgetMaxBillion: Math.max(0.1, Math.round(userBudgetBillion * 1.15 * 10) / 10),
+      userBudgetBillion,
+      contingencyMinBillion: Math.round(userBudgetBillion * 0.05 * 10) / 10,
+      contingencyMaxBillion: Math.round(userBudgetBillion * 0.1 * 10) / 10,
+      constructionMonthsMin: timeline.roughMin + timeline.finishingMin,
+      constructionMonthsMax: timeline.roughMax + timeline.finishingMax,
+      roughMonthsMin: timeline.roughMin,
+      roughMonthsMax: timeline.roughMax,
+      finishingMonthsMin: timeline.finishingMin,
+      finishingMonthsMax: timeline.finishingMax,
+      region: getRegion(designRequest?.cityCode ?? 0),
       hasTum
     }
 
     const budget: Budget = (() => {
       const rough = ROUGH_COST_PER_SQM_MILLIONS * areaMetrics.totalFloorArea * M
-      const finishing = PACKAGE_PRICING[tier].finishing * areaMetrics.totalFloorArea * M
-      const interior = PACKAGE_PRICING[tier].interior * areaMetrics.usableArea * M
+      const finishing = PACKAGE_PRICING[selection.finishing].finishing * areaMetrics.totalFloorArea * M
+      const interior = PACKAGE_PRICING[selection.interior].interior * areaMetrics.usableArea * M
       return { rough, finishing, interior, total: rough + finishing + interior }
     })()
 
     const visibleFloors = buildVisibleFloors(floorCount, hasTum, hasRoof)
 
     return { consultation, areaMetrics, hasTum, visibleFloors, budget, city, userBudget }
-  }, [project, tier, hasRoof])
+  }, [project, selection, hasRoof])
 
   const derivedRef = useRef(derived)
   useEffect(() => {
@@ -144,14 +173,15 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
       slug,
       patch: {
         aiDesignResult: {
-          tier,
+          finishingTier: selection.finishing,
+          interiorTier: selection.interior,
           budget: d.budget,
           metrics: d.areaMetrics,
           generatedAt: generatedAt.toISOString()
         }
       }
     })
-  }, [slug, tier, generatedAt, updateProject])
+  }, [slug, selection, generatedAt, updateProject])
 
   if (!project) {
     return <p>{t('projectNotFound')}</p>
@@ -204,19 +234,24 @@ export default function ProjectAIDesignResult({ slug }: ProjectAIDesignResultPro
       <AIDesignResultInputSummary
         designRequest={project.designRequest}
         houseType={derived.areaMetrics.houseType}
-        spacesDescription={project.spaces.description}
+        spacesFloors={project.spaces.floors}
       />
       <AIDesignResultFloorPlans floors={derived.visibleFloors} />
       <AIDesignResultAreaInfo metrics={derived.areaMetrics} hasTum={derived.hasTum} />
-      <AIDesignResultPackageSelector value={tier} onChange={setTier} />
+      <AIDesignResultPackageSelector value={selection} onChange={setSelection} />
       <AIDesignResultEstimate
-        tier={tier}
+        selection={selection}
         hasTum={derived.hasTum}
         hasRoof={hasRoof}
         city={derived.city}
         userBudget={derived.userBudget}
       />
-      <AIDesignResultTotalSummary budget={derived.budget} generatedAt={generatedAt} />
+      <AIDesignResultTotalSummary
+        budget={derived.budget}
+        userBudget={derived.userBudget}
+        city={derived.city}
+        generatedAt={generatedAt}
+      />
       <AIDesignResultCtas
         prevUrl={project.prevUrl}
         nextUrl={project.nextUrl}

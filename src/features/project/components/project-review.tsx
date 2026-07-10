@@ -1,6 +1,6 @@
 'use client'
 
-import { Link } from '@/i18n/navigation'
+import { useRouter } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { Button, Card, CardContent } from '@/shared/components/ui'
 import { useLocale, useTranslations } from 'next-intl'
@@ -79,6 +79,7 @@ export default function ProjectReview({ slug }: ProjectReviewProps) {
   const tc = useTranslations('common')
   const locale = useLocale() as Locale
 
+  const router = useRouter()
   const project = useProjectStore((s) => s.projects[slug])
   const galleryMeta = useProjectStore((s) => s.projects[slug]?.galleries)
 
@@ -308,7 +309,7 @@ export default function ProjectReview({ slug }: ProjectReviewProps) {
     }
   }
 
-  const galleriesUrl = `/projects/${project.slug}/galleries`
+  const galleriesUrl = `/dashboard/projects/${project.slug}/galleries`
 
   const sectionAt = (key: ReviewSectionKey): ReviewSection =>
     sections.find((s) => s.key === key) ?? { key, title: key, description: '' }
@@ -390,8 +391,15 @@ export default function ProjectReview({ slug }: ProjectReviewProps) {
 
           <div className='flex flex-wrap items-center justify-between gap-2 pt-2'>
             {project.prevUrl ? (
-              <Button type='button' variant='outline' asChild>
-                <Link href={project.prevUrl}>{tc('back')}</Link>
+              <Button
+                type='button'
+                variant='outline'
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: 'instant' })
+                  router.push(project.prevUrl!)
+                }}
+              >
+                {tc('back')}
               </Button>
             ) : (
               <span />

@@ -9,7 +9,8 @@ import type { AreaMetrics, Budget, PackageTier } from '../types/ai-design-result
 const STORAGE_KEY = 'bmt.projects'
 
 export interface AIDesignResultSelection {
-  tier: PackageTier
+  finishingTier: PackageTier
+  interiorTier: PackageTier
   budget: Budget
   metrics: AreaMetrics
   generatedAt: string

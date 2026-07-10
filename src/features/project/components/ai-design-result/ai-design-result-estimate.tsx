@@ -29,13 +29,18 @@ import {
   ROUGH_ITEMS,
   USER_BUDGET_SHARES
 } from '../../constants/ai-design-result.constants'
-import type { EstimateItem, EstimatePart, PackageTier } from '../../types/ai-design-result.types'
-import { EstimatePart as EstimatePartEnum } from '../../types/ai-design-result.types'
+import {
+  EstimatePart as EstimatePartEnum,
+  PackageTier,
+  type EstimateItem,
+  type EstimatePart,
+  type PackageSelection
+} from '../../types/ai-design-result.types'
 import { AIDesignResultItemPopover } from './ai-design-result-item-popover'
 import { InfoTooltip } from './info-tooltip'
 
 interface AIDesignResultEstimateProps {
-  tier: PackageTier
+  selection: PackageSelection
   hasTum: boolean
   hasRoof: boolean
   city: string
@@ -44,6 +49,7 @@ interface AIDesignResultEstimateProps {
 
 interface TabData {
   part: EstimatePart
+  tier: PackageTier
   items: readonly EstimateItem[]
   target: number
   actual: number
@@ -61,7 +67,7 @@ function sumItems(items: readonly EstimateItem[], tier: PackageTier): number {
   return items.reduce((sum, item) => sum + item.unitPricePerTier[tier] * item.quantity, 0)
 }
 
-export function AIDesignResultEstimate({ tier, hasTum, hasRoof, city, userBudget }: AIDesignResultEstimateProps) {
+export function AIDesignResultEstimate({ selection, hasTum, hasRoof, city, userBudget }: AIDesignResultEstimateProps) {
   const t = useTranslations('project.form.aiDesignResult')
 
   const tabs = useMemo<TabData[]>(() => {
@@ -71,24 +77,27 @@ export function AIDesignResultEstimate({ tier, hasTum, hasRoof, city, userBudget
     return [
       {
         part: EstimatePartEnum.Rough,
+        tier: PackageTier.Basic, // rough price is identical across all tiers
         items: rough,
         target: userBudget * USER_BUDGET_SHARES.rough,
-        actual: sumItems(rough, tier)
+        actual: sumItems(rough, PackageTier.Basic)
       },
       {
         part: EstimatePartEnum.Finishing,
+        tier: selection.finishing,
         items: finishing,
         target: userBudget * USER_BUDGET_SHARES.finishing,
-        actual: sumItems(finishing, tier)
+        actual: sumItems(finishing, selection.finishing)
       },
       {
         part: EstimatePartEnum.Interior,
+        tier: selection.interior,
         items: interior,
         target: userBudget * USER_BUDGET_SHARES.interior,
-        actual: sumItems(interior, tier)
+        actual: sumItems(interior, selection.interior)
       }
     ]
-  }, [tier, hasTum, hasRoof, userBudget])
+  }, [selection, hasTum, hasRoof, userBudget])
 
   return (
     <section className='space-y-3'>
@@ -105,8 +114,8 @@ export function AIDesignResultEstimate({ tier, hasTum, hasRoof, city, userBudget
 
         {tabs.map((tab) => (
           <TabsContent key={tab.part} value={tab.part} className='space-y-4 pt-2'>
-            <EstimateTable items={tab.items} part={tab.part} tier={tier} city={city} />
-            <EstimateProgress actual={tab.actual} target={tab.target} />
+            <EstimateTable items={tab.items} part={tab.part} tier={tab.tier} city={city} />
+            {/* <EstimateProgress actual={tab.actual} target={tab.target} /> */}
           </TabsContent>
         ))}
       </Tabs>
@@ -141,7 +150,7 @@ function EstimateTable({ items, part, tier, city }: EstimateTableProps) {
   }
 
   return (
-    <div className='overflow-hidden rounded-md border'>
+    <div className='overflow-hidden rounded-md border bg-card'>
       <Table>
         <TableHeader>
           <TableRow>

@@ -1,6 +1,6 @@
 'use client'
 
-import { Link } from '@/i18n/navigation'
+import { useRouter } from '@/i18n/navigation'
 import { Badge, Button, Card, CardContent } from '@/shared/components/ui'
 import { cn } from '@/shared/lib/utils'
 import { Heart } from 'lucide-react'
@@ -27,6 +27,7 @@ export default function ProjectGalleries({ slug }: ProjectGalleriesProps) {
   const t = useTranslations('project.form')
   const tg = useTranslations('project.form.galleries')
   const tc = useTranslations('common')
+  const router = useRouter()
 
   const project = useProjectStore((s) => s.projects[slug])
   const projectMeta = useProjectStore((s) => s.projects[slug]?.galleries)
@@ -124,15 +125,28 @@ export default function ProjectGalleries({ slug }: ProjectGalleriesProps) {
 
       <div className='flex flex-wrap items-center justify-between gap-2 pt-2'>
         {project.prevUrl ? (
-          <Button type='button' variant='outline' asChild>
-            <Link href={project.prevUrl}>{tc('back')}</Link>
+          <Button
+            type='button'
+            variant='outline'
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'instant' })
+              router.push(project.prevUrl!)
+            }}
+          >
+            {tc('back')}
           </Button>
         ) : (
           <span />
         )}
         {project.nextUrl && (
-          <Button type='button' asChild>
-            <Link href={project.nextUrl}>{tg('ctas.nextStep')}</Link>
+          <Button
+            type='button'
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'instant' })
+              router.push(project.nextUrl!)
+            }}
+          >
+            {tg('ctas.nextStep')}
           </Button>
         )}
       </div>

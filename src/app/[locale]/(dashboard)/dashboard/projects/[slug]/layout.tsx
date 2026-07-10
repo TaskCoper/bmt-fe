@@ -13,10 +13,8 @@ export default async function ProjectLayout({ children, params }: Props) {
   setRequestLocale(locale as Locale)
 
   return (
-    <div className='project-canvas min-h-screen'>
-      <div className='mx-auto w-5xl p-8'>
-        <ProjectFlowLayout slug={slug}>{children}</ProjectFlowLayout>
-      </div>
+    <div className='mx-auto w-5xl p-8'>
+      <ProjectFlowLayout slug={slug}>{children}</ProjectFlowLayout>
     </div>
   )
 }

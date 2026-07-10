@@ -2,13 +2,23 @@
 
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
-import { useMemo, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useMemo, useRef, type ReactNode } from 'react'
 import { PROJECT_FLOW, getProjectFlowUrl, type ProjectFlowStep } from '../store/project.store'
 import { TapeStepper, type TapeStep } from './tape-stepper'
 
 interface ProjectFlowLayoutProps {
   slug: string
   children: ReactNode
+}
+
+interface FlowNavigationContextValue {
+  registerBeforeNavigate: (cb: (() => void) | null) => void
+}
+
+const FlowNavigationContext = createContext<FlowNavigationContextValue | null>(null)
+
+export function useFlowNavigation() {
+  return useContext(FlowNavigationContext)
 }
 
 function stepFromPath(pathname: string, slug: string): number {
@@ -27,12 +37,19 @@ export function ProjectFlowLayout({ slug, children }: ProjectFlowLayoutProps) {
   const pathname = usePathname()
   const router = useRouter()
 
+  const beforeNavigateRef = useRef<(() => void) | null>(null)
+
+  const registerBeforeNavigate = useCallback((cb: (() => void) | null) => {
+    beforeNavigateRef.current = cb
+  }, [])
+
   const steps: TapeStep[] = useMemo(() => PROJECT_FLOW.map(([key]) => ({ key, title: t(`${key}.label`) })), [t])
 
   const currentIndex = stepFromPath(pathname, slug)
   const total = steps.length
 
   const handleStepChange = (index: number) => {
+    beforeNavigateRef.current?.()
     const entry = PROJECT_FLOW[index]
     if (!entry) return
     const [step] = entry as unknown as [ProjectFlowStep, string]
@@ -40,15 +57,17 @@ export function ProjectFlowLayout({ slug, children }: ProjectFlowLayoutProps) {
   }
 
   return (
-    <div className='space-y-2'>
-      <TapeStepper
-        steps={steps}
-        current={currentIndex}
-        onStepChange={handleStepChange}
-        ariaLabel={tStepper('ariaLabel', { current: currentIndex + 1, total })}
-      />
+    <FlowNavigationContext.Provider value={{ registerBeforeNavigate }}>
+      <div className='space-y-2'>
+        <TapeStepper
+          steps={steps}
+          current={currentIndex}
+          onStepChange={handleStepChange}
+          ariaLabel={tStepper('ariaLabel', { current: currentIndex + 1, total })}
+        />
 
-      <div>{children}</div>
-    </div>
+        <div>{children}</div>
+      </div>
+    </FlowNavigationContext.Provider>
   )
 }

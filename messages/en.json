@@ -48,7 +48,9 @@
     "leads": "Leads",
     "adminGallery": "Library (admin)",
     "adminPortfolio": "Portfolio (admin)",
-    "projectCreate": "Create project"
+    "projectCreate": "Create project",
+    "toggleSubmenu": "Toggle submenu",
+    "citiesImageAlt": "City skyline illustration"
   },
   "assistant": {
     "uiTab": "Interface",
@@ -77,7 +79,9 @@
       "projects": "Projects",
       "about": "About",
       "contact": "Contact",
-      "library": "Reference library"
+      "library": "Reference library",
+      "openMenu": "Open menu",
+      "mobileMenu": "Menu"
     },
     "hero": {
       "badge": "AI-integrated design platform",
@@ -593,9 +597,18 @@
       "wardLabel": "Ward",
       "wardPlaceholder": "Select a ward",
       "wardSearchPlaceholder": "Search ward…",
+      "addressTitle": "Construction address",
+      "addressSubtitle": "Enter the detailed address where you want to build",
+      "styleSubtitle": "Your house style sets the overall design direction.",
+      "roofStyleSubtitle": "Pick the roof type that suits your style preference.",
+      "tumSubtitle": "A tum is a small rooftop room that covers the stairwell.",
+      "directionSubtitle": "Orientation affects natural light and ventilation throughout the day.",
       "floorsLabel": "Floor",
       "floorsDescription": "Add each floor and tune its area, layout, lighting, and primary color.",
+      "groundFloorTitle": "Ground Floor",
       "floorTitle": "Floor {index}",
+      "specialFloorTitle": "Penthouse",
+      "addSpecialFloorDescription": "Add a special top floor to the building",
       "addFloor": "Add floor",
       "removeFloor": "Remove floor",
       "areaLabel": "Built area (m²)",
@@ -623,6 +636,7 @@
         "title": "Space information & layout images",
         "subtitle": "Upload layout images in floor order and describe the real space.",
         "descriptionLabel": "Actual space description",
+        "descriptionSubtitle": "Describe the actual space so the AI can understand your layout and needs.",
         "descriptionPlaceholder": "e.g. Ground floor includes living room, open kitchen, and a rear skylight...",
         "uploadTitle": "Layout images by floor",
         "uploadHint": "Uploaded images are only floor layout images showing each level's floor plan.",
@@ -632,6 +646,9 @@
         "dropHint": "JPG, PNG or HEIC. Multiple images per floor are supported.",
         "addMore": "Add images",
         "removeImage": "Remove image",
+        "setAsLayout": "Set as layout image",
+        "layoutBadge": "Layout",
+        "maxImagesReached": "Maximum 5 images per floor. Some files were skipped.",
         "missingDesignRequest": "Complete the design request step before entering space information.",
         "unsupportedImage": "\"{name}\" is not a supported image format.",
         "saved": "Space information saved"
@@ -648,8 +665,13 @@
         "section4D": "4D · Area information",
         "section4E": "4E · Estimate summary",
         "consultation": {
-          "body": "Dear <pill>{customerName}</pill>. For a home of <pill>{landArea} m²</pill> × <pill>{floorCount} floors</pill> (total floor area ~<pill>{totalFloorArea} m²</pill>), the total investment in <pill>{city}</pill> usually ranges from <pill>{budgetMin}–{budgetMax} bn VND</pill>.",
-          "distribution": "Market average distribution: rough 50–55% · finishing 30–35% · interior 15–20%.",
+          "greeting": "Dear <pill>{customerName}</pill>,",
+          "body": "Thank you for trusting BMT DECOR AI. Based on the information you provided, our system analysis is as follows: For a home of <pill>{landArea} m²</pill> × <pill>{floorCount} floors</pill> (total floor area ~<pill>{totalFloorArea} m²</pill>), the total turnkey investment in <pill>{city}</pill> typically ranges from <pill>{budgetMin}–{budgetMax} bn VND</pill>, with a typical distribution of: rough structure 50–55% – finishing 30–35% – interior 15–20%. Given your expected budget of <pill>{userBudget} bn VND</pill>, we recommend setting aside 5–10% (approximately <pill>{contingencyMin}–{contingencyMax} bn VND</pill>) as a contingency reserve. The estimated construction timeline for this scale is approximately <pill>{constructionMin}–{constructionMax} months</pill> (rough structure: <pill>{roughMin}–{roughMax} months</pill>, finishing & interior: <pill>{finishingMin}–{finishingMax} months</pill>); starting construction in the dry season of <pill>{region}</pill> is ideal. Below is the detailed cost estimate broken down by category and package tier.",
+          "regionName": {
+            "north": "the North",
+            "central": "Central Vietnam",
+            "south": "the South"
+          },
           "tumNote": "Includes a rooftop stairwell (tum) as configured."
         },
         "floorTabs": {
@@ -876,6 +898,10 @@
           "portionFinishing": "Finishing",
           "portionInterior": "Interior",
           "totalRow": "TOTAL",
+          "budgetProgress": "Estimate total <strong>{actual}</strong> vs your budget <strong>{budget}</strong>",
+          "closingBelow": "below",
+          "closingAbove": "above",
+          "closing": "Based on your selections, the estimated total investment is <strong>{total}</strong>, <em>{direction}</em> your budget by approximately <strong>{diff}</strong>. Call or Zalo <strong>{phone}</strong> for a free consultation with a BMT Decor architect.",
           "disclaimer": "This is a reference estimate; the actual cost may vary after the site survey.",
           "generatedAt": "Generated on: {date}"
         },
@@ -1426,7 +1452,9 @@
     "passwordMismatch": "Passwords do not match",
     "agreeTerms": "You must agree to the terms",
     "phone": "Enter a valid phone number",
-    "positiveNumber": "Enter a number greater than 0"
+    "positiveNumber": "Enter a number greater than 0",
+    "maxFloors": "Maximum 6 floors (4 normal + penthouse)",
+    "maxImages": "Maximum {max} images per floor"
   },
   "studio": {
     "title": "AI Design Studio",

@@ -5,6 +5,7 @@ import {
   type Consultation,
   type EstimateItem,
   type PackagePricing,
+  type PackageSelection,
   type DealerInfo,
   type AreaMetrics
 } from '../types/ai-design-result.types'
@@ -12,6 +13,11 @@ import {
 export const AI_LOADING_MS = 2500
 
 export const DEFAULT_PACKAGE_TIER: PackageTier = PackageTier.Standard
+
+export const DEFAULT_PACKAGE_SELECTION: PackageSelection = {
+  finishing: DEFAULT_PACKAGE_TIER,
+  interior: DEFAULT_PACKAGE_TIER
+}
 
 export const PACKAGE_TIER_ORDER: readonly PackageTier[] = [
   PackageTier.Basic,
@@ -67,6 +73,16 @@ export const FALLBACK_CONSULTATION: Consultation = {
   city: 'Hồ Chí Minh',
   budgetMinBillion: 3.0,
   budgetMaxBillion: 3.5,
+  userBudgetBillion: 3.0,
+  contingencyMinBillion: 0.15,
+  contingencyMaxBillion: 0.3,
+  constructionMonthsMin: 8,
+  constructionMonthsMax: 12,
+  roughMonthsMin: 5,
+  roughMonthsMax: 8,
+  finishingMonthsMin: 3,
+  finishingMonthsMax: 4,
+  region: 'south',
   hasTum: true
 }
 

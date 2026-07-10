@@ -4,6 +4,7 @@ import type { Locale } from '@/i18n/routing'
 import {
   Card,
   CardContent,
+  Progress,
   Table,
   TableBody,
   TableCell,
@@ -11,15 +12,20 @@ import {
   TableHeader,
   TableRow
 } from '@/shared/components/ui'
+import { cn } from '@/shared/lib/utils'
 import { formatCurrency, formatDate } from '@/shared/utils'
 import { Lock } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
+import type { ReactNode } from 'react'
+import { resolveDealer } from '../../constants/ai-design-result.constants'
 import type { Budget } from '../../types/ai-design-result.types'
 import { AIDesignResultDonut } from './ai-design-result-donut'
 import { InfoTooltip } from './info-tooltip'
 
 interface AIDesignResultTotalSummaryProps {
   budget: Budget
+  userBudget: number
+  city: string
   generatedAt: Date
 }
 
@@ -29,10 +35,32 @@ const PORTIONS = [
   { key: 'interior', locked: false }
 ] as const
 
-export function AIDesignResultTotalSummary({ budget, generatedAt }: AIDesignResultTotalSummaryProps) {
+export function AIDesignResultTotalSummary({ budget, userBudget, city, generatedAt }: AIDesignResultTotalSummaryProps) {
   const t = useTranslations('project.form.aiDesignResult')
   const locale = useLocale() as Locale
   const total = budget.total || 1
+
+  const dealer = resolveDealer(city)
+  const diff = Math.abs(budget.total - userBudget)
+  const isBelow = budget.total <= userBudget
+  const direction = isBelow ? t('totalSummary.closingBelow') : t('totalSummary.closingAbove')
+
+  const budgetRaw = userBudget > 0 ? (budget.total / userBudget) * 100 : 0
+  const budgetClamped = Math.min(100, budgetRaw)
+  const budgetStatus = budgetRaw > 100 ? 'over' : budgetRaw > 90 ? 'warning' : 'ok'
+
+  const strong = (chunks: ReactNode) => <strong className='font-semibold'>{chunks}</strong>
+  const em = (chunks: ReactNode) => (
+    <em
+      className={cn('not-italic font-semibold', {
+        'text-emerald-600': budgetStatus === 'ok',
+        'text-amber-500': budgetStatus === 'warning',
+        'text-destructive': budgetStatus === 'over'
+      })}
+    >
+      {chunks}
+    </em>
+  )
 
   return (
     <section className='space-y-3'>
@@ -84,6 +112,50 @@ export function AIDesignResultTotalSummary({ budget, generatedAt }: AIDesignResu
             <AIDesignResultDonut budget={budget} />
           </div>
         </CardContent>
+      </Card>
+
+      {/* Budget vs estimate progress */}
+      {userBudget > 0 && (
+        <div className='space-y-1.5'>
+          <p className='text-muted-foreground text-xs'>
+            {t.rich('totalSummary.budgetProgress', {
+              actual: formatCurrency(budget.total, locale),
+              budget: formatCurrency(userBudget, locale),
+              strong
+            })}
+          </p>
+          <Progress
+            value={budgetClamped}
+            className={cn({
+              '[&_[data-slot=progress-indicator]]:bg-emerald-500 bg-emerald-500/15': budgetStatus === 'ok',
+              '[&_[data-slot=progress-indicator]]:bg-amber-500 bg-amber-500/15': budgetStatus === 'warning',
+              '[&_[data-slot=progress-indicator]]:bg-destructive bg-destructive/15': budgetStatus === 'over'
+            })}
+          />
+          <p
+            className={cn('text-right text-xs font-semibold tabular-nums', {
+              'text-emerald-600': budgetStatus === 'ok',
+              'text-amber-500': budgetStatus === 'warning',
+              'text-destructive': budgetStatus === 'over'
+            })}
+          >
+            {Math.round(budgetRaw)}%
+          </p>
+        </div>
+      )}
+
+      {/* Closing CTA */}
+      <Card className='p-4'>
+        <p className='text-sm leading-relaxed'>
+          {t.rich('totalSummary.closing', {
+            total: formatCurrency(budget.total, locale),
+            direction,
+            diff: formatCurrency(diff, locale),
+            phone: dealer.phone ?? '',
+            strong,
+            em
+          })}
+        </p>
       </Card>
 
       <div className='text-muted-foreground space-y-0.5 text-xs'>

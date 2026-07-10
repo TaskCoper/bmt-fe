@@ -1,17 +1,17 @@
 'use client'
 
-import { Link, useRouter } from '@/i18n/navigation'
+import { useRouter } from '@/i18n/navigation'
 import { Button, Card, Textarea } from '@/shared/components/ui'
 import { Field, FieldError, FieldLabel } from '@/shared/components/ui/field'
 import { cn } from '@/shared/lib/utils'
-import { ImagePlus, Trash2Icon, UploadCloud } from 'lucide-react'
+import { CheckCircle2, Circle, ImagePlus, Trash2Icon, UploadCloud } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { Controller, FormProvider, useFieldArray, type SubmitHandler } from 'react-hook-form'
 import { toast } from 'sonner'
 import { useSpaces } from '../hooks/use-spaces'
-import { type SpaceImagePayload, type SpacesFormValues } from '../schemas/project.schema'
+import { MAX_LAYOUT_IMAGES, type SpaceImagePayload, type SpacesFormValues } from '../schemas/project.schema'
 import { useProjectStore, useSetProjectFlow } from '../store/project.store'
 
 interface ProjectSpacesProps {
@@ -22,7 +22,8 @@ const ACCEPTED_IMAGE_MIME = ['image/jpeg', 'image/png', 'image/heic', 'image/hei
 const ACCEPTED_IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'heic', 'heif'] as const
 const IMAGE_ACCEPT_ATTR = [...ACCEPTED_IMAGE_MIME, ...ACCEPTED_IMAGE_EXTENSIONS.map((ext) => `.${ext}`)].join(',')
 
-function getFloorLabel(t: ReturnType<typeof useTranslations<'project.form'>>, index: number) {
+function getFloorLabel(t: ReturnType<typeof useTranslations<'project.form'>>, index: number, isSpecial = false) {
+  if (isSpecial) return t('specialFloorTitle')
   return index === 0 ? t('spaces.groundFloor') : t('spaces.upperFloor', { index })
 }
 
@@ -57,17 +58,21 @@ export default function ProjectSpaces({ slug }: ProjectSpacesProps) {
 
     reset({
       spaces: {
-        description: project.spaces?.description ?? '',
-        floors: Array.from({ length: floorCount }, (_, index) => ({
-          floorIndex: index,
-          layoutImages: project.spaces?.floors.find((floor) => floor.floorIndex === index)?.layoutImages ?? []
-        }))
+        floors: Array.from({ length: floorCount }, (_, index) => {
+          const saved = project.spaces?.floors.find((floor) => floor.floorIndex === index)
+          return {
+            floorIndex: index,
+            description: saved?.description ?? '',
+            layoutImages: saved?.layoutImages ?? []
+          }
+        })
       }
     })
-  }, [floorCount, project?.designRequest, project?.spaces, reset])
+  }, [floorCount, project?.designRequest, reset])
 
   const onSubmit: SubmitHandler<SpacesFormValues> = (body) => {
     updateProject({ slug, patch: { spaces: body.spaces } })
+    window.scrollTo({ top: 0, behavior: 'instant' })
     router.push(project?.nextUrl ?? `/dashboard/projects/${slug}/ai-design-result`)
   }
 
@@ -82,81 +87,86 @@ export default function ProjectSpaces({ slug }: ProjectSpacesProps) {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-8'>
-        <Controller
-          name='spaces.description'
-          control={control}
-          render={({ field, fieldState }) => (
-            <Field data-invalid={fieldState.invalid} className='gap-3'>
-              <div className='-space-y-0.5'>
-                <FieldLabel className='text-base font-semibold'> {t('spaces.descriptionLabel')}</FieldLabel>
-                <p className='text-sm text-muted-foreground'>Hãy chọn phong cách nhà của bạn, điều này sẽ quyết định</p>
-              </div>
-
-              <Textarea
-                {...field}
-                id={field.name}
-                rows={5}
-                placeholder={t('spaces.descriptionPlaceholder')}
-                aria-invalid={fieldState.invalid}
-                className='min-h-32 resize-y'
-                onChange={(e) => {
-                  field.onChange(e)
-                  persistSpacesDraft({
-                    ...getValues('spaces'),
-                    description: e.target.value
-                  })
-                }}
-              />
-              <div className='min-h-4'>
-                {fieldState.invalid && <FieldError className='text-xs' errors={[fieldState.error]} />}
-              </div>
-            </Field>
-          )}
-        />
-
         <div className='space-y-3'>
-          <div className='-space-y-0.5'>
-            <FieldLabel className='text-base font-semibold'> {t('spaces.uploadTitle')}</FieldLabel>
-            <p className='text-sm text-muted-foreground'>{t('spaces.uploadHint')}</p>
-          </div>
-
           <div className='space-y-4'>
-            {fields.map((floor, index) => (
-              <Controller
-                key={floor.id}
-                name={`spaces.floors.${index}.layoutImages`}
-                control={control}
-                render={({ field, fieldState }) => (
-                  <LayoutImageCard
-                    label={getFloorLabel(t, index)}
-                    value={field.value}
-                    invalid={fieldState.invalid}
-                    error={fieldState.error}
-                    onChange={(images) => {
-                      const nextFloors = getValues('spaces.floors').map((item, itemIndex) =>
-                        itemIndex === index ? { ...item, layoutImages: images } : item
-                      )
+            {fields.map((floor, index) => {
+              const isSpecial = project?.designRequest?.floors[index]?.isSpecial ?? false
+              return (
+                <div key={floor.id} className='space-y-3'>
+                  <Controller
+                    name={`spaces.floors.${index}.description`}
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <Field data-invalid={fieldState.invalid} className='gap-3'>
+                        <div className='-space-y-0.5'>
+                          <FieldLabel className='text-base font-semibold'>
+                            {getFloorLabel(t, index, isSpecial)} - {t('spaces.descriptionLabel')}
+                          </FieldLabel>
+                          <p className='text-sm text-muted-foreground'>{t('spaces.descriptionSubtitle')}</p>
+                        </div>
 
-                      setValue(`spaces.floors.${index}.layoutImages`, images, {
-                        shouldDirty: true,
-                        shouldValidate: true
-                      })
-                      persistSpacesDraft({
-                        description: getValues('spaces.description'),
-                        floors: nextFloors
-                      })
-                    }}
+                        <Textarea
+                          {...field}
+                          id={field.name}
+                          rows={5}
+                          placeholder={t('spaces.descriptionPlaceholder')}
+                          aria-invalid={fieldState.invalid}
+                          className='min-h-32 resize-y bg-card'
+                          onChange={(e) => {
+                            field.onChange(e)
+                            const nextFloors = getValues('spaces.floors').map((item, itemIndex) =>
+                              itemIndex === index ? { ...item, description: e.target.value } : item
+                            )
+                            persistSpacesDraft({ floors: nextFloors })
+                          }}
+                        />
+                        <div className='min-h-4'>
+                          {fieldState.invalid && <FieldError className='text-xs' errors={[fieldState.error]} />}
+                        </div>
+                      </Field>
+                    )}
                   />
-                )}
-              />
-            ))}
+
+                  <Controller
+                    name={`spaces.floors.${index}.layoutImages`}
+                    control={control}
+                    render={({ field, fieldState }) => (
+                      <LayoutImageCard
+                        label={getFloorLabel(t, index, isSpecial)}
+                        value={field.value}
+                        invalid={fieldState.invalid}
+                        error={fieldState.error}
+                        onChange={(images) => {
+                          const nextFloors = getValues('spaces.floors').map((item, itemIndex) =>
+                            itemIndex === index ? { ...item, layoutImages: images } : item
+                          )
+
+                          setValue(`spaces.floors.${index}.layoutImages`, images, {
+                            shouldDirty: true,
+                            shouldValidate: true
+                          })
+                          persistSpacesDraft({ floors: nextFloors })
+                        }}
+                      />
+                    )}
+                  />
+                </div>
+              )
+            })}
           </div>
         </div>
 
         <div className='flex items-center justify-end gap-2'>
           {project.prevUrl && (
-            <Button type='button' variant='outline' asChild>
-              <Link href={project.prevUrl}>{tc('back')}</Link>
+            <Button
+              type='button'
+              variant='outline'
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'instant' })
+                router.push(project.prevUrl!)
+              }}
+            >
+              {tc('back')}
             </Button>
           )}
           <Button type='submit'>{tc('next')}</Button>
@@ -182,6 +192,12 @@ function LayoutImageCard({ label, value, invalid, error, onChange }: LayoutImage
   const handleFiles = (files: FileList | null) => {
     if (!files || files.length === 0) return
 
+    const slots = MAX_LAYOUT_IMAGES - value.length
+    if (slots <= 0) {
+      toast.error(t('spaces.maxImagesReached'))
+      return
+    }
+
     const validFiles: File[] = []
     Array.from(files).forEach((file) => {
       if (!isLayoutImage(file)) {
@@ -191,16 +207,28 @@ function LayoutImageCard({ label, value, invalid, error, onChange }: LayoutImage
       }
     })
 
-    if (validFiles.length === 0) return
+    const toProcess = validFiles.slice(0, slots)
+    if (toProcess.length < validFiles.length) {
+      toast.warning(t('spaces.maxImagesReached'))
+    }
 
-    const readers = validFiles.map(
-      (file) =>
+    if (toProcess.length === 0) return
+
+    const hasLayout = value.some((img) => img.isLayout)
+    const readers = toProcess.map(
+      (file, i) =>
         new Promise<SpaceImagePayload>((resolve) => {
           const reader = new FileReader()
           reader.onload = () => {
             const previewUrl = typeof reader.result === 'string' ? reader.result : ''
             if (!previewUrl) return
-            resolve({ name: file.name, type: file.type || 'image/*', size: file.size, previewUrl })
+            resolve({
+              name: file.name,
+              type: file.type || 'image/*',
+              size: file.size,
+              previewUrl,
+              isLayout: !hasLayout && i === 0
+            })
           }
           reader.readAsDataURL(file)
         })
@@ -210,7 +238,13 @@ function LayoutImageCard({ label, value, invalid, error, onChange }: LayoutImage
   }
 
   const removeImage = (index: number) => {
-    onChange(value.filter((_, i) => i !== index))
+    const wasLayout = value[index]?.isLayout ?? false
+    const next = value.filter((_, i) => i !== index)
+    onChange(wasLayout && next.length > 0 ? next.map((img, i) => ({ ...img, isLayout: i === 0 })) : next)
+  }
+
+  const setAsLayout = (index: number) => {
+    onChange(value.map((img, i) => ({ ...img, isLayout: i === index })))
   }
 
   return (
@@ -223,18 +257,42 @@ function LayoutImageCard({ label, value, invalid, error, onChange }: LayoutImage
       {value.length > 0 && (
         <div className='grid grid-cols-2 gap-2 sm:grid-cols-3'>
           {value.map((img, i) => (
-            <div key={i} className='relative aspect-[4/3] overflow-hidden rounded-md border bg-muted'>
+            <div
+              key={i}
+              className={cn(
+                'relative aspect-[4/3] overflow-hidden rounded-md border bg-muted',
+                img.isLayout && 'ring-2 ring-primary'
+              )}
+            >
               <Image src={img.previewUrl} alt={img.name} fill className='object-contain' unoptimized />
-              <Button
-                type='button'
-                variant='destructive'
-                size='icon'
-                className='absolute right-1 top-1 size-6'
-                onClick={() => removeImage(i)}
-                aria-label={t('spaces.removeImage')}
-              >
-                <Trash2Icon className='size-3' />
-              </Button>
+              {img.isLayout && (
+                <span className='absolute bottom-1 left-1 rounded bg-primary px-1.5 py-0.5 text-[10px] font-semibold text-primary-foreground'>
+                  {t('spaces.layoutBadge')}
+                </span>
+              )}
+              <div className='absolute right-1 top-1 flex flex-col gap-1'>
+                <Button
+                  type='button'
+                  variant='destructive'
+                  size='icon'
+                  className='size-6'
+                  onClick={() => removeImage(i)}
+                  aria-label={t('spaces.removeImage')}
+                >
+                  <Trash2Icon className='size-3' />
+                </Button>
+                <Button
+                  type='button'
+                  variant={img.isLayout ? 'default' : 'secondary'}
+                  size='icon'
+                  className='size-6'
+                  onClick={() => setAsLayout(i)}
+                  aria-label={t('spaces.setAsLayout')}
+                  aria-pressed={img.isLayout}
+                >
+                  {img.isLayout ? <CheckCircle2 className='size-3' /> : <Circle className='size-3' />}
+                </Button>
+              </div>
             </div>
           ))}
         </div>

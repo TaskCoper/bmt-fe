@@ -1,6 +1,6 @@
 'use client'
 
-import { Link, useRouter } from '@/i18n/navigation'
+import { useRouter } from '@/i18n/navigation'
 import { ComboboxField } from '@/shared/components/common/combobox-field'
 import { RadioCardOption } from '@/shared/components/common/radio-card-option'
 import { Button, Card, RadioGroup, Slider } from '@/shared/components/ui'
@@ -21,6 +21,7 @@ import {
   type DesignRequestFormValues
 } from '../schemas/project.schema'
 import { useProjectStore, useSetProjectFlow } from '../store/project.store'
+import { useFlowNavigation } from './project-flow-layout'
 import { COLOR_PRESETS, Direction, FloorLayout, FloorLighting, HouseStyle, RoofStyle } from '../types/project.types'
 import FloorCardsForm from './floor-cards-form'
 import DirectionCompassIcon from './icons/direction-compass-icon'
@@ -61,13 +62,22 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
   const { methods } = useDesignRequest()
 
   const updateProject = useProjectStore((s) => s.updateProject)
+  const flowNav = useFlowNavigation()
 
   useSetProjectFlow(slug, 'design-request')
 
   const project = projects[slug]
   const draft = project?.designRequest
 
-  const { setValue, watch, reset, control, handleSubmit } = methods
+  const { setValue, watch, reset, control, handleSubmit, getValues } = methods
+
+  useEffect(() => {
+    flowNav?.registerBeforeNavigate(() => {
+      const { designRequest } = getValues()
+      updateProject({ slug, patch: { designRequest } })
+    })
+    return () => flowNav?.registerBeforeNavigate(null)
+  }, [flowNav, getValues, updateProject, slug])
 
   const cityCodeForm = watch('designRequest.cityCode')
   const styleForm = watch('designRequest.style')
@@ -78,6 +88,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
   const {
     fields: floorFields,
     append: appendFloor,
+    insert: insertFloor,
     remove: removeFloor
   } = useFieldArray({
     control,
@@ -86,6 +97,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
 
   const onSubmit: SubmitHandler<DesignRequestFormValues> = (body) => {
     updateProject({ slug, patch: { designRequest: body.designRequest } })
+    window.scrollTo({ top: 0, behavior: 'instant' })
     router.push(project?.nextUrl ?? `/dashboard/projects/${slug}/spaces`)
   }
 
@@ -201,8 +213,8 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
 
         <Card className='gap-4 p-4'>
           <div className='-space-y-0.5'>
-            <p className='text-base font-semibold'>Địa chỉ công trình</p>
-            <p className='text-sm text-muted-foreground'>Nhập địa chỉ chi tiết nơi mà bạn muốn xây</p>
+            <p className='text-base font-semibold'>{t('addressTitle')}</p>
+            <p className='text-sm text-muted-foreground'>{t('addressSubtitle')}</p>
           </div>
 
           <div className='space-y-4'>
@@ -307,9 +319,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
               <Field data-invalid={fieldState.invalid} className='gap-3'>
                 <div className='-space-y-0.5'>
                   <FieldLabel className='text-base font-semibold'>{t('styleLabel')}</FieldLabel>
-                  <p className='text-sm text-muted-foreground'>
-                    Hãy chọn phong cách nhà của bạn, điều này sẽ quyết định
-                  </p>
+                  <p className='text-sm text-muted-foreground'>{t('styleSubtitle')}</p>
                 </div>
 
                 <RadioGroup
@@ -370,9 +380,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
                 <Field data-invalid={fieldState.invalid} className='gap-3'>
                   <div className='-space-y-0.5'>
                     <FieldLabel className='text-base font-semibold'>{t('roofStyleLabel')}</FieldLabel>
-                    <p className='text-sm text-muted-foreground'>
-                      Hãy chọn phong cách nhà của bạn, điều này sẽ quyết định
-                    </p>
+                    <p className='text-sm text-muted-foreground'>{t('roofStyleSubtitle')}</p>
                   </div>
 
                   <RadioGroup
@@ -431,9 +439,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
                 <Field data-invalid={fieldState.invalid} className='gap-3'>
                   <div className='-space-y-0.5'>
                     <FieldLabel className='text-base font-semibold'>{t('tumLabel')}</FieldLabel>
-                    <p className='text-sm text-muted-foreground'>
-                      Hãy chọn phong cách nhà của bạn, điều này sẽ quyết định
-                    </p>
+                    <p className='text-sm text-muted-foreground'>{t('tumSubtitle')}</p>
                   </div>
 
                   <RadioGroup
@@ -491,7 +497,7 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
             <Field className='gap-4'>
               <div className='-space-y-0.5'>
                 <FieldLabel className='text-base font-semibold'>{t('directionLabel')}</FieldLabel>
-                <p className='text-sm text-muted-foreground'>Hãy chọn phong cách nhà của bạn, điều này sẽ quyết định</p>
+                <p className='text-sm text-muted-foreground'>{t('directionSubtitle')}</p>
               </div>
 
               <RadioGroup value={field.value} onValueChange={field.onChange} className='grid gap-4 sm:grid-cols-2'>
@@ -512,21 +518,29 @@ export default function ProjectDesignRequest({ slug }: { slug: string }) {
         <div className='space-y-3'>
           <div className='-space-y-0.5'>
             <p className='text-base font-semibold'>{t('floorsLabel')}</p>
-            <p className='text-sm text-muted-foreground'>Hãy chọn phong cách nhà của bạn, điều này sẽ quyết định</p>
+            <p className='text-sm text-muted-foreground'>{t('floorsDescription')}</p>
           </div>
 
           <FloorCardsForm
             control={control}
             floorFields={floorFields}
             appendFloor={appendFloor}
+            insertFloor={insertFloor}
             removeFloor={removeFloor}
           />
         </div>
 
         <div className='flex items-center justify-end gap-2'>
           {project.prevUrl && (
-            <Button type='button' variant='outline' asChild>
-              <Link href={project.prevUrl}>{tc('back')}</Link>
+            <Button
+              type='button'
+              variant='outline'
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'instant' })
+                router.push(project.prevUrl!)
+              }}
+            >
+              {tc('back')}
             </Button>
           )}
           <Button type='submit'>{tc('next')}</Button>

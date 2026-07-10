@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from 'react'
 
+import { usePathname } from '@/i18n/navigation'
 import { AppSidebar } from '@/shared/components/app-sidebar'
 import { AssistantDock } from '@/shared/components/assistant-dock'
 import { AssistantDrawer } from '@/shared/components/assistant-drawer'
@@ -9,6 +10,8 @@ import { SidebarInset, SidebarProvider } from '@/shared/components/ui/sidebar'
 import { cn } from '@/shared/lib/utils'
 import { DashboardBrandHeader } from './dashboard-brand-header'
 import { DashboardTopbar } from './dashboard-topbar'
+
+const PROJECT_ROUTE_RE = /^\/dashboard\/projects\/(?!new(?:\/|$))[^/]+/
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -34,6 +37,8 @@ interface DashboardLayoutProps {
  */
 export function DashboardLayout({ children, onLogout, assistant, onAction }: DashboardLayoutProps) {
   const [assistantOpen, setAssistantOpen] = useState(false)
+  const pathname = usePathname()
+  const isProjectCanvas = PROJECT_ROUTE_RE.test(pathname)
 
   return (
     <SidebarProvider className='flex-col'>
@@ -41,12 +46,14 @@ export function DashboardLayout({ children, onLogout, assistant, onAction }: Das
       <div className='flex flex-1'>
         <AppSidebar className='top-16! h-[calc(100svh-4rem)]!' onLogout={onLogout} onAction={onAction} />
         <SidebarInset
-          className={cn('min-h-0 transition-[margin] duration-300 ease-out', assistantOpen && 'xl:mr-[380px]')}
+          className={cn(
+            'min-h-0 transition-[margin] duration300 ease-out',
+            isProjectCanvas && 'project-canvas',
+            assistantOpen && 'xl:mr-[380px]'
+          )}
         >
           <DashboardTopbar />
-          <main className='flex-1 px-4 py-6 lg:px-8 lg:py-8'>
-            <div className='mx-auto w-full max-w-7xl'>{children}</div>
-          </main>
+          <main className='flex-1 px-4 py-6 lg:px-8 lg:py-8'>{children}</main>
         </SidebarInset>
       </div>
       <AssistantDrawer open={assistantOpen} onClose={() => setAssistantOpen(false)}>

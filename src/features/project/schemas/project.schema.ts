@@ -18,11 +18,16 @@ export const createProjectSchema = (m: ProjectSchemaMessages) => {
 export interface DesignRequestSchemaMessages {
   required: string
   invalidArea: string
+  maxFloors: string
 }
 
+export const DESIGN_REQUEST_NORMAL_FLOORS_MAX = 4
+// ground(1) + normal(max 4) + special(max 1) = 6
+const DESIGN_REQUEST_FLOORS_TOTAL_MAX = 6
+
 export const DESIGN_REQUEST_BUDGET_MIN = 300_000_000
-export const DESIGN_REQUEST_BUDGET_MAX = 15_000_000_000
-export const DESIGN_REQUEST_BUDGET_STEP = 50_000_000
+export const DESIGN_REQUEST_BUDGET_MAX = 1_000_000_000_000
+export const DESIGN_REQUEST_BUDGET_STEP = 100_000_000
 export const DESIGN_REQUEST_BUDGET_DEFAULT = 2_000_000_000
 
 export const designRequestSchema = (m: DesignRequestSchemaMessages) => {
@@ -30,7 +35,8 @@ export const designRequestSchema = (m: DesignRequestSchemaMessages) => {
     area: z.number({ message: m.invalidArea }).positive({ message: m.invalidArea }),
     layout: z.enum(FloorLayout),
     lighting: z.enum(FloorLighting),
-    color: z.string().min(1, { message: m.required })
+    color: z.string().min(1, { message: m.required }),
+    isSpecial: z.boolean().optional()
   })
 
   return z.object({
@@ -38,17 +44,17 @@ export const designRequestSchema = (m: DesignRequestSchemaMessages) => {
       style: z.enum(HouseStyle),
       roofStyle: z.enum(RoofStyle).optional(),
       hasTum: z.boolean().optional(),
-      budgetAmount: z
-        .number({ message: m.invalidArea })
-        .min(DESIGN_REQUEST_BUDGET_MIN, { message: m.invalidArea })
-        .max(DESIGN_REQUEST_BUDGET_MAX, { message: m.invalidArea }),
+      budgetAmount: z.number({ message: m.invalidArea }).min(DESIGN_REQUEST_BUDGET_MIN, { message: m.invalidArea }),
       direction: z.enum(Direction),
       address: z.string().min(1, { message: m.required }),
       city: z.string().min(1, { message: m.required }),
       cityCode: z.number().refine((v) => v > 0, { message: m.required }),
       ward: z.string().min(1, { message: m.required }),
       wardCode: z.number().refine((v) => v > 0, { message: m.required }),
-      floors: z.array(floorSchema).min(1, { message: m.required })
+      floors: z
+        .array(floorSchema)
+        .min(1, { message: m.required })
+        .max(DESIGN_REQUEST_FLOORS_TOTAL_MAX, { message: m.maxFloors })
     })
   })
 }
@@ -60,24 +66,31 @@ export type FloorPayload = DesignRequestPayload['floors'][number]
 
 export interface SpacesSchemaMessages {
   required: string
+  maxImages: string
 }
+
+export const MAX_LAYOUT_IMAGES = 5
 
 const spaceImageSchema = z.object({
   name: z.string().min(1),
   type: z.string().min(1),
   size: z.number().nonnegative(),
-  previewUrl: z.string().min(1)
+  previewUrl: z.string().min(1),
+  isLayout: z.boolean()
 })
 
 export const spacesSchema = (m: SpacesSchemaMessages) => {
   return z.object({
     spaces: z.object({
-      description: z.string().min(1, { message: m.required }),
       floors: z
         .array(
           z.object({
             floorIndex: z.number().int().nonnegative(),
-            layoutImages: z.array(spaceImageSchema).min(1, { message: m.required })
+            description: z.string().min(1, { message: m.required }),
+            layoutImages: z
+              .array(spaceImageSchema)
+              .min(1, { message: m.required })
+              .max(MAX_LAYOUT_IMAGES, { message: m.maxImages })
           })
         )
         .min(1, { message: m.required })

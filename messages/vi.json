@@ -48,7 +48,9 @@
     "leads": "Khách hàng tiềm năng",
     "adminGallery": "Thư viện (admin)",
     "adminPortfolio": "Dự án (admin)",
-    "projectCreate": "Tạo dự án"
+    "projectCreate": "Tạo dự án",
+    "toggleSubmenu": "Mở/đóng mục con",
+    "citiesImageAlt": "Hình ảnh skyline thành phố"
   },
   "assistant": {
     "uiTab": "Giao diện",
@@ -77,7 +79,9 @@
       "projects": "Dự án",
       "about": "Giới thiệu",
       "contact": "Liên hệ",
-      "library": "Thư viện tham khảo"
+      "library": "Thư viện tham khảo",
+      "openMenu": "Mở menu",
+      "mobileMenu": "Menu"
     },
     "hero": {
       "badge": "Nền tảng thiết kế tích hợp AI",
@@ -593,9 +597,18 @@
       "wardLabel": "Phường / Xã",
       "wardPlaceholder": "Chọn phường / xã",
       "wardSearchPlaceholder": "Tìm phường / xã…",
+      "addressTitle": "Địa chỉ công trình",
+      "addressSubtitle": "Nhập địa chỉ chi tiết nơi mà bạn muốn xây",
+      "styleSubtitle": "Phong cách nhà quyết định hướng thiết kế tổng thể.",
+      "roofStyleSubtitle": "Chọn kiểu mái phù hợp với gu của bạn.",
+      "tumSubtitle": "Tum là phòng nhỏ trên mái che cầu thang lên sân thượng.",
+      "directionSubtitle": "Hướng nhà ảnh hưởng đến ánh sáng tự nhiên và thông gió.",
       "floorsLabel": "Tầng",
       "floorsDescription": "Thêm từng tầng và điều chỉnh diện tích, bố cục, ánh sáng, màu chủ đạo.",
+      "groundFloorTitle": "Tầng trệt",
       "floorTitle": "Tầng {index}",
+      "specialFloorTitle": "Tầng thượng",
+      "addSpecialFloorDescription": "Thêm tầng đặc biệt phía trên cùng của công trình",
       "addFloor": "Thêm tầng",
       "removeFloor": "Xoá tầng",
       "areaLabel": "Diện tích xây dựng (m²)",
@@ -623,6 +636,7 @@
         "title": "Thông tin không gian & hình ảnh layout",
         "subtitle": "Tải ảnh layout theo thứ tự từng tầng và mô tả không gian thực tế.",
         "descriptionLabel": "Mô tả không gian thực tế",
+        "descriptionSubtitle": "Mô tả hiện trạng không gian để AI hiểu đúng bố trí và nhu cầu của bạn.",
         "descriptionPlaceholder": "VD: Tầng trệt gồm phòng khách, bếp mở, có giếng trời phía sau...",
         "uploadTitle": "Ảnh layout từng tầng",
         "uploadHint": "Ảnh tải lên chỉ dùng để mô tả bố trí mặt bằng của từng tầng trong nhà.",
@@ -632,6 +646,9 @@
         "dropHint": "JPG, PNG hoặc HEIC. Có thể tải nhiều ảnh cho mỗi tầng.",
         "addMore": "Thêm ảnh",
         "removeImage": "Xoá ảnh",
+        "setAsLayout": "Đặt làm ảnh layout",
+        "layoutBadge": "Layout",
+        "maxImagesReached": "Tối đa 5 ảnh mỗi tầng. Một số tệp đã bị bỏ qua.",
         "missingDesignRequest": "Vui lòng hoàn tất bước yêu cầu thiết kế trước khi nhập thông tin không gian.",
         "unsupportedImage": "\"{name}\" không phải định dạng ảnh được hỗ trợ.",
         "saved": "Đã lưu thông tin không gian"
@@ -648,8 +665,13 @@
         "section4D": "4D · Thông tin diện tích công trình",
         "section4E": "4E · Tổng hợp dự toán",
         "consultation": {
-          "body": "Kính chào Anh/Chị <pill>{customerName}</pill>. Với quy mô <pill>{landArea} m²</pill> × <pill>{floorCount} tầng</pill> (tổng sàn ~<pill>{totalFloorArea} m²</pill>), tổng mức đầu tư tại <pill>{city}</pill> thường dao động <pill>{budgetMin}–{budgetMax} tỷ</pill>.",
-          "distribution": "Phân bổ tham khảo thị trường: thô 50–55% · hoàn thiện 30–35% · nội thất 15–20%.",
+          "greeting": "Kính chào Anh/Chị <pill>{customerName}</pill>,",
+          "body": "Cảm ơn Anh/Chị đã tin tưởng sử dụng nền tảng BMT DECOR AI. Dựa trên các thông tin Anh/Chị cung cấp, hệ thống phân tích và tư vấn như sau: Với quy mô <pill>{landArea} m²</pill> × <pill>{floorCount} tầng</pill> (tổng diện tích sàn khoảng <pill>{totalFloorArea} m²</pill>), tổng mức đầu tư trọn gói tại khu vực <pill>{city}</pill> thường dao động trong khoảng <pill>{budgetMin}–{budgetMax} tỷ đồng</pill>, phân bổ tham khảo: phần thô 50–55% – hoàn thiện 30–35% – nội thất 15–20%. Với ngân sách dự kiến <pill>{userBudget} tỷ</pill>, Anh/Chị nên giữ lại khoảng 5–10% (tương đương <pill>{contingencyMin}–{contingencyMax} tỷ</pill>) làm khoản dự phòng phát sinh; thời gian thi công dự kiến cho quy mô này khoảng <pill>{constructionMin}–{constructionMax} tháng</pill> (phần thô <pill>{roughMin}–{roughMax} tháng</pill>, hoàn thiện – nội thất <pill>{finishingMin}–{finishingMax} tháng</pill>), khởi công vào mùa khô của <pill>{region}</pill> sẽ thuận lợi nhất. Dưới đây là bảng dự toán chi tiết cho từng hạng mục, đã được nghiên cứu và chia theo từng gói để Anh/Chị dễ dàng lựa chọn.",
+          "regionName": {
+            "north": "miền Bắc",
+            "central": "miền Trung",
+            "south": "miền Nam"
+          },
           "tumNote": "Đã bao gồm tum (buồng thang mái) theo cấu hình bạn chọn."
         },
         "floorTabs": {
@@ -876,6 +898,10 @@
           "portionFinishing": "Phần hoàn thiện",
           "portionInterior": "Phần nội thất",
           "totalRow": "TỔNG DỰ KIẾN",
+          "budgetProgress": "Tổng dự toán <strong>{actual}</strong> trên ngân sách dự kiến <strong>{budget}</strong>",
+          "closingBelow": "thấp hơn",
+          "closingAbove": "cao hơn",
+          "closing": "Với các lựa chọn trên, tổng mức đầu tư dự kiến là <strong>{total}</strong>, <em>{direction}</em> ngân sách dự kiến khoảng <strong>{diff}</strong>. Liên hệ <strong>{phone}</strong> (hotline/Zalo) để được kiến trúc sư BMT Decor tư vấn trực tiếp, miễn phí.",
           "disclaimer": "Đây là mức dự toán tham khảo, chi phí thực tế có thể thay đổi sau khảo sát thực địa.",
           "generatedAt": "Ngày lập: {date}"
         },
@@ -1426,7 +1452,9 @@
     "passwordMismatch": "Mật khẩu xác nhận không khớp",
     "agreeTerms": "Bạn cần đồng ý với điều khoản",
     "phone": "Số điện thoại không hợp lệ",
-    "positiveNumber": "Nhập một số lớn hơn 0"
+    "positiveNumber": "Nhập một số lớn hơn 0",
+    "maxFloors": "Tối đa 6 tầng (4 tầng thường + tầng thượng)",
+    "maxImages": "Tối đa {max} ảnh mỗi tầng"
   },
   "studio": {
     "title": "Studio thiết kế AI",
