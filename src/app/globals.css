@@ -553,6 +553,25 @@
       0 0;
   }
 
+  /* Blueprint-grid canvas used by the project-flow shell. Semantic tokens
+   * (background/warm-1/grid-line) already have light + dark pairs, so the
+   * surface adapts to `.dark` with no extra rules. */
+  .project-canvas {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(circle at top right, var(--warm-1), transparent 65%),
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(color-mix(in oklch, var(--grid-line) 40%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklch, var(--grid-line) 40%, transparent) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      120px 120px,
+      120px 120px,
+      24px 24px,
+      24px 24px;
+  }
+
   /* --- Cinematic ambient canvas -------------------------------------------
    * Drifting colour orbs + blueprint grid + vignette + grain give the frost
    * something dimensional to refract. Scoped to a positioned parent so it

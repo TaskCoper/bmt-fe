@@ -19,12 +19,20 @@ import { buildProjectId, getProjectFlowUrls, useProjectStore } from '../../store
 import CreateProjectForm from './create-project-form'
 
 interface CreateProjectDialogProps {
-  children: React.ReactNode
+  children?: React.ReactNode
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
-export default function CreateProjectDialog({ children }: CreateProjectDialogProps) {
+export default function CreateProjectDialog({
+  children,
+  open: controlledOpen,
+  onOpenChange
+}: CreateProjectDialogProps) {
   const t = useTranslations('project')
-  const [open, setOpen] = useState(false)
+  const [internalOpen, setInternalOpen] = useState(false)
+  const open = controlledOpen ?? internalOpen
+  const setOpen = onOpenChange ?? setInternalOpen
   const router = useRouter()
   const { methods } = useCreateProject()
 

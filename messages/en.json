@@ -32,6 +32,7 @@
     "home": "Home",
     "dashboard": "Dashboard",
     "projects": "Projects",
+    "myProjects": "My Projects",
     "estimates": "Estimates",
     "myEstimates": "My estimates",
     "estimateCreate": "New estimate",
@@ -46,7 +47,8 @@
     "logout": "Log out",
     "leads": "Leads",
     "adminGallery": "Library (admin)",
-    "adminPortfolio": "Portfolio (admin)"
+    "adminPortfolio": "Portfolio (admin)",
+    "projectCreate": "Create project"
   },
   "assistant": {
     "uiTab": "Interface",
@@ -466,7 +468,7 @@
         "progress": "{completed}/{total} steps ready",
         "viewResult": "View result",
         "resume": "Continue · Step {step}",
-        "start": "Start step 1",
+        "start": "Start step 2",
         "openStep": "Open this step",
         "editStep": "Edit",
         "insightsTitle": "6-step progress",
@@ -1096,6 +1098,10 @@
         "Appartment": "Apartment project preview",
         "Villa": "Villa project preview",
         "Townhouse": "Townhouse project preview"
+      },
+      "actions": {
+        "label": "Project actions",
+        "delete": "Delete project"
       }
     }
   },

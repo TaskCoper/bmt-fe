@@ -1,6 +1,8 @@
-import { CreateProjectDialog, ProjectGrid } from '@/features/project'
+import { ProjectGrid } from '@/features/project'
+import { Link } from '@/i18n'
 import type { Locale } from '@/i18n/routing'
 import { Button } from '@/shared/components/ui'
+import { ROUTES } from '@/shared/constants'
 import { PlusCircleIcon } from 'lucide-react'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
@@ -28,12 +30,14 @@ export default async function ProjectsPage({ params }: PageProps) {
           <p className='text-muted-foreground text-sm'>{t('subtitle')}</p>
         </div>
 
-        <CreateProjectDialog>
-          <Button size='sm'>
+        {/* <CreateProjectDialog> */}
+        <Button size='sm' asChild>
+          <Link href={ROUTES.PROJECT_NEW}>
             <PlusCircleIcon />
             {t('create')}
-          </Button>
-        </CreateProjectDialog>
+          </Link>
+        </Button>
+        {/* </CreateProjectDialog> */}
       </div>
 
       <ProjectGrid />

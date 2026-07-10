@@ -1,16 +1,15 @@
 'use client'
 
-import { type ComponentType, type ReactNode, useSyncExternalStore } from 'react'
 import { Link } from '@/i18n/navigation'
 import { useAuth } from '@/shared/auth'
-import { cn } from '@/shared/lib/utils'
 import { LanguageSwitcher, Logo, ThemeToggle } from '@/shared/components/common'
 import { Button } from '@/shared/components/ui/button'
 import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from '@/shared/components/ui/dialog'
 import { ROUTES } from '@/shared/constants/routes'
+import { cn } from '@/shared/lib/utils'
 import { Menu } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { SiteSearch } from './site-search'
+import { type ComponentType, type ReactNode, useSyncExternalStore } from 'react'
 
 /** Stable no-op subscribe so `useSyncExternalStore` only distinguishes SSR vs client. */
 const emptySubscribe = () => () => {}
@@ -89,9 +88,16 @@ export function LandingNavbar({ AuthTrigger, UserMenu }: LandingNavbarProps = {}
         </nav>
 
         <div className='ml-auto flex items-center gap-1.5'>
-          <div className='mr-1 hidden lg:block'>
+          {/* <div className='mr-1 hidden lg:block'>
             <SiteSearch />
-          </div>
+          </div> */}
+
+          {authed ? (
+            <Button size='sm'>
+              <Link href={ROUTES.PROJECTS}>Dự án của tôi</Link>
+            </Button>
+          ) : null}
+
           <LanguageSwitcher />
           <ThemeToggle />
           {authed && UserMenu ? <UserMenu /> : renderCta('hidden sm:inline-flex')}

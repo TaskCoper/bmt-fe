@@ -1,9 +1,9 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import { Card } from '@/shared/components/ui'
+import { Button, Card } from '@/shared/components/ui'
 import { GlassCard } from '@/shared/components/ui/glasscn/glass-card'
-import { TextIcon } from 'lucide-react'
+import { EllipsisIcon, TextIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import appartmentDark from 'public/images/appartment-dark.png'
@@ -12,8 +12,9 @@ import townhouseDark from 'public/images/townhouse-dark.png'
 import townhouseLight from 'public/images/townhouse-light.png'
 import villaDark from 'public/images/villa-dark.png'
 import villaLight from 'public/images/villa-light.png'
-import type { ProjectDraft } from '../store/project.store'
+import { useProjectStore, type ProjectDraft } from '../store/project.store'
 import { HouseType } from '../types/project.types'
+import ProjectCardActions from './project-card-actions'
 
 const HOUSE_IMAGES = {
   [HouseType.Appartment]: { dark: appartmentDark, light: appartmentLight },
@@ -27,6 +28,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const t = useTranslations('project.card')
+  const removeProject = useProjectStore((s) => s.removeProject)
 
   const imageSet = HOUSE_IMAGES[project.houseType]
   const alt = t(`imageAlt.${project.houseType}`)
@@ -34,6 +36,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link href={`/dashboard/projects/${project.slug}`} className='block'>
       <Card className='relative aspect-video overflow-hidden'>
+        <ProjectCardActions onDelete={() => removeProject(project.slug)}>
+          <Button
+            className='absolute z-10 top-2 right-2'
+            variant='ghost'
+            size='icon-sm'
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+            }}
+          >
+            <EllipsisIcon />
+          </Button>
+        </ProjectCardActions>
+
         <Image
           src={imageSet.light}
           alt={alt}
